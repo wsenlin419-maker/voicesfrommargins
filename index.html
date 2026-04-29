@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voices from Margins | 边缘之声</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '"Noto Sans SC"', 'sans-serif'],
+                        serif: ['Lora', '"Noto Serif SC"', 'serif'],
+                    },
+                    colors: {
+                        pew: {
+                            dark: '#1a1a1a',
+                            border: '#e5e5e5',
+                            accent: '#cc4a00',
+                            subtle: '#666666',
+                            bg: '#FAFAFA'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: #FAFAFA; color: #1a1a1a; overflow-x: hidden; }
+        
+        .pew-divider { border-top: 1px solid #e5e5e5; }
+        .pew-divider-thick { border-top: 3px solid #1a1a1a; }
+        
+        /* 动态特效 1：卡片悬浮的高级投影与位移 */
+        .notion-card {
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            background: white;
+            border: 1px solid #e5e5e5;
+        }
+        .notion-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-color: #cc4a00;
+        }
+
+        .nav-link:hover {
+            color: #1a1a1a;
+            padding-left: 0.5rem;
+            border-left: 2px solid #cc4a00;
+            background-color: #f3f4f6;
+        }
+
+        body.lang-zh { text-align: justify; }
+        body.lang-zh .tracking-widest { letter-spacing: 0.1em; }
+        
+        /* 动态特效 2：滚动揭示动画 (Scroll Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 动态特效 3：弹窗平滑过渡 */
+        #article-modal { transition: opacity 0.4s ease, visibility 0.4s ease; }
+        #article-content { transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .modal-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .modal-visible { opacity: 1; visibility: visible; pointer-events: auto; }
+        .slide-down { transform: translateY(40px) scale(0.98); }
+        .slide-up { transform: translateY(0) scale(1); }
+
+        /* 响应式视频容器 */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 比例 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .video-container iframe, .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col md:flex-row relative">
+
+    <!-- Mobile Header -->
+    <header class="md:hidden bg-white border-b border-pew-border sticky top-0 z-40 flex justify-between items-center px-4 py-3 shadow-sm transition-all">
+        <h1 class="font-serif text-xl font-bold text-pew-dark leading-tight" data-en="Voices from Margins" data-zh="边缘之声">
+            Voices from Margins
+        </h1>
+        <button onclick="toggleLang()" class="p-2 border border-pew-border rounded bg-gray-50 flex items-center justify-center active:scale-95 transition-transform">
+            <i data-lucide="globe" class="w-4 h-4"></i>
+        </button>
+    </header>
+
+    <!-- Desktop Sidebar -->
+    <aside class="hidden md:flex w-64 lg:w-72 fixed h-screen bg-white border-r border-pew-border flex-col justify-between z-30 shadow-[4px_0_24px_rgba(0,0,0,0.02)]">
+        <div class="p-8">
+            <div class="mb-12 cursor-pointer hover:opacity-80 transition-opacity" onclick="window.scrollTo(0,0)">
+                <h1 class="font-serif text-3xl font-bold text-pew-dark leading-tight" data-en="Voices from Margins" data-zh="边缘之声">
+                    Voices from Margins
+                </h1>
+                <p class="text-xs text-pew-subtle mt-2 uppercase tracking-widest font-semibold" data-en="Research & Policy" data-zh="研究与政策倡导">Research & Policy</p>
+            </div>
+            
+            <nav class="space-y-2">
+                <a href="#research" class="nav-link block text-sm font-medium text-pew-subtle transition-all py-2 -ml-px" data-en="Research Brief" data-zh="研究简报">Research Brief</a>
+                <a href="#field" class="nav-link block text-sm font-medium text-pew-subtle transition-all py-2 -ml-px" data-en="Field Notes" data-zh="田野笔记">Field Notes</a>
+                <a href="#data" class="nav-link block text-sm font-medium text-pew-subtle transition-all py-2 -ml-px" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</a>
+                <a href="#voices" class="nav-link block text-sm font-medium text-pew-subtle transition-all py-2 -ml-px" data-en="Interview Series" data-zh="边缘访谈系列">Interview Series</a>
+                <a href="#about" class="nav-link block text-sm font-medium text-pew-subtle transition-all py-2 -ml-px" data-en="About Us" data-zh="关于平台">About Us</a>
+            </nav>
+        </div>
+
+        <div class="p-8 border-t border-pew-border bg-gray-50">
+            <button onclick="toggleLang()" class="w-full flex items-center justify-center px-4 py-2 border border-pew-border rounded bg-white hover:bg-gray-100 transition shadow-sm text-sm font-medium text-pew-dark active:scale-95">
+                <i data-lucide="globe" class="w-4 h-4 mr-2 text-pew-accent"></i>
+                <span id="lang-label-desktop">English / 中文</span>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 md:ml-64 lg:ml-72 bg-pew-bg">
+        <div class="max-w-4xl mx-auto px-6 py-12 md:py-20 lg:px-12">
+            
+            <!-- Hero (自动载入动画) -->
+            <section class="mb-20 reveal active">
+                <div class="inline-block mb-6 px-3 py-1 bg-gray-200 text-xs font-bold tracking-widest uppercase text-pew-subtle rounded-sm"
+                     data-en="Youth Research & Public Expression" data-zh="青年研究与公共表达平台">
+                    Youth Research & Public Expression
+                </div>
+                <h2 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-pew-dark leading-tight mb-8"
+                    data-en="Listening to the unheard.<br> Shaping policy through narratives." 
+                    data-zh="聆听未被听见的声音。<br> 以叙事重塑公共政策。">
+                    Listening to the unheard.<br> Shaping policy through narratives.
+                </h2>
+                <p class="text-xl text-pew-subtle font-serif leading-relaxed max-w-2xl"
+                   data-en="An independent platform focused on language, identity, inequality, and visual politics."
+                   data-zh="聚焦语言、身份认同、不平等与视觉政治的独立研究平台。">
+                    An independent platform focused on language, identity, inequality, and visual politics.
+                </p>
+            </section>
+
+            <div class="pew-divider-thick mb-16 reveal"></div>
+
+            <div class="space-y-24">
+                
+                <!-- Research Brief -->
+                <section id="research" class="scroll-mt-12 reveal">
+                    <div class="flex items-baseline justify-between mb-8 border-b border-pew-border pb-3">
+                        <h3 class="text-2xl font-serif font-bold text-pew-dark flex items-center" data-en="Research Brief" data-zh="研究简报">
+                            Research Brief
+                        </h3>
+                    </div>
+                    
+                    <div class="space-y-10">
+                        <article class="group cursor-pointer p-2 -m-2 rounded-lg hover:bg-white hover:shadow-sm transition-all" onclick="openArticle('project-faces')">
+                            <p class="text-xs text-pew-accent mb-3 font-bold tracking-widest uppercase" data-en="VISUAL POLITICS & MEDIA • ONGOING" data-zh="视觉政治与媒体分析 • 持续进行中">VISUAL POLITICS & MEDIA • ONGOING</p>
+                            <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4 leading-snug"
+                                data-en="Faces vs. Steel: A Comparative Visual Framing Analysis of China's Aid in Africa"
+                                data-zh="面孔与钢铁：中国对非援助的视觉框架比较分析">
+                                Faces vs. Steel: A Comparative Visual Framing Analysis of China's Aid in Africa
+                            </h4>
+                            <p class="text-lg text-pew-subtle font-serif leading-relaxed mb-4 line-clamp-3"
+                               data-en="A quantitative visual analysis of 250+ images comparing how Western (BBC, CNN, NYT) and Chinese (Xinhua, CGTN) media construct visual narratives of infrastructure projects in Africa."
+                               data-zh="本研究是一项基于混合方法的视觉框架分析。通过分析250多幅图像，对比西方媒体（如BBC/CNN）与中国媒体（如新华社）在报道非洲基建项目时截然不同的视觉政治叙事。">
+                                A quantitative visual analysis of 250+ images comparing how Western and Chinese media construct visual narratives.
+                            </p>
+                            <div class="flex flex-wrap items-center text-xs font-semibold uppercase tracking-wider text-pew-subtle gap-2">
+                                <span class="bg-gray-100 border border-gray-200 px-3 py-1 rounded-sm" data-en="Quantitative" data-zh="量化分析">Quantitative</span>
+                                <span class="bg-gray-100 border border-gray-200 px-3 py-1 rounded-sm" data-en="Media Framing" data-zh="媒体框架">Media Framing</span>
+                                <span class="text-pew-accent group-hover:underline flex items-center mt-1 sm:mt-0" data-en="Read Project" data-zh="阅读项目详情">Read Project <i data-lucide="arrow-right" class="w-3 h-3 ml-1"></i></span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Field Notes & Data Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    
+                    <section id="field" class="scroll-mt-12 reveal">
+                        <h3 class="text-xl font-serif font-bold text-pew-dark mb-6 border-b border-pew-border pb-2 flex items-center" data-en="Field Notes" data-zh="田野笔记">
+                            <i data-lucide="book-open" class="w-5 h-5 mr-2 text-pew-subtle"></i>Field Notes
+                        </h3>
+                        <div class="space-y-5">
+                            <div class="notion-card p-6 rounded-md cursor-pointer relative overflow-hidden" onclick="openArticle('project-nanjiang')">
+                                <div class="absolute top-0 right-0 w-16 h-16 bg-pew-accent/5 rounded-bl-full -z-10 transition-transform group-hover:scale-150"></div>
+                                <div class="flex items-center text-pew-accent mb-3">
+                                    <i data-lucide="map-pin" class="w-4 h-4 mr-1"></i>
+                                    <span class="text-xs font-bold uppercase tracking-wider" data-en="Nanjiang (Southern Xinjiang)" data-zh="南疆田野点">Nanjiang (Southern Xinjiang)</span>
+                                </div>
+                                <h4 class="font-serif font-bold text-lg text-pew-dark mb-2 leading-snug"
+                                    data-en="Voices from the Borderlands: Linguistic Hybridity and Identity Formation"
+                                    data-zh="边境之声：南疆的语言杂糅与身份认同建构">
+                                    Voices from the Borderlands: Linguistic Hybridity and Identity Formation
+                                </h4>
+                                <p class="text-sm text-pew-subtle font-serif mb-3"
+                                   data-en="Presented at the UIUC Sociolinguistics Symposium (SoSy 7), April 2026."
+                                   data-zh="本项目已入选伊利诺伊大学香槟分校 (UIUC) 第七届社会语言学研讨会 (SoSy 7)。">
+                                    Presented at the UIUC Sociolinguistics Symposium (SoSy 7).
+                                </p>
+                                <span class="text-xs text-pew-accent hover:underline flex items-center" data-en="Read Abstract" data-zh="阅读摘要">Read Abstract <i data-lucide="arrow-right" class="w-3 h-3 ml-1 transform group-hover:translate-x-1 transition-transform"></i></span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section id="data" class="scroll-mt-12 reveal">
+                        <h3 class="text-xl font-serif font-bold text-pew-dark mb-6 border-b border-pew-border pb-2 flex items-center" data-en="Data & Insight" data-zh="数据与洞察">
+                            <i data-lucide="bar-chart-2" class="w-5 h-5 mr-2 text-pew-subtle"></i>Data & Insight
+                        </h3>
+                        <div class="bg-white border border-pew-border p-6 rounded-md h-[calc(100%-3rem)] flex flex-col hover:shadow-md transition-shadow">
+                            <p class="text-sm text-pew-subtle mb-4 font-serif"
+                               data-en="Preliminary findings from the N=250+ image database regarding visual framing."
+                               data-zh="基于250+新闻图像数据库的初步量化发现。">
+                                Preliminary findings from the N=250+ image database regarding visual framing.
+                            </p>
+                            <!-- 动态条形图占位 (前端使用高度百分比直接渲染) -->
+                            <div class="flex-grow flex items-end space-x-2 border-b border-pew-border pb-2 relative h-32 group">
+                                <div class="w-1/2 flex justify-center items-end space-x-1">
+                                    <div class="w-8 bg-pew-subtle h-3/4 rounded-t-sm transition-all duration-500 hover:opacity-80" title="Pure Objects"></div>
+                                    <div class="w-8 bg-gray-300 h-1/4 rounded-t-sm transition-all duration-500 hover:opacity-80" title="Human Focus"></div>
+                                </div>
+                                <div class="w-1/2 flex justify-center items-end space-x-1">
+                                    <div class="w-8 bg-pew-subtle h-1/4 rounded-t-sm transition-all duration-500 hover:opacity-80" title="Pure Objects"></div>
+                                    <div class="w-8 bg-pew-accent h-full rounded-t-sm transition-all duration-500 hover:opacity-80" title="Human Focus"></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-around mt-2 text-xs text-pew-dark font-bold uppercase tracking-wider">
+                                <span data-en="Western Media" data-zh="西方媒体">Western Media</span>
+                                <span data-en="Chinese Media" data-zh="中国媒体">Chinese Media</span>
+                            </div>
+                            <p class="text-xs text-pew-subtle mt-4" data-en="Western media depicts a 'Technocratic Presence' (Pure Objects), while Chinese media emphasizes 'Human Warmth'." data-zh="数据洞察：西方媒体偏向展示“纯粹的物（机器/钢铁）”以塑造技术霸权感；中国媒体则显著强调“人的温度与参与”。">Western media depicts a 'Technocratic Presence' (Pure Objects), while Chinese media emphasizes 'Human Warmth'.</p>
+                        </div>
+                    </section>
+
+                </div>
+
+                <!-- Voices Series (动态封面效果) -->
+                <section id="voices" class="scroll-mt-12 reveal">
+                    <div class="bg-pew-dark text-white p-10 md:p-14 rounded-lg shadow-xl relative overflow-hidden group cursor-pointer" onclick="openArticle('interview-video')">
+                        <!-- 动态背景图片叠加效果 -->
+                        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center opacity-10 group-hover:opacity-20 group-hover:scale-105 transition-all duration-700 ease-out z-0"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-pew-dark via-pew-dark/90 to-pew-dark/80 z-0"></div>
+                        
+                        <div class="absolute -top-6 -left-4 text-9xl text-gray-500 opacity-20 font-serif z-0 transition-transform group-hover:-translate-y-2 duration-500">“</div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <h3 class="text-lg font-serif font-bold text-white border-b border-gray-500 pb-1 inline-block flex items-center" data-en="Voices Video Series" data-zh="边缘深度视频访谈">
+                                    <i data-lucide="play-circle" class="w-5 h-5 mr-2 text-pew-accent group-hover:scale-110 transition-transform"></i> Voices Video Series
+                                </h3>
+                                <span class="text-xs bg-pew-accent text-white px-2 py-1 rounded-sm uppercase tracking-widest font-bold shadow-md" data-en="Docuseries" data-zh="纪录片系列">Docuseries</span>
+                            </div>
+                            
+                            <h4 class="text-3xl md:text-4xl font-serif mb-6 leading-tight max-w-2xl transform transition-transform group-hover:translate-x-1 duration-300"
+                                data-en="“My dialect stays at the factory gate.”"
+                                data-zh="“我的方言，只停留在工厂的大门外。”">
+                                “My dialect stays at the factory gate.”
+                            </h4>
+                            <p class="text-gray-300 font-serif mb-8 text-lg max-w-3xl leading-relaxed"
+                               data-en="Watch the full ethnographic interview with Lao Li, a first-generation migrant worker, exploring linguistic assimilation."
+                               data-zh="观看完整的人类学视频访谈：与第一代农民工老李探讨语言同化与城市边缘化。">
+                                Watch the full ethnographic interview with Lao Li, a first-generation migrant worker, exploring linguistic assimilation.
+                            </p>
+                            <div class="inline-flex items-center bg-pew-accent text-white px-6 py-3 font-bold text-sm hover:bg-orange-600 transition-colors rounded shadow-lg transform active:scale-95">
+                                <i data-lucide="play" class="w-4 h-4 mr-2 fill-current"></i> <span data-en="Watch Interview" data-zh="观看采访视频">Watch Interview</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Footer -->
+                <footer id="about" class="mt-24 pt-12 border-t-2 border-pew-dark reveal">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                        <div class="md:col-span-2">
+                            <h3 class="font-serif text-2xl font-bold mb-4 text-pew-dark" data-en="About the Initiative" data-zh="关于平台">About the Initiative</h3>
+                            <p class="text-pew-subtle font-serif leading-relaxed text-base"
+                               data-en="Voices from Margins is an independent research platform and public initiative dedicated to exploring the intersections of language, identity, inequality, and visual politics. By bridging academic rigor with compelling public narratives, the platform aims to amplify unheard voices."
+                               data-zh="边缘之声（Voices from Margins）是一个独立的青年研究与公共倡导平台，致力于在社会的边缘处探索语言、身份认同、不平等与视觉政治的深层交集。本平台旨在将严谨的量化分析与扎实的田野调查转化为公共叙事，让未被听见的声音参与到政策思考中。">
+                                Voices from Margins is an independent research platform and public initiative dedicated to exploring the intersections of language, identity, inequality, and visual politics.
+                            </p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold uppercase tracking-wider text-sm mb-4 text-pew-dark" data-en="Connect" data-zh="联系方式">Connect</h4>
+                            <ul class="space-y-3 text-sm text-pew-subtle font-medium">
+                                <li><a href="#" class="hover:text-pew-accent flex items-center transition-colors group"><i data-lucide="github" class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform"></i> GitHub Projects</a></li>
+                                <li><a href="#" class="hover:text-pew-accent flex items-center transition-colors group"><i data-lucide="linkedin" class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform"></i> LinkedIn</a></li>
+                                <li><a href="mailto:wsenlin419@gmail.com" class="hover:text-pew-accent flex items-center transition-colors group"><i data-lucide="mail" class="w-4 h-4 mr-2 group-hover:scale-110 transition-transform"></i> Email Initiative</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal (包含真实的响应式视频嵌入结构) -->
+    <div id="article-modal" class="fixed inset-0 bg-white/95 backdrop-blur-md z-50 modal-hidden flex justify-center overflow-y-auto">
+        <button onclick="closeArticle()" class="fixed top-6 right-6 md:top-10 md:right-10 p-3 bg-gray-100 hover:bg-gray-200 hover:rotate-90 transition-all duration-300 rounded-full z-50 shadow-sm">
+            <i data-lucide="x" class="w-6 h-6 text-pew-dark"></i>
+        </button>
+
+        <div id="article-content" class="max-w-3xl w-full bg-white md:shadow-2xl min-h-screen my-0 md:my-10 px-8 py-16 md:px-16 md:py-20 slide-down md:rounded-xl border border-gray-100">
+            <p id="modal-tag" class="text-xs text-pew-accent mb-4 font-bold tracking-widest uppercase"></p>
+            <h2 id="modal-title" class="text-3xl md:text-5xl font-serif font-bold text-pew-dark leading-tight mb-8"></h2>
+            
+            <div class="pew-divider-thick mb-8"></div>
+            
+            <div id="modal-body" class="prose prose-lg font-serif text-pew-subtle leading-relaxed space-y-6">
+                <!-- Content Injected Here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        let currentLang = 'en'; 
+
+        const articlesDB = {
+            'project-faces': {
+                tag: { en: 'Political Communication & Visual Politics', zh: '政治传播学与视觉政治' },
+                title: { en: 'Faces vs. Steel: A Comparative Visual Framing Analysis of China\'s Aid in Africa', zh: '面孔与钢铁：中国对非援助的视觉框架比较分析' },
+                body: {
+                    en: `
+                        <p><strong>Research Background:</strong> There is a paradox surrounding China's presence in Africa: it is the largest single financier, yet its international image remains polarized. Western media often frames it as "Neocolonialism," while Chinese media emphasizes "South-South Cooperation."</p>
+                        <p><strong>Methodology:</strong> This research utilizes a Mixed Methods approach (Quantitative Content Analysis + Qualitative Multimodal Analysis). I analyzed a dataset of N = 250+ Images (2015-2025) from Western outlets (BBC, CNN, NYT) versus Chinese outlets (Xinhua, CGTN, China Daily).</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">Preliminary Findings</h3>
+                        <p>Based on Entman's Framing Theory, my quantitative analysis via PivotTables & Chi-square Test reveals a stark contrast:</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>Western Media:</strong> Dominated by "Pure Objects" (approx. 16.7%), depicting a dehumanized "Technocratic Presence."</li>
+                            <li><strong>Chinese Media:</strong> Significantly emphasizes "Human Warmth" and "Empowered Local Workforce" to construct a softer national image.</li>
+                        </ul>
+                    `,
+                    zh: `
+                        <p><strong>研究背景：</strong> 中国作为非洲最大的单一融资国，其国际形象却充满了争议与极化。西方媒体通常将中国的存在定性为“新殖民主义（债务陷阱）”，而中国媒体则强调“南南合作”。为了填补以往研究仅关注“文本分析”的空白，本研究引入了视觉政治维度。</p>
+                        <p><strong>研究方法：</strong> 采用混合研究方法（量化内容分析+定性多模态分析）。基于 Entman 的框架理论建立代码本，提取了包含 BBC、CNN、新华社等媒体在2015-2025年间的 250+ 张新闻图片作为数据库。</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">核心数据洞察</h3>
+                        <p>通过数据交叉分析与卡方检验，研究揭示了西方媒体报道中的“去人性化”偏见：</p>
+                        <ul class="list-disc pl-5 space-y-2">
+                            <li><strong>西方媒体：</strong> 其视觉框架高度集中于“纯粹的物体/钢铁”（约占比 16.7%），试图构建一种压迫感强烈的“技术官僚入侵”叙事。</li>
+                            <li><strong>中国媒体：</strong> 显著强化了“人的温度”和“被赋权赋能的当地工人面孔”，以构建更加柔和、合作的国家形象。</li>
+                        </ul>
+                    `
+                }
+            },
+            'project-nanjiang': {
+                tag: { en: 'Field Notes & Sociolinguistics', zh: '田野笔记 & 社会语言学' },
+                title: { en: 'Voices from the Borderlands: Linguistic Hybridity and Identity Formation in Nanjiang', zh: '边境之声：南疆的语言杂糅与身份认同建构' },
+                body: {
+                    en: `
+                        <p class="text-sm bg-gray-50 text-pew-dark p-5 border-l-4 border-pew-accent mb-6 shadow-sm rounded-r"><strong>Academic Update:</strong> This research was presented at the Sociolinguistics Symposium (SoSy 7), UIUC on April 4, 2026.</p>
+                        <p>This ethnography explores how languages intersect and identities are forged in the unique borderland context of Southern Xinjiang.</p>
+                        <p>Through immersive fieldwork, this study documents the everyday linguistic practices, dialect switching among different generations, and how these communicative choices reflect deeper socio-political realities and personal allegiances.</p>
+                    `,
+                    zh: `
+                        <p class="text-sm bg-gray-50 text-pew-dark p-5 border-l-4 border-pew-accent mb-6 shadow-sm rounded-r"><strong>学术动态：</strong> 本研究已入选并受邀于 2026年4月4日，在伊利诺伊大学香槟分校 (UIUC) 举办的第七届社会语言学研讨会 (SoSy 7) 进行汇报交流。</p>
+                        <p>这是一项基于南疆（Southern Xinjiang）实地考察的社会语言学田野研究。探讨在复杂的边境地带，语言是如何产生杂糅，以及当地居民如何通过语言实践来建构自身的身份认同的。</p>
+                        <p>通过长期的沉浸式观察，研究记录了当地家庭中长辈与年轻一代的方言切换现象，并试图解析这种日常交流选择背后所映射的深层社会现实。</p>
+                    `
+                }
+            },
+            'interview-video': {
+                tag: { en: 'Documentary Interview', zh: '纪录片式访谈' },
+                title: { en: '“My dialect stays at the factory gate.”', zh: '“我的方言，只停留在工厂的大门外。”' },
+                body: {
+                    en: `
+                        <!-- 真实的视频嵌入结构 (只需替换 iframe 里的 src) -->
+                        <div class="video-container mb-8 bg-black">
+                            <!-- 这是一个 Bilibili 或 YouTube 嵌入代码的示例 -->
+                            <!-- <iframe src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                            
+                            <!-- 占位符演示 -->
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-white border-2 border-dashed border-gray-600 rounded">
+                                <i data-lucide="video" class="w-12 h-12 mb-4 text-gray-400"></i>
+                                <span class="text-sm font-mono text-gray-400">Video Embed Placeholder (iframe)</span>
+                                <span class="text-xs text-gray-500 mt-2">Replace this block with YouTube/Bilibili iframe in the HTML</span>
+                            </div>
+                        </div>
+                        
+                        <p><strong>Interviewee:</strong> Lao Li (52), Factory Worker in Guangzhou</p>
+                        <p>In this ethnographic video interview, we sit down with Lao Li to discuss the invisible barriers of language in urban environments. He shares his 20-year journey of linguistic assimilation and what it means to leave one's mother tongue behind to make a living.</p>
+                    `,
+                    zh: `
+                        <!-- 真实的视频嵌入结构 (只需替换 iframe 里的 src) -->
+                        <div class="video-container mb-8 bg-black">
+                            <!-- 这是一个 Bilibili 或 YouTube 嵌入代码的示例 -->
+                            <!-- <iframe src="//player.bilibili.com/player.html?bvid=YOUR_BVID&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe> -->
+                            
+                            <!-- 占位符演示 -->
+                            <div class="absolute inset-0 flex flex-col items-center justify-center text-white border-2 border-dashed border-gray-600 rounded">
+                                <i data-lucide="video" class="w-12 h-12 mb-4 text-gray-400"></i>
+                                <span class="text-sm font-mono text-gray-400">视频嵌入区 (iframe)</span>
+                                <span class="text-xs text-gray-500 mt-2">在源码中将此处替换为 B站 或 YouTube 的嵌入代码即可播放</span>
+                            </div>
+                        </div>
+
+                        <p><strong>受访者：</strong> 老李（52岁），驻扎广州20年的第一代流水线工人</p>
+                        <p>在这个人类学视频访谈中，我们与老李坐下来，探讨城市化进程中那道隐形的“语言围墙”。他分享了自己20年来被动进行语言同化的经历。当一个人为了生存，不得不把母语“脱下”并留在工厂大门外时，故土的身份究竟意味着什么？</p>
+                    `
+                }
+            }
+        };
+
+        let currentArticleId = null;
+
+        function updateLanguage() {
+            const elementsToTranslate = document.querySelectorAll('[data-en][data-zh]');
+            elementsToTranslate.forEach(el => {
+                if (el.dataset[currentLang].includes('<')) {
+                    el.innerHTML = el.dataset[currentLang];
+                } else {
+                    el.textContent = el.dataset[currentLang];
+                }
+            });
+
+            if (currentLang === 'zh') {
+                document.body.classList.add('lang-zh');
+                document.getElementById('lang-label-desktop').textContent = '切换至 English';
+            } else {
+                document.body.classList.remove('lang-zh');
+                document.getElementById('lang-label-desktop').textContent = 'Switch to 中文';
+            }
+
+            if (currentArticleId) { renderArticleContent(currentArticleId); }
+        }
+
+        window.toggleLang = function() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            updateLanguage();
+        };
+
+        function renderArticleContent(id) {
+            const data = articlesDB[id];
+            document.getElementById('modal-tag').textContent = data.tag[currentLang];
+            document.getElementById('modal-title').textContent = data.title[currentLang];
+            document.getElementById('modal-body').innerHTML = data.body[currentLang];
+            lucide.createIcons();
+        }
+
+        window.openArticle = function(id) {
+            currentArticleId = id;
+            renderArticleContent(id);
+            
+            const modal = document.getElementById('article-modal');
+            const content = document.getElementById('article-content');
+            
+            modal.classList.remove('modal-hidden');
+            modal.classList.add('modal-visible');
+            content.classList.remove('slide-down');
+            content.classList.add('slide-up');
+            
+            document.body.style.overflow = 'hidden'; 
+        };
+
+        window.closeArticle = function() {
+            const modal = document.getElementById('article-modal');
+            const content = document.getElementById('article-content');
+            
+            content.classList.remove('slide-up');
+            content.classList.add('slide-down');
+            modal.classList.remove('modal-visible');
+            modal.classList.add('modal-hidden');
+            
+            document.body.style.overflow = 'auto'; 
+            
+            // 停止 iframe 视频播放 (如果有的话)
+            const iframe = document.querySelector('#modal-body iframe');
+            if (iframe) {
+                const src = iframe.src;
+                iframe.src = src; 
+            }
+
+            setTimeout(() => { currentArticleId = null; }, 300);
+        };
+
+        // 滚动揭示动画逻辑 (Scroll Reveal Animation)
+        function revealOnScroll() {
+            const reveals = document.querySelectorAll('.reveal');
+            const windowHeight = window.innerHeight;
+            const elementVisible = 100; // 提前加载的像素距离
+
+            reveals.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealOnScroll);
+        // 初始化触发一次
+        revealOnScroll();
+        
+        updateLanguage();
+
+        // 侧边栏高亮逻辑
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => {
+                    l.style.borderLeft = 'none';
+                    l.style.backgroundColor = 'transparent';
+                    l.style.color = '#666666';
+                });
+                this.style.borderLeft = '2px solid #cc4a00';
+                this.style.backgroundColor = '#f3f4f6';
+                this.style.color = '#1a1a1a';
+            });
+        });
+    </script>
+</body>
+</html>

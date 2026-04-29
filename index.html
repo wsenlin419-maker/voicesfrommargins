@@ -84,7 +84,7 @@
         body.lang-zh { text-align: justify; }
         .text-justify-force { text-align: justify; text-justify: inter-word; }
         
-        /* 博客标题下划线悬浮特效 (致敬 Roper Center) */
+        /* 博客标题下划线悬浮特效 */
         .blog-title-link {
             text-decoration: underline;
             text-decoration-color: #e5e5e5;
@@ -121,6 +121,7 @@
             
             <!-- Left: Search & Logo -->
             <div class="flex items-center">
+                <!-- 搜索图标 -->
                 <button onclick="toggleSearch()" class="mr-4 md:mr-8 text-pew-dark hover:text-pew-accent transition-colors hidden sm:block p-1">
                     <i data-lucide="search" class="w-5 h-5"></i>
                 </button>
@@ -167,7 +168,7 @@
     <div id="menu-backdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none backdrop-blur-sm" onclick="closeMenu()"></div>
     <aside id="side-menu" class="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white z-50 transform translate-x-full shadow-2xl flex flex-col border-l-4 border-pew-accent">
         <div class="flex justify-between items-center p-8 border-b border-gray-100">
-            <span class="font-sans font-bold text-sm text-gray-400 uppercase tracking-widest">Explore Platform</span>
+            <span class="font-sans font-bold text-sm text-gray-400 uppercase tracking-widest" data-en="Explore Platform" data-zh="Explore Platform">Explore Platform</span>
             <button onclick="closeMenu()" class="p-2 hover:bg-gray-100 rounded-full transition-colors group">
                 <i data-lucide="x" class="w-6 h-6 text-pew-dark group-hover:rotate-90 transition-transform"></i>
             </button>
@@ -217,7 +218,6 @@
                 </div>
 
                 <div class="max-w-4xl mt-12 mb-16">
-                    <!-- 更新为项目视角的学术宣言 -->
                     <p class="text-2xl md:text-3xl font-serif text-pew-dark leading-relaxed font-bold border-l-4 border-pew-accent pl-6 lg:pl-8 text-justify-force" data-en="This project examines how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality." data-zh="本项目致力于研究边缘群体如何被语言与叙事所塑造，以及这些微观过程如何最终转化为宏观的结构性不平等。">
                         This project examines how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality.
                     </p>
@@ -559,7 +559,7 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 7: ABOUT (极简与圆形头像设计) ================= -->
+        <!-- ================= VIEW 7: ABOUT (排版定制版) ================= -->
         <div id="view-about" class="page-view pb-24">
             <div class="bg-gray-100 py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-5xl mx-auto">
@@ -595,26 +595,28 @@
                     </p>
                 </div>
 
-                <!-- Founder 信息 (全新圆形排版设计) -->
+                <!-- Founder 信息 (高级定制排版) -->
                 <div class="border-t border-gray-300 pt-16">
                     <h3 class="font-sans text-xl font-bold uppercase tracking-widest text-pew-dark mb-12 text-center md:text-left" data-en="Founder" data-zh="创始人">Founder</h3>
                     
-                    <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
-                        <!-- 圆形小尺寸头像 -->
-                        <div class="flex flex-col items-center md:items-start flex-shrink-0">
-                            <div class="w-48 h-48 md:w-56 md:h-56 bg-gray-200 mb-6 relative overflow-hidden rounded-full border-4 border-gray-100 shadow-sm">
+                    <!-- 左右双栏精准布局 -->
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-12 lg:gap-20">
+                        
+                        <!-- 左侧：中轴线对齐 (头像 + 名字 + 红色Founder) -->
+                        <div class="flex flex-col items-center flex-shrink-0 md:w-64">
+                            <div class="w-48 h-48 md:w-56 md:h-56 bg-gray-200 mb-6 relative overflow-hidden rounded-full border border-gray-200 shadow-sm">
                                 <img src="https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true" class="w-full h-full object-cover" alt="Photo of Senlin Wang">
                             </div>
-                            <h4 class="font-serif text-3xl font-bold text-pew-dark mb-2 text-center md:text-left" data-en="Senlin Wang" data-zh="Senlin Wang">Senlin Wang</h4>
-                            <p class="text-sm font-bold text-pew-accent uppercase tracking-wider text-center md:text-left" data-en="Founder" data-zh="创始人">Founder</p>
+                            <h4 class="font-serif text-3xl font-bold text-pew-dark mb-2 text-center" data-en="Senlin Wang" data-zh="Senlin Wang">Senlin Wang</h4>
+                            <!-- 已去除首席研究员，仅保留大写的红色 FOUNDER -->
+                            <p class="text-sm font-bold text-pew-accent uppercase tracking-wider text-center" data-en="Founder" data-zh="创始人">Founder</p>
                         </div>
 
-                        <!-- 两端对齐的学术 Bio -->
-                        <div class="flex flex-col justify-center max-w-2xl">
-                            <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force mb-6" data-en="Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="Senlin Wang 是“边缘之声”研究平台的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
+                        <!-- 右侧：Bio (中间偏下定位) -->
+                        <div class="flex flex-col max-w-2xl pt-4 md:pt-20 lg:pt-24">
+                            <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force" data-en="Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="Senlin Wang 是“边缘之声”研究平台的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
                                 Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world.
                             </p>
-                            <!-- 已删除 CV 下载链接，保持绝对干净 -->
                         </div>
                     </div>
                 </div>
@@ -965,7 +967,7 @@
             'blog-emory': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at Emory Undergraduate Linguistics Conference (EULC 7)', zh: '赴埃默里大学参加第七届本科生语言学会议 (EULC 7)' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Voices from Margins Admin', zh: '平台管理员' },
                 affiliation: { en: 'Event Announcement', zh: '活动通报' },
                 body: {
                     en: `
@@ -982,7 +984,7 @@
                 tag: { en: 'Team News', zh: '团队动态' },
                 title: { en: 'Joining Harvard Education Symposium as Publicity Assistant', zh: '加入哈佛大学教育论坛担任公共宣传助理' },
                 author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
-                affiliation: { en: 'Harvard University', zh: '哈佛大学' },
+                affiliation: { en: 'Harvard University (Remote)', zh: '哈佛大学 (远程)' },
                 body: {
                     en: `
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">

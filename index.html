@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voices from Margins | 边缘之声</title>
+    <title>Margins & Meaning | Voices from the Margins</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -99,7 +99,7 @@
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col relative">
 
-    <!-- ================= 搜索全屏遮罩层 (新增设计感交互) ================= -->
+    <!-- ================= 搜索全屏遮罩层 ================= -->
     <div id="search-overlay" class="fixed inset-0 bg-white/95 backdrop-blur-md z-[100] search-hidden flex flex-col justify-center items-center">
         <button onclick="toggleSearch()" class="absolute top-8 right-8 text-pew-dark hover:rotate-90 transition-transform duration-300 p-2">
             <i data-lucide="x" class="w-8 h-8"></i>
@@ -121,7 +121,6 @@
             
             <!-- Left: Search & Logo -->
             <div class="flex items-center">
-                <!-- 搜索图标 -->
                 <button onclick="toggleSearch()" class="mr-4 md:mr-8 text-pew-dark hover:text-pew-accent transition-colors hidden sm:block p-1">
                     <i data-lucide="search" class="w-5 h-5"></i>
                 </button>
@@ -140,10 +139,10 @@
                         <path d="M45 70 Q 60 77.5 75 85" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
                     </svg>
                     <div class="flex flex-col">
-                        <h1 class="font-serif text-2xl font-bold text-pew-dark tracking-tight leading-none" data-en="VOICES FROM MARGINS" data-zh="VOICES FROM MARGINS">
-                            VOICES FROM MARGINS
+                        <h1 class="font-serif text-2xl font-bold text-pew-dark tracking-tight leading-none" data-en="MARGINS & MEANING" data-zh="边缘与意义">
+                            MARGINS & MEANING
                         </h1>
-                        <span class="text-[10px] text-pew-subtle uppercase tracking-[0.2em] mt-1" data-en="For Public Policy & Research" data-zh="For Public Policy & Research">For Public Policy & Research</span>
+                        <span class="text-[10px] text-pew-subtle uppercase tracking-[0.2em] mt-1" data-en="Voices from the Margins Project" data-zh="边缘之声研究项目">Voices from the Margins Project</span>
                     </div>
                 </div>
             </div>
@@ -168,27 +167,29 @@
     <div id="menu-backdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none backdrop-blur-sm" onclick="closeMenu()"></div>
     <aside id="side-menu" class="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white z-50 transform translate-x-full shadow-2xl flex flex-col border-l-4 border-pew-accent">
         <div class="flex justify-between items-center p-8 border-b border-gray-100">
-            <span class="font-sans font-bold text-sm text-gray-400 uppercase tracking-widest" data-en="Explore Platform" data-zh="Explore Platform">Explore Platform</span>
+            <span class="font-sans font-bold text-sm text-gray-400 uppercase tracking-widest">Explore Platform</span>
             <button onclick="closeMenu()" class="p-2 hover:bg-gray-100 rounded-full transition-colors group">
                 <i data-lucide="x" class="w-6 h-6 text-pew-dark group-hover:rotate-90 transition-transform"></i>
             </button>
         </div>
         <div class="flex-grow p-8 overflow-y-auto">
-            <nav class="space-y-5 flex flex-col">
+            <nav class="space-y-4 flex flex-col">
                 <a href="#" onclick="navigateTo('view-home')" class="text-3xl font-serif font-bold text-pew-dark hover:text-pew-accent transition-colors" data-en="Home" data-zh="Home">Home</a>
                 <div class="w-12 h-px bg-gray-200 my-4"></div>
-                <a href="#" onclick="navigateTo('view-research')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Research Brief" data-zh="Research Brief">Research Brief <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
+                
+                <a href="#" onclick="navigateTo('view-research')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Research" data-zh="Research">Research <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
+                <a href="#" onclick="navigateTo('view-writing')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Writing" data-zh="Writing">Writing <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
                 <a href="#" onclick="navigateTo('view-field')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Field Notes" data-zh="Field Notes">Field Notes <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
+                <a href="#" onclick="navigateTo('view-voices')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Voices Archive" data-zh="Voices Archive">Voices Archive <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
                 <a href="#" onclick="navigateTo('view-data')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Data & Insight" data-zh="Data & Insight">Data & Insight <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
-                <a href="#" onclick="navigateTo('view-voices')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Interview Series" data-zh="Interview Series">Interview Series <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
                 <a href="#" onclick="navigateTo('view-blog')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Blog" data-zh="Blog">Blog <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
+                
                 <div class="w-12 h-px bg-gray-200 my-4"></div>
-                <a href="#" onclick="navigateTo('view-about')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="About Us & Team" data-zh="About Us & Team">About Us & Team <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
-                <a href="#footer-contact" onclick="closeMenu()" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Contact Us" data-zh="Contact Us">Contact Us <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
+                <a href="#" onclick="navigateTo('view-about')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="About" data-zh="About">About <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
+                <a href="#footer-contact" onclick="closeMenu()" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Contact" data-zh="Contact">Contact <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
             </nav>
         </div>
         <div class="p-8 bg-gray-50 border-t border-gray-100 md:hidden flex justify-between items-center">
-            <!-- 手机端底部的搜索与语言 -->
             <button onclick="toggleSearch()" class="p-3 border border-gray-300 rounded bg-white hover:bg-gray-100 transition">
                 <i data-lucide="search" class="w-5 h-5 text-pew-dark"></i>
             </button>
@@ -205,125 +206,153 @@
         <!-- ================= VIEW 1: HOME ================= -->
         <div id="view-home" class="page-view active">
             <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 md:pt-24 pb-12">
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-gray-300 pb-8 mb-10">
-                    <h2 class="font-sans font-light text-5xl md:text-6xl lg:text-[5.5rem] text-pew-dark tracking-tight leading-none" data-en="Voices from Margins" data-zh="边缘之声研究">
-                        Voices from Margins
+                
+                <div class="mb-10">
+                    <h2 class="font-sans font-light text-5xl md:text-6xl lg:text-[5.5rem] text-pew-dark tracking-tight leading-none mb-4" data-en="Voices from the Margins" data-zh="边缘之声">
+                        Voices from the Margins
                     </h2>
-                    <div class="mt-8 md:mt-0 flex items-center md:pb-2">
-                        <span class="font-serif text-xl md:text-2xl text-pew-dark font-medium mr-3" data-en="Initiative" data-zh="独立智库">Initiative</span>
-                        <svg class="w-10 h-10 text-pew-accent" viewBox="0 0 100 100" fill="currentColor">
-                            <circle cx="20" cy="50" r="8" />
-                            <circle cx="45" cy="30" r="6" />
-                            <circle cx="45" cy="70" r="6" />
-                            <circle cx="75" cy="15" r="4" />
-                            <circle cx="75" cy="50" r="4" />
-                            <circle cx="75" cy="85" r="4" />
-                            <path d="M20 50 Q 35 40 45 30" stroke="currentColor" stroke-width="3" fill="none"/>
-                            <path d="M20 50 Q 35 60 45 70" stroke="currentColor" stroke-width="3" fill="none"/>
-                            <path d="M45 30 Q 60 22.5 75 15" stroke="currentColor" stroke-width="3" fill="none"/>
-                            <path d="M45 70 Q 60 77.5 75 85" stroke="currentColor" stroke-width="3" fill="none"/>
-                        </svg>
-                    </div>
+                    <h3 class="font-serif text-2xl md:text-3xl text-pew-subtle border-b border-gray-300 pb-8" data-en="A Research Initiative on Language, Identity, and Inequality" data-zh="关于语言、身份与不平等的独立研究项目">
+                        A Research Initiative on Language, Identity, and Inequality
+                    </h3>
                 </div>
 
-                <div class="max-w-4xl prose prose-lg md:prose-xl font-serif text-gray-700 leading-relaxed text-justify-force">
-                    <p data-en="Voices from Margins is an independent, nonpartisan research platform and fact tank that explores the intersections of language, identity, inequality, and visual politics. It aims to bridge academic rigor—such as quantitative visual analysis and deep ethnographic fieldwork—with compelling public narratives." data-zh="边缘之声（Voices from Margins）是一个独立、无党派倾向的青年研究平台与数据智库。本平台致力于在社会的边缘处探索语言、身份认同、不平等与视觉政治的深层交集，旨在将严谨的量化数据分析与扎实的田野调查转化为具有公共价值的政策洞察。">
-                        Voices from Margins is an independent, nonpartisan research platform and fact tank that explores the intersections of language, identity, inequality, and visual politics.
+                <div class="max-w-4xl mt-12 mb-16">
+                    <!-- 更新为项目视角的学术宣言 -->
+                    <p class="text-2xl md:text-3xl font-serif text-pew-dark leading-relaxed font-bold border-l-4 border-pew-accent pl-6 lg:pl-8 text-justify-force" data-en="This project examines how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality." data-zh="本项目致力于研究边缘群体如何被语言与叙事所塑造，以及这些微观过程如何最终转化为宏观的结构性不平等。">
+                        This project examines how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality.
                     </p>
                 </div>
                 
-                <div class="mt-16 border-t-[3px] border-pew-dark pt-12">
-                    <div class="flex items-center justify-between mb-8">
-                        <h3 class="font-sans font-bold uppercase tracking-widest text-sm text-pew-dark" data-en="Featured & Latest Updates" data-zh="焦点研究与最新动态">Featured & Latest Updates</h3>
-                        <a href="#" onclick="navigateTo('view-blog')" class="text-sm font-bold text-pew-accent hover:underline flex items-center" data-en="Read Our Blog" data-zh="阅读智库博客">Read Our Blog <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></a>
+                <div class="mb-16 bg-gray-50 p-8 md:p-10 border border-gray-200">
+                    <h4 class="font-sans text-sm font-bold uppercase tracking-widest text-pew-accent mb-6" data-en="Current Research Focus" data-zh="当前研究焦点">Current Research Focus</h4>
+                    <ul class="space-y-4 font-serif text-xl md:text-2xl text-pew-dark">
+                        <li class="flex items-center"><div class="w-2 h-2 bg-pew-dark rounded-full mr-4 flex-shrink-0"></div><span data-en="Linguistic hybridity in rural China" data-zh="中国乡村社会的语言杂糅与演变">Linguistic hybridity in rural China</span></li>
+                        <li class="flex items-center"><div class="w-2 h-2 bg-pew-dark rounded-full mr-4 flex-shrink-0"></div><span data-en="Narrative competition in China-Africa relations" data-zh="中非关系中的视觉叙事与话语竞争">Narrative competition in China-Africa relations</span></li>
+                        <li class="flex items-center"><div class="w-2 h-2 bg-pew-dark rounded-full mr-4 flex-shrink-0"></div><span data-en="Language policy and economic inequality" data-zh="语言政策与经济不平等的代际传递">Language policy and economic inequality</span></li>
+                    </ul>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 border-t-[3px] border-pew-dark pt-12">
+                    <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer" onclick="openArticle('project-faces')">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-sans font-bold uppercase tracking-widest text-sm text-pew-dark" data-en="Featured Research" data-zh="焦点研究">Featured Research</h3>
+                        </div>
+                        <div class="w-full aspect-[16/9] bg-gray-100 mb-6 overflow-hidden relative border border-gray-200">
+                            <img src="https://images.unsplash.com/photo-1572214350916-571eac7bfced?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Featured Research">
+                            <div class="absolute top-4 left-4 bg-pew-dark text-white px-3 py-1 text-xs font-bold uppercase tracking-widest shadow-sm">Analysis</div>
+                        </div>
+                        <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4 leading-snug" data-en="Faces vs. Steel: A Comparative Visual Framing Analysis of China's Aid in Africa" data-zh="面孔与钢铁：中国对非援助的视觉框架比较分析">
+                            Faces vs. Steel: A Comparative Visual Framing Analysis of China's Aid in Africa
+                        </h4>
+                        <p class="text-lg text-gray-600 font-serif leading-relaxed line-clamp-2 text-justify-force" data-en="Quantitative visual analysis comparing how Western and Chinese media construct contrasting geopolitical narratives." data-zh="基于250+图像的量化视觉分析，揭示西方与中国媒体如何构建截然不同的地缘政治叙事。">
+                            Quantitative visual analysis comparing how Western and Chinese media construct contrasting geopolitical narratives.
+                        </p>
                     </div>
                     
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                        <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer" onclick="openArticle('project-faces')">
-                            <div class="w-full aspect-[16/9] bg-gray-100 mb-6 overflow-hidden relative">
-                                <img src="https://images.unsplash.com/photo-1572214350916-571eac7bfced?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Featured Research">
-                                <div class="absolute top-4 left-4 bg-white text-pew-dark px-3 py-1 text-xs font-bold uppercase tracking-widest shadow-sm">Research Brief</div>
-                            </div>
-                            <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4 leading-snug" data-en="Faces vs. Steel: A Comparative Visual Framing Analysis of China's Aid in Africa" data-zh="面孔与钢铁：中国对非援助的视觉框架比较分析">
-                                Faces vs. Steel: A Comparative Visual Framing Analysis of China's Aid in Africa
-                            </h4>
-                            <p class="text-lg text-gray-600 font-serif leading-relaxed line-clamp-3 text-justify-force" data-en="A quantitative visual analysis of 250+ images comparing how Western and Chinese media construct visual narratives of infrastructure projects in Africa." data-zh="通过分析250多幅图像，对比西方主流媒体与中国媒体在报道非洲基建项目时截然不同的视觉政治叙事及其去人性化偏见。">
-                                A quantitative visual analysis of 250+ images comparing how Western and Chinese media construct visual narratives.
-                            </p>
+                    <div class="lg:col-span-5 xl:col-span-4 flex flex-col space-y-8">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="font-sans font-bold uppercase tracking-widest text-sm text-pew-dark" data-en="Research Ecosystem" data-zh="研究体系">Research Ecosystem</h3>
                         </div>
                         
-                        <div class="lg:col-span-5 xl:col-span-4 flex flex-col space-y-8">
-                            <article class="group cursor-pointer border-b border-gray-200 pb-8" onclick="openArticle('project-nanjiang')">
-                                <p class="text-xs text-pew-accent mb-2 font-bold tracking-widest uppercase" data-en="Field Notes" data-zh="田野笔记">Field Notes</p>
-                                <h5 class="text-xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-2 leading-snug" data-en="Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County, Hunan" data-zh="边境之声：湖南平江县南江镇的语言杂糅与认同建构">
-                                    Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County, Hunan
-                                </h5>
-                                <p class="text-sm text-gray-500 font-serif" data-en="Ethnographic fieldwork exploring dialect interaction and revolutionary history." data-zh="探究方言互动、商贸历史与身份政治的民族志田野调查。">Ethnographic fieldwork exploring dialect interaction and revolutionary history.</p>
-                            </article>
-                            
-                            <article class="group cursor-pointer border-b border-gray-200 pb-8" onclick="navigateTo('view-blog')">
-                                <p class="text-xs text-pew-accent mb-2 font-bold tracking-widest uppercase" data-en="Blog • Conference" data-zh="博客 • 学术会议">Blog • Conference</p>
-                                <h5 class="text-xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-2 leading-snug" data-en="Presentation at 7th Sociolinguistics Symposium (SOSY 7), UIUC" data-zh="研究成果入选 UIUC 第七届社会语言学研讨会 (SOSY 7)">
-                                    Presentation at 7th Sociolinguistics Symposium (SOSY 7), UIUC
-                                </h5>
-                            </article>
+                        <article class="group cursor-pointer border-b border-gray-200 pb-8" onclick="navigateTo('view-writing')">
+                            <p class="text-xs text-pew-accent mb-2 font-bold tracking-widest uppercase" data-en="Writing & Opinion" data-zh="学术评论与观点">Writing & Opinion</p>
+                            <h5 class="text-xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-2 leading-snug" data-en="Explaining the World: The Cost of the 'Standard' Language" data-zh="解释世界：“标准语”所带来的经济与隐形社会成本">
+                                Explaining the World: The Cost of the 'Standard' Language
+                            </h5>
+                        </article>
+                        
+                        <article class="group cursor-pointer border-b border-gray-200 pb-8" onclick="navigateTo('view-field')">
+                            <p class="text-xs text-pew-accent mb-2 font-bold tracking-widest uppercase" data-en="Field Notes" data-zh="田野笔记">Field Notes</p>
+                            <h5 class="text-xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-2 leading-snug" data-en="Voices from the Borderlands: Nanjiang Town" data-zh="边境之声：湖南平江县南江镇的民族志">
+                                Voices from the Borderlands: Nanjiang Town
+                            </h5>
+                        </article>
 
-                            <article class="group cursor-pointer" onclick="openArticle('interview-video')">
-                                <p class="text-xs text-pew-accent mb-2 font-bold tracking-widest uppercase" data-en="Docuseries" data-zh="系列纪录片">Docuseries</p>
-                                <h5 class="text-xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-2 leading-snug" data-en="“My dialect stays at the factory gate.”" data-zh="“我的方言，只停留在工厂的大门外。”">
-                                    “My dialect stays at the factory gate.”
-                                </h5>
-                                <p class="text-sm text-gray-500 font-serif flex items-center mt-2" data-en="Watch Video <i data-lucide='play-circle' class='w-4 h-4 ml-1'></i>" data-zh="观看视频 <i data-lucide='play-circle' class='w-4 h-4 ml-1'></i>">Watch Video <i data-lucide="play-circle" class="w-4 h-4 ml-1"></i></p>
-                            </article>
-                        </div>
+                        <article class="group cursor-pointer" onclick="navigateTo('view-voices')">
+                            <p class="text-xs text-pew-accent mb-2 font-bold tracking-widest uppercase" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</p>
+                            <h5 class="text-xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-2 leading-snug" data-en="Listening to the Margins: Primary Material Collection" data-zh="聆听边缘：一手口述史与原始语料收集">
+                                Listening to the Margins: Primary Material Collection
+                            </h5>
+                        </article>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ================= VIEW 2: RESEARCH BRIEF ================= -->
+        <!-- ================= VIEW 2: RESEARCH ================= -->
         <div id="view-research" class="page-view pb-24">
             <div class="bg-gray-100 py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-5xl mx-auto">
                     <div class="text-pew-accent font-bold tracking-widest uppercase text-xs mb-4 cursor-pointer hover:underline flex items-center" onclick="navigateTo('view-home')">
-                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back" data-zh="返回">Back</span>
+                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back to Home" data-zh="返回主页">Back to Home</span>
                     </div>
-                    <h2 class="font-serif text-4xl font-bold text-pew-dark" data-en="Research Briefs" data-zh="研究简报">Research Briefs</h2>
+                    <h2 class="font-serif text-5xl font-light text-pew-dark" data-en="Research" data-zh="学术研究">Research</h2>
                 </div>
             </div>
             
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 <article class="group cursor-pointer border-b border-pew-border pb-10 mb-10" onclick="openArticle('project-minority')">
-                    <p class="text-xs text-pew-subtle mb-3 font-sans uppercase tracking-widest" data-en="EDUCATION POLICY & IDENTITY | 2026" data-zh="教育政策与身份认同 | 2026">EDUCATION POLICY & IDENTITY | 2026</p>
+                    <p class="text-xs text-pew-subtle mb-3 font-sans uppercase tracking-widest" data-en="EDUCATION POLICY & IDENTITY" data-zh="教育政策与身份认同">EDUCATION POLICY & IDENTITY</p>
                     <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4" data-en="Crossing Language Borders: China's Minority Preparatory Education Policy and Identity" data-zh="跨越语言边界：中国少数民族预科教育政策与身份认同">
                         Crossing Language Borders: China's Minority Preparatory Education Policy and Identity
                     </h4>
-                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="This study explores the 'liminal space' of preparatory education for minority students. It critiques the 'subtractive bilingualism' risk in academic environments and advocates for 'additive bilingualism'." data-zh="本研究探讨了少数民族学生在预科教育这一“阈限空间”中的微观经历。研究批判了单一普通话主导环境可能导致的“减损型双语”风险，并倡导以“附加型双语教育”重塑微观生态。">
-                        This study explores the 'liminal space' of preparatory education...
+                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="An investigation into how macro-educational interventions are negotiated at the micro-level by Tibetan and Uyghur students, exploring the risk of subtractive bilingualism." data-zh="探究国家宏观教育政策如何在微观层面被藏族与维吾尔族学生协商与重构，深刻剖析现代教育体系中减损型双语的系统性风险。">
+                        An investigation into how macro-educational interventions are negotiated at the micro-level...
                     </p>
-                    <span class="text-sm font-bold text-pew-accent uppercase tracking-wider flex items-center" data-en="Read Report" data-zh="阅读简报">Read Report <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></span>
+                    <span class="text-sm font-bold text-pew-accent uppercase tracking-wider flex items-center" data-en="Read Abstract & Insight" data-zh="阅读摘要与洞察">Read Abstract & Insight <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></span>
                 </article>
 
                 <article class="group cursor-pointer border-b border-pew-border pb-10 mb-10" onclick="openArticle('project-sanmao')">
-                    <p class="text-xs text-pew-subtle mb-3 font-sans uppercase tracking-widest" data-en="SOCIOLINGUISTICS & LITERATURE | 2026" data-zh="社会语言学与文学 | 2026">SOCIOLINGUISTICS & LITERATURE | 2026</p>
+                    <p class="text-xs text-pew-subtle mb-3 font-sans uppercase tracking-widest" data-en="SOCIOLINGUISTICS & LITERATURE" data-zh="社会语言学与文学">SOCIOLINGUISTICS & LITERATURE</p>
                     <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4" data-en="Speaking of the Otherland: Sanmao's Translanguaging Practices and 'New Overseas Chinese' Identity" data-zh="言说他乡：社会语言学视阈下三毛的跨语际实践与“新海外华人”认同">
-                        Speaking of the Otherland: Sanmao's Translanguaging Practices and "New Overseas Chinese" Identity
+                        Speaking of the Otherland: Sanmao's Translanguaging Practices and 'New Overseas Chinese' Identity
                     </h4>
-                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="Analyzing Sanmao's 'Stories of the Sahara' through Translanguaging theory. It reveals how she strategically navigated languages to construct a 'World Citizen - Chinese Woman' hybrid identity." data-zh="援引跨语际实践(translanguaging)理论，深度分析三毛《撒哈拉的故事》中的多语接触现象。揭示她如何通过策略性的语言实践建构“世界公民—华人女性”的双重主体位置。">
-                        Analyzing Sanmao's 'Stories of the Sahara' through Translanguaging theory...
+                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="Using Li Wei's translanguaging theory to decode how strategic linguistic choices construct a 'World Citizen - Chinese Woman' hybrid identity that resists colonial narratives." data-zh="援引李巍的跨语际实践理论，解构策略性的语言实践如何建构出抵抗殖民主义叙事的“世界公民—华人女性”双重混合身份。">
+                        Using Li Wei's translanguaging theory to decode how strategic linguistic choices construct a hybrid identity...
                     </p>
-                    <span class="text-sm font-bold text-pew-accent uppercase tracking-wider flex items-center" data-en="Read Report" data-zh="阅读简报">Read Report <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></span>
+                    <span class="text-sm font-bold text-pew-accent uppercase tracking-wider flex items-center" data-en="Read Abstract & Insight" data-zh="阅读摘要与洞察">Read Abstract & Insight <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></span>
                 </article>
 
                 <article class="group cursor-pointer border-b border-pew-border pb-10 mb-10" onclick="openArticle('project-ngo')">
-                    <p class="text-xs text-pew-subtle mb-3 font-sans uppercase tracking-widest" data-en="ENVIRONMENTAL POLITICS & NGO | 2025" data-zh="环境政治与非政府组织 | 2025">ENVIRONMENTAL POLITICS & NGO | 2025</p>
+                    <p class="text-xs text-pew-subtle mb-3 font-sans uppercase tracking-widest" data-en="ENVIRONMENTAL POLITICS & NGO" data-zh="环境政治与非政府组织">ENVIRONMENTAL POLITICS & NGO</p>
                     <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4" data-en="The 'Invisible Pushers' of Carbon Governance: NGO Network Mobilization and Policy Advocacy" data-zh="碳治理的“隐形推手”：非政府组织(NGO)的网络动员与政策倡导策略研究">
-                        The "Invisible Pushers" of Carbon Governance: NGO Network Mobilization and Policy Advocacy
+                        The 'Invisible Pushers' of Carbon Governance: NGO Network Mobilization and Policy Advocacy
                     </h4>
-                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="Based on multi-case comparisons and Social Network Analysis, this paper uncovers the 'technology-organization-culture' logic of NGOs in global climate governance." data-zh="基于多案例比较与社会网络分析(SNA)，本文揭示了NGO在全球气候治理中的“技术—组织—文化”三重动员逻辑，并详细剖析了其在多中心治理体系下的双轨倡导路径。">
-                        Based on multi-case comparisons and Social Network Analysis...
+                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="A multi-case comparison uncovering the 'technology-organization-culture' mobilization logic of NGOs in global climate governance." data-zh="基于多案例比较与SNA网络分析，揭示全球气候治理体系中NGO独特的“技术—组织—文化”三重动员逻辑与倡导路径。">
+                        A multi-case comparison uncovering the 'technology-organization-culture' mobilization logic...
                     </p>
-                    <span class="text-sm font-bold text-pew-accent uppercase tracking-wider flex items-center" data-en="Read Report" data-zh="阅读简报">Read Report <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></span>
+                    <span class="text-sm font-bold text-pew-accent uppercase tracking-wider flex items-center" data-en="Read Abstract & Insight" data-zh="阅读摘要与洞察">Read Abstract & Insight <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></span>
+                </article>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 2.5: WRITING ================= -->
+        <div id="view-writing" class="page-view pb-24">
+            <div class="bg-gray-100 py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
+                <div class="max-w-5xl mx-auto">
+                    <div class="text-pew-accent font-bold tracking-widest uppercase text-xs mb-4 cursor-pointer hover:underline flex items-center" onclick="navigateTo('view-home')">
+                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back to Home" data-zh="返回主页">Back to Home</span>
+                    </div>
+                    <h2 class="font-serif text-5xl font-light text-pew-dark" data-en="Writing & Opinion" data-zh="观点与评论">Writing & Opinion</h2>
+                </div>
+            </div>
+            
+            <div class="max-w-5xl mx-auto px-6 lg:px-12">
+                <div class="border-l-4 border-pew-accent pl-8 py-2 mb-12">
+                    <p class="font-serif text-xl text-gray-600 italic" data-en="Here, I move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities." data-zh="在记录事实之外，我致力于解释世界。本专栏将抽象的研究数据转化为锋利的分析论点，探讨话语体系如何决定社会现实。">
+                        Here, I move beyond recording facts to interpreting them.
+                    </p>
+                </div>
+                
+                <article class="group cursor-pointer border-b border-pew-border pb-10 mb-10" onclick="openArticle('writing-standard')">
+                    <p class="text-xs text-pew-subtle mb-3 font-sans uppercase tracking-widest" data-en="OP-ED • LINGUISTIC INEQUALITY" data-zh="评论文章 • 语言与不平等">OP-ED • LINGUISTIC INEQUALITY</p>
+                    <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4" data-en="The Cost of the 'Standard': How Linguistic Hierarchies Drive Economic Marginalization" data-zh="“标准语”的代价：语言等级制如何驱动经济边缘化">
+                        The Cost of the 'Standard': How Linguistic Hierarchies Drive Economic Marginalization
+                    </h4>
+                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="Language is rarely neutral. When urban centers demand a 'standard' tongue, accents transform from cultural markers into economic penalties for migrant workers. This suggests that linguistic assimilation is not a choice, but a tax on survival." data-zh="语言绝非中立。当城市中心强制推行“标准语”时，口音便从文化标识沦为了对流动人口的经济惩罚。这表明，语言同化并非个人选择，而是一种严苛的生存税。">
+                        Language is rarely neutral. When urban centers demand a 'standard' tongue...
+                    </p>
+                    <span class="text-sm font-bold text-pew-accent uppercase tracking-wider flex items-center" data-en="Read Article" data-zh="阅读文章">Read Article <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></span>
                 </article>
             </div>
         </div>
@@ -333,20 +362,20 @@
             <div class="bg-gray-100 py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-5xl mx-auto">
                     <div class="text-pew-accent font-bold tracking-widest uppercase text-xs mb-4 cursor-pointer hover:underline flex items-center" onclick="navigateTo('view-home')">
-                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back" data-zh="返回">Back</span>
+                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back to Home" data-zh="返回主页">Back to Home</span>
                     </div>
-                    <h2 class="font-serif text-4xl font-bold text-pew-dark" data-en="Field Notes" data-zh="田野笔记">Field Notes</h2>
+                    <h2 class="font-serif text-5xl font-light text-pew-dark" data-en="Field Notes" data-zh="田野笔记">Field Notes</h2>
                 </div>
             </div>
             
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 <article class="group cursor-pointer border-b border-pew-border pb-10 mb-10" onclick="openArticle('project-nanjiang')">
                     <p class="text-xs text-pew-subtle mb-3 font-sans uppercase tracking-widest" data-en="Sociolinguistics Fieldwork" data-zh="社会语言学田野">Sociolinguistics Fieldwork</p>
-                    <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4" data-en="Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County, Hunan" data-zh="边境之声：湖南省平江县南江镇的语言杂糅与身份认同建构">
-                        Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County, Hunan
+                    <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-pew-accent transition-colors mb-4" data-en="Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County" data-zh="边境之声：湖南省平江县南江镇的语言杂糅与身份认同建构">
+                        Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County
                     </h4>
-                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="Ethnographic study in the Hunan-Hubei-Jiangxi borderlands exploring dialect interaction, trade routes, and revolutionary history. Presented at UIUC SoSy 7." data-zh="基于湘鄂赣交界地带的民族志田野研究，探讨方言杂糅现象、商贸路线与革命历史记忆。研究成果已入选 UIUC 第七届社会语言学研讨会 (SoSy 7)。">
-                        Ethnographic study in the Hunan-Hubei-Jiangxi borderlands exploring dialect interaction...
+                    <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="Ethnographic study exploring dialect interaction and revolutionary history. This fieldwork suggests that dialect switching is not merely a communicative tool, but a sophisticated mechanism for spatial and historic identity negotiation." data-zh="这不仅仅是一份关于方言互动的记录。实地的民族志观察深刻表明：方言切换绝不仅仅是沟通工具，它更是边缘群体进行空间区隔与历史记忆协商的精密政治机制。">
+                        Ethnographic study exploring dialect interaction and revolutionary history...
                     </p>
                     <span class="text-sm font-bold text-pew-accent uppercase tracking-wider flex items-center" data-en="Read Ethnography" data-zh="阅读田野志">Read Ethnography <i data-lucide="arrow-right" class="w-4 h-4 ml-1"></i></span>
                 </article>
@@ -358,9 +387,9 @@
             <div class="bg-gray-100 py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-5xl mx-auto">
                     <div class="text-pew-accent font-bold tracking-widest uppercase text-xs mb-4 cursor-pointer hover:underline flex items-center" onclick="navigateTo('view-home')">
-                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back" data-zh="返回">Back</span>
+                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back to Home" data-zh="返回主页">Back to Home</span>
                     </div>
-                    <h2 class="font-serif text-4xl font-bold text-pew-dark" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</h2>
+                    <h2 class="font-serif text-5xl font-light text-pew-dark" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</h2>
                 </div>
             </div>
             
@@ -407,14 +436,15 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 5: INTERVIEW SERIES ================= -->
+        <!-- ================= VIEW 5: VOICES ARCHIVE ================= -->
         <div id="view-voices" class="page-view pb-24">
             <div class="bg-gray-100 py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-5xl mx-auto">
                     <div class="text-pew-accent font-bold tracking-widest uppercase text-xs mb-4 cursor-pointer hover:underline flex items-center" onclick="navigateTo('view-home')">
-                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back" data-zh="返回">Back</span>
+                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back to Home" data-zh="返回主页">Back to Home</span>
                     </div>
-                    <h2 class="font-serif text-4xl font-bold text-pew-dark" data-en="Interview Series" data-zh="边缘深度访谈系列">Interview Series</h2>
+                    <h2 class="font-serif text-5xl font-light text-pew-dark mb-4" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</h2>
+                    <p class="text-gray-500 font-serif text-lg" data-en="Listening to the margins. Curating primary materials and ethnographic dialogues." data-zh="聆听边缘。为学界生产一手口述史、对话录与原始研究语料。">Listening to the margins. Curating primary materials.</p>
                 </div>
             </div>
             
@@ -429,7 +459,7 @@
                         </div>
                     </div>
                     <div class="bg-white p-8">
-                        <span class="text-xs font-bold tracking-widest uppercase text-pew-accent" data-en="Docuseries • Ep. 1" data-zh="系列纪录片 • 第1集">Docuseries • Ep. 1</span>
+                        <span class="text-xs font-bold tracking-widest uppercase text-pew-accent" data-en="Primary Material • Archive 001" data-zh="一手史料档案 • 编号 001">Primary Material • Archive 001</span>
                         <h3 class="font-serif text-3xl font-bold mt-2 mb-3" data-en="“My dialect stays at the factory gate.”" data-zh="“我的方言，只停留在工厂的大门外。”">“My dialect stays at the factory gate.”</h3>
                         <p class="text-gray-600 font-serif" data-en="A conversation with Lao Li, exploring 20 years of linguistic assimilation in Guangzhou." data-zh="与第一代农民工老李的深度对话。探讨他在广州经历的语言同化。">A conversation with Lao Li...</p>
                     </div>
@@ -437,9 +467,8 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 6: BLOG (完全对标 Roper Center 排版) ================= -->
+        <!-- ================= VIEW 6: BLOG ================= -->
         <div id="view-blog" class="page-view pb-32">
-            <!-- 补充了返回顶部的导航条 -->
             <div class="bg-gray-100 py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-pew-accent font-bold tracking-widest uppercase text-xs mb-4 cursor-pointer hover:underline flex items-center" onclick="navigateTo('view-home')">
@@ -451,13 +480,8 @@
 
             <div class="max-w-7xl mx-auto px-6 lg:px-12">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-                    
-                    <!-- Left Column: Blog List (加入了4个全新的会议动态) -->
                     <div class="lg:col-span-8 flex flex-col space-y-12">
-                        
-                        <!-- Blog Post 1: MOR Conference -->
                         <article class="border-b border-gray-200 pb-12 cursor-pointer group flex flex-col md:flex-row gap-8" onclick="openArticle('blog-mor')">
-                            <!-- 严格控制图片尺寸：aspect-[4/3] object-cover 保证永远统一优美 -->
                             <div class="w-full md:w-1/3 aspect-[4/3] bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0">
                                 <img src="https://github.com/wsenlin419-maker/picture/blob/main/MOR%20Main.jpg?raw=true" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" alt="MOR Conference">
                             </div>
@@ -466,13 +490,12 @@
                                 <h3 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark blog-title-link mb-4 leading-snug" data-en="Oral Presentation at The 2nd MOR International Conference and PDW" data-zh="赴阿联酋参加第二届 MOR 国际会议及研讨会">
                                     Oral Presentation at The 2nd MOR International Conference and PDW
                                 </h3>
-                                <p class="text-gray-600 font-serif leading-relaxed text-justify-force" data-en="Presented research on the network mobilization and policy advocacy strategies of Non-Governmental Organizations in global carbon governance." data-zh="在阿联酋艾因探讨非政府组织在全球碳治理中的网络动员与政策倡导策略，深度解析NGO的“隐形推手”作用。">
-                                    Presented research on the network mobilization and policy advocacy strategies of Non-Governmental Organizations...
+                                <p class="text-gray-600 font-serif leading-relaxed text-justify-force" data-en="Presented research on the network mobilization and policy advocacy strategies of NGOs in global carbon governance." data-zh="在阿联酋艾因探讨非政府组织在全球碳治理中的网络动员与政策倡导策略。">
+                                    Presented research on the network mobilization and policy advocacy strategies...
                                 </p>
                             </div>
                         </article>
 
-                        <!-- Blog Post 2: Tokyo ICHR -->
                         <article class="border-b border-gray-200 pb-12 cursor-pointer group flex flex-col md:flex-row gap-8" onclick="openArticle('blog-tokyo')">
                             <div class="w-full md:w-1/3 aspect-[4/3] bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0">
                                 <img src="https://github.com/wsenlin419-maker/picture/blob/main/ICHR.jpg?raw=true" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" alt="ICHR Tokyo">
@@ -488,7 +511,6 @@
                             </div>
                         </article>
 
-                        <!-- Blog Post 3: UIUC SOSY7 -->
                         <article class="border-b border-gray-200 pb-12 cursor-pointer group flex flex-col md:flex-row gap-8" onclick="openArticle('blog-uiuc')">
                             <div class="w-full md:w-1/3 aspect-[4/3] bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0">
                                 <img src="https://github.com/wsenlin419-maker/picture/blob/main/SOSY7%20Main.jpg?raw=true" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" alt="SOSY 7 UIUC">
@@ -498,13 +520,12 @@
                                 <h3 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark blog-title-link mb-4 leading-snug" data-en="Presentation at 7th Sociolinguistics Symposium (SOSY 7), UIUC" data-zh="研究成果入选 UIUC 第七届社会语言学研讨会 (SOSY 7)">
                                     Presentation at 7th Sociolinguistics Symposium (SOSY 7), UIUC
                                 </h3>
-                                <p class="text-gray-600 font-serif leading-relaxed text-justify-force" data-en="Successfully presented ethnographic fieldwork exploring regional identity and dialect interaction in Nanjiang at the University of Illinois Urbana-Champaign." data-zh="赴伊利诺伊大学香槟分校 (UIUC) 参加第七届社会语言学研讨会，并就湖南南江镇的方言互动与区域认同作专题学术汇报。">
+                                <p class="text-gray-600 font-serif leading-relaxed text-justify-force" data-en="Successfully presented ethnographic fieldwork exploring regional identity and dialect interaction in Nanjiang at UIUC." data-zh="赴伊利诺伊大学香槟分校 (UIUC) 就湖南南江镇的方言互动与区域认同作专题学术汇报。">
                                     Successfully presented ethnographic fieldwork exploring regional identity and dialect interaction...
                                 </p>
                             </div>
                         </article>
 
-                        <!-- Blog Post 4: Harvard CES -->
                         <article class="border-b border-gray-200 pb-12 cursor-pointer group flex flex-col md:flex-row gap-8" onclick="openArticle('blog-harvard')">
                             <div class="w-full md:w-1/3 aspect-[4/3] bg-gray-100 overflow-hidden border border-gray-200 flex-shrink-0">
                                 <img src="https://github.com/wsenlin419-maker/picture/blob/main/Harvard%20CES.jpg?raw=true" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out" alt="Harvard Symposium">
@@ -514,15 +535,13 @@
                                 <h3 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark blog-title-link mb-4 leading-snug" data-en="Joining Harvard Education Symposium as Publicity Assistant" data-zh="加入哈佛大学教育论坛担任公共宣传助理">
                                     Joining Harvard Education Symposium as Publicity Assistant
                                 </h3>
-                                <p class="text-gray-600 font-serif leading-relaxed text-justify-force" data-en="Serving on the publicity team for the 17th China Education Symposium at Harvard Graduate School of Education, coordinating cross-cultural communication strategies." data-zh="加入哈佛大学教育学院第17届中国教育论坛宣传组，致力于协调跨文化传播战略，向全球学者与实践者推广教育公平理念。">
+                                <p class="text-gray-600 font-serif leading-relaxed text-justify-force" data-en="Serving on the publicity team for the 17th China Education Symposium at Harvard Graduate School of Education." data-zh="加入哈佛大学教育学院第17届中国教育论坛宣传组，向全球学者推广教育公平理念。">
                                     Serving on the publicity team for the 17th China Education Symposium at Harvard...
                                 </p>
                             </div>
                         </article>
-
                     </div>
                     
-                    <!-- Right Column: Categories Sidebar (Roper Style) -->
                     <div class="lg:col-span-4 hidden lg:block">
                         <div class="sticky top-28 bg-gray-50 border border-gray-200 rounded">
                             <div class="px-6 py-5 border-b border-gray-200 bg-white">
@@ -536,59 +555,66 @@
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
 
-        <!-- ================= VIEW 7: ABOUT US & TEAM ================= -->
+        <!-- ================= VIEW 7: ABOUT (极简与圆形头像设计) ================= -->
         <div id="view-about" class="page-view pb-24">
             <div class="bg-gray-100 py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-5xl mx-auto">
                     <div class="text-pew-accent font-bold tracking-widest uppercase text-xs mb-4 cursor-pointer hover:underline flex items-center" onclick="navigateTo('view-home')">
-                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back" data-zh="返回">Back</span>
+                        <i data-lucide="chevron-left" class="w-4 h-4 mr-1"></i> <span data-en="Back to Home" data-zh="返回主页">Back to Home</span>
                     </div>
-                    <h2 class="font-serif text-4xl font-bold text-pew-dark" data-en="About Us & Team" data-zh="关于平台与团队">About Us & Team</h2>
+                    <h2 class="font-serif text-5xl font-light text-pew-dark" data-en="About" data-zh="关于平台">About</h2>
                 </div>
             </div>
             
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
-                <div class="prose prose-lg font-serif text-gray-700 max-w-3xl mb-16 text-justify-force">
-                    <p class="text-2xl text-pew-dark leading-snug mb-6" data-en="Voices from Margins is an independent research platform dedicated to exploring the intersections of language, identity, inequality, and visual politics." data-zh="边缘之声（Voices from Margins）是一个独立的青年研究与公共倡导平台，致力于在社会的边缘处探索语言、身份认同、不平等与视觉政治的深层交集。">
-                        Voices from Margins is an independent research platform...
+                <!-- 平台愿景 -->
+                <div class="prose prose-lg font-serif text-gray-700 max-w-4xl mb-16 text-justify-force">
+                    <p class="text-2xl text-pew-dark leading-snug mb-6" data-en="Voices from the Margins is an independent research initiative that examines how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality across social, economic, and political contexts." data-zh="“边缘之声”是一个独立的青年研究与公共倡导平台，致力于探讨边缘群体如何被语言与叙事所塑造，以及这些微观过程如何最终转化为跨越社会、经济与政治语境的结构性不平等。">
+                        Voices from the Margins is an independent research initiative...
                     </p>
-                    <p data-en="By bridging academic rigor—such as quantitative visual analysis and deep ethnographic fieldwork—with compelling public narratives, the platform aims to amplify unheard voices and provide data-driven insights for inclusive policy-making." data-zh="本平台旨在打破学术象牙塔，将严谨的量化分析与扎实的田野调查转化为具有同理心的公共叙事。我们坚信，只有让未被听见的声音真正参与到学术记录中，才能为包容性的公共政策提供基于实证的数据洞察。">
-                        By bridging academic rigor with compelling public narratives...
+                    <p data-en="The project is grounded in the belief that inequality is not only material, but also discursive: it is produced, reinforced, and contested through the ways people speak, are represented, and are heard. From rural dialects in China’s border regions to competing media narratives in global development contexts, this initiative explores how meaning is constructed—and how that construction affects access to power." data-zh="本项目基于这样一个核心理念：不平等不仅是物质层面的，更是话语层面的。不平等通过人们说话、被表征以及被倾听的方式不断被生产、强化与抗争。从中国边境地区的乡村方言，到全球发展语境下相互竞争的媒体叙事，本平台致力于探索“意义”是如何被建构的，以及这种建构如何影响人们获取权力的途径。">
+                        The project is grounded in the belief that inequality is not only material, but also discursive...
+                    </p>
+                    <p data-en="Methodologically, the project adopts an interdisciplinary approach, combining sociolinguistic fieldwork, media and discourse analysis, and quantitative inquiry. It draws on ethnographic observation, interview-based research, and data-driven methods to connect micro-level experiences of marginality with broader structural patterns. By bridging qualitative insight with analytical frameworks, the project seeks to make questions of identity and voice legible within policy-relevant conversations." data-zh="在方法论上，本项目采用跨学科范式，结合社会语言学田野调查、媒体与话语分析以及量化探究。研究依托民族志观察、基于访谈的定性研究与数据驱动的定量方法，将微观层面的边缘体验与更广泛的宏观结构模式相联结。通过弥合定性洞察与分析框架，本项目旨在使身份认同与声音的议题在政策相关的对话中清晰可见。">
+                        Methodologically, the project adopts an interdisciplinary approach...
+                    </p>
+                    
+                    <h4 class="font-sans font-bold uppercase tracking-widest text-sm text-pew-dark mt-10 mb-4" data-en="Current areas of focus include:" data-zh="当前核心研究领域：">Current areas of focus include:</h4>
+                    <ul class="list-disc pl-6 space-y-2 mb-8 text-pew-dark">
+                        <li data-en="Linguistic hybridity and identity formation in historically marginalized regions" data-zh="历史边缘地区的语言杂糅与身份认同建构">Linguistic hybridity and identity formation in historically marginalized regions</li>
+                        <li data-en="Narrative framing and representation in China–Africa media contexts" data-zh="中非媒体语境中的叙事框架与视觉表征">Narrative framing and representation in China–Africa media contexts</li>
+                        <li data-en="The relationship between language, voice, and structural economic inequality" data-zh="语言、声音与结构性经济不平等之间的关系">The relationship between language, voice, and structural economic inequality</li>
+                    </ul>
+
+                    <p data-en="Ultimately, Voices from the Margins aims to contribute to a deeper understanding of how inequality operates through systems of meaning—and how more inclusive forms of representation might be imagined in both local and global contexts." data-zh="最终，“边缘之声”旨在推动对“不平等如何通过意义系统运作”的深刻理解，并致力于构想在本土与全球语境下更具包容性的公共表征形式。">
+                        Ultimately, Voices from the Margins aims to contribute to a deeper understanding...
                     </p>
                 </div>
 
-                <div class="border-t border-gray-300 pt-12">
-                    <h3 class="font-sans text-xl font-bold uppercase tracking-widest text-pew-dark mb-10" data-en="Our Team" data-zh="核心研究员 / 团队成员">Our Team</h3>
+                <!-- Founder 信息 (全新圆形排版设计) -->
+                <div class="border-t border-gray-300 pt-16">
+                    <h3 class="font-sans text-xl font-bold uppercase tracking-widest text-pew-dark mb-12 text-center md:text-left" data-en="Founder" data-zh="创始人">Founder</h3>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                        <!-- 成员 1: Senlin Wang -->
-                        <div class="flex flex-col">
-                            <div class="w-full aspect-[4/5] bg-gray-200 mb-6 relative overflow-hidden border border-gray-200">
+                    <div class="flex flex-col md:flex-row items-center md:items-start gap-12">
+                        <!-- 圆形小尺寸头像 -->
+                        <div class="flex flex-col items-center md:items-start flex-shrink-0">
+                            <div class="w-48 h-48 md:w-56 md:h-56 bg-gray-200 mb-6 relative overflow-hidden rounded-full border-4 border-gray-100 shadow-sm">
                                 <img src="https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true" class="w-full h-full object-cover" alt="Photo of Senlin Wang">
                             </div>
-                            <h4 class="font-serif text-2xl font-bold text-pew-dark mb-1" data-en="Senlin (Adam) Wang" data-zh="Senlin (Adam) Wang">Senlin Wang</h4>
-                            <p class="text-sm font-bold text-pew-accent uppercase tracking-wider mb-4" data-en="Founder & Principal Researcher | Qingdao University" data-zh="创始人 & 首席研究员 | 青岛大学">Founder & Principal Researcher | Qingdao University</p>
-                            <!-- Bio两端对齐 -->
-                            <p class="font-serif text-gray-600 text-sm leading-relaxed text-justify-force" data-en="Senlin Wang is an independent researcher utilizing mixed methods to explore Political Communication, Visual Politics, and Sociolinguistics. With an academic background in International Business from Qingdao University, his recent ethnographic fieldwork in the Hunan-Hubei-Jiangxi borderlands—investigating dialect interaction and identity politics—has been presented at premier international conferences including SOSY 7 (UIUC) and EULC 7 (Emory). By bridging quantitative visual analysis with profound ethnographic depth, he is dedicated to decoding global geopolitical narratives and the intricate process of local identity formation." data-zh="王森林是一名独立研究员，致力于采用混合研究方法深度探索政治传播学、视觉政治与社会语言学议题。他拥有青岛大学国际商务学术背景，其近期在湘鄂赣交界地带开展的关于方言互动与身份政治的民族志田野研究，已成功入选 UIUC (SOSY 7) 与 Emory (EULC 7) 等顶尖国际学术会议并作口头汇报。他擅长将量化视觉分析与深入的人类学田野调查相结合，以解构全球地缘政治叙事及本土多重身份认同的建构过程。">
-                                Senlin Wang is an independent researcher utilizing mixed methods...
-                            </p>
+                            <h4 class="font-serif text-3xl font-bold text-pew-dark mb-2 text-center md:text-left" data-en="Senlin Wang" data-zh="Senlin Wang">Senlin Wang</h4>
+                            <p class="text-sm font-bold text-pew-accent uppercase tracking-wider text-center md:text-left" data-en="Founder" data-zh="创始人">Founder</p>
                         </div>
 
-                        <!-- 成员 2: 占位符 -->
-                        <div class="flex flex-col">
-                            <div class="w-full aspect-[4/5] bg-gray-50 flex items-center justify-center border border-dashed border-gray-300 mb-6">
-                                <span class="text-gray-400 font-sans text-sm uppercase tracking-widest" data-en="Photo Placeholder" data-zh="成员照片预留位">Photo Placeholder</span>
-                            </div>
-                            <h4 class="font-serif text-2xl font-bold text-gray-400 mb-1" data-en="Member Name" data-zh="团队成员姓名">Member Name</h4>
-                            <p class="text-sm font-bold text-gray-400 uppercase tracking-wider mb-4" data-en="Position / Role" data-zh="职位 / 角色">Position / Role</p>
-                            <p class="font-serif text-gray-400 text-sm leading-relaxed text-justify-force" data-en="Brief biography goes here. Explain their research focus, academic background, and contribution to the platform." data-zh="成员个人简介、研究方向、学术背景以及对平台的贡献。">
-                                Brief biography goes here.
+                        <!-- 两端对齐的学术 Bio -->
+                        <div class="flex flex-col justify-center max-w-2xl">
+                            <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force mb-6" data-en="Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="Senlin Wang 是“边缘之声”研究平台的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
+                                Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world.
                             </p>
+                            <!-- 已删除 CV 下载链接，保持绝对干净 -->
                         </div>
                     </div>
                 </div>
@@ -598,25 +624,23 @@
 
     </main>
 
-    <!-- ================= 高定级 Contact & Mailing List (全新极简设计) ================= -->
+    <!-- ================= 高定级 Contact & Mailing List ================= -->
     <section id="footer-contact" class="bg-[#1a1a1a] text-white pt-24 pb-16 border-t-[4px] border-pew-accent">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
             
-            <!-- Left: Newsletter (极简线条风) -->
             <div class="flex flex-col justify-center">
                 <h3 class="text-4xl md:text-5xl font-serif font-light mb-6 tracking-tight" data-en="Stay Informed." data-zh="订阅与联络。">Stay Informed.</h3>
-                <p class="text-gray-400 font-serif mb-12 text-lg max-w-md leading-relaxed" data-en="Subscribe to our mailing list to receive the latest research briefs, field notes, and updates directly." data-zh="订阅我们的邮件列表，第一时间获取最前沿的智库研究简报、田野纪实及动态更新。">
+                <p class="text-gray-400 font-serif mb-12 text-lg max-w-md leading-relaxed text-justify-force" data-en="Subscribe to our mailing list to receive the latest research briefs, field notes, and updates directly." data-zh="订阅我们的邮件列表，第一时间获取最前沿的智库研究简报、田野纪实及动态更新。">
                     Subscribe to our mailing list to receive the latest research briefs, field notes, and updates.
                 </p>
                 <form class="flex items-end border-b border-gray-600 pb-3 group focus-within:border-white transition-colors relative">
                     <input type="email" placeholder="Enter your email address" class="bg-transparent w-full outline-none text-white font-sans text-base placeholder-gray-500" required>
-                    <button type="submit" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-pew-accent transition-colors ml-4 whitespace-nowrap" data-en="Subscribe" data-zh="订阅">
+                    <button type="submit" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-pew-accent transition-colors ml-4 whitespace-nowrap">
                         Subscribe
                     </button>
                 </form>
             </div>
 
-            <!-- Right: Minimalist Academic Grid -->
             <div class="grid grid-cols-2 gap-x-8 gap-y-12">
                 <div>
                     <h4 class="text-xs font-bold uppercase tracking-widest text-gray-500 mb-4" data-en="Inquiries" data-zh="项目咨询">Inquiries</h4>
@@ -643,12 +667,12 @@
     <!-- ================= FOOTER ================= -->
     <footer class="bg-[#111111] text-gray-400 py-8">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center text-xs font-sans">
-            <span data-en="© 2026 Voices from Margins Initiative. All Rights Reserved." data-zh="© 2026 边缘之声智库项目. 保留所有权利.">© 2026 Voices from Margins Initiative. All Rights Reserved.</span>
-            <span class="mt-2 md:mt-0 font-serif">Independent Youth Research Platform</span>
+            <span data-en="© 2026 Margins & Meaning. All Rights Reserved." data-zh="© 2026 Margins & Meaning. 保留所有权利.">© 2026 Margins & Meaning. All Rights Reserved.</span>
+            <span class="mt-2 md:mt-0 font-serif">Independent Research Initiative</span>
         </div>
     </footer>
 
-    <!-- ================= MODAL FOR ARTICLES (全站通用弹窗) ================= -->
+    <!-- ================= MODAL FOR ARTICLES ================= -->
     <div id="article-modal" class="fixed inset-0 bg-white z-[120] modal-hidden overflow-y-auto">
         <div class="max-w-4xl mx-auto bg-white min-h-screen relative px-6 py-16 md:px-12 slide-down" id="article-content">
             <button onclick="closeArticle()" class="absolute top-6 right-6 md:top-12 md:right-0 flex items-center text-sm font-bold uppercase tracking-widest text-pew-subtle hover:text-pew-accent transition-colors group">
@@ -677,10 +701,8 @@
     <!-- Script Logic -->
     <script>
         lucide.createIcons();
-        // 默认主导语言设置为英文 (English)
         let currentLang = 'en'; 
 
-        // 搜索框交互逻辑
         const searchOverlay = document.getElementById('search-overlay');
         const searchInput = document.getElementById('search-input');
         const searchMsg = document.getElementById('search-result-msg');
@@ -705,143 +727,146 @@
             searchMsg.classList.remove('hidden');
         }
 
-        // 核心数据库
         const articlesDB = {
-            /* === 现有的研究与视频数据 === */
             'project-minority': {
                 tag: { en: 'EDUCATION POLICY & IDENTITY', zh: '教育政策与身份认同' },
                 title: { en: 'Crossing Language Borders: China\'s Minority Preparatory Education Policy and Identity', zh: '跨越语言边界：中国少数民族预科教育政策与身份认同' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
-                        <p><strong>Executive Summary:</strong> This study breaks away from traditional quantitative evaluations of China's minority preparatory education programs. By introducing sociolinguistic and educational sociology perspectives, it investigates how macro-educational interventions are negotiated at the micro-level by Tibetan and Uyghur students.</p>
-                        <p><strong>Theoretical Framework:</strong> The research utilizes Bourdieu's theories of cultural and linguistic capital, framing Mandarin as the dominant "legitimate language" in academic spheres. It contrasts "additive" versus "subtractive" bilingual education models.</p>
-                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">Key Insights</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>The Liminal Space:</strong> Preparatory education functions as a high-pressure liminal space where language anxiety exacerbates social isolation.</li>
-                            <li><strong>Institutional Comparison:</strong> The study contrasts comprehensive universities (Qingdao Univ.) and finance-oriented institutions (CUEB), highlighting how different "hidden curricula" shape divergent identity strategies.</li>
-                            <li><strong>Policy Recommendation:</strong> Advocates for a paradigm shift from "unidirectional linguistic compensation" to "bidirectional cultural recognition" to prevent subtractive bilingualism and dual marginalization.</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-pew-dark mt-4 mb-2">Research Question</h3>
+                        <p>How do macro-educational interventions, specifically preparatory programs, impact the micro-level identity negotiation of Tibetan and Uyghur students?</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">Methodology</h3>
+                        <p>This study employs an ethnographic approach and in-depth sociolinguistic interviews across two distinct institutional environments (a comprehensive university and a finance-oriented institution) to observe the "hidden curriculum."</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">Core Insight</h3>
+                        <p>The 'liminal space' of preparatory education often acts as a site of <em>subtractive bilingualism</em>, where language anxiety exacerbates social isolation. <strong>This suggests that</strong> true educational equity requires a paradigm shift from "unidirectional linguistic compensation" to "bidirectional cultural recognition," fostering an <em>additive bilingual</em> ecosystem.</p>
                     `,
                     zh: `
-                        <p><strong>执行摘要：</strong> 本研究突破了传统的教育政策量化评估视域，引入了社会语言学和教育社会学的批判性视角，深入探究国家层面的宏观教育干预政策（少数民族预科教育）如何在微观个体的日常语言实践中被感知、协商与重构。</p>
-                        <p><strong>理论框架：</strong> 研究系统梳理了“附加型”与“减损型”双语教育理论，并结合布迪厄(Bourdieu)的语言资本与隐性课程理论，指出在以国家通用语言为主导的现代高等教育体系中，学术语言构成了极其核心的制度性资本与微观规训工具。</p>
-                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">核心洞察与发现</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>高压“阈限空间”：</strong> 预科班不再是简单的过渡期，而是充满张力、矛盾与认同重构的复杂文化空间。繁复的行政规训往往将语言焦虑转化为实质性的生存与社交压力。</li>
-                            <li><strong>跨校际生态对比：</strong> 通过对比综合性大学（青岛大学）的隐性行政规训与财经类院校（首都经贸大学）的职场实用主义，揭示了制度环境如何异质化地塑造少数民族学生的适应策略与社交孤岛化风险。</li>
-                            <li><strong>政策建言：</strong> 呼吁从“单向语言补偿”转向“双向文化承认”，将附加型双语教育理念纳入高校微观生态，解构单一语言资本的霸权评价机制。</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-pew-dark mt-4 mb-2">研究问题 (Research Question)</h3>
+                        <p>少数民族预科教育作为一项宏观的干预政策，是如何在微观层面深刻影响藏族与维吾尔族学生的语言实践与身份认同协商的？</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">研究方法 (Methodology)</h3>
+                        <p>本研究采用民族志方法，在两所不同性质的高校（综合性大学与财经类院校）开展深度的社会语言学访谈，以系统考察制度环境中的“隐性课程”。</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">核心洞察 (Core Insight)</h3>
+                        <p>预科教育的“阈限空间”往往沦为<em>减损型双语 (subtractive bilingualism)</em> 的发生地，繁复的行政规训将语言焦虑转化为社交孤立。<strong>这表明：</strong>真正的教育公平必须从“单向语言补偿”转向“双向文化承认”，在高校微观生态中建立<em>附加型双语 (additive bilingualism)</em> 的包容性体系。</p>
                     `
                 }
             },
             'project-sanmao': {
                 tag: { en: 'SOCIOLINGUISTICS & LITERATURE', zh: '社会语言学与文学' },
                 title: { en: 'Speaking of the Otherland: Sanmao\'s Translanguaging Practices and "New Overseas Chinese" Identity', zh: '言说他乡：社会语言学视阈下三毛的跨语际实践与“新海外华人”认同' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
-                        <p><strong>Research Background:</strong> Sanmao's (1943-1991) <em>Stories of the Sahara</em> is widely read, yet its dense linguistic contact phenomena are rarely examined. This paper uses Li Wei's translanguaging theory to analyze core chapters like "Desert Restaurant" and "Mute Slave."</p>
-                        <p><strong>Identity Construction:</strong> The study frames Sanmao's language choices, code-switching, and portrayals of communication barriers as central discursive strategies for constructing a "hybrid identity."</p>
-                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">Core Arguments</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>Translanguaging as Agency:</strong> In "Desert Restaurant," Sanmao actively manages cognitive boundaries through playful mistranslations (e.g., calling vermicelli "spring rain"). In "Mute Slave," translanguaging is pushed to its limits through gesture-meaning systems when verbal mediums are absent.</li>
-                            <li><strong>The Double Rejection:</strong> Sanmao integrates Mandarin, Spanish, and Hassaniya Arabic to reject both single-nationalist identity attribution and colonialist civilization hierarchies.</li>
-                            <li><strong>The Third Space:</strong> Situating her in Homi Bhabha's "Third Space," she exemplifies the "New Overseas Chinese" identity—constructing a dual subject position as a "World Citizen - Chinese Woman."</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-pew-dark mt-4 mb-2">Research Question</h3>
+                        <p>How does the prolific writer Sanmao utilize linguistic contact and code-switching as discursive strategies to construct her identity in <em>Stories of the Sahara</em>?</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">Theoretical Framework</h3>
+                        <p>Leveraging Li Wei's <em>translanguaging</em> theory, this study conducts an intensive discourse analysis of core chapters like "Desert Restaurant" and "Mute Slave," treating language not as a mere medium, but as an active tool of agency.</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">Core Insight</h3>
+                        <p>Sanmao integrates Mandarin, Spanish, and Hassaniya Arabic to execute a "double rejection" of both single-nationalist identity attribution and colonialist civilization hierarchies. <strong>This suggests that</strong> translanguaging allows her to effectively carve out a "Third Space," establishing her dual subject position as a "World Citizen - Chinese Woman."</p>
                     `,
                     zh: `
-                        <p><strong>研究背景：</strong> 三毛的《撒哈拉的故事》在华语世界广为流传，但鲜少有学者从社会语言学视角审视文本内密集的语言接触现象。本文以书中《沙漠中的饭店》与《哑奴》两章为核心语料进行深度文本分析。</p>
-                        <p><strong>理论视角：</strong> 援引李巍(Li Wei)的跨语际实践(translanguaging)理论，将三毛的语言选择、语码转换及对沟通障碍与桥梁的叙事刻画，视为其建构“混合身份”(hybrid identity)的核心话语策略。</p>
-                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">核心论点</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>能动的跨语际实践：</strong> 在《沙漠中的饭店》中，三毛以戏谑翻译（将粉丝称作“春雨”）主动管理跨文化婚姻中的认知边界；在《哑奴》中，更通过超语言的手势—物质体系越过界限，完成深刻的意义互换。</li>
-                            <li><strong>双重拒绝逻辑：</strong> 三毛将中文、西班牙语与哈桑尼亚阿拉伯语资源纳入创作，借此既拒绝单一民族主义的本质化归属，也彻底抵制了殖民主义的文明等级叙事。</li>
-                            <li><strong>“第三空间”的主体建构：</strong> 将三毛置于王赓武界定的“新海外华人”与霍米·巴巴的“第三空间”坐标系中，论证了她作为“世界公民—华人女性”双重主体位置的生成机制。</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-pew-dark mt-4 mb-2">研究问题 (Research Question)</h3>
+                        <p>作家三毛在《撒哈拉的故事》中，是如何利用密集的语言接触与语码转换作为核心话语策略，来建构其复杂身份认同的？</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">理论框架 (Theoretical Framework)</h3>
+                        <p>本研究援引李巍 (Li Wei) 的<em>跨语际实践 (translanguaging)</em> 理论，对《沙漠中的饭店》与《哑奴》等核心章节进行深度话语分析，将语言视为具有高度能动性的抗争工具。</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">核心洞察 (Core Insight)</h3>
+                        <p>三毛将中文、西班牙语与哈桑尼亚阿拉伯语资源交织，完成了对单一民族主义归属与殖民主义文明等级叙事的“双重拒绝”。<strong>这表明：</strong>跨语际实践使她成功在“第三空间”中立足，确立了其作为“世界公民—华人女性”的双重主体地位。</p>
                     `
                 }
             },
             'project-ngo': {
                 tag: { en: 'ENVIRONMENTAL POLITICS & NGO', zh: '环境政治与非政府组织' },
                 title: { en: 'The "Invisible Pushers" of Carbon Governance: NGO Network Mobilization and Policy Advocacy', zh: '碳治理的“隐形推手”：非政府组织(NGO)的网络动员与政策倡导策略研究' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
-                        <p><strong>Research Background:</strong> Global climate governance is undergoing a profound transformation, placing carbon governance at the forefront. This shift provides a unique role for Non-Governmental Organizations (NGOs) to act as "invisible pushers."</p>
-                        <p><strong>Methodology:</strong> The study employs multi-case comparisons (cross-national and cross-sectoral), Social Network Analysis (SNA), and policy process frameworks to unpack the operational logic and influence mechanisms of NGOs.</p>
-                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">Main Findings</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>The Triple Logic of Mobilization:</strong> NGO network mobilization operates through technology (digital platforms), organization (vertical and horizontal cross-sector networks), and culture (emotional mobilization and symbolic rituals like "Earth Hour").</li>
-                            <li><strong>Dual Policy Advocacy Paths:</strong> Depending on institutional environments, NGOs employ either a "Progressive Path" (knowledge-driven, institutional collaboration) or a "Disruptive Path" (protests, media exposure).</li>
-                            <li><strong>The "Strategy-Structure-Effectiveness" Framework:</strong> Proposes a comprehensive analytical model to assess policy text adoption, network density changes, and public climate literacy indicators.</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-pew-dark mt-4 mb-2">Research Question</h3>
+                        <p>Amidst the global transition towards aggressive carbon governance, how do Non-Governmental Organizations (NGOs) structurally mobilize their networks and advocate for policy change?</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">Methodology</h3>
+                        <p>This paper deploys Social Network Analysis (SNA) alongside a multi-case comparison (cross-national and cross-sectoral) to map the influence mechanisms within a polycentric governance model.</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">Core Insight</h3>
+                        <p>NGO network mobilization operates through a distinct triple logic: <em>Technology, Organization, and Culture</em>. <strong>This suggests that</strong> depending on the institutional environment, NGOs tactically alternate between a "Progressive Path" (knowledge-driven collaboration) and a "Disruptive Path" (protest-driven exposure) to effectuate systemic carbon policy reform.</p>
                     `,
                     zh: `
-                        <p><strong>研究背景：</strong> 全球气候治理正经历深刻转型，碳治理的迫切性日益凸显，这为非政府组织(NGO)在多中心治理体系中扮演“隐形推手”提供了独特的角色定位。</p>
-                        <p><strong>研究方法：</strong> 本研究突破单一维度，采用多案例比较法（如绿色和平组织、自然之友、阿拉善SEE等跨国/本土案例）、社会网络分析法(SNA)以及政策倡导的“窗口-联盟”模型进行系统论证。</p>
-                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">核心发现与理论贡献</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>动员网络的三重逻辑：</strong> NGO的网络动员突破了传统模式，呈现出“技术（数字节点传播与大数据定位）——组织（垂直/水平跨组织协作）——文化（气候焦虑的媒介化表达与符号仪式传播）”的三重运作机制。</li>
-                            <li><strong>双轨政策倡导路径：</strong> 在不同的制度环境与治理层级中，NGO的政策倡导展现出“渐进式”（基于科学证据与法律行动的制度连接）与“颠覆式”（依靠对抗性社会运动冲击议程）两条并存的路径。</li>
-                            <li><strong>构建综合分析框架：</strong> 提出了NGO碳治理参与的“策略—结构—效能”理论分析框架，为中国碳治理政策的优化提供了宝贵的第三方视角与实证支撑。</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-pew-dark mt-4 mb-2">研究问题 (Research Question)</h3>
+                        <p>在全球气候治理向碳治理深刻转型的背景下，非政府组织 (NGO) 是如何系统性地进行网络动员并推动政策倡导的？</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">研究方法 (Methodology)</h3>
+                        <p>本研究结合了社会网络分析法 (SNA) 与跨国/本土多案例比较，在多中心治理体系的模型下，解构了NGO的实际影响力运作机制。</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">核心洞察 (Core Insight)</h3>
+                        <p>NGO的网络动员呈现出一种独特的“技术—组织—文化”三重逻辑。<strong>这表明：</strong>受制于不同的制度环境，NGO能够战略性地在“渐进式”（基于科学与制度连接）与“颠覆式”（依靠社会运动冲击）双轨政策倡导路径间切换，从而有效推动系统性的碳治理变革。</p>
                     `
                 }
             },
             'project-faces': {
                 tag: { en: 'Political Communication & Visual Politics', zh: '政治传播学与视觉政治' },
                 title: { en: 'Faces vs. Steel: A Comparative Visual Framing Analysis of China\'s Aid in Africa', zh: '面孔与钢铁：中国对非援助的视觉框架比较分析' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
-                        <p><strong>Research Background:</strong> There is a paradox surrounding China's presence in Africa: it is the largest single financier, yet its international image remains polarized. Western media often frames it as "Neocolonialism," while Chinese media emphasizes "South-South Cooperation."</p>
-                        <p><strong>Methodology:</strong> This research utilizes a Mixed Methods approach (Quantitative Content Analysis + Qualitative Multimodal Analysis). I analyzed a dataset of N = 250+ Images (2015-2025) from Western outlets (BBC, CNN, NYT) versus Chinese outlets (Xinhua, CGTN, China Daily).</p>
-                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">Preliminary Findings</h3>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>Western Media:</strong> Dominated by "Pure Objects" (approx. 16.7%), depicting a dehumanized "Technocratic Presence."</li>
-                            <li><strong>Chinese Media:</strong> Significantly emphasizes "Human Warmth" and "Empowered Local Workforce" to construct a softer national image.</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-pew-dark mt-4 mb-2">Research Question</h3>
+                        <p>How do Western and Chinese media utilize visual framing to construct contrasting geopolitical narratives surrounding China's infrastructure aid in Africa?</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">Methodology</h3>
+                        <p>A Mixed Methods approach combining Quantitative Content Analysis with Qualitative Multimodal Analysis. The dataset includes N = 250+ images (2015-2025) sourced from major Western (BBC, CNN, NYT) and Chinese (Xinhua, CGTN) outlets.</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">Core Insight</h3>
+                        <p>Western media heavily relies on "Pure Objects" (approx. 16.7%), thereby depicting a dehumanized "Technocratic Presence." Conversely, Chinese media emphasizes "Human Warmth" and local collaboration. <strong>This suggests that</strong> images in international reporting are not objective reflections of reality, but carefully curated political instruments designed to dictate the boundaries of global perception.</p>
                     `,
                     zh: `
-                        <p><strong>研究背景：</strong> 中国作为非洲最大的单一融资国，其国际形象却充满了争议与极化。西方媒体通常将中国的存在定性为“新殖民主义（债务陷阱）”，而中国媒体则强调“南南合作”。为了填补以往研究仅关注“文本分析”的空白，本研究引入了视觉政治维度。</p>
-                        <p><strong>研究方法：</strong> 采用混合研究方法（量化内容分析+定性多模态分析）。基于 Entman 的框架理论建立代码本，提取了包含 BBC、CNN、新华社等媒体在2015-2025年间的 250+ 张新闻图片作为数据库。</p>
-                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-4">核心数据洞察</h3>
-                        <p>通过数据交叉分析与卡方检验，研究揭示了西方媒体报道中的“去人性化”偏见：</p>
-                        <ul class="list-disc pl-5 space-y-2">
-                            <li><strong>西方媒体：</strong> 其视觉框架高度集中于“纯粹的物体/钢铁”（约占比 16.7%），试图构建一种压迫感强烈的“技术官僚入侵”叙事。</li>
-                            <li><strong>中国媒体：</strong> 显著强化了“人的温度”和“被赋权赋能的当地工人面孔”，以构建更加柔和、合作的国家形象。</li>
-                        </ul>
+                        <h3 class="text-xl font-bold text-pew-dark mt-4 mb-2">研究问题 (Research Question)</h3>
+                        <p>西方主流媒体与中国官方媒体是如何运用“视觉框架”，来为中国在非基建援助构建出截然相反的地缘政治叙事的？</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">研究方法 (Methodology)</h3>
+                        <p>采用混合研究方法（量化内容分析 + 定性多模态分析）。构建了包含 250+ 图像的数据库（2015-2025），对比分析 BBC、CNN 与新华社、CGTN 的视觉符号。</p>
+                        <h3 class="text-xl font-bold text-pew-dark mt-8 mb-2">核心洞察 (Core Insight)</h3>
+                        <p>西方媒体的视觉框架高度集中于“纯粹的物体/钢铁”（约16.7%），试图构建一种去人性化的“技术霸权入侵”叙事。相反，中国媒体则强调整体“人的温度”与当地工人的赋权。<strong>这表明：</strong>国际报道中的图像绝非客观现实的镜像，而是被精密策划的政治工具，旨在规训全球受众的认知边界。</p>
+                    `
+                }
+            },
+            'writing-standard': {
+                tag: { en: 'OP-ED • LINGUISTIC INEQUALITY', zh: '学术评论 • 语言与不平等' },
+                title: { en: 'The Cost of the "Standard": How Linguistic Hierarchies Drive Economic Marginalization', zh: '“标准语”的代价：语言等级制如何驱动经济边缘化' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                affiliation: { en: 'Writing & Opinion', zh: '观点专栏' },
+                body: {
+                    en: `
+                        <p>Language is rarely a neutral medium of exchange; it is the most invisible and pervasive architect of social class.</p>
+                        <p>In rapid urbanization processes, major metropolitan centers enforce a linguistic hierarchy where the "standard" dialect becomes synonymous with competence, professionalism, and trustworthiness. Meanwhile, regional accents are systematically pathologized as indicators of backwardness or poor education.</p>
+                        <p>For the millions of migrant workers navigating these urban landscapes, this is not merely a cultural friction—it is a devastating economic penalty. My recent fieldwork indicates that the inability to seamlessly assimilate into the dominant linguistic norm directly restricts access to upward-mobility networks, resulting in what I term the "accent tax."</p>
+                        <p><strong>This suggests that</strong> linguistic assimilation demanded by urban institutions is not a matter of personal choice or educational effort, but a structural tax levied upon survival. To address economic inequality, policy-makers must first dismantle the myth of the "standard language," recognizing dialect diversity not as a barrier to development, but as an fundamental human right.</p>
+                    `,
+                    zh: `
+                        <p>语言绝不仅是中立的沟通媒介；它是社会阶层最隐秘且最无孔不入的架构师。</p>
+                        <p>在高速的城市化进程中，大都会中心强制推行一种语言等级制：“标准语”成为了能力、专业性和可信度的同义词。与此同时，地方口音被系统性地病理化，成为落后或教育程度低下的标记。</p>
+                        <p>对于数以百万计在城市丛林中谋生的流动人口而言，这绝不仅仅是一种文化摩擦——这是一种毁灭性的经济惩罚。我近期的田野调查表明，无法无缝融入主导语言规范，直接限制了他们进入阶层跃升网络的通道，我将其称为“口音税”。</p>
+                        <p><strong>这表明：</strong>城市制度所要求的语言同化，根本不是个人选择或教育努力的问题，而是对底层生存强行征收的一种结构性税收。要解决经济不平等问题，决策者必须首先打破“标准语”的神话，将方言多样性视为一项基本人权，而非阻碍发展的壁垒。</p>
                     `
                 }
             },
             'project-nanjiang': {
                 tag: { en: 'Field Notes & Sociolinguistics', zh: '田野笔记 & 社会语言学' },
-                title: { en: 'Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County, Hunan', zh: '边境之声：湖南省平江县南江镇的语言杂糅与认同建构' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                title: { en: 'Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County', zh: '边境之声：湖南平江县南江镇的语言杂糅与身份认同建构' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
                         <p class="text-sm bg-gray-50 text-pew-dark p-5 border-l-4 border-pew-accent mb-6 shadow-sm rounded-r"><strong>Academic Update:</strong> Presented at the 7th Sociolinguistics Symposium (SoSy 7), UIUC on April 4, 2026.</p>
-                        <p>This ethnography explores how languages intersect and identities are forged in the unique borderland context of Nanjiang Town, Pingjiang County, in the Hunan-Hubei-Jiangxi region.</p>
-                        <p>Through immersive fieldwork, this study documents the everyday linguistic practices, dialect switching among different generations, and how these communicative choices reflect deeper socio-political realities, historic trade routes, and revolutionary memory.</p>
+                        <p>This ethnography explores how languages intersect and identities are forged in the unique borderland context of Nanjiang Town, Pingjiang County, situated in the Hunan-Hubei-Jiangxi region.</p>
+                        <p>Through immersive fieldwork, this study documents the everyday linguistic practices and dialect switching among different generations. <strong>This suggests that</strong> dialect switching is not merely a communicative tool, but a sophisticated mechanism for spatial boundary-making and the negotiation of historic revolutionary memory.</p>
                     `,
                     zh: `
                         <p class="text-sm bg-gray-50 text-pew-dark p-5 border-l-4 border-pew-accent mb-6 shadow-sm rounded-r"><strong>学术动态：</strong> 本研究已入选并受邀于 2026年4月4日，在伊利诺伊大学香槟分校 (UIUC) 举办的第七届社会语言学研讨会 (SoSy 7) 进行汇报交流。</p>
-                        <p>这是一项基于湖南省平江县南江镇（地处湘鄂赣交界）实地考察的社会语言学田野研究。探讨在复杂的边境地带，语言是如何产生杂糅，以及当地居民如何通过语言实践来建构自身的身份认同的。</p>
-                        <p>通过长期的沉浸式观察与口述史访谈，研究记录了当地家庭中长辈和年轻一代南江人的方言切换现象，并试图解析这种日常交流选择背后所映射的历史商贸路线与革命记忆现实。</p>
+                        <p>这是一项基于湖南省平江县南江镇（地处湘鄂赣交界）实地考察的社会语言学田野研究。探讨在复杂的边境地带，语言是如何产生杂糅，以及当地居民如何建构身份认同的。</p>
+                        <p>通过长期的沉浸式观察与口述史访谈，研究记录了当地家庭中长辈与年轻一代的方言切换现象。<strong>这深刻地表明：</strong>方言切换绝不仅仅是沟通工具，它更是边缘群体进行空间区隔与历史革命记忆协商的精密政治机制。</p>
                     `
                 }
             },
             'interview-video': {
-                tag: { en: 'Documentary Interview', zh: '纪录片式访谈' },
+                tag: { en: 'Primary Material Archive', zh: '一手史料档案' },
                 title: { en: '“My dialect stays at the factory gate.”', zh: '“我的方言，只停留在工厂的大门外。”' },
-                author: { en: 'Voices from Margins Initiative', zh: '边缘之声团队' },
-                affiliation: { en: 'Field Production', zh: '田野摄制组' },
+                author: { en: 'Archive 001', zh: '档案编号 001' },
+                affiliation: { en: 'Audio-Visual Data', zh: '视听原始数据' },
                 body: {
                     en: `
                         <div class="video-container mb-8">
@@ -850,27 +875,25 @@
                                 <span class="text-sm font-mono text-gray-500">Video Embed Placeholder</span>
                             </div>
                         </div>
-                        <p><strong>Interviewee:</strong> Duan Li (52), Factory Worker</p>
-                        <p>In this ethnographic video interview, we sit down with Lao Li to discuss the invisible barriers of language in urban environments. He shares his 20-year journey of linguistic assimilation and what it means to leave one's mother tongue behind to make a living.</p>
+                        <p><strong>Subject:</strong> Lao Li (52), First-Generation Migrant Worker</p>
+                        <p>This primary material forms part of our ongoing ethnographic archive. In this dialogue, Lao Li elucidates the invisible barriers of language in urban environments. <strong>This recording confirms that</strong> the loss of mother tongue is experienced not merely as an inevitable consequence of urbanization, but as a systematic fracturing of heritage identity mandated by economic survival.</p>
                     `,
                     zh: `
                         <div class="video-container mb-8">
                             <div class="absolute inset-0 flex flex-col items-center justify-center text-white border border-gray-800 bg-gray-900 rounded">
                                 <i data-lucide="video" class="w-12 h-12 mb-4 text-gray-500"></i>
-                                <span class="text-sm font-mono text-gray-500">视频嵌入区 (替换代码即可)</span>
+                                <span class="text-sm font-mono text-gray-500">视频语料预留位</span>
                             </div>
                         </div>
-                        <p><strong>受访者：</strong> 李端（52岁），驻扎广州20年的第一代流水线工人</p>
-                        <p>在这个人类学视频访谈中，我们与老李坐下来，探讨城市化进程中那道隐形的“语言围墙”。他分享了自己20年来被动进行语言同化的经历，并探讨为了生存在城市中隐藏母语背后的身份困境。</p>
+                        <p><strong>口述者：</strong> 老李（52岁），驻扎广州20年的第一代流水线工人</p>
+                        <p>这份一手语料是我们持续进行的民族志档案库的一部分。在这段对话中，老李阐释了城市化进程中那道隐形的“语言围墙”。<strong>这份原始录音证实了：</strong>母语的流失并未被劳动者仅仅体验为城市化的自然结果，而是被深切地感知为一种受制于经济生存压力而必须付出的、对原生身份的系统性割裂。</p>
                     `
                 }
             },
-
-            /* === 全新补充：Blog / 会议动态数据 === */
             'blog-mor': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at The 2nd MOR International Conference and PDW', zh: '赴阿联酋参加第二届 MOR 国际会议及研讨会' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Al Ain, UAE', zh: '阿联酋 · 艾因' },
                 body: {
                     en: `
@@ -885,7 +908,7 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/MOR%20Main.jpg?raw=true" class="w-full h-auto object-cover" alt="MOR Conference">
                         </div>
-                        <p>2026年2月20日至22日，王森林受邀赴阿联酋艾因，参加第二届 MOR 国际会议及研讨会 (The 2nd MOR International Conference and PDW)，并作学术口头汇报。</p>
+                        <p>2026年2月20日至22日，Senlin Wang 受邀赴阿联酋艾因，参加 <strong>第二届 MOR 国际会议及研讨会 (The 2nd MOR International Conference and PDW)</strong>，并作学术口头汇报。</p>
                         <p>汇报题目为 <em>《碳治理的“隐形推手”：非政府组织 (NGOs) 的网络动员与政策倡导策略研究》</em>。该研究深入探讨了NGO在全球气候治理转型期所发挥的关键作用。</p>
                         <p>研究运用社会网络分析法 (SNA) 与政策过程理论，系统解构了NGO如何通过技术、组织与文化的三重动员逻辑，在全球与本土双重网络中有效推进低碳政策，这为中国碳治理的多元参与模式提供了极具价值的实证参考。</p>
                     `
@@ -894,7 +917,7 @@
             'blog-tokyo': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at 2026 International Conference on Human Rights: Youth in Asia', zh: '受邀在亚洲青年与人权国际会议做口头汇报' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'The University of Tokyo, Japan', zh: '日本 · 东京大学' },
                 body: {
                     en: `
@@ -909,7 +932,7 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/ICHR.jpg?raw=true" class="w-full h-auto object-cover" alt="ICHR Conference">
                         </div>
-                        <p>2026年3月18日至20日，王森林赴日本东京大学，在2026年亚洲青年与人权国际会议 (International Conference on Human Rights: Youth in Asia)上作口头学术汇报。</p>
+                        <p>2026年3月18日至20日，Senlin Wang 赴日本东京大学，在 <strong>2026年亚洲青年与人权国际会议 (International Conference on Human Rights: Youth in Asia)</strong> 上作口头学术汇报。</p>
                         <p>他的汇报题目为 <em>《边缘生存：东亚边境地带的语言杂糅与青年身份协商》</em>。该议题将社会语言学视野引入人权与青年发展的讨论框架，着重剖析了边缘群体在面临结构性不平等时，如何通过日常的语言策略来维系与重构自身的主体性。</p>
                         <p>会议期间，Senlin 与各国学者就跨文化背景下的语言权利保护及青年身份政治展开了深入而极具启发性的对话。</p>
                     `
@@ -918,7 +941,7 @@
             'blog-uiuc': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Presentation at 7th Sociolinguistics Symposium (SOSY 7), UIUC', zh: '研究成果入选 UIUC 第七届社会语言学研讨会 (SOSY 7)' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'UIUC, USA', zh: '美国 · 伊利诺伊大学香槟分校' },
                 body: {
                     en: `
@@ -933,16 +956,32 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/SOSY7%20Main.jpg?raw=true" class="w-full h-auto object-cover" alt="SOSY7 Conference">
                         </div>
-                        <p>2026年4月4日，本智库首席研究员——王森林赴美国伊利诺伊大学香槟分校 (UIUC)，成功参加了第七届社会语言学研讨会 (SOSY 7)，并作学术口头汇报。</p>
-                        <p>在“语言、身份与意识形态”专题论坛上，王森林报告了其基于湖南平江县南江镇的民族志田野调查——<em>《边缘生存：南疆的语言杂糅与区域认同》</em>。该研究揭示了湘鄂赣交界地带的方言互动现象，及其背后深藏的商贸历史与区域身份认同建构机制。</p>
+                        <p>2026年4月4日，本平台首席研究员 Senlin Wang 赴美国伊利诺伊大学香槟分校 (UIUC)，成功参加了 <strong>第七届社会语言学研讨会 (SOSY 7)</strong>，并作学术口头汇报。</p>
+                        <p>在“语言、身份与意识形态”专题论坛上，Senlin 报告了其基于湖南平江县南江镇的民族志田野调查——<em>《边缘生存：南疆的语言杂糅与区域认同》</em>。该研究揭示了湘鄂赣交界地带的方言互动现象，及其背后深藏的商贸历史与区域身份认同建构机制。</p>
                         <p>此次汇报获得了与会学者的强烈反响与高度评价，这进一步印证了将微观的日常语言实践与宏观社会政治版图相联结的学术价值。</p>
+                    `
+                }
+            },
+            'blog-emory': {
+                tag: { en: 'Conference Updates', zh: '学术会议动态' },
+                title: { en: 'Oral Presentation at Emory Undergraduate Linguistics Conference (EULC 7)', zh: '赴埃默里大学参加第七届本科生语言学会议 (EULC 7)' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                affiliation: { en: 'Event Announcement', zh: '活动通报' },
+                body: {
+                    en: `
+                        <p>Senlin Wang was honored to share recent sociolinguistic findings at Emory University during the 7th Annual Emory Undergraduate Linguistics Conference (EULC 7). The presentation delved into the intricate dynamics between everyday linguistic practices and structural inequalities in marginal societies.</p>
+                        <p>The conference provided a vibrant platform for emerging scholars to exchange ideas. Discussions focused heavily on the ideological dimensions of language use and the methodology of conducting ethical, empathetic fieldwork among vulnerable populations.</p>
+                    `,
+                    zh: `
+                        <p>Senlin Wang 受邀前往美国埃默里大学，参加第七届本科生语言学会议 (EULC 7) 并作口头汇报。此次汇报深度分享了最新的社会语言学研究成果，着重探讨了边缘社会中日常语言实践与结构性不平等的复杂互动机制。</p>
+                        <p>该会议为青年学者提供了一个充满活力的思想交流平台。与会期间，学者们就语言使用的意识形态维度，以及如何在弱势群体中开展符合伦理、具有同理心的田野调查方法论进行了深入的研讨。</p>
                     `
                 }
             },
             'blog-harvard': {
                 tag: { en: 'Team News', zh: '团队动态' },
                 title: { en: 'Joining Harvard Education Symposium as Publicity Assistant', zh: '加入哈佛大学教育论坛担任公共宣传助理' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Harvard University', zh: '哈佛大学' },
                 body: {
                     en: `
@@ -956,8 +995,8 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/Harvard%20CES.jpg?raw=true" class="w-full h-auto object-cover" alt="哈佛教育论坛">
                         </div>
-                        <p>自2025年11月起，王森林成功入选并加入哈佛大学教育学院第17届中国教育论坛，担任公共宣传助理一职。</p>
-                        <p>作为最具影响力的学生主导学术会议之一，该论坛汇聚了全球顶尖学者与实践者共同探讨教育公平与创新发展议题。王森林运用其在数字媒体内容策略与跨文化传播领域的扎实背景，协助核心团队协调全球范围内的宣传战略。这不仅是他学术服务履历的拓展，更是将本智库平台的使命与国际教育话语体系深度融合的宝贵契机。</p>
+                        <p>自2025年11月起，Senlin Wang 成功入选并加入 <strong>哈佛大学教育学院第17届中国教育论坛</strong>，担任公共宣传助理一职。</p>
+                        <p>作为最具影响力的学生主导学术会议之一，该论坛汇聚了全球顶尖学者与实践者共同探讨教育公平与创新发展议题。Senlin 运用其在数字媒体内容策略与跨文化传播领域的扎实背景，协助核心团队协调全球范围内的宣传战略。这不仅是他学术服务履历的拓展，更是将本智库平台的使命与国际教育话语体系深度融合的宝贵契机。</p>
                     `
                 }
             }
@@ -997,15 +1036,12 @@
                 else { el.textContent = el.dataset[currentLang]; }
             });
 
-            // 以英文为主导：
             if (currentLang === 'zh') {
                 document.body.classList.add('lang-zh');
-                // 纯英文按钮要求
                 document.getElementById('lang-label-top').textContent = 'Translate to English';
                 document.getElementById('lang-label-mobile').textContent = 'Translate to English';
             } else {
                 document.body.classList.remove('lang-zh');
-                // 纯英文按钮要求
                 document.getElementById('lang-label-top').textContent = 'Translate to Chinese';
                 document.getElementById('lang-label-mobile').textContent = 'Translate to Chinese';
             }
@@ -1058,7 +1094,6 @@
             setTimeout(() => { currentArticleId = null; }, 400);
         };
 
-        // 初始化网站默认语言为英文
         updateLanguage();
     </script>
 </body>

@@ -10,7 +10,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
     
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -25,7 +25,7 @@
                     },
                     colors: {
                         pew: {
-                            dark: '#1a1a1a',
+                            dark: '#222222',
                             border: '#e5e5e5',
                             accent: '#cc1414',
                             subtle: '#555555',
@@ -39,10 +39,10 @@
 
     <style>
         html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; }
+        body { background-color: #ffffff; color: #222222; overflow-x: hidden; }
         
         .pew-divider { border-top: 1px solid #e5e5e5; }
-        .pew-divider-thick { border-top: 3px solid #1a1a1a; }
+        .pew-divider-thick { border-top: 3px solid #222222; }
         
         /* 侧边菜单动画 */
         #menu-backdrop { transition: opacity 0.3s ease; }
@@ -115,9 +115,7 @@
         </div>
     </div>
 
-    <!-- ================= TOP HEADER (Pew Research Style 重构) ================= -->
-    
-    <!-- 极窄顶栏辅助黑边 (对标 Pew 最顶部的黑色声明条) -->
+    <!-- ================= TOP HEADER ================= -->
     <div class="bg-black text-white py-2 px-6 lg:px-12 hidden md:block w-full">
         <div class="max-w-7xl mx-auto flex justify-between items-center text-[10px] lg:text-[11px] font-bold tracking-[0.15em] uppercase font-sans">
             <span data-en="DECODING LANGUAGE, IDENTITY, AND INEQUALITY" data-zh="解构语言、身份与不平等">DECODING LANGUAGE, IDENTITY, AND INEQUALITY</span>
@@ -129,11 +127,9 @@
         </div>
     </div>
 
-    <!-- 主 Header 白底部分 -->
     <header class="bg-white sticky top-0 z-40 border-b border-gray-200">
         <div class="flex justify-between items-center h-20 md:h-28 px-6 lg:px-12 max-w-7xl mx-auto w-full">
             
-            <!-- Left: Logo (完全保留您的设计) -->
             <div class="flex items-center cursor-pointer group" onclick="navigateTo('view-home')">
                 <svg class="w-8 h-8 md:w-10 md:h-10 mr-3 md:mr-4 text-pew-dark group-hover:text-pew-accent transition-colors" viewBox="0 0 100 100" fill="currentColor">
                     <circle cx="20" cy="50" r="8" />
@@ -155,10 +151,8 @@
                 </div>
             </div>
 
-            <!-- Right: Search & Controls (复刻 Pew 右侧搜索框与菜单) -->
             <div class="flex items-center space-x-4 md:space-x-6 lg:space-x-8">
                 
-                <!-- 桌面端显式搜索框 -->
                 <div class="hidden lg:flex flex-col items-end pt-1">
                     <div class="text-[13px] text-gray-500 mb-2 font-sans">
                         <span data-en="Explore topics:" data-zh="探索主题：">Explore topics:</span> 
@@ -173,17 +167,14 @@
                     </form>
                 </div>
 
-                <!-- 移动端搜索图标 -->
                 <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-pew-accent transition-colors p-1">
                     <i data-lucide="search" class="w-6 h-6"></i>
                 </button>
                 
-                <!-- 汉堡菜单 -->
                 <button onclick="openMenu()" class="flex flex-col items-center justify-center space-y-1 text-pew-dark hover:text-pew-accent ml-2 group">
                     <i data-lucide="menu" class="w-8 h-8 md:w-9 md:h-9 text-gray-800 group-hover:text-pew-accent transition-colors"></i>
                     <span class="text-[10px] font-bold uppercase tracking-widest hidden sm:block text-gray-500 group-hover:text-pew-accent">Menu</span>
                 </button>
-
             </div>
         </div>
     </header>
@@ -228,35 +219,12 @@
     <!-- ================= MAIN CONTENT ================= -->
     <main class="flex-grow w-full">
 
-        <!-- ================= VIEW 1: HOME ================= -->
+        <!-- ================= VIEW 1: HOME (极简版) ================= -->
         <div id="view-home" class="page-view active">
-            <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 md:pt-24 pb-12">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-12">
                 
-                <div class="mb-10">
-                    <h2 class="font-sans font-light text-5xl md:text-6xl lg:text-[5.5rem] text-pew-dark tracking-tight leading-none mb-4" data-en="Voices from the Margins" data-zh="边缘之声">
-                        Voices from the Margins
-                    </h2>
-                    <h3 class="font-serif text-2xl md:text-3xl text-pew-subtle border-b border-gray-300 pb-8" data-en="A Research Initiative on Language, Identity, and Inequality" data-zh="关于语言、身份与不平等的独立研究项目">
-                        A Research Initiative on Language, Identity, and Inequality
-                    </h3>
-                </div>
-
-                <div class="max-w-4xl mt-12 mb-16">
-                    <p class="text-2xl md:text-3xl font-serif text-pew-dark leading-relaxed font-bold border-l-[5px] border-pew-accent pl-6 lg:pl-8 text-justify-force" data-en="This project examines how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality." data-zh="本项目致力于研究边缘群体如何被语言与叙事所塑造，以及这些微观过程如何最终转化为宏观的结构性不平等。">
-                        This project examines how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality.
-                    </p>
-                </div>
-                
-                <div class="mb-16 bg-[#f8f9fa] p-8 md:p-12 border border-gray-200">
-                    <h4 class="font-sans text-xs md:text-sm font-bold uppercase tracking-[0.15em] text-gray-500 mb-8" data-en="CURRENT RESEARCH FOCUS" data-zh="当前研究焦点">CURRENT RESEARCH FOCUS</h4>
-                    <ul class="list-disc pl-6 space-y-5 font-serif text-xl md:text-[1.65rem] text-pew-dark marker:text-gray-400">
-                        <li><span data-en="Linguistic hybridity in rural China" data-zh="中国乡村社会的语言杂糅与演变">Linguistic hybridity in rural China</span></li>
-                        <li><span data-en="Narrative competition in China-Africa relations" data-zh="中非关系中的视觉叙事与话语竞争">Narrative competition in China-Africa relations</span></li>
-                        <li><span data-en="Language policy and economic inequality" data-zh="语言政策与经济不平等的代际传递">Language policy and economic inequality</span></li>
-                    </ul>
-                </div>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 border-t border-gray-300 pt-12">
+                <!-- 直接以焦点网格开局，去除冗余的顶部文本块 -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer" onclick="openArticle('project-faces')">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="font-sans font-bold uppercase tracking-widest text-sm text-gray-500" data-en="Featured Research" data-zh="焦点研究">Featured Research</h3>
@@ -616,7 +584,6 @@
                     </p>
                 </div>
 
-                <!-- Founder 信息 (高级定制排版) -->
                 <div class="border-t border-gray-300 pt-16">
                     <h3 class="font-sans text-xl font-bold uppercase tracking-widest text-pew-dark mb-12 text-center md:text-left" data-en="Founder" data-zh="创始人">Founder</h3>
                     
@@ -647,16 +614,19 @@
     <section id="footer-contact" class="bg-white border-t border-gray-300 pt-16 pb-12 font-sans mt-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-gray-200 pb-12">
             
-            <!-- Col 1: Brand & Contact -->
             <div class="md:col-span-4">
                 <div class="flex items-center mb-6">
-                    <svg class="w-6 h-6 mr-2 text-pew-dark" viewBox="0 0 100 100" fill="currentColor">
+                    <svg class="w-8 h-8 mr-3 text-pew-dark" viewBox="0 0 100 100" fill="currentColor">
                         <circle cx="20" cy="50" r="8" />
                         <circle cx="45" cy="30" r="6" />
                         <circle cx="45" cy="70" r="6" />
                         <circle cx="75" cy="15" r="4" />
                         <circle cx="75" cy="50" r="4" />
                         <circle cx="75" cy="85" r="4" />
+                        <path d="M20 50 Q 35 40 45 30" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M20 50 Q 35 60 45 70" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M45 30 Q 60 22.5 75 15" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M45 70 Q 60 77.5 75 85" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
                     </svg>
                     <h2 class="font-serif text-xl font-bold text-pew-dark tracking-tight leading-none">MARGINS & MEANING</h2>
                 </div>
@@ -668,7 +638,6 @@
                 </div>
             </div>
 
-            <!-- Col 2: Research Ecosystem Links -->
             <div class="md:col-span-4 grid grid-cols-2 gap-4">
                 <div class="col-span-2 border-b border-dotted border-gray-400 mb-2 pb-2">
                     <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-500" data-en="RESEARCH ECOSYSTEM" data-zh="研究体系">RESEARCH ECOSYSTEM</h4>
@@ -685,12 +654,10 @@
                 </ul>
             </div>
 
-            <!-- Col 3: Follow Us & Newsletter -->
             <div class="md:col-span-4">
                 <div class="border-b border-dotted border-gray-400 mb-4 pb-2">
                     <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-500" data-en="STAY INFORMED" data-zh="订阅研究简报">STAY INFORMED</h4>
                 </div>
-                <!-- Pew Style Newsletter Input -->
                 <form class="flex mb-8 w-full border border-gray-400 hover:border-pew-dark focus-within:border-pew-dark transition-colors">
                     <input type="email" placeholder="Email Address" class="w-full px-3 py-2 text-[13px] outline-none bg-white placeholder-gray-400 text-pew-dark font-sans" required>
                     <button type="submit" class="bg-[#f8f9fa] hover:bg-gray-200 border-l border-gray-300 px-3 transition-colors">
@@ -708,7 +675,6 @@
             </div>
         </div>
 
-        <!-- About Paragraph (Pew Style Description) -->
         <div class="max-w-7xl mx-auto px-6 lg:px-12 mt-8">
             <p class="text-[13px] text-gray-500 leading-relaxed text-justify-force font-sans">
                 <strong class="text-gray-700 uppercase tracking-wide font-bold" data-en="ABOUT MARGINS & MEANING INITIATIVE" data-zh="关于 MARGINS & MEANING 智库">ABOUT MARGINS & MEANING INITIATIVE</strong> 

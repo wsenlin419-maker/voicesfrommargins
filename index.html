@@ -43,7 +43,7 @@
         
         .pew-divider { border-top: 1px solid #d1d5db; }
         
-        /* 隐藏横向滚动条 */
+        /* 隐藏横向滚动条以保持导航栏整洁 */
         .hide-scrollbar::-webkit-scrollbar { display: none; }
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
@@ -63,43 +63,63 @@
         .slide-down { transform: translateY(30px) scale(0.98); }
         .slide-up { transform: translateY(0) scale(1); }
 
+        /* 搜索遮罩层动画 (保留给移动端使用) */
+        #search-overlay { transition: opacity 0.3s ease; }
+        .search-hidden { opacity: 0; pointer-events: none; }
+        .search-visible { opacity: 1; pointer-events: auto; }
+
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
         .video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
         body.lang-zh { text-align: justify; }
         .text-justify-force { text-align: justify; text-justify: inter-word; }
         
+        /* 博客标题下划线悬浮特效 */
         .blog-title-link {
             text-decoration: underline; text-decoration-color: #e5e5e5; text-decoration-thickness: 2px;
             text-underline-offset: 4px; transition: text-decoration-color 0.3s ease;
         }
         .group:hover .blog-title-link { text-decoration-color: #cc1414; }
         
-        /* 搜索框下拉结果样式 */
-        #search-dropdown {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
+        /* 搜索框下拉结果阴影 */
+        #search-dropdown { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col relative">
 
+    <!-- ================= 功能型全屏搜索层 (仅移动端触发) ================= -->
+    <div id="search-overlay" class="fixed inset-0 bg-white/95 backdrop-blur-md z-[100] search-hidden flex flex-col justify-start items-center pt-32 overflow-y-auto lg:hidden">
+        <button onclick="toggleSearch()" class="absolute top-8 right-8 text-pew-dark hover:rotate-90 transition-transform duration-300 p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="w-full max-w-3xl px-6">
+            <h2 class="text-3xl font-serif text-pew-dark mb-8 text-center" data-en="Search the Initiative" data-zh="搜索智库平台">Search the Initiative</h2>
+            <form onsubmit="handleSearch(event)" class="flex items-center border-b-2 border-pew-dark pb-3 group">
+                <i data-lucide="search" class="w-6 h-6 text-gray-400 group-focus-within:text-pew-dark transition-colors mr-4"></i>
+                <input type="text" id="search-input" placeholder="Type keywords (e.g. policy, Africa, linguistics)..." class="w-full bg-transparent text-xl md:text-2xl font-sans outline-none text-pew-dark placeholder-gray-300">
+                <button type="submit" class="text-sm font-bold uppercase tracking-widest text-pew-subtle hover:text-pew-accent ml-4 transition-colors">Search</button>
+            </form>
+            <div id="search-result-msg" class="mt-8 font-serif hidden w-full"></div>
+        </div>
+    </div>
+
     <!-- ================= PEW-STYLE TIER 1: TOP BLACK BAR ================= -->
     <div class="bg-black text-white py-2 px-6 lg:px-12 w-full z-50 relative">
         <div class="max-w-7xl mx-auto flex justify-between items-center text-[10px] md:text-[11px] font-bold tracking-[0.15em] uppercase font-sans">
-            <span class="hidden sm:block" data-en="NUMBERS, FACTS AND TRENDS SHAPING YOUR WORLD" data-zh="重塑世界的数字、事实与趋势">NUMBERS, FACTS AND TRENDS SHAPING YOUR WORLD</span>
-            <span class="sm:hidden" data-en="MARGINS & MEANING" data-zh="边缘与意义">MARGINS & MEANING</span>
+            <!-- 更新宣言 -->
+            <span class="block" data-en="DECODING LANGUAGE, IDENTITY, AND INEQUALITY" data-zh="解构语言、身份与不平等">DECODING LANGUAGE, IDENTITY, AND INEQUALITY</span>
             
             <div class="flex space-x-4 md:space-x-6 items-center">
-                <button onclick="scrollToFeatured()" class="hover:text-gray-300 transition-colors uppercase cursor-pointer" data-en="NEWSLETTERS" data-zh="NEWSLETTERS">NEWSLETTERS</button>
-                <button onclick="showInquiryModal()" class="hover:text-gray-300 transition-colors uppercase" data-en="CONTACT" data-zh="CONTACT">CONTACT</button>
+                <button onclick="scrollToFeatured()" class="hover:text-gray-300 transition-colors uppercase cursor-pointer hidden sm:block" data-en="NEWSLETTERS" data-zh="NEWSLETTERS">NEWSLETTERS</button>
+                <a href="#footer-section" class="hover:text-gray-300 transition-colors uppercase hidden sm:block" data-en="CONTACT" data-zh="CONTACT">CONTACT</a>
                 <button onclick="toggleLang()" id="lang-label-top" class="hover:text-gray-300 transition-colors cursor-pointer text-pew-accent">CHINESE</button>
             </div>
         </div>
     </div>
 
-    <!-- ================= PEW-STYLE TIER 2: MAIN HEADER ================= -->
-    <header class="bg-white z-40 relative pt-6 pb-6 md:pb-8 px-6 lg:px-12">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center w-full gap-6 md:gap-0">
+    <!-- ================= PEW-STYLE TIER 2: MAIN HEADER (Logo & Search) ================= -->
+    <header class="bg-white z-40 relative pt-8 pb-8 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center w-full">
             
             <!-- Left: Logo -->
             <div class="flex items-center cursor-pointer group" onclick="navigateTo('view-home')">
@@ -123,41 +143,50 @@
                 </div>
             </div>
 
-            <!-- Right: Search & Explore -->
-            <div class="flex flex-col items-start md:items-end w-full md:w-auto relative">
-                <div class="text-[13px] text-gray-600 mb-2.5 font-sans w-full md:w-auto text-left md:text-right">
-                    <span class="italic text-gray-500 mr-1" data-en="Explore:" data-zh="探索:">Explore:</span> 
-                    <button onclick="navigateTo('view-research')" class="text-[#005587] hover:underline font-medium mx-1" data-en="Linguistics" data-zh="语言学研究">Linguistics</button> 
-                    <span class="text-gray-300">|</span> 
-                    <button onclick="navigateTo('view-data')" class="text-[#005587] hover:underline font-medium mx-1" data-en="Media" data-zh="媒体与数据">Media</button>
+            <!-- Right: Pew-style Explore & Search Box -->
+            <div class="hidden lg:flex flex-col items-end relative">
+                <div class="text-[14px] text-gray-700 mb-2 font-sans">
+                    <span data-en="Explore:" data-zh="探索:">Explore:</span> 
+                    <button onclick="navigateTo('view-research')" class="text-[#005587] hover:underline ml-1 font-medium" data-en="Linguistics" data-zh="语言学研究">Linguistics</button> 
+                    <span class="text-gray-300 px-1">|</span> 
+                    <button onclick="navigateTo('view-data')" class="text-[#005587] hover:underline font-medium" data-en="Media" data-zh="媒体与数据">Media</button>
                 </div>
                 
-                <form onsubmit="handleHeaderSearch(event)" class="flex w-full md:w-[320px] lg:w-[360px] border border-gray-400 hover:border-gray-500 focus-within:border-pew-dark transition-colors bg-white">
-                    <input type="text" id="header-search-input" placeholder="Search marginsandmeaning.org..." class="w-full px-3 py-2.5 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
-                    <button type="submit" class="bg-[#333333] hover:bg-black transition-colors text-white px-4 py-2 border-l border-gray-300 flex items-center justify-center">
+                <!-- 实体学术搜索框 -->
+                <form onsubmit="handleHeaderSearch(event)" class="flex w-[350px] border border-gray-400 hover:border-gray-500 focus-within:border-pew-dark transition-colors bg-white">
+                    <input type="text" id="header-search-input" placeholder="Search marginsandmeaning.org..." class="w-full px-4 py-2.5 text-[15px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
+                    <button type="submit" class="bg-[#333333] hover:bg-black transition-colors text-white px-5 py-2 border-l border-gray-400 flex items-center justify-center">
                         <i data-lucide="search" class="w-4 h-4"></i>
                     </button>
                 </form>
 
                 <!-- Search Dropdown Results -->
-                <div id="search-dropdown" class="absolute top-full left-0 md:left-auto md:right-0 w-full md:w-[400px] bg-white border border-gray-200 mt-1 hidden z-50 flex-col max-h-[400px] overflow-y-auto">
+                <div id="search-dropdown" class="absolute top-full right-0 w-[400px] bg-white border border-gray-200 mt-1 hidden z-50 flex-col max-h-[400px] overflow-y-auto shadow-2xl">
                     <!-- Results injected here -->
                 </div>
             </div>
+
+            <!-- Mobile Search Icon (Shows only on small screens) -->
+            <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-pew-accent transition-colors p-2">
+                <i data-lucide="search" class="w-7 h-7"></i>
+            </button>
         </div>
     </header>
 
     <!-- ================= PEW-STYLE TIER 3: HORIZONTAL NAV ================= -->
-    <nav class="bg-white border-b border-gray-200 sticky top-0 z-30 shadow-sm">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center overflow-x-auto hide-scrollbar space-x-8 md:space-x-10 text-[12px] font-bold text-gray-500 uppercase tracking-widest h-14">
-            <button onclick="navigateTo('view-home')" class="hover:text-pew-dark whitespace-nowrap transition-colors" data-en="HOME" data-zh="首页">HOME</button>
-            <button onclick="navigateTo('view-research')" class="hover:text-pew-dark whitespace-nowrap transition-colors" data-en="RESEARCH" data-zh="学术研究">RESEARCH</button>
-            <button onclick="navigateTo('view-writing')" class="hover:text-pew-dark whitespace-nowrap transition-colors" data-en="WRITING" data-zh="观点评论">WRITING</button>
-            <button onclick="navigateTo('view-field')" class="hover:text-pew-dark whitespace-nowrap transition-colors" data-en="FIELD NOTES" data-zh="田野笔记">FIELD NOTES</button>
-            <button onclick="navigateTo('view-voices')" class="hover:text-pew-dark whitespace-nowrap transition-colors" data-en="VOICES ARCHIVE" data-zh="声音档案">VOICES ARCHIVE</button>
-            <button onclick="navigateTo('view-data')" class="hover:text-pew-dark whitespace-nowrap transition-colors" data-en="DATA & INSIGHTS" data-zh="数据与洞察">DATA & INSIGHTS</button>
-            <button onclick="navigateTo('view-blog')" class="hover:text-pew-dark whitespace-nowrap transition-colors" data-en="BLOG" data-zh="动态博客">BLOG</button>
-            <button onclick="navigateTo('view-about')" class="hover:text-pew-dark whitespace-nowrap transition-colors" data-en="ABOUT US" data-zh="关于我们">ABOUT US</button>
+    <nav class="bg-white border-t border-b border-gray-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <!-- 横向导航，等距排列，带指示线 -->
+            <div class="flex items-center justify-between overflow-x-auto hide-scrollbar space-x-6 lg:space-x-8 text-[13px] font-sans font-medium uppercase tracking-widest h-[52px]">
+                <button data-target="view-home" onclick="navigateTo('view-home')" class="nav-item border-pew-dark text-pew-dark py-3.5 border-b-[3px] transition-colors whitespace-nowrap" data-en="HOME" data-zh="首页">HOME</button>
+                <button data-target="view-research" onclick="navigateTo('view-research')" class="nav-item border-transparent text-gray-500 hover:text-pew-dark py-3.5 border-b-[3px] transition-colors whitespace-nowrap" data-en="RESEARCH" data-zh="学术研究">RESEARCH</button>
+                <button data-target="view-writing" onclick="navigateTo('view-writing')" class="nav-item border-transparent text-gray-500 hover:text-pew-dark py-3.5 border-b-[3px] transition-colors whitespace-nowrap" data-en="WRITING" data-zh="观点评论">WRITING</button>
+                <button data-target="view-field" onclick="navigateTo('view-field')" class="nav-item border-transparent text-gray-500 hover:text-pew-dark py-3.5 border-b-[3px] transition-colors whitespace-nowrap" data-en="FIELD NOTES" data-zh="田野笔记">FIELD NOTES</button>
+                <button data-target="view-voices" onclick="navigateTo('view-voices')" class="nav-item border-transparent text-gray-500 hover:text-pew-dark py-3.5 border-b-[3px] transition-colors whitespace-nowrap" data-en="VOICES ARCHIVE" data-zh="声音档案">VOICES ARCHIVE</button>
+                <button data-target="view-data" onclick="navigateTo('view-data')" class="nav-item border-transparent text-gray-500 hover:text-pew-dark py-3.5 border-b-[3px] transition-colors whitespace-nowrap" data-en="DATA & INSIGHTS" data-zh="数据洞察">DATA & INSIGHTS</button>
+                <button data-target="view-blog" onclick="navigateTo('view-blog')" class="nav-item border-transparent text-gray-500 hover:text-pew-dark py-3.5 border-b-[3px] transition-colors whitespace-nowrap" data-en="BLOG" data-zh="动态博客">BLOG</button>
+                <button data-target="view-about" onclick="navigateTo('view-about')" class="nav-item border-transparent text-gray-500 hover:text-pew-dark py-3.5 border-b-[3px] transition-colors whitespace-nowrap" data-en="ABOUT US" data-zh="关于平台">ABOUT US</button>
+            </div>
         </div>
     </nav>
 
@@ -168,7 +197,6 @@
         <div id="view-home" class="page-view active">
             <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-12">
                 
-                <!-- Hero Anchor -->
                 <div id="featured-section" class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer" onclick="openArticle('project-faces')">
                         <div class="flex items-center justify-between mb-6">
@@ -270,8 +298,8 @@
             
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 <div class="border-l-[4px] border-[#005587] pl-8 py-2 mb-12 bg-white">
-                    <p class="font-serif text-xl text-gray-700 italic" data-en="Here, We move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities." data-zh="在记录事实之外，我们致力于解释世界。本专栏将抽象的研究数据转化为锋利的分析论点，探讨话语体系如何决定社会现实。">
-                        Here, We move beyond recording facts to interpreting them.
+                    <p class="font-serif text-xl text-gray-700 italic" data-en="Here, I move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities." data-zh="在记录事实之外，我致力于解释世界。本专栏将抽象的研究数据转化为锋利的分析论点，探讨话语体系如何决定社会现实。">
+                        Here, I move beyond recording facts to interpreting them.
                     </p>
                 </div>
                 
@@ -476,7 +504,7 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 7: ABOUT ================= -->
+        <!-- ================= VIEW 7: ABOUT (排版定制版) ================= -->
         <div id="view-about" class="page-view pb-24">
             <div class="bg-[#f8f9fa] py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-5xl mx-auto">
@@ -485,6 +513,7 @@
             </div>
             
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
+                <!-- 平台愿景 -->
                 <div class="prose prose-lg font-serif text-gray-700 max-w-4xl mb-16 text-justify-force">
                     <p class="text-2xl text-pew-dark leading-snug mb-6" data-en="Voices from the Margins is an independent research initiative that examines how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality across social, economic, and political contexts." data-zh="“边缘之声”是一个独立的青年研究与公共倡导平台，致力于探讨边缘群体如何被语言与叙事所塑造，以及这些微观过程如何最终转化为跨越社会、经济与政治语境的结构性不平等。">
                         Voices from the Margins is an independent research initiative...
@@ -517,10 +546,9 @@
                                     <img src="https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true" class="w-full h-full object-cover" alt="Senlin Wang">
                                 </div>
                                 <h4 class="font-serif text-3xl font-bold text-pew-dark mb-2 text-center">Senlin Wang</h4>
-                                <p class="text-sm font-bold text-[#cc1414] uppercase tracking-wider text-center" data-en="Founder" data-zh="创始人">Founder</p>
                             </div>
-                            <div class="flex flex-col max-w-2xl pt-4 md:pt-16 lg:pt-20">
-                                <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force" data-en="Senlin Wang is the founder of Voices from the Margins. He is from the Qingdao University in China. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="王森林是“边缘之声”研究平台的创始人。他来自中国的青岛大学。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
+                            <div class="flex flex-col max-w-2xl pt-4 md:pt-12 lg:pt-16">
+                                <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force" data-en="Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="Senlin Wang 是“边缘之声”研究平台的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
                                     Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world.
                                 </p>
                             </div>
@@ -534,10 +562,10 @@
                                     <img src="https://github.com/wsenlin419-maker/picture/blob/main/%E6%98%9F%E5%AE%87%E7%85%A7%E7%89%87.jpg?raw=true" class="w-full h-full object-cover" alt="Xingyu Zhang">
                                 </div>
                                 <h4 class="font-serif text-3xl font-bold text-pew-dark mb-2 text-center">Xingyu Zhang</h4>
-                                <p class="text-sm font-bold text-[#cc1414] uppercase tracking-wider text-center" data-en="Research Associate" data-zh="研究助理">Research Associate</p>
+                                <p class="text-sm font-bold text-[#005587] uppercase tracking-wider text-center" data-en="Research Associate" data-zh="研究助理">Research Associate</p>
                             </div>
                             <div class="flex flex-col max-w-2xl pt-4 md:pt-16 lg:pt-20">
-                                <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force" data-en="Xingyu Zhang is a member of Voices from the Margins. She is from Capital University of Economics and Business and her work focuses on Cross cultural communication, language and promotion." data-zh="张星宇是“边缘之声”平台的核心成员。她来自首都经济贸易大学，研究工作主要聚焦于跨文化传播、语言策略以及文化推广等领域。">
+                                <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force" data-en="Xingyu Zhang is a member of Voices from the Margins. She is from Capital University of Economics and Business and her work focuses on Cross cultural communication, language and promotion." data-zh="Xingyu Zhang 是“边缘之声”平台的核心成员。她来自首都经济贸易大学，研究工作主要聚焦于跨文化传播、语言策略以及文化推广等领域。">
                                     Xingyu Zhang is a member of Voices from the Margins. She is from Capital University of Economics and Business and her work focuses on Cross cultural communication, language and promotion.
                                 </p>
                             </div>
@@ -748,6 +776,7 @@
             }
         }
 
+        // 真实搜索逻辑匹配数据库
         function handleSearch(e) {
             e.preventDefault();
             const query = document.getElementById('search-input').value.toLowerCase().trim();
@@ -773,7 +802,7 @@
 
         // 关闭下拉框
         document.addEventListener('click', function(e) {
-            if (!headerSearchInput.contains(e.target) && !searchDropdown.contains(e.target)) {
+            if (headerSearchInput && !headerSearchInput.contains(e.target) && searchDropdown && !searchDropdown.contains(e.target)) {
                 searchDropdown.classList.add('hidden');
             }
         });
@@ -888,6 +917,17 @@
             const targetView = document.getElementById(viewId);
             if (targetView) targetView.classList.add('active');
             
+            // 更新横向导航栏状态
+            document.querySelectorAll('.nav-item').forEach(item => {
+                if (item.dataset.target === viewId) {
+                    item.classList.add('border-pew-dark', 'text-pew-dark');
+                    item.classList.remove('border-transparent', 'text-gray-500');
+                } else {
+                    item.classList.remove('border-pew-dark', 'text-pew-dark');
+                    item.classList.add('border-transparent', 'text-gray-500');
+                }
+            });
+
             if (typeof closeMenu === 'function') {
                 try { closeMenu(); } catch (e) {}
             }
@@ -949,16 +989,13 @@
             });
 
             const topLabel = document.getElementById('lang-label-top');
-            const mobileLabel = document.getElementById('lang-label-mobile');
 
             if (currentLang === 'zh') {
                 document.body.classList.add('lang-zh');
                 if (topLabel) topLabel.textContent = 'ENGLISH';
-                if (mobileLabel) mobileLabel.textContent = 'ENGLISH';
             } else {
                 document.body.classList.remove('lang-zh');
                 if (topLabel) topLabel.textContent = 'CHINESE';
-                if (mobileLabel) mobileLabel.textContent = 'CHINESE';
             }
             if (currentArticleId) renderArticleContent(currentArticleId);
         }
@@ -975,7 +1012,7 @@
             'project-minority': {
                 tag: { en: 'EDUCATION POLICY & IDENTITY', zh: '教育政策与身份认同' },
                 title: { en: 'Crossing Language Borders: China\'s Minority Preparatory Education Policy and Identity', zh: '跨越语言边界：中国少数民族预科教育政策与身份认同' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -999,7 +1036,7 @@
             'project-sanmao': {
                 tag: { en: 'SOCIOLINGUISTICS & LITERATURE', zh: '社会语言学与文学' },
                 title: { en: 'Speaking of the Otherland: Sanmao\'s Translanguaging Practices and "New Overseas Chinese" Identity', zh: '言说他乡：社会语言学视阈下三毛的跨语际实践与“新海外华人”认同' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -1023,7 +1060,7 @@
             'project-ngo': {
                 tag: { en: 'ENVIRONMENTAL POLITICS & NGO', zh: '环境政治与非政府组织' },
                 title: { en: 'The "Invisible Pushers" of Carbon Governance: NGO Network Mobilization and Policy Advocacy', zh: '碳治理的“隐形推手”：非政府组织(NGO)的网络动员与政策倡导策略研究' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -1047,7 +1084,7 @@
             'project-faces': {
                 tag: { en: 'Political Communication & Visual Politics', zh: '政治传播学与视觉政治' },
                 title: { en: 'Faces vs. Steel: A Comparative Visual Framing Analysis of China\'s Aid in Africa', zh: '面孔与钢铁：中国对非援助的视觉框架比较分析' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -1071,7 +1108,7 @@
             'writing-standard': {
                 tag: { en: 'OP-ED • LINGUISTIC INEQUALITY', zh: '学术评论 • 语言与不平等' },
                 title: { en: 'The Cost of the "Standard": How Linguistic Hierarchies Drive Economic Marginalization', zh: '“标准语”的代价：语言等级制如何驱动经济边缘化' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Writing & Opinion', zh: '观点专栏' },
                 body: {
                     en: `
@@ -1091,7 +1128,7 @@
             'project-nanjiang': {
                 tag: { en: 'Field Notes & Sociolinguistics', zh: '田野笔记 & 社会语言学' },
                 title: { en: 'Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County', zh: '边境之声：湖南平江县南江镇的语言杂糅与身份认同建构' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -1137,7 +1174,7 @@
             'blog-mor': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at The 2nd MOR International Conference and PDW', zh: '赴阿联酋参加第二届 MOR 国际会议及研讨会' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Al Ain, UAE', zh: '阿联酋 · 艾因' },
                 body: {
                     en: `
@@ -1152,7 +1189,7 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/MOR%20Main.jpg?raw=true" class="w-full h-auto object-cover" alt="MOR Conference">
                         </div>
-                        <p>2026年2月20日至22日，王森林受邀赴阿联酋艾因，参加 <strong>第二届 MOR 国际会议及研讨会 (The 2nd MOR International Conference and PDW)</strong>，并作学术口头汇报。</p>
+                        <p>2026年2月20日至22日，Senlin Wang 受邀赴阿联酋艾因，参加 <strong>第二届 MOR 国际会议及研讨会 (The 2nd MOR International Conference and PDW)</strong>，并作学术口头汇报。</p>
                         <p>汇报题目为 <em>《碳治理的“隐形推手”：非政府组织 (NGOs) 的网络动员与政策倡导策略研究》</em>。该研究深入探讨了NGO在全球气候治理转型期所发挥的关键作用。</p>
                         <p>研究运用社会网络分析法 (SNA) 与政策过程理论，系统解构了NGO如何通过技术、组织与文化的三重动员逻辑，在全球与本土双重网络中有效推进低碳政策，这为中国碳治理的多元参与模式提供了极具价值的实证参考。</p>
                     `
@@ -1161,7 +1198,7 @@
             'blog-tokyo': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at 2026 International Conference on Human Rights: Youth in Asia', zh: '受邀在亚洲青年与人权国际会议做口头汇报' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'The University of Tokyo, Japan', zh: '日本 · 东京大学' },
                 body: {
                     en: `
@@ -1176,16 +1213,16 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/ICHR.jpg?raw=true" class="w-full h-auto object-cover" alt="ICHR Conference">
                         </div>
-                        <p>2026年3月18日至20日，王森林赴日本东京大学，在 <strong>2026年亚洲青年与人权国际会议 (International Conference on Human Rights: Youth in Asia)</strong> 上作口头学术汇报。</p>
+                        <p>2026年3月18日至20日，Senlin Wang 赴日本东京大学，在 <strong>2026年亚洲青年与人权国际会议 (International Conference on Human Rights: Youth in Asia)</strong> 上作口头学术汇报。</p>
                         <p>他的汇报题目为 <em>《边缘生存：东亚边境地带的语言杂糅与青年身份协商》</em>。该议题将社会语言学视野引入人权与青年发展的讨论框架，着重剖析了边缘群体在面临结构性不平等时，如何通过日常的语言策略来维系与重构自身的主体性。</p>
-                        <p>会议期间，王森林与各国学者就跨文化背景下的语言权利保护及青年身份政治展开了深入而极具启发性的对话。</p>
+                        <p>会议期间，Senlin 与各国学者就跨文化背景下的语言权利保护及青年身份政治展开了深入而极具启发性的对话。</p>
                     `
                 }
             },
             'blog-uiuc': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Presentation at 7th Sociolinguistics Symposium (SOSY 7), UIUC', zh: '研究成果入选 UIUC 第七届社会语言学研讨会 (SOSY 7)' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'UIUC, USA', zh: '美国 · 伊利诺伊大学香槟分校' },
                 body: {
                     en: `
@@ -1200,8 +1237,8 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/SOSY7%20Main.jpg?raw=true" class="w-full h-auto object-cover" alt="SOSY7 Conference">
                         </div>
-                        <p>2026年4月4日，本平台首席研究员 王森林赴美国伊利诺伊大学香槟分校 (UIUC)，成功参加了 <strong>第七届社会语言学研讨会 (SOSY 7)</strong>，并作学术口头汇报。</p>
-                        <p>在“语言、身份与意识形态”专题论坛上，王森林报告了其基于湖南平江县南江镇的民族志田野调查——<em>《边缘生存：南疆的语言杂糅与区域认同》</em>。该研究揭示了湘鄂赣交界地带的方言互动现象，及其背后深藏的商贸历史与区域身份认同建构机制。</p>
+                        <p>2026年4月4日，本平台首席研究员 Senlin Wang 赴美国伊利诺伊大学香槟分校 (UIUC)，成功参加了 <strong>第七届社会语言学研讨会 (SOSY 7)</strong>，并作学术口头汇报。</p>
+                        <p>在“语言、身份与意识形态”专题论坛上，Senlin 报告了其基于湖南平江县南江镇的民族志田野调查——<em>《边缘生存：南疆的语言杂糅与区域认同》</em>。该研究揭示了湘鄂赣交界地带的方言互动现象，及其背后深藏的商贸历史与区域身份认同建构机制。</p>
                         <p>此次汇报获得了与会学者的强烈反响与高度评价，这进一步印证了将微观的日常语言实践与宏观社会政治版图相联结的学术价值。</p>
                     `
                 }
@@ -1209,7 +1246,7 @@
             'blog-emory': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at Emory Undergraduate Linguistics Conference (EULC 7)', zh: '赴埃默里大学参加第七届本科生语言学会议 (EULC 7)' },
-                author: { en: 'Voices from Margins Admin', zh: '平台管理员' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
                 affiliation: { en: 'Event Announcement', zh: '活动通报' },
                 body: {
                     en: `
@@ -1217,7 +1254,7 @@
                         <p>The conference provided a vibrant platform for emerging scholars to exchange ideas. Discussions focused heavily on the ideological dimensions of language use and the methodology of conducting ethical, empathetic fieldwork among vulnerable populations.</p>
                     `,
                     zh: `
-                        <p>王森林受邀前往美国埃默里大学，参加第七届本科生语言学会议 (EULC 7) 并作口头汇报。此次汇报深度分享了最新的社会语言学研究成果，着重探讨了边缘社会中日常语言实践与结构性不平等的复杂互动机制。</p>
+                        <p>Senlin Wang 受邀前往美国埃默里大学，参加第七届本科生语言学会议 (EULC 7) 并作口头汇报。此次汇报深度分享了最新的社会语言学研究成果，着重探讨了边缘社会中日常语言实践与结构性不平等的复杂互动机制。</p>
                         <p>该会议为青年学者提供了一个充满活力的思想交流平台。与会期间，学者们就语言使用的意识形态维度，以及如何在弱势群体中开展符合伦理、具有同理心的田野调查方法论进行了深入的研讨。</p>
                     `
                 }
@@ -1225,8 +1262,8 @@
             'blog-harvard': {
                 tag: { en: 'Team News', zh: '团队动态' },
                 title: { en: 'Joining Harvard Education Symposium as Publicity Assistant', zh: '加入哈佛大学教育论坛担任公共宣传助理' },
-                author: { en: 'Senlin Wang', zh: '王森林' },
-                affiliation: { en: 'Harvard University', zh: '哈佛大学' },
+                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                affiliation: { en: 'Harvard University (Remote)', zh: '哈佛大学 (远程)' },
                 body: {
                     en: `
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
@@ -1239,8 +1276,8 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/Harvard%20CES.jpg?raw=true" class="w-full h-auto object-cover" alt="哈佛教育论坛">
                         </div>
-                        <p>自2025年11月起，王森林成功入选并加入 <strong>哈佛大学教育学院第17届中国教育论坛</strong>，担任公共宣传助理一职。</p>
-                        <p>作为最具影响力的学生主导学术会议之一，该论坛汇聚了全球顶尖学者与实践者共同探讨教育公平与创新发展议题。王森林运用其在数字媒体内容策略与跨文化传播领域的扎实背景，协助核心团队协调全球范围内的宣传战略。这不仅是他学术服务履历的拓展，更是将本智库平台的使命与国际教育话语体系深度融合的宝贵契机。</p>
+                        <p>自2025年11月起，Senlin Wang 成功入选并加入 <strong>哈佛大学教育学院第17届中国教育论坛</strong>，担任公共宣传助理一职。</p>
+                        <p>作为最具影响力的学生主导学术会议之一，该论坛汇聚了全球顶尖学者与实践者共同探讨教育公平与创新发展议题。Senlin 运用其在数字媒体内容策略与跨文化传播领域的扎实背景，协助核心团队协调全球范围内的宣传战略。这不仅是他学术服务履历的拓展，更是将本智库平台的使命与国际教育话语体系深度融合的宝贵契机。</p>
                     `
                 }
             }
@@ -1268,8 +1305,7 @@
             
             const sideMenu = document.getElementById('side-menu');
             if (sideMenu && sideMenu.classList) {
-                // If opening an article from the search overlay, do not mess with sideMenu classes
-                // The overlay handles its own state
+                // Search overlay handles its own state
             }
             document.body.style.overflow = 'hidden'; 
         };
@@ -1286,7 +1322,7 @@
             if(sideMenu && sideMenu.classList.contains('translate-x-full')){
                 document.body.style.overflow = 'auto'; 
             } else if (!sideMenu) {
-                document.body.style.overflow = 'auto'; // Fallback if sideMenu doesn't exist
+                document.body.style.overflow = 'auto';
             }
             
             const iframe = document.querySelector('#modal-body iframe');

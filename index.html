@@ -1335,7 +1335,7 @@ let articlesDB = {};
 async function fetchArticles() {
     try {
         // 【重要】把下面这个单引号里的链接，换成你刚才复制的 RAW 网址
-        const apiUrl = 'https://gist.githubusercontent.com/wsenlin419-maker/4573ffaad45e5e1b7ff112a1bc2be2a8/raw/6843e95eaae50c5b752f871228f913e7aa1fb33c/articles.json'; 
+        const apiUrl = 'https://gist.githubusercontent.com/wsenlin419-maker/4573ffaad45e5e1b7ff112a1bc2be2a8/raw/articles.json'; 
         
         const response = await fetch(apiUrl);
         if (!response.ok) throw new Error('网络请求失败');

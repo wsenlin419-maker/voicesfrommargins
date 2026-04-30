@@ -7,7 +7,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts: 顶级智库字体栈 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
                     },
                     colors: {
                         pew: {
-                            dark: '#222222',
-                            border: '#e5e5e5',
+                            dark: '#1a1a1a',
+                            border: '#d1d5db',
                             accent: '#cc1414',
                             subtle: '#555555',
                             bg: '#ffffff'
@@ -39,68 +39,53 @@
 
     <style>
         html { scroll-behavior: smooth; overflow-x: hidden; }
-        body { background-color: #ffffff; color: #222222; overflow-x: hidden; }
+        body { background-color: #ffffff; color: #1a1a1a; overflow-x: hidden; }
         
-        .pew-divider { border-top: 1px solid #e5e5e5; }
-        .pew-divider-thick { border-top: 3px solid #222222; }
+        .pew-divider { border-top: 1px solid #d1d5db; }
+        .pew-divider-thick { border-top: 3px solid #1a1a1a; }
         
-        /* 侧边菜单动画 */
         #menu-backdrop { transition: opacity 0.3s ease; }
         #side-menu { transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); }
         
-        /* 页面切换淡入淡出 */
-        .page-view {
-            display: none;
-            animation: fadeIn 0.6s ease forwards;
-        }
+        .page-view { display: none; animation: fadeIn 0.6s ease forwards; }
         .page-view.active { display: block; }
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* 弹窗动画 */
-        #article-modal { transition: opacity 0.4s ease, visibility 0.4s ease; }
-        #article-content { transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        #article-modal, #legal-modal { transition: opacity 0.4s ease, visibility 0.4s ease; }
+        .modal-content { transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); }
         .modal-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
         .modal-visible { opacity: 1; visibility: visible; pointer-events: auto; }
         .slide-down { transform: translateY(40px) scale(0.98); }
         .slide-up { transform: translateY(0) scale(1); }
 
-        /* 搜索遮罩层动画 */
         #search-overlay { transition: opacity 0.3s ease; }
         .search-hidden { opacity: 0; pointer-events: none; }
         .search-visible { opacity: 1; pointer-events: auto; }
 
-        .video-container {
-            position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden;
-            border-radius: 0.25rem; background: #000;
-        }
-        .video-container iframe, .video-container video {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-        }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
+        .video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* 中文排版优化与强制两端对齐 */
         body.lang-zh { text-align: justify; }
         .text-justify-force { text-align: justify; text-justify: inter-word; }
         
-        /* 博客标题下划线悬浮特效 */
         .blog-title-link {
-            text-decoration: underline;
-            text-decoration-color: #e5e5e5;
-            text-decoration-thickness: 2px;
-            text-underline-offset: 4px;
-            transition: text-decoration-color 0.3s ease;
+            text-decoration: underline; text-decoration-color: #e5e5e5; text-decoration-thickness: 2px;
+            text-underline-offset: 4px; transition: text-decoration-color 0.3s ease;
         }
-        .group:hover .blog-title-link {
-            text-decoration-color: #cc1414;
-        }
+        .group:hover .blog-title-link { text-decoration-color: #cc1414; }
+        
+        /* 智库级输入框样式 */
+        .pew-input { border: 1px solid #d1d5db; transition: all 0.2s ease; }
+        .pew-input:focus { outline: none; border-color: #1a1a1a; box-shadow: 0 0 0 1px #1a1a1a; }
     </style>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col relative">
 
-    <!-- ================= 搜索全屏遮罩层 ================= -->
-    <div id="search-overlay" class="fixed inset-0 bg-white/95 backdrop-blur-md z-[100] search-hidden flex flex-col justify-center items-center">
+    <!-- ================= 功能型全屏搜索层 ================= -->
+    <div id="search-overlay" class="fixed inset-0 bg-white/95 backdrop-blur-md z-[100] search-hidden flex flex-col justify-start items-center pt-32 overflow-y-auto">
         <button onclick="toggleSearch()" class="absolute top-8 right-8 text-pew-dark hover:rotate-90 transition-transform duration-300 p-2">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
@@ -108,30 +93,36 @@
             <h2 class="text-3xl font-serif text-pew-dark mb-8 text-center" data-en="Search the Initiative" data-zh="搜索智库平台">Search the Initiative</h2>
             <form onsubmit="handleSearch(event)" class="flex items-center border-b-2 border-pew-dark pb-3 group">
                 <i data-lucide="search" class="w-6 h-6 text-gray-400 group-focus-within:text-pew-dark transition-colors mr-4"></i>
-                <input type="text" id="search-input" placeholder="Type keywords (e.g. policy, linguistics)..." class="w-full bg-transparent text-xl md:text-2xl font-sans outline-none text-pew-dark placeholder-gray-300">
-                <button type="submit" class="text-sm font-bold uppercase tracking-widest text-pew-subtle hover:text-pew-accent ml-4 transition-colors" data-en="Search" data-zh="Search">Search</button>
+                <input type="text" id="search-input" placeholder="Type keywords (e.g. policy, Africa, linguistics)..." class="w-full bg-transparent text-xl md:text-2xl font-sans outline-none text-pew-dark placeholder-gray-300">
+                <button type="submit" class="text-sm font-bold uppercase tracking-widest text-pew-subtle hover:text-pew-accent ml-4 transition-colors">Search</button>
             </form>
-            <p id="search-result-msg" class="text-center mt-8 text-pew-accent font-serif hidden" data-en="Search functionality will be integrated with database soon." data-zh="Search functionality will be integrated with database soon."></p>
+            <!-- 真实搜索结果展示区 -->
+            <div id="search-result-msg" class="mt-8 font-serif hidden w-full"></div>
         </div>
     </div>
 
-    <!-- ================= TOP HEADER ================= -->
+    <!-- ================= 顶层辅助导航 ================= -->
     <div class="bg-black text-white py-2 px-6 lg:px-12 hidden md:block w-full">
         <div class="max-w-7xl mx-auto flex justify-between items-center text-[10px] lg:text-[11px] font-bold tracking-[0.15em] uppercase font-sans">
             <span data-en="DECODING LANGUAGE, IDENTITY, AND INEQUALITY" data-zh="解构语言、身份与不平等">DECODING LANGUAGE, IDENTITY, AND INEQUALITY</span>
-            <div class="flex space-x-6">
-                <a href="#footer-contact" class="hover:text-gray-300 transition-colors" data-en="NEWSLETTERS" data-zh="NEWSLETTERS">NEWSLETTERS</a>
-                <a href="#footer-contact" class="hover:text-gray-300 transition-colors" data-en="CONTACT" data-zh="CONTACT">CONTACT</a>
-                <button onclick="toggleLang()" id="lang-label-top" class="hover:text-gray-300 transition-colors cursor-pointer">TRANSLATE TO CHINESE</button>
+            <div class="flex space-x-6 items-center">
+                <button onclick="scrollToFeatured()" class="hover:text-gray-300 transition-colors uppercase cursor-pointer" data-en="NEWSLETTERS" data-zh="NEWSLETTERS">NEWSLETTERS</button>
+                <a href="#footer-section" class="hover:text-gray-300 transition-colors uppercase" data-en="CONTACT" data-zh="CONTACT">CONTACT</a>
+                <span class="text-gray-600">|</span>
+                <span class="text-gray-400 lowercase italic mr-1" data-en="Explore:" data-zh="探索:">Explore:</span>
+                <button onclick="navigateTo('view-research')" class="hover:text-white text-gray-300 transition-colors lowercase cursor-pointer">Linguistics</button>
+                <button onclick="navigateTo('view-data')" class="hover:text-white text-gray-300 transition-colors lowercase cursor-pointer">Media</button>
             </div>
         </div>
     </div>
 
+    <!-- ================= 主 HEADER ================= -->
     <header class="bg-white sticky top-0 z-40 border-b border-gray-200">
-        <div class="flex justify-between items-center h-20 md:h-28 px-6 lg:px-12 max-w-7xl mx-auto w-full">
+        <div class="flex justify-between items-center h-20 md:h-24 px-6 lg:px-12 max-w-7xl mx-auto w-full">
             
+            <!-- Left: Logo -->
             <div class="flex items-center cursor-pointer group" onclick="navigateTo('view-home')">
-                <svg class="w-8 h-8 md:w-10 md:h-10 mr-3 md:mr-4 text-pew-dark group-hover:text-pew-accent transition-colors" viewBox="0 0 100 100" fill="currentColor">
+                <svg class="w-8 h-8 md:w-9 md:h-9 mr-3 md:mr-4 text-pew-dark group-hover:text-pew-accent transition-colors" viewBox="0 0 100 100" fill="currentColor">
                     <circle cx="20" cy="50" r="8" />
                     <circle cx="45" cy="30" r="6" />
                     <circle cx="45" cy="70" r="6" />
@@ -144,46 +135,42 @@
                     <path d="M45 70 Q 60 77.5 75 85" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
                 </svg>
                 <div class="flex flex-col">
-                    <h1 class="font-serif text-2xl md:text-[1.75rem] font-medium text-pew-dark tracking-tight leading-none" data-en="MARGINS & MEANING" data-zh="边缘与意义">
+                    <h1 class="font-serif text-2xl md:text-[1.6rem] font-medium text-pew-dark tracking-tight leading-none" data-en="MARGINS & MEANING" data-zh="边缘与意义">
                         MARGINS & MEANING
                     </h1>
-                    <span class="text-[10px] md:text-[11px] text-gray-500 uppercase tracking-[0.15em] mt-1" data-en="Voices from the Margins Project" data-zh="边缘之声研究项目">Voices from the Margins Project</span>
+                    <span class="text-[10px] text-gray-500 uppercase tracking-[0.15em] mt-1" data-en="Voices from the Margins Project" data-zh="边缘之声研究项目">Voices from the Margins Project</span>
                 </div>
             </div>
 
-            <div class="flex items-center space-x-4 md:space-x-6 lg:space-x-8">
-                
-                <div class="hidden lg:flex flex-col items-end pt-1">
-                    <div class="text-[13px] text-gray-500 mb-2 font-sans">
-                        <span data-en="Explore topics:" data-zh="探索主题：">Explore topics:</span> 
-                        <a href="#" onclick="navigateTo('view-research')" class="text-[#005587] hover:underline ml-1 font-medium">Linguistics</a> <span class="text-gray-300 px-1">|</span> 
-                        <a href="#" onclick="navigateTo('view-data')" class="text-[#005587] hover:underline font-medium">Media</a>
-                    </div>
-                    <form onsubmit="handleSearch(event)" class="flex items-center border border-gray-300 hover:border-gray-400 focus-within:border-pew-dark transition-colors w-[280px]">
-                        <input type="text" placeholder="Search marginsandmeaning.org..." class="w-full px-3 py-2 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-white" onclick="toggleSearch()" readonly>
-                        <button type="button" onclick="toggleSearch()" class="bg-[#333333] hover:bg-black transition-colors text-white px-3 py-2 border-l border-gray-300 flex items-center justify-center">
-                            <i data-lucide="search" class="w-4 h-4"></i>
-                        </button>
-                    </form>
-                </div>
-
-                <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-pew-accent transition-colors p-1">
-                    <i data-lucide="search" class="w-6 h-6"></i>
+            <!-- Right: Search, Lang, Menu -->
+            <div class="flex items-center space-x-5 md:space-x-8">
+                <!-- 搜索图标移至右侧 -->
+                <button onclick="toggleSearch()" class="text-pew-dark hover:text-pew-accent transition-colors p-1 flex items-center group">
+                    <i data-lucide="search" class="w-5 h-5 md:w-6 md:h-6"></i>
+                    <span class="text-[11px] font-bold uppercase tracking-widest ml-2 hidden lg:block group-hover:text-pew-accent" data-en="SEARCH" data-zh="SEARCH">SEARCH</span>
                 </button>
                 
+                <!-- 翻译按钮：大写英文 -->
+                <button onclick="toggleLang()" class="hidden md:flex items-center text-[11px] font-bold text-pew-dark hover:text-pew-accent transition-colors uppercase tracking-widest">
+                    <i data-lucide="globe" class="w-4 h-4 mr-1.5"></i>
+                    <span id="lang-label-top">CHINESE</span>
+                </button>
+                
+                <!-- 菜单按钮 -->
                 <button onclick="openMenu()" class="flex flex-col items-center justify-center space-y-1 text-pew-dark hover:text-pew-accent ml-2 group">
-                    <i data-lucide="menu" class="w-8 h-8 md:w-9 md:h-9 text-gray-800 group-hover:text-pew-accent transition-colors"></i>
-                    <span class="text-[10px] font-bold uppercase tracking-widest hidden sm:block text-gray-500 group-hover:text-pew-accent">Menu</span>
+                    <i data-lucide="menu" class="w-8 h-8 md:w-9 md:h-9 text-pew-dark group-hover:text-pew-accent transition-colors"></i>
+                    <span class="text-[10px] font-bold uppercase tracking-widest hidden sm:block text-pew-dark group-hover:text-pew-accent">MENU</span>
                 </button>
             </div>
         </div>
+        <div class="h-1 w-full bg-pew-accent"></div>
     </header>
 
     <!-- ================= OFF-CANVAS MENU ================= -->
     <div id="menu-backdrop" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none backdrop-blur-sm" onclick="closeMenu()"></div>
     <aside id="side-menu" class="fixed top-0 right-0 h-full w-full sm:w-[400px] bg-white z-50 transform translate-x-full shadow-2xl flex flex-col border-l-4 border-pew-dark">
         <div class="flex justify-between items-center p-8 border-b border-gray-100">
-            <span class="font-sans font-bold text-sm text-gray-400 uppercase tracking-widest" data-en="Explore Platform" data-zh="Explore Platform">Explore Platform</span>
+            <span class="font-sans font-bold text-sm text-gray-400 uppercase tracking-widest">EXPLORE PLATFORM</span>
             <button onclick="closeMenu()" class="p-2 hover:bg-gray-100 rounded-full transition-colors group">
                 <i data-lucide="x" class="w-6 h-6 text-pew-dark group-hover:rotate-90 transition-transform"></i>
             </button>
@@ -202,16 +189,13 @@
                 
                 <div class="w-12 h-px bg-gray-200 my-4"></div>
                 <a href="#" onclick="navigateTo('view-about')" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="About" data-zh="About">About <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
-                <a href="#footer-contact" onclick="closeMenu()" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Contact" data-zh="Contact">Contact <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
+                <a href="#footer-section" onclick="closeMenu()" class="text-xl font-serif font-medium text-gray-600 hover:text-pew-accent hover:translate-x-2 transition-all flex items-center justify-between group" data-en="Contact" data-zh="Contact">Contact <i data-lucide="chevron-right" class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity"></i></a>
             </nav>
         </div>
         <div class="p-8 bg-gray-50 border-t border-gray-100 md:hidden flex justify-between items-center">
-            <button onclick="toggleSearch()" class="p-3 border border-gray-300 rounded bg-white hover:bg-gray-100 transition">
-                <i data-lucide="search" class="w-5 h-5 text-pew-dark"></i>
-            </button>
-            <button onclick="toggleLang()" class="flex-grow ml-4 flex items-center justify-center px-4 py-3 border border-gray-300 rounded bg-white hover:bg-gray-100 transition text-sm font-bold text-pew-dark shadow-sm">
+            <button onclick="toggleLang()" class="w-full flex items-center justify-center px-4 py-3 border border-gray-300 rounded bg-white hover:bg-gray-100 transition text-sm font-bold text-pew-dark shadow-sm">
                 <i data-lucide="globe" class="w-4 h-4 mr-2 text-pew-accent"></i>
-                <span id="lang-label-mobile">Translate to Chinese</span>
+                <span id="lang-label-mobile">CHINESE</span>
             </button>
         </div>
     </aside>
@@ -219,12 +203,12 @@
     <!-- ================= MAIN CONTENT ================= -->
     <main class="flex-grow w-full">
 
-        <!-- ================= VIEW 1: HOME (极简版) ================= -->
+        <!-- ================= VIEW 1: HOME ================= -->
         <div id="view-home" class="page-view active">
-            <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-12">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 md:pt-24 pb-12">
                 
-                <!-- 直接以焦点网格开局，去除冗余的顶部文本块 -->
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- ID for anchor scrolling -->
+                <div id="featured-section" class="grid grid-cols-1 lg:grid-cols-12 gap-12">
                     <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer" onclick="openArticle('project-faces')">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="font-sans font-bold uppercase tracking-widest text-sm text-gray-500" data-en="Featured Research" data-zh="焦点研究">Featured Research</h3>
@@ -331,8 +315,8 @@
             
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 <div class="border-l-[4px] border-[#005587] pl-8 py-2 mb-12 bg-white">
-                    <p class="font-serif text-xl text-gray-700 italic" data-en="Here, I move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities." data-zh="在记录事实之外，我致力于解释世界。本专栏将抽象的研究数据转化为锋利的分析论点，探讨话语体系如何决定社会现实。">
-                        Here, I move beyond recording facts to interpreting them.
+                    <p class="font-serif text-xl text-gray-700 italic" data-en="Here, I move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities." data-zh="在记录事实之外，我们致力于解释世界。本专栏将抽象的研究数据转化为锋利的分析论点，探讨话语体系如何决定社会现实。">
+                        Here, We move beyond recording facts to interpreting them.
                     </p>
                 </div>
                 
@@ -363,7 +347,7 @@
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10" onclick="openArticle('project-nanjiang')">
                     <p class="text-xs text-gray-500 mb-3 font-sans uppercase tracking-widest" data-en="Sociolinguistics Fieldwork" data-zh="社会语言学田野">Sociolinguistics Fieldwork</p>
-                    <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4" data-en="Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County" data-zh="边境之声：湖南省平江县南江镇的语言杂糅与身份认同建构">
+                    <h4 class="text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4" data-en="Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County" data-zh="边境之声：湖南平江县南江镇的语言杂糅与身份认同建构">
                         Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County
                     </h4>
                     <p class="text-lg text-gray-600 font-serif leading-relaxed mb-4 text-justify-force" data-en="Ethnographic study exploring dialect interaction and revolutionary history. This fieldwork suggests that dialect switching is not merely a communicative tool, but a sophisticated mechanism for spatial and historic identity negotiation." data-zh="这不仅仅是一份关于方言互动的记录。实地的民族志观察深刻表明：方言切换绝不仅仅是沟通工具，它更是边缘群体进行空间区隔与历史记忆协商的精密政治机制。">
@@ -549,7 +533,7 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 7: ABOUT (排版定制版) ================= -->
+        <!-- ================= VIEW 7: ABOUT (添加成员 Xingyu Zhang) ================= -->
         <div id="view-about" class="page-view pb-24">
             <div class="bg-[#f8f9fa] py-12 px-6 lg:px-12 mb-12 border-b border-gray-200">
                 <div class="max-w-5xl mx-auto">
@@ -584,39 +568,60 @@
                     </p>
                 </div>
 
-                <div class="border-t border-gray-300 pt-16">
-                    <h3 class="font-sans text-xl font-bold uppercase tracking-widest text-pew-dark mb-12 text-center md:text-left" data-en="Founder" data-zh="创始人">Founder</h3>
+                <!-- 成员列表区域 -->
+                <div class="border-t border-gray-300 pt-16 space-y-16">
                     
-                    <div class="flex flex-col md:flex-row items-center md:items-start gap-12 lg:gap-20">
-                        
-                        <div class="flex flex-col items-center flex-shrink-0 md:w-64">
-                            <div class="w-48 h-48 md:w-56 md:h-56 bg-gray-200 mb-6 relative overflow-hidden rounded-full border border-gray-200 shadow-sm">
-                                <img src="https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true" class="w-full h-full object-cover" alt="Photo of Senlin Wang">
+                    <!-- Senlin Wang -->
+                    <div>
+                        <h3 class="font-sans text-xl font-bold uppercase tracking-widest text-pew-dark mb-12 text-center md:text-left" data-en="Founder" data-zh="创始人">Founder</h3>
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-12 lg:gap-20">
+                            <div class="flex flex-col items-center flex-shrink-0 md:w-64">
+                                <div class="w-48 h-48 md:w-56 md:h-56 bg-gray-200 mb-6 relative overflow-hidden rounded-full border border-gray-200 shadow-sm">
+                                    <img src="https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true" class="w-full h-full object-cover" alt="Senlin Wang">
+                                </div>
+                                <h4 class="font-serif text-3xl font-bold text-pew-dark mb-2 text-center">Senlin Wang</h4>
+                                <p class="text-sm font-bold text-[#cc1414] uppercase tracking-wider text-center" data-en="Founder" data-zh="创始人">Founder</p>
                             </div>
-                            <h4 class="font-serif text-3xl font-bold text-pew-dark mb-2 text-center" data-en="Senlin Wang" data-zh="Senlin Wang">Senlin Wang</h4>
-                            <p class="text-sm font-bold text-[#cc1414] uppercase tracking-wider text-center" data-en="Founder" data-zh="创始人">Founder</p>
-                        </div>
-
-                        <div class="flex flex-col max-w-2xl pt-4 md:pt-16 lg:pt-20">
-                            <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force" data-en="Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="Senlin Wang 是“边缘之声”研究平台的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
-                                Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world.
-                            </p>
+                            <div class="flex flex-col max-w-2xl pt-4 md:pt-16 lg:pt-20">
+                                <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force" data-en="Senlin Wang is the founder of Voices from the Margins. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="王森林是“边缘之声”研究平台的创始人。他来自中国的青岛大学。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
+                                    Senlin Wang is the founder of Voices from the Margins. He is from the Qingdao University in China. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
 
+                    <!-- Xingyu Zhang -->
+                    <div class="border-t border-gray-200 pt-16">
+                        <div class="flex flex-col md:flex-row items-center md:items-start gap-12 lg:gap-20">
+                            <div class="flex flex-col items-center flex-shrink-0 md:w-64">
+                                <div class="w-48 h-48 md:w-56 md:h-56 bg-gray-200 mb-6 relative overflow-hidden rounded-full border border-gray-200 shadow-sm">
+                                    <img src="https://github.com/wsenlin419-maker/picture/blob/main/%E6%98%9F%E5%AE%87%E7%85%A7%E7%89%87.jpg?raw=true" class="w-full h-full object-cover" alt="Xingyu Zhang">
+                                </div>
+                                <h4 class="font-serif text-3xl font-bold text-pew-dark mb-2 text-center">Xingyu Zhang</h4>
+                                <p class="text-sm font-bold text-pew-accent uppercase tracking-wider text-center" data-en="Research Associate" data-zh="研究助理">Research Associate</p>
+                            </div>
+                            <div class="flex flex-col max-w-2xl pt-4 md:pt-16 lg:pt-20">
+                                <p class="font-serif text-gray-700 text-lg leading-relaxed text-justify-force" data-en="Xingyu Zhang is a member of Voices from the Margins. She is from Capital University of Economics and Business and her work focuses on Cross cultural communication, language and promotion." data-zh="张星宇是“边缘之声”平台的核心成员。她来自中国的首都经济贸易大学，研究工作主要聚焦于跨文化传播、语言策略以及文化推广等领域。">
+                                    Xingyu Zhang is a member of Voices from the Margins. She is from the Capital University of Economics and Business in China and her work focuses on Cross cultural communication, language and promotion.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
 
     </main>
 
     <!-- ================= 高定级 Contact & Footer (Pew Research Style 重构) ================= -->
-    <section id="footer-contact" class="bg-white border-t border-gray-300 pt-16 pb-12 font-sans mt-12">
+    <section id="footer-section" class="bg-white border-t border-gray-300 pt-16 pb-12 font-sans mt-12">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-12 gap-12 border-b border-gray-200 pb-12">
             
+            <!-- Col 1: Brand & Contact (物理地址优化) -->
             <div class="md:col-span-4">
                 <div class="flex items-center mb-6">
-                    <svg class="w-8 h-8 mr-3 text-pew-dark" viewBox="0 0 100 100" fill="currentColor">
+                    <svg class="w-6 h-6 mr-2 text-pew-dark" viewBox="0 0 100 100" fill="currentColor">
                         <circle cx="20" cy="50" r="8" />
                         <circle cx="45" cy="30" r="6" />
                         <circle cx="45" cy="70" r="6" />
@@ -631,13 +636,16 @@
                     <h2 class="font-serif text-xl font-bold text-pew-dark tracking-tight leading-none">MARGINS & MEANING</h2>
                 </div>
                 <div class="text-[13px] text-gray-600 space-y-2 leading-relaxed">
-                    <p data-en="Qingdao University" data-zh="青岛大学">Qingdao University</p>
-                    <p data-en="Qingdao, China" data-zh="中国，青岛">Qingdao, China</p>
-                    <p class="pt-2"><a href="tel:+8615621082905" class="hover:text-[#005587] transition-colors">(+86) 156-2108-2905</a> | <span data-en="Main" data-zh="总机">Main</span></p>
-                    <p><a href="mailto:wsenlin419@gmail.com" class="hover:text-pew-dark text-[#005587] font-medium transition-colors" data-en="Media & Research Inquiries" data-zh="媒体与合作咨询">Media & Research Inquiries</a></p>
+                    <!-- 物理地址，不带青岛大学字眼 -->
+                    <p data-en="308 Ningxia Road, Shinan District" data-zh="市南区宁夏路308号">308 Ningxia Road, Shinan District</p>
+                    <p data-en="Qingdao, Shandong, China" data-zh="中国，山东省，青岛市">Qingdao, Shandong, China</p>
+                    <!-- 邮箱代替电话 -->
+                    <p class="pt-2"><a href="mailto:wsenlin419@gmail.com" class="hover:text-[#005587] transition-colors">wsenlin419@gmail.com</a> | <span data-en="General" data-zh="总联络处">General</span></p>
+                    <p><a href="mailto:wsenlin419@gmail.com" class="hover:text-pew-dark text-[#005587] font-medium transition-colors" data-en="Media & Research Inquiries" data-zh="媒体与研究合作">Media & Research Inquiries</a></p>
                 </div>
             </div>
 
+            <!-- Col 2: Research Ecosystem Links -->
             <div class="md:col-span-4 grid grid-cols-2 gap-4">
                 <div class="col-span-2 border-b border-dotted border-gray-400 mb-2 pb-2">
                     <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-500" data-en="RESEARCH ECOSYSTEM" data-zh="研究体系">RESEARCH ECOSYSTEM</h4>
@@ -654,14 +662,16 @@
                 </ul>
             </div>
 
+            <!-- Col 3: Newsletter & Follow Us (带功能反馈的表单) -->
             <div class="md:col-span-4">
                 <div class="border-b border-dotted border-gray-400 mb-4 pb-2">
                     <h4 class="text-[11px] font-bold uppercase tracking-widest text-gray-500" data-en="STAY INFORMED" data-zh="订阅研究简报">STAY INFORMED</h4>
                 </div>
-                <form class="flex mb-8 w-full border border-gray-400 hover:border-pew-dark focus-within:border-pew-dark transition-colors">
-                    <input type="email" placeholder="Email Address" class="w-full px-3 py-2 text-[13px] outline-none bg-white placeholder-gray-400 text-pew-dark font-sans" required>
-                    <button type="submit" class="bg-[#f8f9fa] hover:bg-gray-200 border-l border-gray-300 px-3 transition-colors">
-                        <i data-lucide="mail" class="w-4 h-4 text-pew-dark"></i>
+                <!-- Pew Style 交互式订阅表单 -->
+                <form id="subscribe-form" onsubmit="handleSubscribe(event)" class="flex mb-8 w-full border border-gray-400 hover:border-pew-dark focus-within:border-pew-dark transition-colors relative">
+                    <input type="email" id="subscribe-email" placeholder="Email Address" class="w-full px-3 py-2 text-[13px] outline-none bg-white placeholder-gray-400 text-pew-dark font-sans" required>
+                    <button type="submit" id="subscribe-btn" class="bg-[#f8f9fa] hover:bg-gray-200 border-l border-gray-300 px-4 transition-colors font-bold text-[11px] text-pew-dark tracking-wider">
+                        <span data-en="SIGN UP" data-zh="订阅">SIGN UP</span>
                     </button>
                 </form>
                 
@@ -675,6 +685,7 @@
             </div>
         </div>
 
+        <!-- About Paragraph -->
         <div class="max-w-7xl mx-auto px-6 lg:px-12 mt-8">
             <p class="text-[13px] text-gray-500 leading-relaxed text-justify-force font-sans">
                 <strong class="text-gray-700 uppercase tracking-wide font-bold" data-en="ABOUT MARGINS & MEANING INITIATIVE" data-zh="关于 MARGINS & MEANING 智库">ABOUT MARGINS & MEANING INITIATIVE</strong> 
@@ -685,7 +696,7 @@
         </div>
     </section>
 
-    <!-- ================= BOTTOM FOOTER BAR ================= -->
+    <!-- ================= BOTTOM FOOTER BAR (定向激活链接) ================= -->
     <footer class="bg-[#f8f9fa] border-t border-gray-200 py-6 font-sans">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center text-[12px] text-gray-500 font-medium">
             <div class="mb-4 md:mb-0">
@@ -693,17 +704,18 @@
             </div>
             <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
                 <a href="#" onclick="navigateTo('view-about')" class="hover:text-pew-dark transition-colors" data-en="About" data-zh="关于我们">About</a>
-                <a href="#" class="hover:text-pew-dark transition-colors" data-en="Terms & Conditions" data-zh="条款与条件">Terms & Conditions</a>
-                <a href="#" class="hover:text-pew-dark transition-colors" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</a>
-                <a href="#footer-contact" class="hover:text-pew-dark transition-colors" data-en="Contact Us" data-zh="联系我们">Contact Us</a>
+                <!-- 链接激活弹窗 -->
+                <button onclick="showLegal('Terms')" class="hover:text-pew-dark transition-colors" data-en="Terms & Conditions" data-zh="条款与条件">Terms & Conditions</button>
+                <button onclick="showLegal('Privacy')" class="hover:text-pew-dark transition-colors" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</button>
+                <a href="#footer-section" class="hover:text-pew-dark transition-colors" data-en="Contact Us" data-zh="联系我们">Contact Us</a>
             </div>
         </div>
     </footer>
 
     <!-- ================= MODAL FOR ARTICLES ================= -->
-    <div id="article-modal" class="fixed inset-0 bg-white z-[120] modal-hidden overflow-y-auto">
-        <div class="max-w-4xl mx-auto bg-white min-h-screen relative px-6 py-16 md:px-12 slide-down" id="article-content">
-            <button onclick="closeArticle()" class="absolute top-6 right-6 md:top-12 md:right-0 flex items-center text-sm font-bold uppercase tracking-widest text-pew-subtle hover:text-pew-accent transition-colors group">
+    <div id="article-modal" class="fixed inset-0 bg-white/95 backdrop-blur-sm z-[120] modal-hidden overflow-y-auto pt-10 pb-20">
+        <div class="max-w-4xl mx-auto bg-white min-h-screen relative px-6 py-16 md:px-16 md:py-20 shadow-2xl modal-content border border-gray-200" id="article-content">
+            <button onclick="closeArticle()" class="absolute top-6 right-6 md:top-8 md:right-8 flex items-center text-sm font-bold uppercase tracking-widest text-pew-subtle hover:text-pew-accent transition-colors group">
                 <span class="mr-2">Close</span>
                 <i data-lucide="x" class="w-6 h-6 border border-gray-300 rounded-full p-1 group-hover:border-pew-accent"></i>
             </button>
@@ -726,11 +738,26 @@
         </div>
     </div>
 
+    <!-- ================= MODAL FOR LEGAL TEXT (Terms & Privacy) ================= -->
+    <div id="legal-modal" class="fixed inset-0 bg-black/60 z-[130] modal-hidden flex justify-center items-center backdrop-blur-sm">
+        <div class="bg-white max-w-2xl w-full mx-4 p-8 md:p-12 relative shadow-2xl rounded-sm modal-content" id="legal-content">
+            <button onclick="closeLegal()" class="absolute top-6 right-6 text-gray-400 hover:text-pew-dark transition-colors">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h2 id="legal-title" class="text-2xl font-serif font-bold text-pew-dark mb-4">Title</h2>
+            <div class="w-12 h-1 bg-pew-accent mb-6"></div>
+            <p class="text-gray-600 font-sans text-sm leading-relaxed" data-en="This section is currently under development. Margins & Meaning Initiative strictly adheres to global data protection regulations. For immediate inquiries regarding data usage or intellectual property, please contact wsenlin419@gmail.com." data-zh="本版块条款正在起草中。Margins & Meaning 智库严格遵守全球数据保护条例。如对数据使用或知识产权有任何疑问，请直接联系 wsenlin419@gmail.com。">
+                This section is currently under development. Margins & Meaning Initiative strictly adheres to global data protection regulations. For immediate inquiries regarding data usage or intellectual property, please contact wsenlin419@gmail.com.
+            </p>
+        </div>
+    </div>
+
     <!-- Script Logic -->
     <script>
         lucide.createIcons();
         let currentLang = 'en'; 
 
+        // ================= Search Functionality =================
         const searchOverlay = document.getElementById('search-overlay');
         const searchInput = document.getElementById('search-input');
         const searchMsg = document.getElementById('search-result-msg');
@@ -750,16 +777,155 @@
             }
         }
 
+        // 真实搜索逻辑匹配数据库
         function handleSearch(e) {
             e.preventDefault();
+            const query = searchInput.value.toLowerCase().trim();
+            if(!query) return;
+
             searchMsg.classList.remove('hidden');
+            let resultHTML = '<div class="bg-white p-6 shadow-xl border border-gray-200 mt-4 rounded-sm"><ul class="text-left space-y-4">';
+            let found = false;
+
+            for (const [id, article] of Object.entries(articlesDB)) {
+                // 简单匹配标题或内容
+                if (article.title.en.toLowerCase().includes(query) || 
+                    article.title.zh.toLowerCase().includes(query) ||
+                    article.body.en.toLowerCase().includes(query)) {
+                    
+                    resultHTML += `
+                        <li class="border-b border-gray-100 pb-3 last:border-0 last:pb-0">
+                            <span class="text-[10px] uppercase font-bold text-pew-subtle tracking-widest block mb-1">${article.tag[currentLang]}</span>
+                            <a href="#" onclick="openArticle('${id}'); toggleSearch();" class="text-lg font-serif font-bold text-[#005587] hover:text-pew-accent transition-colors leading-tight block">
+                                ${article.title[currentLang]}
+                            </a>
+                        </li>`;
+                    found = true;
+                }
+            }
+            resultHTML += '</ul></div>';
+
+            if (found) {
+                searchMsg.innerHTML = `<span class="text-gray-500 text-sm font-sans tracking-widest uppercase">Results found for "${query}"</span> ${resultHTML}`;
+            } else {
+                searchMsg.innerHTML = `<div class="bg-white p-6 shadow-xl text-center"><span class="text-gray-500 font-sans">No results found for "${query}". Please try another keyword.</span></div>`;
+            }
         }
+
+        // ================= Subscribe Newsletter Functionality =================
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const btn = document.getElementById('subscribe-btn');
+            const originalHTML = btn.innerHTML;
+            
+            // 交互反馈
+            btn.innerHTML = `<span class="text-white">SUBSCRIBED ✓</span>`;
+            btn.classList.remove('bg-[#f8f9fa]', 'hover:bg-gray-200', 'text-pew-dark');
+            btn.classList.add('bg-green-700', 'hover:bg-green-800');
+            
+            e.target.reset();
+            
+            // 3秒后恢复
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('bg-green-700', 'hover:bg-green-800');
+                btn.classList.add('bg-[#f8f9fa]', 'hover:bg-gray-200', 'text-pew-dark');
+            }, 3000);
+        }
+
+        // ================= View Navigation & Scroll =================
+        function navigateTo(viewId) {
+            document.querySelectorAll('.page-view').forEach(view => { view.classList.remove('active'); });
+            const targetView = document.getElementById(viewId);
+            if (targetView) targetView.classList.add('active');
+            closeMenu();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function scrollToFeatured() {
+            navigateTo('view-home');
+            setTimeout(() => {
+                document.getElementById('featured-section').scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        // ================= Menu & Modals =================
+        const menuBackdrop = document.getElementById('menu-backdrop');
+        const sideMenu = document.getElementById('side-menu');
+
+        function openMenu() {
+            menuBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            menuBackdrop.classList.add('opacity-100', 'pointer-events-auto');
+            sideMenu.classList.remove('translate-x-full');
+            sideMenu.classList.add('translate-x-0');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            menuBackdrop.classList.remove('opacity-100', 'pointer-events-auto');
+            menuBackdrop.classList.add('opacity-0', 'pointer-events-none');
+            sideMenu.classList.remove('translate-x-0');
+            sideMenu.classList.add('translate-x-full');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Legal Modal
+        function showLegal(type) {
+            const modal = document.getElementById('legal-modal');
+            const content = document.getElementById('legal-content');
+            document.getElementById('legal-title').textContent = type === 'Terms' ? (currentLang === 'en' ? 'Terms & Conditions' : '条款与条件') : (currentLang === 'en' ? 'Privacy Policy' : '隐私政策');
+            
+            modal.classList.remove('modal-hidden');
+            modal.classList.add('modal-visible');
+            content.classList.remove('slide-down');
+            content.classList.add('slide-up');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLegal() {
+            const modal = document.getElementById('legal-modal');
+            const content = document.getElementById('legal-content');
+            content.classList.remove('slide-up');
+            content.classList.add('slide-down');
+            modal.classList.remove('modal-visible');
+            modal.classList.add('modal-hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // ================= Language Toggle =================
+        function updateLanguage() {
+            const elementsToTranslate = document.querySelectorAll('[data-en][data-zh]');
+            elementsToTranslate.forEach(el => {
+                if (el.dataset[currentLang].includes('<')) { el.innerHTML = el.dataset[currentLang]; } 
+                else { el.textContent = el.dataset[currentLang]; }
+            });
+
+            if (currentLang === 'zh') {
+                document.body.classList.add('lang-zh');
+                // 按钮永远显示纯大写英文，指示将要切换的状态
+                document.getElementById('lang-label-top').textContent = 'ENGLISH';
+                document.getElementById('lang-label-mobile').textContent = 'ENGLISH';
+            } else {
+                document.body.classList.remove('lang-zh');
+                document.getElementById('lang-label-top').textContent = 'CHINESE';
+                document.getElementById('lang-label-mobile').textContent = 'CHINESE';
+            }
+            if (currentArticleId) renderArticleContent(currentArticleId);
+        }
+
+        window.toggleLang = function() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            updateLanguage();
+        };
+
+        // ================= Article Database & Rendering =================
+        let currentArticleId = null;
 
         const articlesDB = {
             'project-minority': {
                 tag: { en: 'EDUCATION POLICY & IDENTITY', zh: '教育政策与身份认同' },
                 title: { en: 'Crossing Language Borders: China\'s Minority Preparatory Education Policy and Identity', zh: '跨越语言边界：中国少数民族预科教育政策与身份认同' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -783,7 +949,7 @@
             'project-sanmao': {
                 tag: { en: 'SOCIOLINGUISTICS & LITERATURE', zh: '社会语言学与文学' },
                 title: { en: 'Speaking of the Otherland: Sanmao\'s Translanguaging Practices and "New Overseas Chinese" Identity', zh: '言说他乡：社会语言学视阈下三毛的跨语际实践与“新海外华人”认同' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -807,7 +973,7 @@
             'project-ngo': {
                 tag: { en: 'ENVIRONMENTAL POLITICS & NGO', zh: '环境政治与非政府组织' },
                 title: { en: 'The "Invisible Pushers" of Carbon Governance: NGO Network Mobilization and Policy Advocacy', zh: '碳治理的“隐形推手”：非政府组织(NGO)的网络动员与政策倡导策略研究' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -831,7 +997,7 @@
             'project-faces': {
                 tag: { en: 'Political Communication & Visual Politics', zh: '政治传播学与视觉政治' },
                 title: { en: 'Faces vs. Steel: A Comparative Visual Framing Analysis of China\'s Aid in Africa', zh: '面孔与钢铁：中国对非援助的视觉框架比较分析' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -855,7 +1021,7 @@
             'writing-standard': {
                 tag: { en: 'OP-ED • LINGUISTIC INEQUALITY', zh: '学术评论 • 语言与不平等' },
                 title: { en: 'The Cost of the "Standard": How Linguistic Hierarchies Drive Economic Marginalization', zh: '“标准语”的代价：语言等级制如何驱动经济边缘化' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'Writing & Opinion', zh: '观点专栏' },
                 body: {
                     en: `
@@ -875,7 +1041,7 @@
             'project-nanjiang': {
                 tag: { en: 'Field Notes & Sociolinguistics', zh: '田野笔记 & 社会语言学' },
                 title: { en: 'Voices from the Borderlands: Linguistic Hybridity in Nanjiang Town, Pingjiang County', zh: '边境之声：湖南平江县南江镇的语言杂糅与身份认同建构' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'Qingdao University', zh: '青岛大学' },
                 body: {
                     en: `
@@ -903,8 +1069,8 @@
                                 <span class="text-sm font-mono text-gray-500">Video Embed Placeholder</span>
                             </div>
                         </div>
-                        <p><strong>Subject:</strong> Lao Li (52), First-Generation Migrant Worker</p>
-                        <p>This primary material forms part of our ongoing ethnographic archive. In this dialogue, Lao Li elucidates the invisible barriers of language in urban environments. <strong>This recording confirms that</strong> the loss of mother tongue is experienced not merely as an inevitable consequence of urbanization, but as a systematic fracturing of heritage identity mandated by economic survival.</p>
+                        <p><strong>Subject:</strong> Duan Li (52), First-Generation Migrant Worker</p>
+                        <p>This primary material forms part of our ongoing ethnographic archive. In this dialogue, Duan Li elucidates the invisible barriers of language in urban environments. <strong>This recording confirms that</strong> the loss of mother tongue is experienced not merely as an inevitable consequence of urbanization, but as a systematic fracturing of heritage identity mandated by economic survival.</p>
                     `,
                     zh: `
                         <div class="video-container mb-8">
@@ -913,15 +1079,15 @@
                                 <span class="text-sm font-mono text-gray-500">视频语料预留位</span>
                             </div>
                         </div>
-                        <p><strong>口述者：</strong> 老李（52岁），驻扎广州20年的第一代流水线工人</p>
-                        <p>这份一手语料是我们持续进行的民族志档案库的一部分。在这段对话中，老李阐释了城市化进程中那道隐形的“语言围墙”。<strong>这份原始录音证实了：</strong>母语的流失并未被劳动者仅仅体验为城市化的自然结果，而是被深切地感知为一种受制于经济生存压力而必须付出的、对原生身份的系统性割裂。</p>
+                        <p><strong>口述者：</strong> 李段（52岁），驻扎广州20年的第一代流水线工人</p>
+                        <p>这份一手语料是我们持续进行的民族志档案库的一部分。在这段对话中，李段阐释了城市化进程中那道隐形的“语言围墙”。<strong>这份原始录音证实了：</strong>母语的流失并未被劳动者仅仅体验为城市化的自然结果，而是被深切地感知为一种受制于经济生存压力而必须付出的、对原生身份的系统性割裂。</p>
                     `
                 }
             },
             'blog-mor': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at The 2nd MOR International Conference and PDW', zh: '赴阿联酋参加第二届 MOR 国际会议及研讨会' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'Al Ain, UAE', zh: '阿联酋 · 艾因' },
                 body: {
                     en: `
@@ -936,7 +1102,7 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/MOR%20Main.jpg?raw=true" class="w-full h-auto object-cover" alt="MOR Conference">
                         </div>
-                        <p>2026年2月20日至22日，Senlin Wang 受邀赴阿联酋艾因，参加 <strong>第二届 MOR 国际会议及研讨会 (The 2nd MOR International Conference and PDW)</strong>，并作学术口头汇报。</p>
+                        <p>2026年2月20日至22日，王森林受邀赴阿联酋艾因，参加 <strong>第二届 MOR 国际会议及研讨会 (The 2nd MOR International Conference and PDW)</strong>，并作学术口头汇报。</p>
                         <p>汇报题目为 <em>《碳治理的“隐形推手”：非政府组织 (NGOs) 的网络动员与政策倡导策略研究》</em>。该研究深入探讨了NGO在全球气候治理转型期所发挥的关键作用。</p>
                         <p>研究运用社会网络分析法 (SNA) 与政策过程理论，系统解构了NGO如何通过技术、组织与文化的三重动员逻辑，在全球与本土双重网络中有效推进低碳政策，这为中国碳治理的多元参与模式提供了极具价值的实证参考。</p>
                     `
@@ -945,7 +1111,7 @@
             'blog-tokyo': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at 2026 International Conference on Human Rights: Youth in Asia', zh: '受邀在亚洲青年与人权国际会议做口头汇报' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'The University of Tokyo, Japan', zh: '日本 · 东京大学' },
                 body: {
                     en: `
@@ -960,16 +1126,16 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/ICHR.jpg?raw=true" class="w-full h-auto object-cover" alt="ICHR Conference">
                         </div>
-                        <p>2026年3月18日至20日，Senlin Wang 赴日本东京大学，在 <strong>2026年亚洲青年与人权国际会议 (International Conference on Human Rights: Youth in Asia)</strong> 上作口头学术汇报。</p>
+                        <p>2026年3月18日至20日，王森林赴日本东京大学，在 <strong>2026年亚洲青年与人权国际会议 (International Conference on Human Rights: Youth in Asia)</strong> 上作口头学术汇报。</p>
                         <p>他的汇报题目为 <em>《边缘生存：东亚边境地带的语言杂糅与青年身份协商》</em>。该议题将社会语言学视野引入人权与青年发展的讨论框架，着重剖析了边缘群体在面临结构性不平等时，如何通过日常的语言策略来维系与重构自身的主体性。</p>
-                        <p>会议期间，Senlin 与各国学者就跨文化背景下的语言权利保护及青年身份政治展开了深入而极具启发性的对话。</p>
+                        <p>会议期间，王森林与各国学者就跨文化背景下的语言权利保护及青年身份政治展开了深入而极具启发性的对话。</p>
                     `
                 }
             },
             'blog-uiuc': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Presentation at 7th Sociolinguistics Symposium (SOSY 7), UIUC', zh: '研究成果入选 UIUC 第七届社会语言学研讨会 (SOSY 7)' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'UIUC, USA', zh: '美国 · 伊利诺伊大学香槟分校' },
                 body: {
                     en: `
@@ -984,8 +1150,8 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/SOSY7%20Main.jpg?raw=true" class="w-full h-auto object-cover" alt="SOSY7 Conference">
                         </div>
-                        <p>2026年4月4日，本平台首席研究员 Senlin Wang 赴美国伊利诺伊大学香槟分校 (UIUC)，成功参加了 <strong>第七届社会语言学研讨会 (SOSY 7)</strong>，并作学术口头汇报。</p>
-                        <p>在“语言、身份与意识形态”专题论坛上，Senlin 报告了其基于湖南平江县南江镇的民族志田野调查——<em>《边缘生存：南疆的语言杂糅与区域认同》</em>。该研究揭示了湘鄂赣交界地带的方言互动现象，及其背后深藏的商贸历史与区域身份认同建构机制。</p>
+                        <p>2026年4月4日，本平台首席研究员王森林赴美国伊利诺伊大学香槟分校 (UIUC)，成功参加了 <strong>第七届社会语言学研讨会 (SOSY 7)</strong>，并作学术口头汇报。</p>
+                        <p>在“语言、身份与意识形态”专题论坛上，王森林报告了其基于湖南平江县南江镇的民族志田野调查——<em>《边缘生存：南江的语言杂糅与区域认同》</em>。该研究揭示了湘鄂赣交界地带的方言互动现象，及其背后深藏的商贸历史与区域身份认同建构机制。</p>
                         <p>此次汇报获得了与会学者的强烈反响与高度评价，这进一步印证了将微观的日常语言实践与宏观社会政治版图相联结的学术价值。</p>
                     `
                 }
@@ -993,7 +1159,7 @@
             'blog-emory': {
                 tag: { en: 'Conference Updates', zh: '学术会议动态' },
                 title: { en: 'Oral Presentation at Emory Undergraduate Linguistics Conference (EULC 7)', zh: '赴埃默里大学参加第七届本科生语言学会议 (EULC 7)' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
                 affiliation: { en: 'Event Announcement', zh: '活动通报' },
                 body: {
                     en: `
@@ -1001,7 +1167,7 @@
                         <p>The conference provided a vibrant platform for emerging scholars to exchange ideas. Discussions focused heavily on the ideological dimensions of language use and the methodology of conducting ethical, empathetic fieldwork among vulnerable populations.</p>
                     `,
                     zh: `
-                        <p>Senlin Wang 受邀前往美国埃默里大学，参加第七届本科生语言学会议 (EULC 7) 并作口头汇报。此次汇报深度分享了最新的社会语言学研究成果，着重探讨了边缘社会中日常语言实践与结构性不平等的复杂互动机制。</p>
+                        <p>王森林受邀前往美国埃默里大学，参加第七届本科生语言学会议 (EULC 7) 并作口头汇报。此次汇报深度分享了最新的社会语言学研究成果，着重探讨了边缘社会中日常语言实践与结构性不平等的复杂互动机制。</p>
                         <p>该会议为青年学者提供了一个充满活力的思想交流平台。与会期间，学者们就语言使用的意识形态维度，以及如何在弱势群体中开展符合伦理、具有同理心的田野调查方法论进行了深入的研讨。</p>
                     `
                 }
@@ -1009,8 +1175,8 @@
             'blog-harvard': {
                 tag: { en: 'Team News', zh: '团队动态' },
                 title: { en: 'Joining Harvard Education Symposium as Publicity Assistant', zh: '加入哈佛大学教育论坛担任公共宣传助理' },
-                author: { en: 'Senlin Wang', zh: 'Senlin Wang' },
-                affiliation: { en: 'Harvard University (Remote)', zh: '哈佛大学 (远程)' },
+                author: { en: 'Senlin Wang', zh: '王森林' },
+                affiliation: { en: 'Harvard University', zh: '哈佛大学' },
                 body: {
                     en: `
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
@@ -1023,65 +1189,12 @@
                         <div class="mb-8 overflow-hidden rounded border border-gray-200">
                             <img src="https://github.com/wsenlin419-maker/picture/blob/main/Harvard%20CES.jpg?raw=true" class="w-full h-auto object-cover" alt="哈佛教育论坛">
                         </div>
-                        <p>自2025年11月起，Senlin Wang 成功入选并加入 <strong>哈佛大学教育学院第17届中国教育论坛</strong>，担任公共宣传助理一职。</p>
-                        <p>作为最具影响力的学生主导学术会议之一，该论坛汇聚了全球顶尖学者与实践者共同探讨教育公平与创新发展议题。Senlin 运用其在数字媒体内容策略与跨文化传播领域的扎实背景，协助核心团队协调全球范围内的宣传战略。这不仅是他学术服务履历的拓展，更是将本智库平台的使命与国际教育话语体系深度融合的宝贵契机。</p>
+                        <p>自2025年11月起，王森林成功入选并加入 <strong>哈佛大学教育学院第17届中国教育论坛</strong>，担任公共宣传助理一职。</p>
+                        <p>作为最具影响力的学生主导学术会议之一，该论坛汇聚了全球顶尖学者与实践者共同探讨教育公平与创新发展议题。王森林运用其在数字媒体内容策略与跨文化传播领域的扎实背景，协助核心团队协调全球范围内的宣传战略。这不仅是他学术服务履历的拓展，更是将本智库平台的使命与国际教育话语体系深度融合的宝贵契机。</p>
                     `
                 }
             }
         };
-
-        function navigateTo(viewId) {
-            document.querySelectorAll('.page-view').forEach(view => { view.classList.remove('active'); });
-            const targetView = document.getElementById(viewId);
-            if (targetView) targetView.classList.add('active');
-            closeMenu();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        const menuBackdrop = document.getElementById('menu-backdrop');
-        const sideMenu = document.getElementById('side-menu');
-
-        function openMenu() {
-            menuBackdrop.classList.remove('opacity-0', 'pointer-events-none');
-            menuBackdrop.classList.add('opacity-100', 'pointer-events-auto');
-            sideMenu.classList.remove('translate-x-full');
-            sideMenu.classList.add('translate-x-0');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMenu() {
-            menuBackdrop.classList.remove('opacity-100', 'pointer-events-auto');
-            menuBackdrop.classList.add('opacity-0', 'pointer-events-none');
-            sideMenu.classList.remove('translate-x-0');
-            sideMenu.classList.add('translate-x-full');
-            document.body.style.overflow = 'auto';
-        }
-
-        function updateLanguage() {
-            const elementsToTranslate = document.querySelectorAll('[data-en][data-zh]');
-            elementsToTranslate.forEach(el => {
-                if (el.dataset[currentLang].includes('<')) { el.innerHTML = el.dataset[currentLang]; } 
-                else { el.textContent = el.dataset[currentLang]; }
-            });
-
-            if (currentLang === 'zh') {
-                document.body.classList.add('lang-zh');
-                document.getElementById('lang-label-top').textContent = 'Translate to English';
-                document.getElementById('lang-label-mobile').textContent = 'Translate to English';
-            } else {
-                document.body.classList.remove('lang-zh');
-                document.getElementById('lang-label-top').textContent = 'Translate to Chinese';
-                document.getElementById('lang-label-mobile').textContent = 'Translate to Chinese';
-            }
-            if (currentArticleId) renderArticleContent(currentArticleId);
-        }
-
-        window.toggleLang = function() {
-            currentLang = currentLang === 'en' ? 'zh' : 'en';
-            updateLanguage();
-        };
-
-        let currentArticleId = null;
 
         function renderArticleContent(id) {
             const data = articlesDB[id];

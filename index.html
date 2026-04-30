@@ -398,7 +398,7 @@
     <!-- NAVIGATION -->
     <nav class="bg-white sticky top-0 z-30 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
         <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <!-- Added lg:justify-center and tuned gap for centered and beautiful alignment -->
+            <!-- Nav track contains both buttons and indicator for perfect offset tracking -->
             <div id="nav-track" class="nav-track flex items-center lg:justify-center overflow-x-auto hide-scrollbar text-[11.5px] font-sans font-semibold uppercase tracking-[0.12em] h-[50px] gap-6 lg:gap-10 border-b border-gray-100">
                 <button data-target="view-home" onclick="navigateTo('view-home')" class="nav-item active py-3" data-en="HOME" data-zh="首页">HOME</button>
                 <button data-target="view-research" onclick="navigateTo('view-research')" class="nav-item py-3" data-en="RESEARCH" data-zh="学术研究">RESEARCH</button>
@@ -408,8 +408,10 @@
                 <button data-target="view-data" onclick="navigateTo('view-data')" class="nav-item py-3" data-en="DATA & INSIGHTS" data-zh="数据洞察">DATA & INSIGHTS</button>
                 <button data-target="view-blog" onclick="navigateTo('view-blog')" class="nav-item py-3" data-en="BLOG" data-zh="动态博客">BLOG</button>
                 <button data-target="view-about" onclick="navigateTo('view-about')" class="nav-item py-3" data-en="ABOUT US" data-zh="关于平台">ABOUT US</button>
+                
+                <!-- The indicator is now perfectly bound within the relative nav-track container -->
+                <div id="nav-indicator" class="nav-indicator" style="left:0;width:0;"></div>
             </div>
-            <div id="nav-indicator" class="nav-indicator" style="left:0;width:0;"></div>
         </div>
     </nav>
 
@@ -595,7 +597,7 @@
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 <div class="pull-quote mb-14 reveal">
                     <p class="font-serif text-xl text-gray-700 italic leading-relaxed" data-en="Here, We move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities." data-zh="在记录事实之外，我们致力于解释世界。本专栏将抽象的研究数据转化为锋利的分析论点，探讨话语体系如何决定社会现实。">
-                        Here, We move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities.
+                        Here, I move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities.
                     </p>
                 </div>
 
@@ -1225,13 +1227,10 @@
 
         function updateNavIndicator(viewId) {
             const activeBtn = document.querySelector(`.nav-item[data-target="${viewId}"]`);
-            const track = document.getElementById('nav-track');
             const indicator = document.getElementById('nav-indicator');
-            if (activeBtn && track && indicator) {
-                const trackRect = track.getBoundingClientRect();
-                const btnRect = activeBtn.getBoundingClientRect();
-                indicator.style.left = (btnRect.left - trackRect.left + track.scrollLeft) + 'px';
-                indicator.style.width = btnRect.width + 'px';
+            if (activeBtn && indicator) {
+                indicator.style.left = activeBtn.offsetLeft + 'px';
+                indicator.style.width = activeBtn.offsetWidth + 'px';
             }
         }
 

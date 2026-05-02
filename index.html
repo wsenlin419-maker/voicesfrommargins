@@ -1329,27 +1329,63 @@
 
         // ─── ARTICLES ───
         // 1. 声明一个空的对象，准备接收云端数据
-let articlesDB = {};
+        let articlesDB = {};
 
-// 2. 从 GitHub Gist 获取数据
-async function fetchArticles() {
-    try {
-        // 【重要】把下面这个单引号里的链接，换成你刚才复制的 RAW 网址
-        const apiUrl = 'https://gist.githubusercontent.com/wsenlin419-maker/4573ffaad45e5e1b7ff112a1bc2be2a8/raw/articles.json'; 
-        
-        const response = await fetch(apiUrl);
-        if (!response.ok) throw new Error('网络请求失败');
-        
-        // 解析 JSON 数据并存入 articlesDB
-        articlesDB = await response.json();
-        
-        // 3. 数据拿到后，再启动页面逻辑
-        initPage();
-    } catch (error) {
-        console.error("加载云端内容失败:", error);
-    }
-}
+        // 2. 填入你在 Contentful 获取的两个密钥
+        const SPACE_ID = 'egroy8ctp4pz';
+        const ACCESS_TOKEN = 'EwsY0dizhi2jZi8YvMXlxEK7kTTSVS5hstk6oyWg6NU';
 
+        // 3. 从 Contentful 获取数据
+        async function fetchArticles() {
+            try {
+                // 注意：链接末尾加上了 &locale=*，这样才能同时拉取中文和英文的内容
+                const apiUrl = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=article&access_token=${ACCESS_TOKEN}&locale=*`;
+                
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('CMS 请求失败');
+                
+                const rawData = await response.json();
+                
+                // 写一个辅助函数，安全提取中英文数据
+                const getLoc = (fieldObj) => {
+                    if (!fieldObj) return { en: '', zh: '' };
+                    const enVal = fieldObj['en-US'] || fieldObj['en'] || '';
+                    const zhVal = fieldObj['zh-CN'] || fieldObj['zh'] || '';
+                    return { en: enVal, zh: zhVal };
+                };
+
+                // 将 Contentful 的复杂数据“翻译”成我们网页原本的格式
+                rawData.items.forEach(item => {
+                    const fields = item.fields;
+                    
+                    // 获取唯一标识符 (Slug)
+                    const slug = typeof fields.slug === 'object' ? 
+                                 (fields.slug['en-US'] || fields.slug['zh-CN']) : 
+                                 fields.slug; 
+                    
+                    if (slug) {
+                        articlesDB[slug] = {
+                            tag: getLoc(fields.tag),
+                            title: getLoc(fields.title),
+                            author: getLoc(fields.author),
+                            affiliation: getLoc(fields.affiliation),
+                            body: getLoc(fields.body)
+                        };
+                    }
+                });
+                
+                // 4. 数据拿到后，启动页面逻辑
+                initPage();
+
+                // 如果当前有打开的弹窗，刷新一下内容
+                if (typeof currentArticleId !== 'undefined' && currentArticleId && articlesDB[currentArticleId]) {
+                    renderArticleContent(currentArticleId);
+                }
+                
+            } catch (error) {
+                console.error("加载 CMS 内容失败:", error);
+            }
+        }
 // 4. 原本的初始化逻辑
 function initPage() {
     updateLanguage();

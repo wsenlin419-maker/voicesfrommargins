@@ -1182,14 +1182,14 @@
         }
 
         // ─── ARTICLES ───
-        // 1. 声明一个空的对象，准备接收云端数据
+       // 1. 声明一个空的对象，准备接收云端数据
         let articlesDB = {};
 
         // 2. 填入你在 Contentful 获取的两个密钥
         const SPACE_ID = 'egroy8ctp4pz';
         const ACCESS_TOKEN = 'EwsY0dizhi2jZi8YvMXlxEK7kTTSVS5hstk6oyWg6NU';
 
-       // 3. 从 Contentful 获取数据
+        // 3. 从 Contentful 获取数据
         async function fetchArticles() {
             try {
                 const apiUrl = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=article&access_token=${ACCESS_TOKEN}&locale=*`;
@@ -1198,6 +1198,9 @@
                 
                 const rawData = await response.json();
                 
+                // 【排错神器】把 Contentful 发来的数据打印到控制台
+                console.log("👉【拆快递啦】Contentful 发来的数据包：", rawData);
+                
                 const getLoc = (fieldObj) => {
                     if (!fieldObj) return { en: '', zh: '' };
                     const enVal = fieldObj['en-US'] || fieldObj['en'] || '';
@@ -1205,24 +1208,29 @@
                     return { en: enVal, zh: zhVal };
                 };
 
-                rawData.items.forEach(item => {
-                    const fields = item.fields;
-                    const slug = typeof fields.slug === 'object' ? (fields.slug['en-US'] || fields.slug['zh-CN']) : fields.slug; 
-                    const category = typeof fields.category === 'object' ? (fields.category['en-US'] || fields.category['zh-CN']) : (fields.category || 'Research');
-                    
-                    if (slug) {
-                        articlesDB[slug] = {
-                            category: category.trim(), 
-                            coverUrl: fields.coverUrl || 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800', // 你的新图片字段，没填就用默认图
-                            tag: getLoc(fields.tag),
-                            title: getLoc(fields.title),
-                            author: getLoc(fields.author),
-                            affiliation: getLoc(fields.affiliation),
-                            excerpt: getLoc(fields.excerpt), 
-                            body: getLoc(fields.body)
-                        };
-                    }
-                });
+                if (rawData.items && rawData.items.length > 0) {
+                    rawData.items.forEach(item => {
+                        const fields = item.fields;
+                        const slug = typeof fields.slug === 'object' ? (fields.slug['en-US'] || fields.slug['zh-CN']) : fields.slug; 
+                        const category = typeof fields.category === 'object' ? (fields.category['en-US'] || fields.category['zh-CN']) : (fields.category || 'Research');
+                        
+                        if (slug) {
+                            articlesDB[slug] = {
+                                category: category.trim(), 
+                                coverUrl: typeof fields.coverUrl === 'object' ? (fields.coverUrl['en-US'] || fields.coverUrl['zh-CN']) : (fields.coverUrl || 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800'),
+                                tag: getLoc(fields.tag),
+                                title: getLoc(fields.title),
+                                author: getLoc(fields.author),
+                                affiliation: getLoc(fields.affiliation),
+                                excerpt: getLoc(fields.excerpt), 
+                                body: getLoc(fields.body)
+                            };
+                        }
+                    });
+                    console.log("👉【分拣完毕】我们的本地数据库变成了这样：", articlesDB);
+                } else {
+                    console.log("🔴 警告：Contentful 里面没有任何已发布的文章！");
+                }
                 
                 initPage();
                 renderCards(); 
@@ -1245,7 +1253,6 @@
                 'blog': document.getElementById('blog-container')
             };
             
-            // 清空所有篮子
             Object.values(containers).forEach(container => {
                 if (container) container.innerHTML = '';
             });
@@ -1329,7 +1336,29 @@
                     `;
                 }
             }
-            lucide.createIcons();
+            if(typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        // 4. 页面初始化逻辑
+        function initPage() {
+            if(typeof updateLanguage === 'function') updateLanguage();
+            if(typeof updateNavIndicator === 'function') updateNavIndicator('view-home');
+            if(typeof checkReveal === 'function') setTimeout(checkReveal, 200);
+            if(typeof animateCounters === 'function') setTimeout(animateCounters, 600);
+        }
+
+        // 5. 页面加载时立刻去拉取数据
+        window.addEventListener('load', () => {
+            fetchArticles();
+        });
+
+        // 6. 拦截语言切换
+        if (typeof window.updateLanguage === 'function') {
+            const originalUpdateLanguage = window.updateLanguage;
+            window.updateLanguage = function() {
+                originalUpdateLanguage();
+                if (Object.keys(articlesDB).length > 0) renderCards();
+            };
         }
 
 // -------------- 保留原本的渲染逻辑 --------------

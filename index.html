@@ -425,62 +425,8 @@
             <!-- HERO GRID AREA -->
             <div class="hero-grid-bg">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-12 md:pt-16 pb-4">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16" id="hero-grid-container">
 
-                        <!-- Featured Article -->
-                        <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer reveal" onclick="openArticle('project-faces')">
-                            <div class="section-label mb-5" data-en="Featured Research" data-zh="焦点研究">Featured Research</div>
-                            <div class="featured-img-wrap w-full aspect-[16/9] bg-gray-100 mb-6 relative border border-gray-200">
-                                <img src="https://images.unsplash.com/photo-1572214350916-571eac7bfced?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover" alt="Featured Research">
-                                <div class="absolute top-4 left-4">
-                                    <span class="highlight-tag">Analysis</span>
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                            </div>
-                            <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors duration-300 mb-4 leading-snug" data-en="Faces vs. Steel: A Comparative Visual Framing Analysis of China's Aid in Africa" data-zh="面孔与钢铁：中国对非援助的视觉框架比较分析">
-                                Faces vs. Steel: A Comparative Visual Framing Analysis of China's Aid in Africa
-                            </h4>
-                            <p class="text-[17px] text-gray-500 font-serif leading-relaxed line-clamp-2 text-justify-force" data-en="Quantitative visual analysis comparing how Western and Chinese media construct contrasting geopolitical narratives." data-zh="基于250+图像的量化视觉分析，揭示西方与中国媒体如何构建截然不同的地缘政治叙事。">
-                                Quantitative visual analysis comparing how Western and Chinese media construct contrasting geopolitical narratives.
-                            </p>
-                            <div class="mt-5 flex items-center text-[#005587] font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
-                                <span data-en="Read Research" data-zh="阅读研究">Read Research</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </div>
-                        </div>
-
-                        <!-- Sidebar Articles -->
-                        <div class="lg:col-span-5 xl:col-span-4 flex flex-col reveal reveal-delay-2">
-                            <div class="section-label mb-5" data-en="Research Ecosystem" data-zh="研究体系">Research Ecosystem</div>
-
-                            <div class="side-article cursor-pointer group" onclick="navigateTo('view-writing')">
-                                <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase" data-en="Writing & Opinion" data-zh="学术评论与观点">Writing & Opinion</p>
-                                <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug" data-en="Explaining the World: The Cost of the 'Standard' Language" data-zh="解释世界：“标准语”所带来的经济与隐形社会成本">
-                                    Explaining the World: The Cost of the 'Standard' Language
-                                </h5>
-                            </div>
-
-                            <div class="side-article cursor-pointer group" onclick="navigateTo('view-field')">
-                                <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase" data-en="Field Notes" data-zh="田野笔记">Field Notes</p>
-                                <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug" data-en="Voices from the Borderlands: Nanjiang Town" data-zh="边境之声：湖南平江县南江镇的民族志">
-                                    Voices from the Borderlands: Nanjiang Town
-                                </h5>
-                            </div>
-
-                            <div class="side-article cursor-pointer group" onclick="navigateTo('view-voices')">
-                                <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</p>
-                                <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug" data-en="Listening to the Margins: Primary Material Collection" data-zh="聆听边缘：一手口述史与原始语料收集">
-                                    Listening to the Margins: Primary Material Collection
-                                </h5>
-                            </div>
-
-                            <div class="side-article cursor-pointer group" onclick="navigateTo('view-research')">
-                                <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase" data-en="Research" data-zh="研究">Research</p>
-                                <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug" data-en="Crossing Language Borders: Minority Education Policy and Identity" data-zh="跨越语言边界：少数民族预科政策与身份认同">
-                                    Crossing Language Borders: Minority Education Policy and Identity
-                                </h5>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -1190,7 +1136,7 @@
         const SPACE_ID = 'egroy8ctp4pz';
         const ACCESS_TOKEN = 'EwsY0dizhi2jZi8YvMXlxEK7kTTSVS5hstk6oyWg6NU';
 
-        // 3. 从 Contentful 获取数据
+        // 3. 从 Contentful 获取数据 (增强图片解析版)
         async function fetchArticles() {
             try {
                 const apiUrl = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=article&access_token=${ACCESS_TOKEN}&locale=*`;
@@ -1198,15 +1144,46 @@
                 if (!response.ok) throw new Error('CMS 请求失败');
                 
                 const rawData = await response.json();
-                
-                // 【排错神器】把 Contentful 发来的数据打印到控制台
                 console.log("👉【拆快递啦】Contentful 发来的数据包：", rawData);
+
+                // --- 新增：建立图片资产字典 ---
+                const assetsDB = {};
+                if (rawData.includes && rawData.includes.Asset) {
+                    rawData.includes.Asset.forEach(asset => {
+                        const id = asset.sys.id;
+                        // 取出图片的真实 URL，Contentful 的 URL 开头通常没有 https:
+                        let url = asset.fields.file['en-US']?.url || asset.fields.file['zh-CN']?.url || '';
+                        if (url.startsWith('//')) {
+                            url = 'https:' + url;
+                        }
+                        assetsDB[id] = url;
+                    });
+                }
                 
                 const getLoc = (fieldObj) => {
                     if (!fieldObj) return { en: '', zh: '' };
                     const enVal = fieldObj['en-US'] || fieldObj['en'] || '';
                     const zhVal = fieldObj['zh-CN'] || fieldObj['zh'] || '';
                     return { en: enVal, zh: zhVal };
+                };
+
+                // --- 辅助函数：专门用来提取图片链接 ---
+                const getCoverUrl = (coverField) => {
+                    if (!coverField) return 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800'; // 默认底图
+                    
+                    // 情况1：如果是 Contentful 的 Media 引用 (Link类型)
+                    const ref = coverField['en-US'] || coverField['zh-CN'] || coverField;
+                    if (ref && ref.sys && ref.sys.type === 'Link') {
+                        const assetId = ref.sys.id;
+                        return assetsDB[assetId] || 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800';
+                    }
+                    
+                    // 情况2：如果你图省事，直接填了一个 URL 字符串
+                    if (typeof ref === 'string' && ref.startsWith('http')) {
+                        return ref;
+                    }
+
+                    return 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800';
                 };
 
                 if (rawData.items && rawData.items.length > 0) {
@@ -1218,7 +1195,8 @@
                         if (slug) {
                             articlesDB[slug] = {
                                 category: category.trim(), 
-                                coverUrl: typeof fields.coverUrl === 'object' ? (fields.coverUrl['en-US'] || fields.coverUrl['zh-CN']) : (fields.coverUrl || 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800'),
+                                // 兼容双保险：优先用新创建的封面图上传字段(coverImage)，如果没有，再找老的文本链接字段(coverUrl)
+                                coverUrl: getCoverUrl(fields.coverImage || fields.coverUrl), 
                                 tag: getLoc(fields.tag),
                                 title: getLoc(fields.title),
                                 author: getLoc(fields.author),
@@ -1244,8 +1222,122 @@
             }
         }
 
+        // ====== 自动生成首页头条与右侧生态 (自适应排版) ======
+        function renderHeroSection() {
+            const heroContainer = document.getElementById('hero-grid-container');
+            if (!heroContainer) return;
+
+            let featuredResearch = null;
+            let sideArticles = {
+                'writing': null,
+                'field': null,
+                'voices': null,
+                'research': null
+            };
+
+            // 1. 从云端数据中分类捞取文章（每个分类取最新/第一篇）
+            for (const [slug, data] of Object.entries(articlesDB)) {
+                const cat = data.category.toLowerCase();
+                
+                if (cat === 'research') {
+                    if (!featuredResearch) {
+                        featuredResearch = { slug, ...data }; // 左侧大图：第一篇 Research
+                    } else if (!sideArticles['research']) {
+                        sideArticles['research'] = { slug, ...data }; // 右侧小图：第二篇 Research
+                    }
+                } else if ((cat === 'writing' || cat === 'opinion') && !sideArticles['writing']) {
+                    sideArticles['writing'] = { slug, ...data };
+                } else if (cat === 'field notes' && !sideArticles['field']) {
+                    sideArticles['field'] = { slug, ...data };
+                } else if (cat === 'voices' && !sideArticles['voices']) {
+                    sideArticles['voices'] = { slug, ...data };
+                }
+            }
+
+            // 保证左侧大图永远有内容！如果没有抓取到 Research 文章，就用默认占位图和文字兜底
+            if (!featuredResearch) {
+                featuredResearch = {
+                    slug: '#',
+                    coverUrl: 'https://images.unsplash.com/photo-1572214350916-571eac7bfced?auto=format&fit=crop&q=80&w=1200', // 这是你原来网站上那张很有质感的黑白建筑图
+                    tag: { en: 'Analysis', zh: '深度分析' },
+                    title: { en: 'New Research Coming Soon', zh: '最新研究即将上线' },
+                    excerpt: { 
+                        en: 'We are currently compiling new data and ethnographic insights. Stay tuned for our upcoming publications.', 
+                        zh: '我们正在整理最新的田野数据与研究洞察，全新深度内容即将发布，敬请期待。' 
+                    }
+                };
+            }
+
+            // 2. 渲染左侧 (Featured Research)
+            const safeTag = featuredResearch.tag ? featuredResearch.tag[currentLang] : '';
+            const safeTitle = featuredResearch.title ? featuredResearch.title[currentLang] : '';
+            const safeExcerpt = featuredResearch.excerpt ? featuredResearch.excerpt[currentLang] : '';
+            const cover = featuredResearch.coverUrl;
+
+            let leftHTML = `
+                <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer reveal visible flex flex-col" onclick="openArticle('${featuredResearch.slug}')">
+                    <div class="section-label mb-5">${currentLang === 'en' ? 'Featured Research' : '焦点研究'}</div>
+                    <div class="featured-img-wrap w-full aspect-[16/9] bg-gray-100 mb-6 relative border border-gray-200 flex-shrink-0">
+                        <img src="${cover}" class="w-full h-full object-cover" alt="Featured Research">
+                        <div class="absolute top-4 left-4">
+                            <span class="highlight-tag">${safeTag}</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors duration-300 mb-4 leading-snug">
+                        ${safeTitle}
+                    </h4>
+                    <p class="text-[17px] text-gray-500 font-serif leading-relaxed line-clamp-2 text-justify-force">
+                        ${safeExcerpt}
+                    </p>
+                    <div class="mt-auto pt-5 flex items-center text-[#005587] font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
+                        <span>${currentLang === 'en' ? 'Read Research' : '阅读研究'}</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            `;
+
+            // 3. 渲染右侧 (Ecosystem)，只渲染有数据的版块，并使用 Flex 均匀分布
+            let rightItemsHTML = '';
+            const displayNames = {
+                'writing': { en: 'Writing & Opinion', zh: '学术评论与观点' },
+                'field': { en: 'Field Notes', zh: '田野笔记' },
+                'voices': { en: 'Voices Archive', zh: '边缘声音档案库' },
+                'research': { en: 'Research', zh: '研究' }
+            };
+
+            for (const [key, article] of Object.entries(sideArticles)) {
+                if (article) {
+                    const sideTitle = article.title ? article.title[currentLang] : '';
+                    const dispName = displayNames[key][currentLang];
+                    rightItemsHTML += `
+                        <div class="side-article cursor-pointer group flex flex-col justify-center" onclick="openArticle('${article.slug}')">
+                            <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase">${dispName}</p>
+                            <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">
+                                ${sideTitle}
+                            </h5>
+                        </div>
+                    `;
+                }
+            }
+
+            let rightHTML = `
+                <div class="lg:col-span-5 xl:col-span-4 flex flex-col reveal reveal-delay-2 visible">
+                    <div class="section-label mb-5">${currentLang === 'en' ? 'Research Ecosystem' : '研究体系'}</div>
+                    <!-- 使用 flex-1 和 justify-evenly 让内部模块数量不够 4 个时，也能均匀拉开间距，美观排版 -->
+                    <div class="flex flex-col flex-1 justify-evenly gap-2">
+                        ${rightItemsHTML}
+                    </div>
+                </div>
+            `;
+
+            heroContainer.innerHTML = leftHTML + rightHTML;
+        }
+        
         // ====== 自动生成卡片的机器 (终极版) ======
         function renderCards() {
+            renderHeroSection(); // <--- 加上这一行！在渲染其他卡片前，先把首页头条更新了
+            
             const containers = {
                 'research': document.getElementById('research-container'),
                 'writing': document.getElementById('writing-container'),

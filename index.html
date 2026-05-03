@@ -316,6 +316,7 @@
         /* ===== FOOTER CTA ===== */
         .subscribe-input:focus { outline: none; box-shadow: 0 0 0 2px var(--blue); }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col relative">
 
@@ -1369,7 +1370,7 @@ function renderArticleContent(id) {
     document.getElementById('modal-title').textContent = data.title[currentLang];
     document.getElementById('modal-author').textContent = data.author[currentLang];
     document.getElementById('modal-affiliation').textContent = data.affiliation[currentLang];
-    document.getElementById('modal-body').innerHTML = data.body[currentLang];
+    document.getElementById('modal-body').innerHTML = marked.parse(data.body[currentLang] || '');
     lucide.createIcons();
 }
 
@@ -1395,40 +1396,6 @@ window.closeArticle = function() {
     document.body.style.overflow = 'auto';
     setTimeout(() => { currentArticleId = null; }, 400);
 };
-
-        function renderArticleContent(id) {
-            const data = articlesDB[id];
-            if (!data) return;
-            document.getElementById('modal-tag').textContent = data.tag[currentLang];
-            document.getElementById('modal-title').textContent = data.title[currentLang];
-            document.getElementById('modal-author').textContent = data.author[currentLang];
-            document.getElementById('modal-affiliation').textContent = data.affiliation[currentLang];
-            document.getElementById('modal-body').innerHTML = data.body[currentLang];
-            lucide.createIcons();
-        }
-
-        window.openArticle = function(id) {
-            currentArticleId = id;
-            renderArticleContent(id);
-            const modal = document.getElementById('article-modal');
-            const content = document.getElementById('article-content');
-            modal.classList.remove('modal-hidden');
-            modal.classList.add('modal-visible');
-            content.classList.remove('slide-down');
-            content.classList.add('slide-up');
-            document.body.style.overflow = 'hidden';
-        };
-
-        window.closeArticle = function() {
-            const modal = document.getElementById('article-modal');
-            const content = document.getElementById('article-content');
-            content.classList.remove('slide-up');
-            content.classList.add('slide-down');
-            modal.classList.remove('modal-visible');
-            modal.classList.add('modal-hidden');
-            document.body.style.overflow = 'auto';
-            setTimeout(() => { currentArticleId = null; }, 400);
-        };
 
         // ─── LANGUAGE ───
         function updateLanguage() {

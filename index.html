@@ -1169,7 +1169,7 @@
 
                 // --- 辅助函数：专门用来提取图片链接 ---
                 const getCoverUrl = (coverField) => {
-                    if (!coverField) return 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800'; // 默认底图
+                    if (!coverField) return 'https://images.unsplash.com/photo-1572214350916-571eac7bfced?auto=format&fit=crop&q=80&w=1200'; // 默认底图
                     
                     // 情况1：如果是 Contentful 的 Media 引用 (Link类型)
                     const ref = coverField['en-US'] || coverField['zh-CN'] || coverField;

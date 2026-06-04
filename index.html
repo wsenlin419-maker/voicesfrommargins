@@ -484,7 +484,7 @@
         .map-tab.active { color: var(--dark); border-bottom-color: var(--dark); }
         .map-tab:hover { color: var(--dark); }
         #map-container { height: 520px; width: 100%; background: #f0f2f5; border-radius: 2px; }
-        #map-container .leaflet-container { background: #f0f2f5; }
+        #map-container { position: relative; }
         .map-legend {
             background: white;
             padding: 12px 16px;
@@ -554,8 +554,7 @@
             100% { background-position: 200% 0; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col relative">
@@ -1193,13 +1192,42 @@
 
     <!-- LEGAL MODAL -->
     <div id="legal-modal" class="fixed inset-0 bg-black/70 z-[130] custom-modal modal-hidden flex justify-center items-center backdrop-blur-sm px-4">
-        <div id="legal-content" class="bg-white max-w-2xl w-full p-8 md:p-12 relative shadow-2xl modal-content border-t-[4px] border-pew-dark">
+        <div id="legal-content" class="bg-white max-w-2xl w-full p-8 md:p-12 relative shadow-2xl modal-content border-t-[4px] border-pew-dark max-h-[85vh] overflow-y-auto">
             <button onclick="closeLegal()" class="absolute top-6 right-6 text-gray-400 hover:text-pew-dark transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
             <h2 id="legal-title" class="text-2xl font-serif font-bold text-pew-dark mb-2">Title</h2>
             <div class="w-10 h-0.5 bg-[#cc1414] mb-6"></div>
-            <p class="text-gray-600 font-sans text-[14px] leading-relaxed" data-en="This section is currently under development. Margins & Meaning Initiative strictly adheres to global data protection regulations. For inquiries regarding data usage or intellectual property, please contact marginsmeaning@163.com." data-zh="本版块条款正在起草中。如对数据使用或知识产权有任何疑问，请直接联系 marginsmeaning@163.com。">
-                This section is currently under development. Margins & Meaning Initiative strictly adheres to global data protection regulations. For inquiries, please contact marginsmeaning@163.com.
-            </p>
+
+            <!-- Terms & Conditions -->
+            <div id="legal-terms" class="legal-section hidden">
+                <div class="font-sans text-[14px] leading-relaxed text-gray-600 space-y-4">
+                    <p data-en="Last updated: June 2026" data-zh="最后更新：2026年6月">Last updated: June 2026</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="1. About This Site" data-zh="1. 关于本站">1. About This Site</h3>
+                    <p data-en="Margins & Meaning is an independent, nonpartisan research initiative. The content on this website is provided for informational and educational purposes only. While we strive for accuracy, we make no warranties regarding the completeness or reliability of any information presented." data-zh="Margins & Meaning 是一个独立、无党派倾向的研究平台。本网站内容仅供信息与教育目的。我们力求准确，但不对任何信息的完整性或可靠性作担保。">Margins & Meaning is an independent, nonpartisan research initiative. The content on this website is provided for informational and educational purposes only. While we strive for accuracy, we make no warranties regarding the completeness or reliability of any information presented.</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="2. Intellectual Property" data-zh="2. 知识产权">2. Intellectual Property</h3>
+                    <p data-en="All original research, articles, data visualizations, and ethnographic materials published on this site are the intellectual property of Margins & Meaning unless otherwise stated. You may cite and share our content with proper attribution. Reproduction for commercial purposes requires prior written permission." data-zh="本网站发布的所有原创研究、文章、数据可视化及民族志材料，除特别声明外，均为 Margins & Meaning 的知识产权。您可以在正确署名的情况下引用和分享我们的内容。商业用途的转载需事先获得书面许可。">All original research, articles, data visualizations, and ethnographic materials published on this site are the intellectual property of Margins & Meaning unless otherwise stated. You may cite and share our content with proper attribution. Reproduction for commercial purposes requires prior written permission.</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="3. External Links" data-zh="3. 外部链接">3. External Links</h3>
+                    <p data-en="This site may contain links to third-party websites. We are not responsible for the content or practices of any linked external sites." data-zh="本网站可能包含指向第三方网站的链接。我们对任何链接的外部网站的内容或做法不承担责任。">This site may contain links to third-party websites. We are not responsible for the content or practices of any linked external sites.</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="4. Contact" data-zh="4. 联系方式">4. Contact</h3>
+                    <p>Email: <a href="mailto:marginsmeaning@163.com" class="text-[#005587] hover:underline">marginsmeaning@163.com</a></p>
+                </div>
+            </div>
+
+            <!-- Privacy Policy -->
+            <div id="legal-privacy" class="legal-section hidden">
+                <div class="font-sans text-[14px] leading-relaxed text-gray-600 space-y-4">
+                    <p data-en="Last updated: June 2026" data-zh="最后更新：2026年6月">Last updated: June 2026</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="1. Data We Collect" data-zh="1. 我们收集的数据">1. Data We Collect</h3>
+                    <p data-en="We collect only the information you voluntarily provide: (a) your email address when you subscribe to our newsletter, and (b) your name, email, and message when you submit a research inquiry. We do not use tracking cookies or third-party analytics." data-zh="我们仅收集您自愿提供的信息：(a) 订阅简报时提供的邮箱地址，(b) 提交研究咨询时提供的姓名、邮箱和留言内容。我们不使用追踪性 Cookie 或第三方分析工具。">We collect only the information you voluntarily provide: (a) your email address when you subscribe to our newsletter, and (b) your name, email, and message when you submit a research inquiry. We do not use tracking cookies or third-party analytics.</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="2. How We Use Your Data" data-zh="2. 数据使用方式">2. How We Use Your Data</h3>
+                    <p data-en="Your email address is used solely to send you research updates and event announcements. Your inquiry information is used only to respond to your message. We never sell, rent, or share your personal data with third parties." data-zh="您的邮箱地址仅用于向您发送研究更新与活动通知。您的咨询信息仅用于回复您的留言。我们绝不出售、出租或与第三方分享您的个人数据。">Your email address is used solely to send you research updates and event announcements. Your inquiry information is used only to respond to your message. We never sell, rent, or share your personal data with third parties.</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="3. Data Storage" data-zh="3. 数据存储">3. Data Storage</h3>
+                    <p data-en="Newsletter subscriptions and inquiry submissions are processed through Formspree, a third-party form service. Formspree's privacy policy governs how your submitted data is handled on their servers. You may request deletion of your data at any time by contacting us." data-zh="简报订阅与研究咨询通过第三方表单服务 Formspree 处理。您提交的数据在 Formspree 服务器上的处理方式受其隐私政策约束。您可随时联系我们请求删除您的数据。">Newsletter subscriptions and inquiry submissions are processed through Formspree, a third-party form service. Formspree's privacy policy governs how your submitted data is handled on their servers. You may request deletion of your data at any time by contacting us.</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="4. Your Rights" data-zh="4. 您的权利">4. Your Rights</h3>
+                    <p data-en="You have the right to access, correct, or delete any personal data we hold about you. To exercise these rights, or if you have any privacy-related questions, please contact us." data-zh="您有权访问、更正或删除我们持有的关于您的任何个人数据。如需行使这些权利，或对隐私问题有任何疑问，请联系我们。">You have the right to access, correct, or delete any personal data we hold about you. To exercise these rights, or if you have any privacy-related questions, please contact us.</p>
+                    <h3 class="text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-6 mb-2" data-en="5. Contact" data-zh="5. 联系方式">5. Contact</h3>
+                    <p>Email: <a href="mailto:marginsmeaning@163.com" class="text-[#005587] hover:underline">marginsmeaning@163.com</a></p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1440,6 +1468,9 @@
 
         function showLegal(type) {
             document.getElementById('legal-title').textContent = type === 'Terms' ? (currentLang === 'en' ? 'Terms & Conditions' : '条款与条件') : (currentLang === 'en' ? 'Privacy Policy' : '隐私政策');
+            document.getElementById('legal-terms').classList.toggle('hidden', type !== 'Terms');
+            document.getElementById('legal-privacy').classList.toggle('hidden', type !== 'Privacy');
+            updateLanguage();
             openModal('legal-modal', 'legal-content');
         }
         function closeLegal() { closeModal('legal-modal', 'legal-content'); }
@@ -1913,8 +1944,8 @@
         }
 
         // ─── INTERACTIVE MAPS ───
-        let mapInstance = null;
-        let mapGeoJSON = null;
+        let mapChart = null;
+        let mapGeoData = null;
         let currentMapMode = 'dialect';
 
         const dialectDataZH = {
@@ -1937,25 +1968,18 @@
             '青海省':'Mandarin/Tibetan','宁夏回族自治区':'Mandarin','新疆维吾尔自治区':'Mandarin/Uyghur',
             '台湾省':'Min/Hakka','香港特别行政区':'Yue (Cantonese)','澳门特别行政区':'Yue (Cantonese)'
         };
-        // English province name lookup (reverse from Chinese GeoJSON name)
-        const provinceNamesEN = {
-            '北京市':'Beijing','天津市':'Tianjin','河北省':'Hebei','山西省':'Shanxi','内蒙古自治区':'Inner Mongolia',
-            '辽宁省':'Liaoning','吉林省':'Jilin','黑龙江省':'Heilongjiang','上海市':'Shanghai','江苏省':'Jiangsu',
-            '浙江省':'Zhejiang','安徽省':'Anhui','福建省':'Fujian','江西省':'Jiangxi','山东省':'Shandong',
-            '河南省':'Henan','湖北省':'Hubei','湖南省':'Hunan','广东省':'Guangdong',
-            '广西壮族自治区':'Guangxi','海南省':'Hainan','重庆市':'Chongqing','四川省':'Sichuan',
-            '贵州省':'Guizhou','云南省':'Yunnan','西藏自治区':'Tibet','陕西省':'Shaanxi','甘肃省':'Gansu',
-            '青海省':'Qinghai','宁夏回族自治区':'Ningxia','新疆维吾尔自治区':'Xinjiang',
-            '台湾省':'Taiwan','香港特别行政区':'Hong Kong','澳门特别行政区':'Macau'
-        };
         const dialectColors = {
             '官话':'#e41a1c','晋语':'#377eb8','吴语':'#4daf4a','闽语':'#e6ab02',
             '赣语':'#a65628','湘语':'#f781bf','粤语':'#66c2a5','藏语':'#8c510a',
             '粤语/客家话':'#66c2a5','闽语/客家话':'#b3de69','官话/吴语':'#984ea3',
             '官话/徽语':'#ff7f00','官话/蒙古语':'#01665e','粤语/平话/壮语':'#fc8d62',
-            '官话/藏语':'#bf812d','官话/维吾尔语':'#35978f'
+            '官话/藏语':'#bf812d','官话/维吾尔语':'#35978f','Mandarin':'#e41a1c','Jin':'#377eb8',
+            'Wu':'#4daf4a','Min':'#e6ab02','Gan':'#a65628','Xiang':'#f781bf',
+            'Yue':'#66c2a5','Tibetan':'#8c510a','Yue/Hakka':'#66c2a5','Min/Hakka':'#b3de69',
+            'Mandarin/Wu':'#984ea3','Mandarin/Hui':'#ff7f00','Mandarin/Mongolian':'#01665e',
+            'Yue/Pinghua/Zhuang':'#fc8d62','Mandarin/Tibetan':'#bf812d','Mandarin/Uyghur':'#35978f',
+            'Yue (Cantonese)':'#66c2a5'
         };
-
         const ethnicDataZH = {
             '西藏自治区':'藏族 (90%+)','新疆维吾尔自治区':'维吾尔/哈萨克 (~60%)',
             '内蒙古自治区':'蒙古族 (~17%)','广西壮族自治区':'壮族 (~32%)',
@@ -1964,9 +1988,7 @@
             '四川省':'藏/彝/羌族 (~6%)','湖南省':'土家/苗/侗族 (~10%)',
             '甘肃省':'藏/回/东乡族 (~9%)','吉林省':'朝鲜/满族 (~5%)',
             '黑龙江省':'朝鲜/满/达斡尔 (~5%)','辽宁省':'满/朝鲜族 (~10%)',
-            '海南省':'黎/苗族 (~18%)','台湾省':'南岛原住民 (~2.5%)',
-            '广东省':'瑶/壮族','福建省':'畲族','湖北省':'土家/苗族',
-            '重庆市':'土家/苗族','浙江省':'畲族'
+            '海南省':'黎/苗族 (~18%)','台湾省':'南岛原住民 (~2.5%)'
         };
         const ethnicDataEN = {
             '西藏自治区':'Tibetan (90%+)','新疆维吾尔自治区':'Uyghur/Kazakh (~60%)',
@@ -1976,157 +1998,424 @@
             '四川省':'Tibetan/Yi/Qiang (~6%)','湖南省':'Tujia/Miao/Dong (~10%)',
             '甘肃省':'Tibetan/Hui/Dongxiang (~9%)','吉林省':'Korean/Manchu (~5%)',
             '黑龙江省':'Korean/Manchu/Daur (~5%)','辽宁省':'Manchu/Korean (~10%)',
-            '海南省':'Li/Miao (~18%)','台湾省':'Indigenous Austronesian (~2.5%)',
-            '广东省':'Yao/Zhuang','福建省':'She','湖北省':'Tujia/Miao',
-            '重庆市':'Tujia/Miao','浙江省':'She'
+            '海南省':'Li/Miao (~18%)','台湾省':'Indigenous Austronesian (~2.5%)'
         };
-        const ethnicBaseColor = '#005587';
-
-        function getDialectColor(name) {
-            const d = dialectDataZH[name];
-            if (!d) return '#e0e0e0';
-            return dialectColors[d] || '#e0e0e0';
-        }
-        function getEthnicColor(name) {
-            const data = currentLang === 'zh' ? ethnicDataZH : ethnicDataEN;
-            return data[name] ? ethnicBaseColor : '#f0f0f0';
-        }
-        function getDialectLabel(name) {
-            const data = currentLang === 'zh' ? dialectDataZH : dialectDataEN;
-            return data[name] || (currentLang === 'zh' ? '其他' : 'Other');
-        }
-        function getEthnicLabel(name) {
-            const data = currentLang === 'zh' ? ethnicDataZH : ethnicDataEN;
-            return data[name] || (currentLang === 'zh' ? '汉族为主' : 'Han majority');
-        }
-        function getProvinceName(name) {
-            return currentLang === 'zh' ? name : (provinceNamesEN[name] || name);
-        }
-
-        function highlightProvince(e) {
-            const layer = e.target;
-            layer.setStyle({ weight: 2, color: '#1a1a1a', dashArray: '' });
-            layer.bringToFront();
-            const name = layer.feature.properties.name;
-            const label = currentMapMode === 'dialect' ? getDialectLabel(name) : getEthnicLabel(name);
-            const provName = getProvinceName(name);
-            layer.bindTooltip('<b>' + provName + '</b><br>' + label, {
-                className: 'map-tooltip',
-                direction: 'top',
-                offset: [0, -8]
-            }).openTooltip();
-        }
-
-        function addMapLegend() {
-            // Remove existing legend
-            document.querySelectorAll('.leaflet-control .map-legend').forEach(el => el.parentElement.remove());
-            const legend = L.control({ position: 'bottomright' });
-            legend.onAdd = function() {
-                const div = L.DomUtil.create('div', 'map-legend');
-                if (currentMapMode === 'dialect') {
-                    const groups = ['官话','晋语','吴语','闽语','赣语','湘语','粤语','藏语'];
-                    const enGroups = ['Mandarin','Jin','Wu','Min','Gan','Xiang','Yue','Tibetan'];
-                    const labels = currentLang === 'zh' ? groups : enGroups;
-                    div.innerHTML = '<b style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;">' + (currentLang === 'zh' ? '方言区' : 'Dialect Groups') + '</b><br>' +
-                        labels.map(function(g, i) { return '<span style="background:' + (dialectColors[groups[i]]||'#ccc') + '"></span> ' + g; }).join('<br>');
-                } else {
-                    div.innerHTML = '<b style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;">' + (currentLang === 'zh' ? '少数民族比例' : 'Ethnic Minority %') + '</b><br>' +
-                        '<span style="background:' + ethnicBaseColor + ';opacity:0.7"></span> ' + (currentLang === 'zh' ? '有显著少数民族人口' : 'Significant minority pop.') + '<br>' +
-                        '<span style="background:#f0f0f0"></span> ' + (currentLang === 'zh' ? '汉族占绝大多数' : 'Han majority');
-                }
-                return div;
-            };
-            legend.addTo(mapInstance);
-        }
 
         function initMap() {
             var container = document.getElementById('map-container');
-            if (!container || mapInstance) return;
-            // Wait if Leaflet not loaded yet
-            if (typeof L === 'undefined') { setTimeout(initMap, 600); return; }
+            if (!container || mapChart) return;
+            if (typeof echarts === 'undefined') { setTimeout(initMap, 600); return; }
 
-            container.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">Loading map...</div>';
-            mapInstance = L.map('map-container', {
-                center: [35.8, 104.5], zoom: 4, zoomControl: true,
-                scrollWheelZoom: false, attributionControl: false
-            });
+            container.innerHTML = '<div id="map-loading-msg" class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">Loading map...</div>';
 
-            // Gaode tiles with OSM fallback
-            var tiles = L.tileLayer('https://webrd0{abs}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
-                subdomains: '1234', maxZoom: 10, minZoom: 3
-            }).addTo(mapInstance);
-            tiles.on('tileerror', function() {
-                if (!mapInstance._fallbackTiles) {
-                    mapInstance._fallbackTiles = true;
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 10, minZoom: 3
-                    }).addTo(mapInstance);
-                }
-            });
-
-            // Load GeoJSON
             fetch('./china-geo.json')
                 .then(function(r) { return r.json(); })
                 .then(function(geo) {
-                    container.innerHTML = '';
-                    mapGeoJSON = L.geoJSON(geo, {
-                        style: function(f) { return styleProvince(f); },
-                        onEachFeature: function(feature, layer) {
-                            layer.on({
-                                mouseover: function(e) { highlightProvince(e); },
-                                mouseout: function(e) { resetHighlight(e); },
-                                click: function(e) { mapInstance.fitBounds(e.target.getBounds(), {padding:[30,30], maxZoom:6}); }
-                            });
-                        }
-                    }).addTo(mapInstance);
-                    addMapLegend();
+                    var loadMsg = document.getElementById('map-loading-msg');
+                    if (loadMsg) loadMsg.remove();
+                    mapGeoData = geo;
+                    echarts.registerMap('china', geo);
+                    mapChart = echarts.init(container);
+                    renderMapChart();
+                    window.addEventListener('resize', function() { if (mapChart) mapChart.resize(); });
                 })
                 .catch(function() {
-                    container.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">Map data unavailable. Try again later.</div>';
+                    var loadMsg = document.getElementById('map-loading-msg');
+                    if (loadMsg) loadMsg.textContent = 'Map data unavailable.';
                 });
         }
 
-        // Invalidate map size when view changes to home
-        var _origNavigateTo = navigateTo;
-        navigateTo = function(viewId) {
-            _origNavigateTo(viewId);
-            if (viewId === 'view-home' && mapInstance) {
-                setTimeout(function() { mapInstance.invalidateSize(); }, 200);
-            }
-        };
+        function renderMapChart() {
+            if (!mapChart || !mapGeoData) return;
+            var isDialect = currentMapMode === 'dialect';
 
-        function styleProvince(feature) {
-            const name = feature.properties.name;
-            return {
-                fillColor: currentMapMode === 'dialect' ? getDialectColor(name) : getEthnicColor(name),
-                weight: 1,
-                opacity: 1,
-                color: '#fff',
-                fillOpacity: currentMapMode === 'dialect' ? 0.75 : (ethnicDataZH[name] ? 0.7 : 0.15),
-                dashArray: ''
+            var mapData = [];
+            mapGeoData.features.forEach(function(feature) {
+                var name = feature.properties.name;
+                var dialectZH = dialectDataZH[name] || '';
+                var dialectEN = dialectDataEN[name] || '';
+                var ethnicZH = ethnicDataZH[name] || '';
+                var ethnicEN = ethnicDataEN[name] || '';
+
+                var color;
+                if (isDialect) {
+                    color = dialectColors[dialectZH] || '#e0e0e0';
+                } else {
+                    color = ethnicZH ? '#005587' : '#f0f0f0';
+                }
+
+                mapData.push({
+                    name: name,
+                    dialectZH: dialectZH,
+                    dialectEN: dialectEN,
+                    ethnicZH: ethnicZH,
+                    ethnicEN: ethnicEN,
+                    itemStyle: { areaColor: color }
+                });
+            });
+
+            var option = {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function(params) {
+                        if (!params.data) return params.name;
+                        var d = params.data;
+                        var label;
+                        if (isDialect) {
+                            label = currentLang === 'zh' ? (d.dialectZH || '其他') : (d.dialectEN || 'Other');
+                        } else {
+                            label = currentLang === 'zh' ? (d.ethnicZH || '汉族为主') : (d.ethnicEN || 'Han majority');
+                        }
+                        return '<b>' + params.name + '</b><br/>' + label;
+                    },
+                    backgroundColor: 'rgba(26,26,26,0.9)',
+                    borderColor: 'transparent',
+                    textStyle: { color: '#fff', fontSize: 13 }
+                },
+                series: [{
+                    type: 'map',
+                    map: 'china',
+                    roam: true,
+                    scaleLimit: { min: 1, max: 6 },
+                    label: { show: false },
+                    itemStyle: {
+                        borderColor: '#fff',
+                        borderWidth: 1,
+                        areaColor: '#f0f0f0'
+                    },
+                    emphasis: {
+                        label: { show: true, color: '#1a1a1a', fontSize: 12 },
+                        itemStyle: { areaColor: '#ffd700' }
+                    },
+                    data: mapData
+                }]
             };
+            mapChart.setOption(option, true);
+            renderMapLegend();
         }
 
-        function resetHighlight(e) {
-            const layer = e.target;
-            mapGeoJSON.resetStyle(layer);
-            layer.closeTooltip();
+        function renderMapLegend() {
+            var oldLegend = document.getElementById('map-legend-box');
+            if (oldLegend) oldLegend.remove();
+            var container = document.getElementById('map-container');
+            if (!container) return;
+
+            var div = document.createElement('div');
+            div.id = 'map-legend-box';
+            div.className = 'map-legend';
+            var isDialect = currentMapMode === 'dialect';
+            if (isDialect) {
+                var groupsZH = ['官话','晋语','吴语','闽语','赣语','湘语','粤语','藏语'];
+                var groupsEN = ['Mandarin','Jin','Wu','Min','Gan','Xiang','Yue','Tibetan'];
+                var labels = currentLang === 'zh' ? groupsZH : groupsEN;
+                div.innerHTML = '<b style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em">' + (currentLang === 'zh' ? '方言区' : 'Dialect Groups') + '</b><br>' +
+                    labels.map(function(g, i) { return '<span style="background:' + (dialectColors[groupsZH[i]]||'#ccc') + '"></span> ' + g; }).join('<br>');
+            } else {
+                div.innerHTML = '<b style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em">' + (currentLang === 'zh' ? '少数民族比例' : 'Ethnic Minority %') + '</b><br>' +
+                    '<span style="background:#005587;opacity:0.7"></span> ' + (currentLang === 'zh' ? '有显著少数民族人口' : 'Significant minority pop.') + '<br>' +
+                    '<span style="background:#f0f0f0"></span> ' + (currentLang === 'zh' ? '汉族占绝大多数' : 'Han majority');
+            }
+            container.appendChild(div);
         }
 
         window.switchMap = function(mode) {
             currentMapMode = mode;
-            document.querySelectorAll('.map-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.map-tab').forEach(t => {
-                if ((mode === 'dialect' && t.textContent.includes('Dialect')) || (mode === 'ethnic' && t.textContent.includes('Ethnic'))) {
+            var tabs = document.querySelectorAll('.map-tab');
+            tabs.forEach(function(t) { t.classList.remove('active'); });
+            tabs.forEach(function(t) {
+                var text = t.textContent || '';
+                if ((mode === 'dialect' && (text.includes('Dialect') || text.includes('方言'))) ||
+                    (mode === 'ethnic' && (text.includes('Ethnic') || text.includes('民族')))) {
                     t.classList.add('active');
                 }
             });
-            if (mapGeoJSON) {
-                mapGeoJSON.setStyle(feature => styleProvince(feature));
-                mapInstance.removeControl(mapInstance.legendControl);
-                addMapLegend();
+            renderMapChart();
+        };
+
+        // Also hook into navigateTo for resize
+        var origNav = navigateTo;
+        navigateTo = function(viewId) {
+            origNav(viewId);
+            if (viewId === 'view-home' && mapChart) {
+                setTimeout(function() { mapChart.resize(); }, 200);
             }
         };
+
+        // ====== AUTO-GENERATE HERO + CARDS ======
+        function renderHeroSection() {
+            const heroContainer = document.getElementById('hero-grid-container');
+            if (!heroContainer) return;
+
+            let featuredResearch = null;
+            let sideArticles = {
+                'writing': null,
+                'field': null,
+                'voices': null,
+                'research': null
+            };
+
+            for (const [slug, data] of Object.entries(articlesDB)) {
+                const cat = data.category.toLowerCase();
+
+                if (cat === 'research') {
+                    if (!featuredResearch) {
+                        featuredResearch = { slug, ...data };
+                    } else if (!sideArticles['research']) {
+                        sideArticles['research'] = { slug, ...data };
+                    }
+                } else if ((cat === 'writing' || cat === 'opinion') && !sideArticles['writing']) {
+                    sideArticles['writing'] = { slug, ...data };
+                } else if (cat === 'field notes' && !sideArticles['field']) {
+                    sideArticles['field'] = { slug, ...data };
+                } else if (cat === 'voices' && !sideArticles['voices']) {
+                    sideArticles['voices'] = { slug, ...data };
+                }
+            }
+
+            // Fallback when no data yet
+            if (!featuredResearch) {
+                featuredResearch = {
+                    slug: '#',
+                    coverUrl: 'https://images.unsplash.com/photo-1572214350916-571eac7bfced?auto=format&fit=crop&q=80&w=1200',
+                    tag: { en: 'Analysis', zh: '深度分析' },
+                    title: { en: 'New Research Coming Soon', zh: '最新研究即将上线' },
+                    excerpt: {
+                        en: 'We are currently compiling new data and ethnographic insights. Stay tuned for our upcoming publications.',
+                        zh: '我们正在整理最新的田野数据与研究洞察，全新深度内容即将发布，敬请期待。'
+                    }
+                };
+            }
+
+            const safeTag = featuredResearch.tag ? featuredResearch.tag[currentLang] : '';
+            const safeTitle = featuredResearch.title ? featuredResearch.title[currentLang] : '';
+            const safeExcerpt = featuredResearch.excerpt ? featuredResearch.excerpt[currentLang] : '';
+            const cover = featuredResearch.coverUrl;
+
+            let leftHTML = `
+                <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer reveal visible flex flex-col" onclick="openArticle('${featuredResearch.slug}')">
+                    <div class="section-label mb-5">${currentLang === 'en' ? 'Featured Research' : '焦点研究'}</div>
+                    <div class="featured-img-wrap w-full aspect-[16/9] bg-gray-100 mb-6 relative border border-gray-200 flex-shrink-0">
+                        <img src="${cover}" class="w-full h-full object-cover" alt="Featured Research">
+                        <div class="absolute top-4 left-4">
+                            <span class="highlight-tag">${safeTag}</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors duration-300 mb-4 leading-snug">
+                        ${safeTitle}
+                    </h4>
+                    <p class="text-[18px] text-gray-500 font-serif leading-relaxed line-clamp-2">
+                        ${safeExcerpt}
+                    </p>
+                    <div class="mt-auto pt-5 flex items-center text-[#005587] font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
+                        <span>${currentLang === 'en' ? 'Read Research' : '阅读研究'}</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            `;
+
+            let rightItemsHTML = '';
+            const displayNames = {
+                'writing': { en: 'Writing & Opinion', zh: '学术评论与观点' },
+                'field': { en: 'Field Notes', zh: '田野笔记' },
+                'voices': { en: 'Voices Archive', zh: '边缘声音档案库' },
+                'research': { en: 'Research', zh: '研究' }
+            };
+
+            for (const [key, article] of Object.entries(sideArticles)) {
+                if (article) {
+                    const sideTitle = article.title ? article.title[currentLang] : '';
+                    const dispName = displayNames[key][currentLang];
+                    rightItemsHTML += `
+                        <div class="side-article cursor-pointer group flex flex-col justify-center" onclick="openArticle('${article.slug}')">
+                            <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase">${dispName}</p>
+                            <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">
+                                ${sideTitle}
+                            </h5>
+                        </div>
+                    `;
+                }
+            }
+
+            let rightHTML = `
+                <div class="lg:col-span-5 xl:col-span-4 flex flex-col reveal reveal-delay-2 visible">
+                    <div class="section-label mb-5">${currentLang === 'en' ? 'Research Ecosystem' : '研究体系'}</div>
+                    <div class="flex flex-col flex-1 justify-evenly gap-2">
+                        ${rightItemsHTML}
+                    </div>
+                </div>
+            `;
+
+            heroContainer.innerHTML = leftHTML + rightHTML;
+        }
+
+        // ─── HOME BLOG CARDS (dynamic from CMS) ───
+        function renderHomeBlog() {
+            const container = document.getElementById('home-blog-cards');
+            if (!container) return;
+            const blogPosts = Object.entries(articlesDB)
+                .filter(([, d]) => d.category.toLowerCase() === 'blog')
+                .slice(0, 3);
+            if (blogPosts.length === 0) {
+                container.innerHTML = '<div class="text-center py-12 text-gray-400 font-serif col-span-3">' + (currentLang === 'zh' ? '暂无动态' : 'No posts yet.') + '</div>';
+                return;
+            }
+            container.innerHTML = blogPosts.map(([slug, data], i) =>
+                `<article class="blog-card cursor-pointer group reveal reveal-delay-${i+1}" onclick="openArticle('${slug}')">
+                    <div class="blog-card-img aspect-[4/3] bg-gray-100 border border-gray-200 mb-4">
+                        <img src="${data.coverUrl}" class="w-full h-full object-cover" alt="">
+                    </div>
+                    <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400 block mb-2">${data.tag[currentLang]}</span>
+                    <h3 class="font-serif text-lg font-bold text-pew-dark blog-title-link leading-snug">${data.title[currentLang]}</h3>
+                </article>`
+            ).join('');
+        }
+
+        // ─── BLOG CATEGORY FILTER ───
+        function filterBlog(cat) {
+            const blogCards = document.querySelectorAll('#blog-container > article');
+            blogCards.forEach(card => {
+                if (cat === 'all') { card.style.display = ''; return; }
+                const slug = card.getAttribute('onclick')?.match(/openArticle\('(.+?)'\)/)?.[1];
+                if (!slug || !articlesDB[slug]) { card.style.display = ''; return; }
+                const dataCat = articlesDB[slug].category.toLowerCase();
+                const show = (cat === 'conference' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('conference'))
+                    || (cat === 'fieldwork' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('field'))
+                    || (cat === 'publication' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('publication'))
+                    || (cat === 'fieldwork' && dataCat === 'field notes')
+                    || (cat === 'publication' && (dataCat === 'research' || dataCat === 'writing'));
+                card.style.display = show ? '' : 'none';
+            });
+        }
+
+        function updateBlogCounts() {
+            let counts = { all: 0, conference: 0, fieldwork: 0, publication: 0, team: 0 };
+            for (const [, data] of Object.entries(articlesDB)) {
+                const cat = data.category.toLowerCase();
+                const tag = (data.tag.en || '').toLowerCase();
+                if (cat === 'blog' || cat === 'field notes' || cat === 'research' || cat === 'writing') {
+                    counts.all++;
+                    if (cat === 'blog' && tag.includes('conference')) counts.conference++;
+                    if (cat === 'blog' && tag.includes('field')) counts.fieldwork++;
+                    if (cat === 'field notes') counts.fieldwork++;
+                    if (cat === 'research' || cat === 'writing' || (cat === 'blog' && tag.includes('publication'))) counts.publication++;
+                    if (cat === 'blog' && tag.includes('team')) counts.team++;
+                }
+            }
+            for (const [key, count] of Object.entries(counts)) {
+                const el = document.getElementById('blog-count-' + key);
+                if (el) el.textContent = count;
+            }
+        }
+
+        function renderCards() {
+            renderHeroSection();
+            renderHomeBlog();
+            updateBlogCounts();
+
+            const containers = {
+                'research': document.getElementById('research-container'),
+                'writing': document.getElementById('writing-container'),
+                'field notes': document.getElementById('field-container'),
+                'voices': document.getElementById('voices-container'),
+                'blog': document.getElementById('blog-container')
+            };
+
+            Object.values(containers).forEach(container => {
+                if (container) container.innerHTML = '';
+            });
+
+            for (const [slug, data] of Object.entries(articlesDB)) {
+                const safeTag = data.tag ? data.tag[currentLang] : '';
+                const safeTitle = data.title ? data.title[currentLang] : '';
+                const safeExcerpt = data.excerpt ? data.excerpt[currentLang] : '';
+                const cat = data.category.toLowerCase();
+                const cover = data.coverUrl;
+
+                if (cat === 'research' && containers['research']) {
+                    containers['research'].innerHTML += `
+                        <article class="research-card cursor-pointer border-b border-gray-200 pb-10 mb-0 pt-8 pl-4 reveal visible" onclick="openArticle('${slug}')">
+                            <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
+                            <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Abstract' : '阅读摘要'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                        </article>
+                    `;
+                }
+                else if ((cat === 'writing' || cat === 'opinion') && containers['writing']) {
+                    containers['writing'].innerHTML += `
+                        <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
+                            <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
+                            <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Article' : '阅读文章'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                        </article>
+                    `;
+                }
+                else if (cat === 'field notes' && containers['field notes']) {
+                    containers['field notes'].innerHTML += `
+                        <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                                <div class="md:col-span-2 aspect-[4/3] bg-gray-100 overflow-hidden border border-gray-200">
+                                    <img src="${cover}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                </div>
+                                <div class="md:col-span-3 flex flex-col justify-center">
+                                    <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                                    <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                                    <p class="text-[16px] text-gray-500 font-serif leading-relaxed mb-5 text-justify-force">${safeExcerpt}</p>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">${currentLang === 'en' ? 'Read Ethnography' : '阅读田野志'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }
+                else if (cat === 'voices' && containers['voices']) {
+                    containers['voices'].innerHTML += `
+                        <div class="group cursor-pointer border border-gray-200 hover:border-gray-400 transition-colors reveal visible mb-10" onclick="openArticle('${slug}')">
+                            <div class="aspect-video w-full bg-gray-900 relative overflow-hidden">
+                                <img src="${cover}" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700 ease-out">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="play-btn w-16 h-16 bg-white rounded-full flex items-center justify-center text-pew-dark shadow-2xl">
+                                        <i data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-8 md:p-10">
+                                <h3 class="font-serif text-3xl font-bold text-pew-dark mb-3 group-hover:text-[#005587] transition-colors">${safeTitle}</h3>
+                                <p class="text-gray-500 font-serif text-lg">${safeExcerpt}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                else if (cat === 'blog' && containers['blog']) {
+                    containers['blog'].innerHTML += `
+                        <article class="blog-card border-b border-gray-200 pb-10 cursor-pointer group flex flex-col md:flex-row gap-7 reveal visible" onclick="openArticle('${slug}')">
+                            <div class="blog-card-img w-full md:w-[220px] aspect-[4/3] bg-gray-100 border border-gray-200 flex-shrink-0">
+                                <img src="${cover}" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-2.5 font-sans">${safeTag}</span>
+                                <h3 class="text-xl md:text-2xl font-serif font-bold text-pew-dark blog-title-link mb-3 leading-snug">${safeTitle}</h3>
+                                <p class="text-gray-500 font-serif text-[15px] leading-relaxed text-justify-force">${safeExcerpt}</p>
+                            </div>
+                        </article>
+                    `;
+                }
+            }
+            if(typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function initPage() {
+            if(typeof updateLanguage === 'function') updateLanguage();
+            // Keep the currently active nav instead of forcing HOME
+            const currentView = document.querySelector('.page-view.active');
+            const viewId = currentView ? currentView.id : 'view-home';
+            if(typeof updateNavIndicator === 'function') updateNavIndicator(viewId);
+            if(typeof checkReveal === 'function') setTimeout(checkReveal, 200);
+            if(typeof animateCounters === 'function') setTimeout(animateCounters, 600);
+        }
 
         // ─── FETCH ON LOAD ───
         window.addEventListener('load', () => {
@@ -2245,9 +2534,25 @@
         function loadGiscus() {
             const container = document.getElementById('giscus-comments');
             if (!container || container.dataset.loaded) return;
-            container.dataset.loaded = '1';
             if (SITE_CONFIG.giscusRepoId === 'R_kg_CHANGE_ME') return;
-            container.innerHTML = '<script src="https://giscus.app/client.js" data-repo="' + SITE_CONFIG.githubRepo + '" data-repo-id="' + SITE_CONFIG.giscusRepoId + '" data-category="Announcements" data-category-id="' + SITE_CONFIG.giscusCategoryId + '" data-mapping="specific" data-term="' + currentArticleId + '" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async><\/script>';
+            container.dataset.loaded = '1';
+            container.innerHTML = '';
+            var script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', SITE_CONFIG.githubRepo);
+            script.setAttribute('data-repo-id', SITE_CONFIG.giscusRepoId);
+            script.setAttribute('data-category', 'Announcements');
+            script.setAttribute('data-category-id', SITE_CONFIG.giscusCategoryId);
+            script.setAttribute('data-mapping', 'specific');
+            script.setAttribute('data-term', currentArticleId);
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'bottom');
+            script.setAttribute('data-theme', 'preferred_color_scheme');
+            script.setAttribute('data-lang', currentLang === 'zh' ? 'zh-CN' : 'en');
+            script.crossOrigin = 'anonymous';
+            script.async = true;
+            container.appendChild(script);
         }
 
         // ─── LIKES ───

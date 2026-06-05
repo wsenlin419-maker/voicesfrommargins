@@ -1570,10 +1570,14 @@
                     }
 
                     if (typeof ref === 'string' && ref.startsWith('http')) {
-                        if (ref.includes('github.com') && ref.includes('/blob/')) {
-                            return ref.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+                        var clean = ref.replace(/[\\"]+$/, '').replace(/\\/g, '').trim();
+                        if (clean.includes('github.com') && clean.includes('/blob/')) {
+                            clean = clean.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
                         }
-                        return ref;
+                        if (!clean.includes('?raw=true') && clean.includes('raw.githubusercontent.com')) {
+                            clean += '?raw=true';
+                        }
+                        return clean;
                     }
 
                     return 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800';

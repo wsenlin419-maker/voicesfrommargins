@@ -33,11 +33,11 @@
                     },
                     colors: {
                         pew: {
-                            dark: '#1a1a1a',
-                            border: '#d1d5db',
-                            accent: '#cc1414',
-                            subtle: '#555555',
-                            bg: '#ffffff'
+                            dark: '#2d2d2d',
+                            border: '#e8e5e0',
+                            accent: '#b8453a',
+                            subtle: '#6b6b6b',
+                            bg: '#faf9f6'
                         }
                     }
                 }
@@ -47,16 +47,16 @@
 
     <style>
         :root {
-            --blue: #005587;
-            --red: #cc1414;
-            --dark: #1a1a1a;
-            --subtle: #555555;
-            --bg: #ffffff;
-            --bg-alt: #f8f9fa;
+            --blue: #003d5c;
+            --red: #b8453a;
+            --dark: #2d2d2d;
+            --subtle: #6b6b6b;
+            --bg: #faf9f6;
+            --bg-alt: #f3f1ec;
             --bg-card: #ffffff;
-            --border: #e5e7eb;
-            --text: #1a1a1a;
-            --text-muted: #555555;
+            --border: #e8e5e0;
+            --text: #2d2d2d;
+            --text-muted: #6b6b6b;
             --transition-speed: 0.35s;
         }
         html.dark {
@@ -110,7 +110,7 @@
         html.dark input { color: var(--text) !important; }
         html.dark .bg-\[\\#f0f5fa\] { background-color: #1c2833 !important; }
         html.dark .hover\:bg-white:hover { background-color: var(--bg-card) !important; }
-        html.dark .from-\[\\#005587\] { --tw-gradient-from: var(--blue) !important; }
+        html.dark .from-\[\\#003d5c\] { --tw-gradient-from: var(--blue) !important; }
         html.dark #article-modal,
         html.dark #legal-content,
         html.dark #inquiry-content { background-color: var(--bg-card) !important; }
@@ -144,7 +144,7 @@
         html.dark .bg-\[\#f0f5fa\] { background: #1c2833 !important; }
 
         html { scroll-behavior: smooth; overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
-        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; font-kerning: normal; transition: background-color 0.35s ease, color 0.35s ease; }
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; font-kerning: normal;  }
 
         body::before {
             content: '';
@@ -165,8 +165,8 @@
 
         .hero-grid-bg {
             background-image:
-                linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+                linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
             background-size: 48px 48px;
         }
 
@@ -230,9 +230,9 @@
             transition: transform 0.35s ease;
         }
         .research-card:hover::before { transform: scaleY(1); }
-        .research-card:hover { transform: translateX(6px); }
+        .research-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
 
-        .blog-card-img { overflow: hidden; }
+        .blog-card-img { overflow: hidden; border-radius: 2px; }
         .blog-card-img img {
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
             filter: grayscale(15%);
@@ -249,9 +249,9 @@
             text-underline-offset: 4px;
             transition: text-decoration-color 0.3s ease;
         }
-        .blog-card:hover .blog-title-link { text-decoration-color: var(--red); }
+        .blog-card:hover .blog-title-link { text-decoration-color: var(--blue); }
 
-        .featured-img-wrap { overflow: hidden; position: relative; }
+        .featured-img-wrap { overflow: hidden; position: relative; border-radius: 2px; }
         .featured-img-wrap img {
             transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -266,7 +266,7 @@
         .pull-quote {
             position: relative;
             padding: 2rem 2rem 2rem 3rem;
-            background: #f8f9fa;
+            background: #f3f1ec;
             border-left: 4px solid var(--blue);
         }
         .pull-quote::before {
@@ -302,7 +302,7 @@
             display: block;
             width: 2rem;
             height: 1px;
-            background: currentColor;
+            background: currentColor; opacity: 0.5;
         }
 
         .highlight-tag {
@@ -373,7 +373,7 @@
         .nav-item:not(.active):hover { color: var(--dark); }
 
         .page-header {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            background: linear-gradient(135deg, #f3f1ec 0%, #faf9f6 100%);
             border-bottom: 1px solid #e5e7eb;
             position: relative;
             overflow: hidden;
@@ -392,12 +392,36 @@
 
         .subscribe-input:focus { outline: none; box-shadow: 0 0 0 2px var(--blue); }
 
+
+        /* Ethnic textile patterns for article pages */
+        .article-pattern-miao { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l30 30-30 30L0 30z' fill='none' stroke='%23003d5c' stroke-width='0.5' opacity='0.08'/%3E%3Cpath d='M15 15l30 30M45 15L15 45' stroke='%23003d5c' stroke-width='0.3' opacity='0.06'/%3E%3C/svg%3E"); }
+        .article-pattern-zhuang { background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20l20-20 20 20-20 20z' fill='none' stroke='%23b8453a' stroke-width='0.4' opacity='0.07'/%3E%3Ccircle cx='20' cy='20' r='1.5' fill='%23b8453a' opacity='0.08'/%3E%3C/svg%3E"); }
+        .article-pattern-tibetan { background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 40h20v-20h20v20h20v20h-20v20h-20v-20H0zM40 0h20v20h20v20h-20v20h-20V40H20V20h20z' fill='none' stroke='%23003d5c' stroke-width='0.4' opacity='0.07'/%3E%3C/svg%3E"); }
+        .article-pattern-uyghur { background-image: url("data:image/svg+xml,%3Csvg width='50' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M25 5C25 5 10 15 10 25s5 20 15 20s15-10 15-20S25 5 25 5z' fill='none' stroke='%236b6b6b' stroke-width='0.4' opacity='0.07'/%3E%3Cpath d='M25 45c0 0 15-10 15-20s-5-20-15-20' fill='none' stroke='%236b6b6b' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E"); }
+        .article-pattern-mongol { background-image: url("data:image/svg+xml,%3Csvg width='70' height='40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 Q17.5 5 35 20 T70 20' fill='none' stroke='%23003d5c' stroke-width='0.5' opacity='0.07'/%3E%3Cpath d='M0 30 Q17.5 15 35 30 T70 30' fill='none' stroke='%23003d5c' stroke-width='0.4' opacity='0.06'/%3E%3C/svg%3E"); }
+
+
+        /* Ethnic textile patterns for article pages */
+        .article-pattern-miao { background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23b8b0a4' fill='none' opacity='0.14'%3E%3Cpath d='M40 0l40 40-40 40L0 40z' stroke-width='0.6'/%3E%3Cpath d='M20 20l40 40' stroke-width='0.3'/%3E%3Cpath d='M60 20L20 60' stroke-width='0.3'/%3E%3Cpath d='M40 10l-30 30' stroke-width='0.2'/%3E%3Cpath d='M70 40l-30 30' stroke-width='0.2'/%3E%3Ccircle cx='40' cy='40' r='3' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E"); }
+        .article-pattern-zhuang { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23b8b0a4' fill='none' opacity='0.14'%3E%3Cpath d='M0 30l30-30 30 30-30 30z' stroke-width='0.6'/%3E%3Cpath d='M15 15l30 30M45 15L15 45' stroke-width='0.25'/%3E%3Ccircle cx='30' cy='30' r='2' stroke-width='0.4'/%3E%3Ccircle cx='15' cy='45' r='1.5' stroke-width='0.3'/%3E%3Ccircle cx='45' cy='45' r='1.5' stroke-width='0.3'/%3E%3C/g%3E%3C/svg%3E"); }
+        .article-pattern-tibetan { background-image: url("data:image/svg+xml,%3Csvg width='100' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23b8b0a4' fill='none' opacity='0.13'%3E%3Cpath d='M10 10h30v40H10zM60 10h30v40H60z' stroke-width='0.5'/%3E%3Cpath d='M25 10v40M75 10v40' stroke-width='0.3'/%3E%3Cpath d='M10 30h80' stroke-width='0.2'/%3E%3Ccircle cx='50' cy='30' r='5' stroke-width='0.5'/%3E%3Ccircle cx='50' cy='30' r='2' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E"); }
+        .article-pattern-uyghur { background-image: url("data:image/svg+xml,%3Csvg width='70' height='70' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23b8b0a4' fill='none' opacity='0.14'%3E%3Cpath d='M35 5c15 10 25 25 25 30s-10 30-25 30S10 55 10 35s10-30 25-30z' stroke-width='0.5'/%3E%3Cpath d='M35 15c10 5 15 15 15 20s-5 20-15 20-15-10-15-20 5-20 15-20z' stroke-width='0.35'/%3E%3Cpath d='M20 35h30' stroke-width='0.2'/%3E%3Cpath d='M35 20v30' stroke-width='0.2'/%3E%3Ccircle cx='35' cy='35' r='2.5' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E"); }
+        .article-pattern-mongol { background-image: url("data:image/svg+xml,%3Csvg width='90' height='50' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23b8b0a4' fill='none' opacity='0.14'%3E%3Cpath d='M0 25 Q22.5 8 45 25 T90 25' stroke-width='0.6'/%3E%3Cpath d='M0 35 Q22.5 18 45 35 T90 35' stroke-width='0.5'/%3E%3Cpath d='M10 15 Q32.5-2 55 15' stroke-width='0.3'/%3E%3Cpath d='M35 45 Q57.5 28 80 45' stroke-width='0.3'/%3E%3Ccircle cx='45' cy='25' r='3' stroke-width='0.4'/%3E%3Ccircle cx='22' cy='35' r='2' stroke-width='0.3'/%3E%3Ccircle cx='68' cy='35' r='2' stroke-width='0.3'/%3E%3C/g%3E%3C/svg%3E"); }
+
+
+        /* Ethnic textile patterns for article pages */
+        .article-pattern-miao { background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23a09888' fill='none' opacity='0.20'%3E%3Cpath d='M60 0l60 60-60 60L0 60z' stroke-width='0.8'/%3E%3Cpath d='M30 30l60 60M90 30L30 90' stroke-width='0.5'/%3E%3Cpath d='M60 15l-45 45M105 60l-45 45' stroke-width='0.35'/%3E%3Cpath d='M15 60l45-45M60 105l45-45' stroke-width='0.35'/%3E%3Ccircle cx='60' cy='60' r='5' stroke-width='0.6'/%3E%3Ccircle cx='60' cy='60' r='10' stroke-width='0.3'/%3E%3Ccircle cx='30' cy='30' r='3' stroke-width='0.4'/%3E%3Ccircle cx='90' cy='90' r='3' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E"); }
+        .article-pattern-zhuang { background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23a09888' fill='none' opacity='0.20'%3E%3Cpath d='M0 50L50 0l50 50-50 50z' stroke-width='0.8'/%3E%3Cpath d='M25 25l50 50M75 25L25 75' stroke-width='0.45'/%3E%3Cpath d='M12 50l38-38M88 50L50 88' stroke-width='0.3'/%3E%3Cpath d='M50 12l38 38M50 88L12 50' stroke-width='0.3'/%3E%3Ccircle cx='50' cy='50' r='4' stroke-width='0.6'/%3E%3Ccircle cx='25' cy='50' r='2.5' stroke-width='0.4'/%3E%3Ccircle cx='75' cy='50' r='2.5' stroke-width='0.4'/%3E%3Ccircle cx='50' cy='25' r='2.5' stroke-width='0.4'/%3E%3Ccircle cx='50' cy='75' r='2.5' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E"); }
+        .article-pattern-tibetan { background-image: url("data:image/svg+xml,%3Csvg width='120' height='80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23a09888' fill='none' opacity='0.19'%3E%3Cpath d='M15 15h40v50H15zM65 15h40v50H65z' stroke-width='0.7'/%3E%3Cpath d='M27 27h16v26H27zM77 27h16v26H77z' stroke-width='0.5'/%3E%3Cpath d='M15 40h90M15 50h90' stroke-width='0.2'/%3E%3Ccircle cx='60' cy='40' r='7' stroke-width='0.7'/%3E%3Ccircle cx='60' cy='40' r='12' stroke-width='0.35'/%3E%3Ccircle cx='60' cy='40' r='3' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E"); }
+        .article-pattern-uyghur { background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23a09888' fill='none' opacity='0.20'%3E%3Cpath d='M50 10c20 12 30 30 30 40s-10 40-30 40S20 78 20 50s10-40 30-40z' stroke-width='0.7'/%3E%3Cpath d='M50 25c12 6 18 18 18 25s-6 25-18 25-18-12-18-25 6-25 18-25z' stroke-width='0.5'/%3E%3Cpath d='M50 40c6 3 8 8 8 10s-2 10-8 10-8-5-8-10 2-10 8-10z' stroke-width='0.4'/%3E%3Cpath d='M25 50h50M50 25v50' stroke-width='0.2'/%3E%3Ccircle cx='50' cy='50' r='3' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E"); }
+        .article-pattern-mongol { background-image: url("data:image/svg+xml,%3Csvg width='120' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='%23a09888' fill='none' opacity='0.20'%3E%3Cpath d='M0 30 Q30 10 60 30 T120 30' stroke-width='0.8'/%3E%3Cpath d='M0 40 Q30 20 60 40 T120 40' stroke-width='0.7'/%3E%3Cpath d='M10 20 Q40 0 70 20 T120 20' stroke-width='0.4'/%3E%3Cpath d='M10 48 Q40 28 70 48 T120 48' stroke-width='0.3'/%3E%3Ccircle cx='60' cy='30' r='5' stroke-width='0.5'/%3E%3Ccircle cx='90' cy='35' r='3' stroke-width='0.4'/%3E%3Ccircle cx='30' cy='35' r='3' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E"); }
+
         /* ===== ARTICLE PAGE ===== */
         .article-sticky-bar {
             position: sticky;
             top: 50px;
             z-index: 20;
-            background: rgba(255,255,255,0.92);
+            background: rgba(250,249,246,0.94);
             backdrop-filter: blur(8px);
             border-bottom: 1px solid #e5e7eb;
         }
@@ -425,7 +449,7 @@
 
         .like-btn { transition: transform 0.2s ease, color 0.2s ease; user-select: none; }
         .like-btn:active { transform: scale(1.3); }
-        .like-btn.liked { color: #cc1414; }
+        .like-btn.liked { color: #b8453a; }
         .article-share-btn {
             transition: all 0.2s ease;
             width: 36px; height: 36px;
@@ -467,7 +491,7 @@
         }
 
         /* ===== INTERACTIVE MAPS ===== */
-        #map-section { background: #fafbfc; }
+        #map-section { }
         .map-tab {
             padding: 0.6rem 1.5rem;
             font-size: 12px;
@@ -484,7 +508,6 @@
         .map-tab.active { color: var(--dark); border-bottom-color: var(--dark); }
         .map-tab:hover { color: var(--dark); }
         #map-container { height: 520px; width: 100%; background: #f0f2f5; border-radius: 2px; }
-        #map-container .leaflet-container { background: #f0f2f5; }
         .map-legend {
             background: white;
             padding: 12px 16px;
@@ -505,6 +528,18 @@
             font-family: 'Inter', 'Noto Sans SC', sans-serif;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
+        .map-col-title {
+            font-size: 14px; font-weight: 600; letter-spacing: 0.05em;
+            color: #374151; margin-bottom: 8px; padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .map-box { height: 500px; width: 100%; position: relative; }
+        .map-legend-row {
+            display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px;
+            font-size: 11px; color: #6b7280;
+        }
+        .map-legend-row span { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .map-legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 1.5px; flex-shrink: 0; }
 
         /* ===== MOBILE MENU ===== */
         #mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
@@ -554,8 +589,7 @@
             100% { background-position: 200% 0; }
         }
     </style>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col relative">
@@ -584,12 +618,12 @@
         <div class="max-w-7xl mx-auto flex justify-between items-center text-[10px] md:text-[11px] font-bold tracking-[0.15em] uppercase font-sans">
             <span class="block" data-en="PRESERVING ENDANGERED VOICES" data-zh="守护濒危之声">PRESERVING ENDANGERED VOICES</span>
             <div class="flex space-x-4 md:space-x-6 items-center">
-                <button onclick="scrollToFeatured()" class="hover:text-gray-300 transition-colors uppercase cursor-pointer hidden sm:block" data-en="NEWSLETTERS" data-zh="NEWSLETTERS">NEWSLETTERS</button>
-                <a href="#footer-section" class="hover:text-gray-300 transition-colors uppercase hidden sm:block" data-en="CONTACT" data-zh="CONTACT">CONTACT</a>
+                <button onclick="scrollToFeatured()" class="hover:text-gray-300 transition-colors uppercase cursor-pointer hidden sm:block" data-en="NEWSLETTERS" data-zh="简报订阅">NEWSLETTERS</button>
+                <a href="#footer-section" class="hover:text-gray-300 transition-colors uppercase hidden sm:block" data-en="CONTACT" data-zh="联系我们">CONTACT</a>
                 <button onclick="toggleDark()" class="hover:text-gray-300 transition-colors cursor-pointer w-7 h-7 flex items-center justify-center" title="Toggle dark mode" id="dark-toggle" aria-label="Dark mode toggle">
                     <i data-lucide="moon" class="w-3.5 h-3.5"></i>
                 </button>
-                <button onclick="toggleLang()" id="lang-label-top" class="hover:text-gray-300 transition-colors cursor-pointer text-[#cc1414]">CHINESE</button>
+                <button onclick="toggleLang()" id="lang-label-top" class="hover:text-gray-300 transition-colors cursor-pointer text-[#b8453a]">CHINESE</button>
             </div>
         </div>
     </div>
@@ -598,7 +632,7 @@
     <header class="bg-white z-40 relative pt-7 pb-6 px-6 lg:px-12 border-b border-gray-100">
         <div class="max-w-7xl mx-auto flex justify-between items-center w-full">
             <div class="flex items-center cursor-pointer group" onclick="navigateTo('view-home')">
-                <svg class="w-10 h-10 md:w-11 md:h-11 mr-3 md:mr-4 text-pew-dark group-hover:text-[#005587] transition-colors duration-300 flex-shrink-0" viewBox="0 0 100 100" fill="currentColor">
+                <svg class="w-10 h-10 md:w-11 md:h-11 mr-3 md:mr-4 text-pew-dark group-hover:text-[#003d5c] transition-colors duration-300 flex-shrink-0" viewBox="0 0 100 100" fill="currentColor">
                     <circle cx="20" cy="50" r="8" />
                     <circle cx="45" cy="30" r="6" />
                     <circle cx="45" cy="70" r="6" />
@@ -621,29 +655,29 @@
             <div class="hidden lg:flex flex-col items-end relative">
                 <div class="text-[13px] text-gray-600 mb-2.5 font-sans">
                     <span class="text-gray-400 font-medium" data-en="Explore:" data-zh="探索:">Explore:</span>
-                    <button onclick="navigateTo('view-research')" class="text-[#005587] hover:underline ml-2 font-semibold transition-colors" data-en="Linguistics" data-zh="语言学研究">Linguistics</button>
+                    <button onclick="navigateTo('view-research')" class="text-[#003d5c] hover:underline ml-2 font-semibold transition-colors" data-en="Linguistics" data-zh="语言学研究">Linguistics</button>
                     <span class="text-gray-200 px-2">|</span>
-                    <button onclick="navigateTo('view-data')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Media" data-zh="媒体与数据">Media</button>
+                    <button onclick="navigateTo('view-data')" class="text-[#003d5c] hover:underline font-semibold transition-colors" data-en="Media" data-zh="媒体与数据">Media</button>
                     <span class="text-gray-200 px-2">|</span>
-                    <button onclick="navigateTo('view-blog')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Blog" data-zh="博客">Blog</button>
+                    <button onclick="navigateTo('view-blog')" class="text-[#003d5c] hover:underline font-semibold transition-colors" data-en="Blog" data-zh="博客">Blog</button>
                 </div>
-                <form onsubmit="handleHeaderSearch(event)" class="flex w-[340px] border border-gray-300 hover:border-gray-500 focus-within:border-[#005587] transition-colors bg-white shadow-sm">
+                <form onsubmit="handleHeaderSearch(event)" class="flex w-[340px] border border-gray-300 hover:border-gray-500 focus-within:border-[#003d5c] transition-colors bg-white shadow-sm">
                     <input type="text" id="header-search-input" placeholder="Search marginsandmeaning.org..." class="w-full px-4 py-2.5 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
-                    <button type="submit" class="bg-[#1a1a1a] hover:bg-[#005587] transition-colors text-white px-5 py-2 border-l border-gray-300 flex items-center justify-center">
+                    <button type="submit" class="bg-[#2d2d2d] hover:bg-[#003d5c] transition-colors text-white px-5 py-2 border-l border-gray-300 flex items-center justify-center">
                         <i data-lucide="search" class="w-4 h-4"></i>
                     </button>
                 </form>
                 <div id="search-dropdown" class="absolute top-full right-0 w-[400px] bg-white border border-gray-200 mt-1 hidden z-50 flex-col max-h-[400px] overflow-y-auto"></div>
             </div>
 
-            <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-[#005587] transition-colors p-2">
+            <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-[#003d5c] transition-colors p-2">
                 <i data-lucide="search" class="w-7 h-7"></i>
             </button>
         </div>
     </header>
 
     <!-- NAVIGATION -->
-    <nav class="bg-white sticky top-0 z-30 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+    <nav class="bg-white sticky top-0 z-30 shadow-[0_1px_4px_rgba(0,0,0,0.05)]">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
             <div id="nav-track" class="nav-track flex items-center lg:justify-center overflow-x-auto hide-scrollbar text-[11.5px] font-sans font-semibold uppercase tracking-[0.12em] h-[50px] gap-6 lg:gap-10 border-b border-gray-100">
 
@@ -717,17 +751,22 @@
             </div>
 
             <!-- INTERACTIVE MAPS -->
-            <div id="map-section" class="py-20">
+            <div id="map-section" class="py-28">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                    <div class="flex items-center justify-between mb-8 reveal">
-                        <div class="section-label" data-en="Language & Ethnicity Map" data-zh="语言与民族地图">Language & Ethnicity Map</div>
-                        <div class="flex gap-0 border-b border-gray-200">
-                            <button class="map-tab active" onclick="switchMap('dialect')" data-en="Dialect Regions" data-zh="方言区域">Dialect Regions</button>
-                            <button class="map-tab" onclick="switchMap('ethnic')" data-en="Ethnic Minorities" data-zh="少数民族">Ethnic Minorities</button>
+                    <div class="section-label mb-3 reveal" data-en="Language & Ethnicity Map" data-zh="语言与民族地图">Language & Ethnicity Map</div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 reveal">
+                        <div>
+                            <div class="map-col-title" data-en="Dialect Regions" data-zh="方言区域">Dialect Regions</div>
+                            <div id="map-dialect" class="map-box"></div>
+                            <div id="legend-dialect" class="map-legend-row"></div>
+                        </div>
+                        <div>
+                            <div class="map-col-title" data-en="Ethnic Minorities" data-zh="少数民族">Ethnic Minorities</div>
+                            <div id="map-ethnic" class="map-box"></div>
+                            <div id="legend-ethnic" class="map-legend-row"></div>
                         </div>
                     </div>
-                    <div id="map-container" class="reveal"></div>
-                    <p class="text-[12px] text-gray-400 mt-4 font-sans text-center" data-en="Hover over regions for details. Data sourced from academic linguistic surveys." data-zh="悬停区域查看详情。数据来源于学术语言调查。">Hover over regions for details. Data sourced from academic linguistic surveys.</p>
+                    <p class="text-[12px] text-gray-400 mt-10 font-sans text-center reveal" data-en="Hover over regions for details. Data sourced from academic linguistic surveys." data-zh="悬停区域查看详情。数据来源于学术语言调查。">Hover over regions for details. Data sourced from academic linguistic surveys.</p>
                 </div>
             </div>
 
@@ -735,7 +774,7 @@
             <div class="max-w-7xl mx-auto px-6 lg:px-12 py-24">
                 <div class="flex items-center justify-between mb-10 reveal">
                     <div class="section-label" data-en="Latest from the Blog" data-zh="最新动态">Latest from the Blog</div>
-                    <button onclick="navigateTo('view-blog')" class="text-[12px] font-bold uppercase tracking-widest text-[#005587] hover:text-pew-dark transition-colors flex items-center gap-1.5" data-en="View All" data-zh="查看全部">View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    <button onclick="navigateTo('view-blog')" class="text-[12px] font-bold uppercase tracking-widest text-[#003d5c] hover:text-pew-dark transition-colors flex items-center gap-1.5" data-en="View All" data-zh="查看全部">View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="home-blog-cards">
                     <!-- Dynamically filled from CMS -->
@@ -808,7 +847,7 @@
                                 <div class="section-label mb-3" data-en="Dataset Overview" data-zh="数据集概览">Dataset Overview</div>
                                 <h3 class="font-serif text-3xl font-bold text-pew-dark" data-en="Faces vs. Steel: Visual Framing Dataset" data-zh="面孔与钢铁：视觉政治量化数据集">Faces vs. Steel: Visual Framing Dataset</h3>
                             </div>
-                            <button onclick="openArticle('project-faces')" class="text-[11px] font-bold uppercase tracking-widest border border-[#005587] text-[#005587] px-4 py-2 hover:bg-[#005587] hover:text-white transition-colors whitespace-nowrap" data-en="Full Research →" data-zh="查看研究 →">Full Research →</button>
+                            <button onclick="openArticle('project-faces')" class="text-[11px] font-bold uppercase tracking-widest border border-[#003d5c] text-[#003d5c] px-4 py-2 hover:bg-[#003d5c] hover:text-white transition-colors whitespace-nowrap" data-en="Full Research →" data-zh="查看研究 →">Full Research →</button>
                         </div>
                     </div>
 
@@ -837,43 +876,43 @@
                             <div>
                                 <div class="flex justify-between text-[12px] font-sans mb-1.5">
                                     <span class="font-semibold text-gray-700" data-en="Western — 'Pure Objects / Steel'" data-zh="西方媒体 — 纯粹物体/钢铁">Western — 'Pure Objects / Steel'</span>
-                                    <span class="font-bold text-[#005587]">~77%</span>
+                                    <span class="font-bold text-[#003d5c]">~77%</span>
                                 </div>
                                 <div class="h-6 bg-gray-100 rounded-sm overflow-hidden">
-                                    <div class="bar-fill h-full bg-[#005587] rounded-sm" style="--target-width: 77%;"></div>
+                                    <div class="bar-fill h-full bg-[#003d5c] rounded-sm" style="--target-width: 77%;"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between text-[12px] font-sans mb-1.5">
                                     <span class="font-semibold text-gray-700" data-en="Western — 'Human Focus / Faces'" data-zh="西方媒体 — 人的焦点/面孔">Western — 'Human Focus / Faces'</span>
-                                    <span class="font-bold text-[#005587]">~23%</span>
+                                    <span class="font-bold text-[#003d5c]">~23%</span>
                                 </div>
                                 <div class="h-6 bg-gray-100 rounded-sm overflow-hidden">
-                                    <div class="bar-fill h-full bg-[#005587] opacity-40 rounded-sm" style="--target-width: 23%;"></div>
+                                    <div class="bar-fill h-full bg-[#003d5c] opacity-40 rounded-sm" style="--target-width: 23%;"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between text-[12px] font-sans mb-1.5">
                                     <span class="font-semibold text-gray-700" data-en="Chinese — 'Pure Objects / Steel'" data-zh="中国媒体 — 纯粹物体/钢铁">Chinese — 'Pure Objects / Steel'</span>
-                                    <span class="font-bold text-[#cc1414]">~17%</span>
+                                    <span class="font-bold text-[#b8453a]">~17%</span>
                                 </div>
                                 <div class="h-6 bg-gray-100 rounded-sm overflow-hidden">
-                                    <div class="bar-fill h-full bg-[#cc1414] opacity-40 rounded-sm" style="--target-width: 17%;"></div>
+                                    <div class="bar-fill h-full bg-[#b8453a] opacity-40 rounded-sm" style="--target-width: 17%;"></div>
                                 </div>
                             </div>
                             <div>
                                 <div class="flex justify-between text-[12px] font-sans mb-1.5">
                                     <span class="font-semibold text-gray-700" data-en="Chinese — 'Human Warmth / Faces'" data-zh="中国媒体 — 人的温度/面孔">Chinese — 'Human Warmth / Faces'</span>
-                                    <span class="font-bold text-[#cc1414]">~83%</span>
+                                    <span class="font-bold text-[#b8453a]">~83%</span>
                                 </div>
                                 <div class="h-6 bg-gray-100 rounded-sm overflow-hidden">
-                                    <div class="bar-fill h-full bg-[#cc1414] rounded-sm" style="--target-width: 83%;"></div>
+                                    <div class="bar-fill h-full bg-[#b8453a] rounded-sm" style="--target-width: 83%;"></div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="mt-10 bg-[#f0f5fa] border-l-4 border-[#005587] p-5">
-                            <p class="text-[11px] font-bold uppercase tracking-widest text-[#005587] mb-2 font-sans" data-en="Key Finding" data-zh="核心发现">Key Finding</p>
+                        <div class="mt-10 bg-[#f0f5fa] border-l-4 border-[#003d5c] p-5">
+                            <p class="text-[11px] font-bold uppercase tracking-widest text-[#003d5c] mb-2 font-sans" data-en="Key Finding" data-zh="核心发现">Key Finding</p>
                             <p class="font-serif text-[17px] text-gray-700 leading-relaxed" data-en="Images in international reporting are not objective reflections of reality, but carefully curated political instruments designed to dictate the boundaries of global perception." data-zh="国际报道中的图像绝非客观现实的镜像，而是被精密策划的政治工具，旨在规训全球受众的认知边界。">
                                 Images in international reporting are not objective reflections of reality, but carefully curated political instruments designed to dictate the boundaries of global perception.
                             </p>
@@ -930,9 +969,9 @@
                             <div class="mt-6 border border-gray-200 p-6 bg-white">
                                 <p class="text-[11px] font-bold uppercase tracking-widest text-pew-dark mb-3 font-sans" data-en="Stay Informed" data-zh="订阅简报">Stay Informed</p>
                                 <p class="text-[13px] text-gray-500 font-serif mb-4" data-en="Get new research and updates delivered." data-zh="接收最新研究与动态。">Get new research and updates delivered.</p>
-                                <form onsubmit="handleSubscribe(event, 'sidebar-sub-btn')" class="flex border border-gray-300 focus-within:border-[#005587] transition-colors">
+                                <form onsubmit="handleSubscribe(event, 'sidebar-sub-btn')" class="flex border border-gray-300 focus-within:border-[#003d5c] transition-colors">
                                     <input type="email" placeholder="Email..." class="flex-1 px-3 py-2 text-[13px] outline-none placeholder-gray-300 bg-white" required>
-                                    <button type="submit" id="sidebar-sub-btn" class="px-3 py-2 bg-[#1a1a1a] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-[#005587] transition-colors">Go</button>
+                                    <button type="submit" id="sidebar-sub-btn" class="px-3 py-2 bg-[#2d2d2d] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-[#003d5c] transition-colors">Go</button>
                                 </form>
                             </div>
                         </div>
@@ -955,7 +994,7 @@
                     <p class="text-3xl md:text-4xl font-serif text-pew-dark leading-relaxed mb-10 font-light" data-en="Founded April 25, 2026, Margins &amp; Meaning is an independent research initiative dedicated to documenting and revitalizing endangered languages, while examining how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality." data-zh="「边缘与意义」创立于2026年4月25日，是一个独立的青年研究平台。我们致力于濒危语言的记录与复兴，同时探讨边缘群体如何被语言与叙事所塑造，以及这些微观过程如何转化为结构性不平等。">
                         Founded April 25, 2026, Margins &amp; Meaning is an independent research initiative dedicated to documenting and revitalizing endangered languages, while examining how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality.
                     </p>
-                    <div class="h-px bg-gradient-to-r from-[#005587] via-gray-200 to-transparent mb-8"></div>
+                    <div class="h-px bg-gradient-to-r from-[#003d5c] via-gray-200 to-transparent mb-8"></div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-serif text-[18px] text-gray-600 leading-relaxed">
                         <p data-en="The project is grounded in the belief that inequality is not only material, but also discursive: it is produced, reinforced, and contested through the ways people speak, are represented, and are heard." data-zh="本项目基于这样一个核心理念：不平等不仅是物质层面的，更是话语层面的。不平等通过人们说话、被表征以及被倾听的方式不断被生产、强化与抗争。">
                             The project is grounded in the belief that inequality is not only material, but also discursive: it is produced, reinforced, and contested through the ways people speak, are represented, and are heard.
@@ -970,12 +1009,12 @@
                     <div class="section-label mb-6" data-en="Areas of Focus" data-zh="研究领域">Areas of Focus</div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-200">
                         <div class="p-7 border-b md:border-b-0 md:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
-                            <div class="w-8 h-0.5 bg-[#005587] mb-5"></div>
+                            <div class="w-8 h-0.5 bg-[#003d5c] mb-5"></div>
                             <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Language & Identity" data-zh="语言与身份">Language & Identity</h4>
                             <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="Linguistic hybridity and identity formation in historically marginalized regions." data-zh="历史边缘地区的语言杂糅与身份认同建构。">Linguistic hybridity and identity formation in historically marginalized regions.</p>
                         </div>
                         <div class="p-7 border-b md:border-b-0 md:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
-                            <div class="w-8 h-0.5 bg-[#cc1414] mb-5"></div>
+                            <div class="w-8 h-0.5 bg-[#b8453a] mb-5"></div>
                             <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Media & Narrative" data-zh="媒体与叙事">Media & Narrative</h4>
                             <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="Narrative framing and representation in China–Africa media contexts." data-zh="中非媒体语境中的叙事框架与视觉表征。">Narrative framing and visual representation in China–Africa media contexts.</p>
                         </div>
@@ -1002,7 +1041,7 @@
                                 <img src="https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true" class="profile-photo w-full h-full object-cover" alt="Senlin Wang">
                             </div>
                             <h4 class="font-serif text-2xl font-bold text-pew-dark text-center" data-en="Senlin Wang" data-zh="王森林">Senlin Wang</h4>
-                            <p class="text-[11px] font-bold text-[#cc1414] uppercase tracking-widest text-center mt-1" data-en="Founder" data-zh="创始人">Founder</p>
+                            <p class="text-[11px] font-bold text-[#b8453a] uppercase tracking-widest text-center mt-1" data-en="Founder" data-zh="创始人">Founder</p>
                         </div>
                         <div class="flex-1">
                             <p class="font-serif text-[17px] text-gray-600 leading-relaxed text-justify-force" data-en="Senlin Wang is the founder of Margins &amp; Meaning. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="王森林是「边缘与意义」的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
@@ -1017,7 +1056,7 @@
                                 <img src="https://github.com/wsenlin419-maker/picture/blob/main/%E6%98%9F%E5%AE%87%E7%85%A7%E7%89%87.jpg?raw=true" class="profile-photo w-full h-full object-cover" alt="Xingyu Zhang">
                             </div>
                             <h4 class="font-serif text-2xl font-bold text-pew-dark text-center" data-en="Xingyu Zhang" data-zh="张星宇">Xingyu Zhang</h4>
-                            <p class="text-[11px] font-bold text-[#cc1414] uppercase tracking-widest text-center mt-1" data-en="Research Associate" data-zh="研究助理">Research Associate</p>
+                            <p class="text-[11px] font-bold text-[#b8453a] uppercase tracking-widest text-center mt-1" data-en="Research Associate" data-zh="研究助理">Research Associate</p>
                         </div>
                         <div class="flex-1">
                             <p class="font-serif text-[17px] text-gray-600 leading-relaxed text-justify-force" data-en="Xingyu Zhang is a member of Margins &amp; Meaning. She is from Capital University of Economics and Business and her work focuses on Cross cultural communication, language and promotion." data-zh="张星宇是「边缘与意义」的核心成员。她来自首都经济贸易大学，研究工作主要聚焦于跨文化传播、语言策略以及文化推广等领域。">
@@ -1055,7 +1094,7 @@
 
             <div class="max-w-6xl mx-auto px-4 lg:px-16 pt-10">
                 <!-- Article header -->
-                <p id="article-view-tag" class="text-[11px] font-bold uppercase tracking-widest text-[#cc1414] mb-4"></p>
+                <p id="article-view-tag" class="text-[11px] font-bold uppercase tracking-widest text-[#b8453a] mb-4"></p>
                 <h1 id="article-view-title" class="font-serif text-[2.8rem] md:text-[3.5rem] font-bold text-pew-dark leading-[1.15] mb-8"></h1>
                 <div class="flex flex-wrap items-center gap-4 text-[15px] text-gray-500 font-sans mb-12 pb-10 border-b border-gray-200">
                     <span id="article-view-author"></span>
@@ -1073,7 +1112,7 @@
                         <div><span class="font-bold text-gray-800">MLA:</span> <span id="cite-mla"></span></div>
                         <div><span class="font-bold text-gray-800">Chicago:</span> <span id="cite-chicago"></span></div>
                     </div>
-                    <button onclick="copyCitation()" class="mt-3 text-[11px] font-bold uppercase tracking-widest text-[#005587] hover:text-pew-dark transition-colors flex items-center gap-1">
+                    <button onclick="copyCitation()" class="mt-3 text-[11px] font-bold uppercase tracking-widest text-[#003d5c] hover:text-pew-dark transition-colors flex items-center gap-1">
                         <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy APA
                     </button>
                 </div>
@@ -1184,28 +1223,64 @@
             </div>
             <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
                 <a href="#" onclick="navigateTo('view-about')" class="hover:text-white transition-colors" data-en="About" data-zh="关于我们">About</a>
-                <button onclick="showLegal('Terms')" class="hover:text-white transition-colors" data-en="Terms & Conditions" data-zh="条款">Terms</button>
-                <button onclick="showLegal('Privacy')" class="hover:text-white transition-colors" data-en="Privacy Policy" data-zh="隐私">Privacy</button>
+                <button onclick="navigateTo('view-terms')" class="hover:text-white transition-colors" data-en="Terms & Conditions" data-zh="条款">Terms</button>
+                <button onclick="navigateTo('view-privacy')" class="hover:text-white transition-colors" data-en="Privacy Policy" data-zh="隐私">Privacy</button>
                 <a href="#footer-section" class="hover:text-white transition-colors" data-en="Contact Us" data-zh="联系我们">Contact</a>
             </div>
         </div>
     </footer>
 
-    <!-- LEGAL MODAL -->
-    <div id="legal-modal" class="fixed inset-0 bg-black/70 z-[130] custom-modal modal-hidden flex justify-center items-center backdrop-blur-sm px-4">
-        <div id="legal-content" class="bg-white max-w-2xl w-full p-8 md:p-12 relative shadow-2xl modal-content border-t-[4px] border-pew-dark">
-            <button onclick="closeLegal()" class="absolute top-6 right-6 text-gray-400 hover:text-pew-dark transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 id="legal-title" class="text-2xl font-serif font-bold text-pew-dark mb-2">Title</h2>
-            <div class="w-10 h-0.5 bg-[#cc1414] mb-6"></div>
-            <p class="text-gray-600 font-sans text-[14px] leading-relaxed" data-en="This section is currently under development. Margins & Meaning Initiative strictly adheres to global data protection regulations. For inquiries regarding data usage or intellectual property, please contact marginsmeaning@163.com." data-zh="本版块条款正在起草中。如对数据使用或知识产权有任何疑问，请直接联系 marginsmeaning@163.com。">
-                This section is currently under development. Margins & Meaning Initiative strictly adheres to global data protection regulations. For inquiries, please contact marginsmeaning@163.com.
-            </p>
+    <!-- ===== VIEW: TERMS & CONDITIONS ===== -->
+    <div id="view-terms" class="page-view pb-24">
+        <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="max-w-4xl mx-auto">
+                <div class="section-label mb-4" data-en="Legal" data-zh="法律条款">Legal</div>
+                <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Terms & Conditions" data-zh="条款与条件">Terms & Conditions</h2>
+            </div>
+        </div>
+        <div class="max-w-3xl mx-auto px-6 lg:px-12">
+            <div class="font-serif text-[17px] leading-relaxed text-gray-600 space-y-6">
+                <p class="text-sm text-gray-400" data-en="Last updated: June 2026" data-zh="最后更新：2026年6月">Last updated: June 2026</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="1. About This Site" data-zh="1. 关于本站">1. About This Site</h3>
+                <p data-en="Margins &amp; Meaning is an independent, nonpartisan research initiative. The content on this website is provided for informational and educational purposes only. While we strive for accuracy, we make no warranties regarding the completeness or reliability of any information presented." data-zh="Margins &amp; Meaning 是一个独立、无党派倾向的研究平台。本网站内容仅供信息与教育目的。我们力求准确，但不对任何信息的完整性或可靠性作担保。">Margins &amp; Meaning is an independent, nonpartisan research initiative. The content on this website is provided for informational and educational purposes only. While we strive for accuracy, we make no warranties regarding the completeness or reliability of any information presented.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="2. Intellectual Property" data-zh="2. 知识产权">2. Intellectual Property</h3>
+                <p data-en="All original research, articles, data visualizations, and ethnographic materials published on this site are the intellectual property of Margins &amp; Meaning unless otherwise stated. You may cite and share our content with proper attribution. Reproduction for commercial purposes requires prior written permission." data-zh="本网站发布的所有原创研究、文章、数据可视化及民族志材料，除特别声明外，均为 Margins &amp; Meaning 的知识产权。您可以在正确署名的情况下引用和分享我们的内容。商业用途的转载需事先获得书面许可。">All original research, articles, data visualizations, and ethnographic materials published on this site are the intellectual property of Margins &amp; Meaning unless otherwise stated. You may cite and share our content with proper attribution. Reproduction for commercial purposes requires prior written permission.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="3. External Links" data-zh="3. 外部链接">3. External Links</h3>
+                <p data-en="This site may contain links to third-party websites. We are not responsible for the content or practices of any linked external sites." data-zh="本网站可能包含指向第三方网站的链接。我们对任何链接的外部网站的内容或做法不承担责任。">This site may contain links to third-party websites. We are not responsible for the content or practices of any linked external sites.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="4. Contact" data-zh="4. 联系方式">4. Contact</h3>
+                <p>Email: <a href="mailto:marginsmeaning@163.com" class="text-[#003d5c] hover:underline">marginsmeaning@163.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIEW: PRIVACY POLICY ===== -->
+    <div id="view-privacy" class="page-view pb-24">
+        <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="max-w-4xl mx-auto">
+                <div class="section-label mb-4" data-en="Legal" data-zh="法律条款">Legal</div>
+                <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</h2>
+            </div>
+        </div>
+        <div class="max-w-3xl mx-auto px-6 lg:px-12">
+            <div class="font-serif text-[17px] leading-relaxed text-gray-600 space-y-6">
+                <p class="text-sm text-gray-400" data-en="Last updated: June 2026" data-zh="最后更新：2026年6月">Last updated: June 2026</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="1. Data We Collect" data-zh="1. 我们收集的数据">1. Data We Collect</h3>
+                <p data-en="We collect only the information you voluntarily provide: (a) your email address when you subscribe to our newsletter, and (b) your name, email, and message when you submit a research inquiry. We do not use tracking cookies or third-party analytics." data-zh="我们仅收集您自愿提供的信息：(a) 订阅简报时提供的邮箱地址，(b) 提交研究咨询时提供的姓名、邮箱和留言内容。我们不使用追踪性 Cookie 或第三方分析工具。">We collect only the information you voluntarily provide: (a) your email address when you subscribe to our newsletter, and (b) your name, email, and message when you submit a research inquiry. We do not use tracking cookies or third-party analytics.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="2. How We Use Your Data" data-zh="2. 数据使用方式">2. How We Use Your Data</h3>
+                <p data-en="Your email address is used solely to send you research updates and event announcements. Your inquiry information is used only to respond to your message. We never sell, rent, or share your personal data with third parties." data-zh="您的邮箱地址仅用于向您发送研究更新与活动通知。您的咨询信息仅用于回复您的留言。我们绝不出售、出租或与第三方分享您的个人数据。">Your email address is used solely to send you research updates and event announcements. Your inquiry information is used only to respond to your message. We never sell, rent, or share your personal data with third parties.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="3. Data Storage" data-zh="3. 数据存储">3. Data Storage</h3>
+                <p data-en="Newsletter subscriptions and inquiry submissions are processed through Formspree, a third-party form service. Formspree&rsquo;s privacy policy governs how your submitted data is handled on their servers. You may request deletion of your data at any time by contacting us." data-zh="简报订阅与研究咨询通过第三方表单服务 Formspree 处理。您提交的数据在 Formspree 服务器上的处理方式受其隐私政策约束。您可随时联系我们请求删除您的数据。">Newsletter subscriptions and inquiry submissions are processed through Formspree, a third-party form service. Formspree&rsquo;s privacy policy governs how your submitted data is handled on their servers. You may request deletion of your data at any time by contacting us.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="4. Your Rights" data-zh="4. 您的权利">4. Your Rights</h3>
+                <p data-en="You have the right to access, correct, or delete any personal data we hold about you. To exercise these rights, or if you have any privacy-related questions, please contact us." data-zh="您有权访问、更正或删除我们持有的关于您的任何个人数据。如需行使这些权利，或对隐私问题有任何疑问，请联系我们。">You have the right to access, correct, or delete any personal data we hold about you. To exercise these rights, or if you have any privacy-related questions, please contact us.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="5. Contact" data-zh="5. 联系方式">5. Contact</h3>
+                <p>Email: <a href="mailto:marginsmeaning@163.com" class="text-[#003d5c] hover:underline">marginsmeaning@163.com</a></p>
+            </div>
         </div>
     </div>
 
     <!-- INQUIRY MODAL -->
     <div id="inquiry-modal" class="fixed inset-0 bg-black/70 z-[130] custom-modal modal-hidden flex justify-center items-center backdrop-blur-sm px-4">
-        <div id="inquiry-content" class="bg-white max-w-xl w-full p-8 md:p-12 relative shadow-2xl modal-content border-t-[4px] border-[#005587]">
+        <div id="inquiry-content" class="bg-white max-w-xl w-full p-8 md:p-12 relative shadow-2xl modal-content border-t-[4px] border-[#003d5c]">
             <button onclick="closeInquiryModal()" class="absolute top-6 right-6 text-gray-400 hover:text-pew-dark transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
             <h2 class="text-3xl font-serif font-bold text-pew-dark mb-1.5" data-en="Research Inquiries" data-zh="媒体与研究合作咨询">Research Inquiries</h2>
             <p class="text-gray-400 font-sans text-[13px] mb-8" data-en="For media requests, data access inquiries, or collaboration proposals." data-zh="提交媒体采访需求、数据访问申请或研究合作提议。">For media requests, data access inquiries, or collaboration proposals.</p>
@@ -1213,22 +1288,22 @@
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5" data-en="First Name" data-zh="名">First Name</label>
-                        <input type="text" class="w-full border border-gray-300 focus:border-[#005587] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
+                        <input type="text" class="w-full border border-gray-300 focus:border-[#003d5c] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
                     </div>
                     <div>
                         <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5" data-en="Last Name" data-zh="姓">Last Name</label>
-                        <input type="text" class="w-full border border-gray-300 focus:border-[#005587] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
+                        <input type="text" class="w-full border border-gray-300 focus:border-[#003d5c] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
                     </div>
                 </div>
                 <div>
                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5" data-en="Email Address" data-zh="电子邮箱">Email Address</label>
-                    <input type="email" class="w-full border border-gray-300 focus:border-[#005587] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
+                    <input type="email" class="w-full border border-gray-300 focus:border-[#003d5c] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
                 </div>
                 <div>
                     <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5" data-en="Message" data-zh="留言内容">Message</label>
-                    <textarea rows="4" class="w-full border border-gray-300 focus:border-[#005587] outline-none px-3 py-2 text-sm bg-white resize-none transition-colors" required></textarea>
+                    <textarea rows="4" class="w-full border border-gray-300 focus:border-[#003d5c] outline-none px-3 py-2 text-sm bg-white resize-none transition-colors" required></textarea>
                 </div>
-                <button type="submit" id="inquiry-submit-btn" class="bg-pew-dark hover:bg-[#005587] text-white px-6 py-3 text-[11px] font-bold uppercase tracking-widest transition-colors w-full">
+                <button type="submit" id="inquiry-submit-btn" class="bg-pew-dark hover:bg-[#003d5c] text-white px-6 py-3 text-[11px] font-bold uppercase tracking-widest transition-colors w-full">
                     <span data-en="Submit Inquiry" data-zh="提交申请">Submit Inquiry</span>
                 </button>
             </form>
@@ -1303,33 +1378,26 @@
                 searchDropdown.classList.add('hidden');
             }
         });
-        function highlightMatch(text, query) {
-            if (!text || !query) return text ? (text.length > 120 ? text.substring(0, 120) + '...' : text) : '';
-            var t = String(text), q = String(query);
-            var idx = t.toLowerCase().indexOf(q.toLowerCase());
-            if (idx < 0) return t.length > 120 ? t.substring(0, 120) + '...' : t;
-            var start = Math.max(0, idx - 50), end = Math.min(t.length, idx + q.length + 70);
-            var snippet = (start > 0 ? '...' : '') + t.substring(start, end) + (end < t.length ? '...' : '');
-            var escaped = q.replace(/[.*+?${}()|[\]\]/g, '\$&');
-            var re = new RegExp('(' + escaped + ')', 'gi');
-            return snippet.replace(re, '<b style="color:#2d2d2d;background:#faf0d7;padding:0 2px;border-radius:1px;"></b>');
-        }
-
         function renderSearchResults(query, container, isFullScreen) {
-            var q = query.toLowerCase().trim(), results = [];
-            for (var id in articlesDB) { var a = articlesDB[id], score = 0, snippet = '';
-                var fields = [a.title.en||'',a.title.zh||'',a.body.en||'',a.body.zh||'',a.author.en||'',a.author.zh||'',a.tag.en||'',a.tag.zh||'',a.affiliation.en||'',a.affiliation.zh||'',a.excerpt.en||'',a.excerpt.zh||''];
-                for (var i = 0; i < fields.length; i++) { if (fields[i].toLowerCase().indexOf(q) >= 0) { score += (i < 2 ? 10 : i < 4 ? 5 : 2); if (!snippet) snippet = fields[i]; } }
-                if (score > 0) results.push({id:id, article:a, score:score, snippet:snippet}); }
-            results.sort(function(a,b){return b.score-a.score;});
-            if (results.length === 0) { container.innerHTML = isFullScreen ? '<div class="bg-white p-6 shadow-xl text-center text-gray-400 font-sans text-sm">'+ (currentLang==='zh'?'未找到结果':'No results found.') +'</div>' : '<div class="p-6 text-center text-sm text-gray-400 font-sans">'+ (currentLang==='zh'?'未找到结果':'No results found.') +'</div>'; container.classList.remove('hidden'); return; }
-            var label = currentLang==='zh'?'个结果':'results';
-            var html = isFullScreen ? '<div class="bg-white p-6 shadow-xl border border-gray-200 mt-4 text-left"><p class="text-gray-400 text-xs font-sans tracking-widest uppercase mb-4">'+results.length+' '+label+' "'+query+'"</p><ul class="space-y-5">' : '<ul class="divide-y divide-gray-100">';
-            for (var r=0; r<results.length; r++) { var item=results[r], a=item.article, tag=a.tag[currentLang]||'', title=a.title[currentLang]||'', snip=highlightMatch(item.snippet,query);
-                if (isFullScreen) html += '<li class="border-b border-gray-100 pb-4 last:border-0"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">'+tag+'</span><a href="#" onclick="openArticle(''+item.id+''); toggleSearch();" class="text-base font-serif font-bold text-[#005587] hover:text-pew-dark transition-colors">'+title+'</a><p class="text-[13px] text-gray-500 font-serif mt-1.5 leading-relaxed">'+snip+'</p></li>';
-                else html += '<li><a href="#" onclick="openArticle(''+item.id+''); document.getElementById('search-dropdown').classList.add('hidden');" class="block p-4 hover:bg-gray-50 transition-colors text-left"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">'+tag+'</span><span class="text-sm font-serif font-bold text-pew-dark">'+title+'</span><p class="text-[12px] text-gray-500 font-serif mt-1 line-clamp-2">'+snip+'</p></a></li>'; }
-            html += isFullScreen ? '</ul></div>' : '</ul>';
-            container.innerHTML = html; container.classList.remove('hidden');
+            let resultHTML = isFullScreen ? '<div class="bg-white p-6 shadow-xl border border-gray-200 mt-4 text-left"><ul class="space-y-4">' : '<ul class="divide-y divide-gray-100">';
+            let found = false;
+            for (const [id, article] of Object.entries(articlesDB)) {
+                if (article.title.en.toLowerCase().includes(query) || article.title.zh.toLowerCase().includes(query) || article.body.en.toLowerCase().includes(query)) {
+                    if (isFullScreen) {
+                        resultHTML += `<li class="border-b border-gray-100 pb-3 last:border-0"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><a href="#" onclick="openArticle('${id}'); toggleSearch();" class="text-base font-serif font-bold text-[#003d5c] hover:text-pew-dark transition-colors">${article.title[currentLang]}</a></li>`;
+                    } else {
+                        resultHTML += `<li><a href="#" onclick="openArticle('${id}'); document.getElementById('search-dropdown').classList.add('hidden');" class="block p-4 hover:bg-gray-50 transition-colors text-left"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><span class="text-sm font-serif font-bold text-pew-dark">${article.title[currentLang]}</span></a></li>`;
+                    }
+                    found = true;
+                }
+            }
+            resultHTML += isFullScreen ? '</ul></div>' : '</ul>';
+            if (found) {
+                container.innerHTML = isFullScreen ? `<span class="text-gray-400 text-xs font-sans tracking-widest uppercase">Results for "${query}"</span>${resultHTML}` : resultHTML;
+            } else {
+                container.innerHTML = isFullScreen ? `<div class="bg-white p-6 shadow-xl text-center text-gray-400 font-sans text-sm">No results found.</div>` : `<div class="p-6 text-center text-sm text-gray-400 font-sans">No results found.</div>`;
+            }
+            container.classList.remove('hidden');
         }
 
         // ─── NAV ───
@@ -1445,12 +1513,6 @@
         }
         function closeInquiryModal() { closeModal('inquiry-modal', 'inquiry-content'); }
 
-        function showLegal(type) {
-            document.getElementById('legal-title').textContent = type === 'Terms' ? (currentLang === 'en' ? 'Terms & Conditions' : '条款与条件') : (currentLang === 'en' ? 'Privacy Policy' : '隐私政策');
-            openModal('legal-modal', 'legal-content');
-        }
-        function closeLegal() { closeModal('legal-modal', 'legal-content'); }
-
         function openModal(modalId, contentId) {
             const modal = document.getElementById(modalId);
             const content = document.getElementById(contentId);
@@ -1496,12 +1558,12 @@
                     setTimeout(() => toast.classList.remove('show'), 4000);
                 } else {
                     btn.innerHTML = '!';
-                    btn.style.background = '#cc1414';
+                    btn.style.background = '#b8453a';
                 }
                 setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4000);
             }).catch(() => {
                 btn.innerHTML = '!';
-                btn.style.background = '#cc1414';
+                btn.style.background = '#b8453a';
                 setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 3000);
             });
         }
@@ -1533,7 +1595,7 @@
                 body: JSON.stringify(data)
             }).then(r => {
                 btn.innerHTML = r.ok ? 'SENT ✓' : 'ERROR';
-                btn.style.background = r.ok ? '#16a34a' : '#cc1414';
+                btn.style.background = r.ok ? '#16a34a' : '#b8453a';
                 if (r.ok) {
                     form.reset();
                     const toast = document.getElementById('copied-toast');
@@ -1544,7 +1606,7 @@
                 setTimeout(() => { btn.innerHTML = currentLang === 'en' ? 'Submit Inquiry' : '提交申请'; btn.style.background = ''; btn.disabled = false; if (r.ok) closeInquiryModal(); }, 2000);
             }).catch(() => {
                 btn.innerHTML = 'ERROR';
-                btn.style.background = '#cc1414';
+                btn.style.background = '#b8453a';
                 setTimeout(() => { btn.innerHTML = currentLang === 'en' ? 'Submit Inquiry' : '提交申请'; btn.style.background = ''; btn.disabled = false; }, 2000);
             });
         }
@@ -1703,13 +1765,13 @@
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors duration-300 mb-4 leading-snug">
+                    <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#003d5c] transition-colors duration-300 mb-4 leading-snug">
                         ${safeTitle}
                     </h4>
                     <p class="text-[18px] text-gray-500 font-serif leading-relaxed line-clamp-2">
                         ${safeExcerpt}
                     </p>
-                    <div class="mt-auto pt-5 flex items-center text-[#005587] font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
+                    <div class="mt-auto pt-5 flex items-center text-[#003d5c] font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
                         <span>${currentLang === 'en' ? 'Read Research' : '阅读研究'}</span>
                         <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </div>
@@ -1730,8 +1792,8 @@
                     const dispName = displayNames[key][currentLang];
                     rightItemsHTML += `
                         <div class="side-article cursor-pointer group flex flex-col justify-center" onclick="openArticle('${article.slug}')">
-                            <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase">${dispName}</p>
-                            <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">
+                            <p class="text-[10px] text-[#003d5c] mb-1.5 font-bold tracking-widest uppercase">${dispName}</p>
+                            <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#003d5c] transition-colors leading-snug">
                                 ${sideTitle}
                             </h5>
                         </div>
@@ -1838,9 +1900,9 @@
                     containers['research'].innerHTML += `
                         <article class="research-card cursor-pointer border-b border-gray-200 pb-10 mb-0 pt-8 pl-4 reveal visible" onclick="openArticle('${slug}')">
                             <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
-                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#003d5c] transition-colors mb-4 leading-snug">${safeTitle}</h4>
                             <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
-                            <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Abstract' : '阅读摘要'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                            <span class="text-[12px] font-bold text-[#003d5c] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Abstract' : '阅读摘要'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                         </article>
                     `;
                 }
@@ -1848,9 +1910,9 @@
                     containers['writing'].innerHTML += `
                         <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
                             <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
-                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#003d5c] transition-colors mb-4 leading-snug">${safeTitle}</h4>
                             <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
-                            <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Article' : '阅读文章'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                            <span class="text-[12px] font-bold text-[#003d5c] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Article' : '阅读文章'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                         </article>
                     `;
                 }
@@ -1863,10 +1925,10 @@
                                 </div>
                                 <div class="md:col-span-3 flex flex-col justify-center">
                                     <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
-                                    <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                                    <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#003d5c] transition-colors mb-4 leading-snug">${safeTitle}</h4>
                                     <p class="text-[16px] text-gray-500 font-serif leading-relaxed mb-5 text-justify-force">${safeExcerpt}</p>
                                     <div class="flex items-center gap-4">
-                                        <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">${currentLang === 'en' ? 'Read Ethnography' : '阅读田野志'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                                        <span class="text-[12px] font-bold text-[#003d5c] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">${currentLang === 'en' ? 'Read Ethnography' : '阅读田野志'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                                     </div>
                                 </div>
                             </div>
@@ -1885,7 +1947,7 @@
                                 </div>
                             </div>
                             <div class="bg-white p-8 md:p-10">
-                                <h3 class="font-serif text-3xl font-bold text-pew-dark mb-3 group-hover:text-[#005587] transition-colors">${safeTitle}</h3>
+                                <h3 class="font-serif text-3xl font-bold text-pew-dark mb-3 group-hover:text-[#003d5c] transition-colors">${safeTitle}</h3>
                                 <p class="text-gray-500 font-serif text-lg">${safeExcerpt}</p>
                             </div>
                         </div>
@@ -1920,11 +1982,11 @@
         }
 
         // ─── INTERACTIVE MAPS ───
-        let mapInstance = null;
-        let mapGeoJSON = null;
-        let currentMapMode = 'dialect';
+        let mapChartDialect = null;
+        let mapChartEthnic = null;
+        let mapGeoData = null;
 
-        const dialectDataZH = {
+        const dialectZH = {
             '北京市':'官话','天津市':'官话','河北省':'官话','山西省':'晋语','内蒙古自治区':'官话/蒙古语',
             '辽宁省':'官话','吉林省':'官话','黑龙江省':'官话','上海市':'吴语','江苏省':'官话/吴语',
             '浙江省':'吴语','安徽省':'官话/徽语','福建省':'闽语','江西省':'赣语','山东省':'官话',
@@ -1934,7 +1996,7 @@
             '青海省':'官话/藏语','宁夏回族自治区':'官话','新疆维吾尔自治区':'官话/维吾尔语',
             '台湾省':'闽语/客家话','香港特别行政区':'粤语','澳门特别行政区':'粤语'
         };
-        const dialectDataEN = {
+        const dialectEN = {
             '北京市':'Mandarin','天津市':'Mandarin','河北省':'Mandarin','山西省':'Jin','内蒙古自治区':'Mandarin/Mongolian',
             '辽宁省':'Mandarin','吉林省':'Mandarin','黑龙江省':'Mandarin','上海市':'Wu','江苏省':'Mandarin/Wu',
             '浙江省':'Wu','安徽省':'Mandarin/Hui','福建省':'Min','江西省':'Gan','山东省':'Mandarin',
@@ -1944,26 +2006,16 @@
             '青海省':'Mandarin/Tibetan','宁夏回族自治区':'Mandarin','新疆维吾尔自治区':'Mandarin/Uyghur',
             '台湾省':'Min/Hakka','香港特别行政区':'Yue (Cantonese)','澳门特别行政区':'Yue (Cantonese)'
         };
-        // English province name lookup (reverse from Chinese GeoJSON name)
-        const provinceNamesEN = {
-            '北京市':'Beijing','天津市':'Tianjin','河北省':'Hebei','山西省':'Shanxi','内蒙古自治区':'Inner Mongolia',
-            '辽宁省':'Liaoning','吉林省':'Jilin','黑龙江省':'Heilongjiang','上海市':'Shanghai','江苏省':'Jiangsu',
-            '浙江省':'Zhejiang','安徽省':'Anhui','福建省':'Fujian','江西省':'Jiangxi','山东省':'Shandong',
-            '河南省':'Henan','湖北省':'Hubei','湖南省':'Hunan','广东省':'Guangdong',
-            '广西壮族自治区':'Guangxi','海南省':'Hainan','重庆市':'Chongqing','四川省':'Sichuan',
-            '贵州省':'Guizhou','云南省':'Yunnan','西藏自治区':'Tibet','陕西省':'Shaanxi','甘肃省':'Gansu',
-            '青海省':'Qinghai','宁夏回族自治区':'Ningxia','新疆维吾尔自治区':'Xinjiang',
-            '台湾省':'Taiwan','香港特别行政区':'Hong Kong','澳门特别行政区':'Macau'
-        };
         const dialectColors = {
-            '官话':'#e41a1c','晋语':'#377eb8','吴语':'#4daf4a','闽语':'#e6ab02',
-            '赣语':'#a65628','湘语':'#f781bf','粤语':'#66c2a5','藏语':'#8c510a',
-            '粤语/客家话':'#66c2a5','闽语/客家话':'#b3de69','官话/吴语':'#984ea3',
-            '官话/徽语':'#ff7f00','官话/蒙古语':'#01665e','粤语/平话/壮语':'#fc8d62',
-            '官话/藏语':'#bf812d','官话/维吾尔语':'#35978f'
+            '官话':'#c2706e','晋语':'#6b8db5','吴语':'#6ea87a','闽语':'#bfa24c',
+            '赣语':'#9b7a64','湘语':'#bd8eae','粤语':'#6d9e93','藏语':'#8e7860',
+            '粤语/客家话':'#6d9e93','闽语/客家话':'#9cad74','官话/吴语':'#9582b0',
+            '官话/徽语':'#cc9a6e','官话/蒙古语':'#5f9185','粤语/平话/壮语':'#cc9078',
+            '官话/藏语':'#ae9a6c','官话/维吾尔语':'#6a9690'
         };
-
-        const ethnicDataZH = {
+        const dialectOrderZH = ['官话','晋语','吴语','闽语','赣语','湘语','粤语','藏语'];
+        const dialectOrderEN = ['Mandarin','Jin','Wu','Min','Gan','Xiang','Yue','Tibetan'];
+        const ethnicZH = {
             '西藏自治区':'藏族 (90%+)','新疆维吾尔自治区':'维吾尔/哈萨克 (~60%)',
             '内蒙古自治区':'蒙古族 (~17%)','广西壮族自治区':'壮族 (~32%)',
             '宁夏回族自治区':'回族 (~35%)','云南省':'彝/白/傣/哈尼等多族 (~33%)',
@@ -1971,11 +2023,9 @@
             '四川省':'藏/彝/羌族 (~6%)','湖南省':'土家/苗/侗族 (~10%)',
             '甘肃省':'藏/回/东乡族 (~9%)','吉林省':'朝鲜/满族 (~5%)',
             '黑龙江省':'朝鲜/满/达斡尔 (~5%)','辽宁省':'满/朝鲜族 (~10%)',
-            '海南省':'黎/苗族 (~18%)','台湾省':'南岛原住民 (~2.5%)',
-            '广东省':'瑶/壮族','福建省':'畲族','湖北省':'土家/苗族',
-            '重庆市':'土家/苗族','浙江省':'畲族'
+            '海南省':'黎/苗族 (~18%)','台湾省':'南岛原住民 (~2.5%)'
         };
-        const ethnicDataEN = {
+        const ethnicEN = {
             '西藏自治区':'Tibetan (90%+)','新疆维吾尔自治区':'Uyghur/Kazakh (~60%)',
             '内蒙古自治区':'Mongolian (~17%)','广西壮族自治区':'Zhuang (~32%)',
             '宁夏回族自治区':'Hui (~35%)','云南省':'Yi/Bai/Dai/Hani etc. (~33%)',
@@ -1983,155 +2033,132 @@
             '四川省':'Tibetan/Yi/Qiang (~6%)','湖南省':'Tujia/Miao/Dong (~10%)',
             '甘肃省':'Tibetan/Hui/Dongxiang (~9%)','吉林省':'Korean/Manchu (~5%)',
             '黑龙江省':'Korean/Manchu/Daur (~5%)','辽宁省':'Manchu/Korean (~10%)',
-            '海南省':'Li/Miao (~18%)','台湾省':'Indigenous Austronesian (~2.5%)',
-            '广东省':'Yao/Zhuang','福建省':'She','湖北省':'Tujia/Miao',
-            '重庆市':'Tujia/Miao','浙江省':'She'
+            '海南省':'Li/Miao (~18%)','台湾省':'Indigenous Austronesian (~2.5%)'
         };
-        const ethnicBaseColor = '#005587';
-
-        function getDialectColor(name) {
-            const d = dialectDataZH[name];
-            if (!d) return '#e0e0e0';
-            return dialectColors[d] || '#e0e0e0';
-        }
-        function getEthnicColor(name) {
-            const data = currentLang === 'zh' ? ethnicDataZH : ethnicDataEN;
-            return data[name] ? ethnicBaseColor : '#f0f0f0';
-        }
-        function getDialectLabel(name) {
-            const data = currentLang === 'zh' ? dialectDataZH : dialectDataEN;
-            return data[name] || (currentLang === 'zh' ? '其他' : 'Other');
-        }
-        function getEthnicLabel(name) {
-            const data = currentLang === 'zh' ? ethnicDataZH : ethnicDataEN;
-            return data[name] || (currentLang === 'zh' ? '汉族为主' : 'Han majority');
-        }
-        function getProvinceName(name) {
-            return currentLang === 'zh' ? name : (provinceNamesEN[name] || name);
-        }
-
-        function highlightProvince(e) {
-            const layer = e.target;
-            layer.setStyle({ weight: 2, color: '#1a1a1a', dashArray: '' });
-            layer.bringToFront();
-            const name = layer.feature.properties.name;
-            const label = currentMapMode === 'dialect' ? getDialectLabel(name) : getEthnicLabel(name);
-            const provName = getProvinceName(name);
-            layer.bindTooltip('<b>' + provName + '</b><br>' + label, {
-                className: 'map-tooltip',
-                direction: 'top',
-                offset: [0, -8]
-            }).openTooltip();
-        }
-
-        function addMapLegend() {
-            // Remove existing legend
-            document.querySelectorAll('.leaflet-control .map-legend').forEach(el => el.parentElement.remove());
-            const legend = L.control({ position: 'bottomright' });
-            legend.onAdd = function() {
-                const div = L.DomUtil.create('div', 'map-legend');
-                if (currentMapMode === 'dialect') {
-                    const groups = ['官话','晋语','吴语','闽语','赣语','湘语','粤语','藏语'];
-                    const enGroups = ['Mandarin','Jin','Wu','Min','Gan','Xiang','Yue','Tibetan'];
-                    const labels = currentLang === 'zh' ? groups : enGroups;
-                    div.innerHTML = '<b style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;">' + (currentLang === 'zh' ? '方言区' : 'Dialect Groups') + '</b><br>' +
-                        labels.map(function(g, i) { return '<span style="background:' + (dialectColors[groups[i]]||'#ccc') + '"></span> ' + g; }).join('<br>');
-                } else {
-                    div.innerHTML = '<b style="font-size:11px;text-transform:uppercase;letter-spacing:0.08em;">' + (currentLang === 'zh' ? '少数民族比例' : 'Ethnic Minority %') + '</b><br>' +
-                        '<span style="background:' + ethnicBaseColor + ';opacity:0.7"></span> ' + (currentLang === 'zh' ? '有显著少数民族人口' : 'Significant minority pop.') + '<br>' +
-                        '<span style="background:#f0f0f0"></span> ' + (currentLang === 'zh' ? '汉族占绝大多数' : 'Han majority');
-                }
-                return div;
-            };
-            legend.addTo(mapInstance);
-        }
 
         function initMap() {
-            var container = document.getElementById('map-container');
-            if (!container || mapInstance) return;
-            // Wait if Leaflet not loaded yet
-            if (typeof L === 'undefined') { setTimeout(initMap, 600); return; }
+            var c1 = document.getElementById('map-dialect');
+            var c2 = document.getElementById('map-ethnic');
+            if (!c1 || !c2 || mapChartDialect) return;
+            if (typeof echarts === 'undefined') { setTimeout(initMap, 600); return; }
 
-            container.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">Loading map...</div>';
-            mapInstance = L.map('map-container', {
-                center: [35.8, 104.5], zoom: 4, zoomControl: true,
-                scrollWheelZoom: false, attributionControl: false
-            });
+            c1.innerHTML = '<div class="flex items-center justify-center h-full text-gray-300 font-serif text-sm">加载中...</div>';
+            c2.innerHTML = '<div class="flex items-center justify-center h-full text-gray-300 font-serif text-sm">加载中...</div>';
 
-            // Gaode tiles with OSM fallback
-            var tiles = L.tileLayer('https://webrd0{abs}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
-                subdomains: '1234', maxZoom: 10, minZoom: 3
-            }).addTo(mapInstance);
-            tiles.on('tileerror', function() {
-                if (!mapInstance._fallbackTiles) {
-                    mapInstance._fallbackTiles = true;
-                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                        maxZoom: 10, minZoom: 3
-                    }).addTo(mapInstance);
-                }
-            });
-
-            // Load GeoJSON
             fetch('./china-geo.json')
                 .then(function(r) { return r.json(); })
                 .then(function(geo) {
-                    container.innerHTML = '';
-                    mapGeoJSON = L.geoJSON(geo, {
-                        style: function(f) { return styleProvince(f); },
-                        onEachFeature: function(feature, layer) {
-                            layer.on({
-                                mouseover: function(e) { highlightProvince(e); },
-                                mouseout: function(e) { resetHighlight(e); },
-                                click: function(e) { mapInstance.fitBounds(e.target.getBounds(), {padding:[30,30], maxZoom:6}); }
-                            });
-                        }
-                    }).addTo(mapInstance);
-                    addMapLegend();
+                    mapGeoData = geo;
+                    echarts.registerMap('china', geo);
+                    c1.innerHTML = '';
+                    c2.innerHTML = '';
+                    // Delay init to ensure containers have measured dimensions
+                    setTimeout(function() {
+                        mapChartDialect = echarts.init(c1);
+                        mapChartEthnic = echarts.init(c2);
+                        renderDialectMap();
+                        renderEthnicMap();
+                        renderDialectLegend();
+                        renderEthnicLegend();
+                    }, 150);
+                    window.addEventListener('resize', function() {
+                        if (mapChartDialect) mapChartDialect.resize();
+                        if (mapChartEthnic) mapChartEthnic.resize();
+                    });
                 })
                 .catch(function() {
-                    container.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">Map data unavailable. Try again later.</div>';
+                    c1.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">地图数据暂不可用</div>';
+                    c2.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">地图数据暂不可用</div>';
                 });
         }
 
-        // Invalidate map size when view changes to home
-        var _origNavigateTo = navigateTo;
-        navigateTo = function(viewId) {
-            _origNavigateTo(viewId);
-            if (viewId === 'view-home' && mapInstance) {
-                setTimeout(function() { mapInstance.invalidateSize(); }, 200);
-            }
-        };
+        function buildMapData(colorFn) {
+            var data = [];
+            mapGeoData.features.forEach(function(f) {
+                var name = f.properties.name;
+                data.push({ name: name, itemStyle: { areaColor: colorFn(name) } });
+            });
+            return data;
+        }
 
-        function styleProvince(feature) {
-            const name = feature.properties.name;
+        function makeMapOption(data, tooltipFn) {
             return {
-                fillColor: currentMapMode === 'dialect' ? getDialectColor(name) : getEthnicColor(name),
-                weight: 1,
-                opacity: 1,
-                color: '#fff',
-                fillOpacity: currentMapMode === 'dialect' ? 0.75 : (ethnicDataZH[name] ? 0.7 : 0.15),
-                dashArray: ''
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function(p) { return tooltipFn(p.name); },
+                    backgroundColor: 'rgba(30,30,32,0.94)',
+                    borderColor: 'transparent',
+                    textStyle: { color: '#fff', fontSize: 13, fontFamily: 'Inter, Noto Sans SC, sans-serif' },
+                    padding: [10, 16]
+                },
+                series: [{
+                    type: 'map', map: 'china', roam: false,
+                    scaleLimit: { min: 1, max: 5 },
+                    layoutCenter: ['50%', '50%'],
+                    layoutSize: '90%',
+                    label: { show: false },
+                    itemStyle: { borderColor: '#fff', borderWidth: 1, areaColor: '#f5f5f5' },
+                    emphasis: {
+                        label: { show: true, color: '#1a1a1a', fontSize: 12 },
+                        itemStyle: { areaColor: '#faf0d7', borderWidth: 1.5, borderColor: '#333' }
+                    },
+                    data: data
+                }]
             };
         }
 
-        function resetHighlight(e) {
-            const layer = e.target;
-            mapGeoJSON.resetStyle(layer);
-            layer.closeTooltip();
+        function renderDialectMap() {
+            if (!mapChartDialect) return;
+            var labelFn = currentLang === 'zh'
+                ? function(name) { return '<b>' + name + '</b><br/>' + (dialectZH[name] || '其他'); }
+                : function(name) { return '<b>' + name + '</b><br/>' + (dialectEN[name] || 'Other'); };
+            mapChartDialect.setOption(makeMapOption(
+                buildMapData(function(name) { return dialectColors[dialectZH[name]] || '#e8e8e8'; }),
+                labelFn
+            ));
         }
 
-        window.switchMap = function(mode) {
-            currentMapMode = mode;
-            document.querySelectorAll('.map-tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.map-tab').forEach(t => {
-                if ((mode === 'dialect' && t.textContent.includes('Dialect')) || (mode === 'ethnic' && t.textContent.includes('Ethnic'))) {
-                    t.classList.add('active');
-                }
-            });
-            if (mapGeoJSON) {
-                mapGeoJSON.setStyle(feature => styleProvince(feature));
-                mapInstance.removeControl(mapInstance.legendControl);
-                addMapLegend();
+        function renderEthnicMap() {
+            if (!mapChartEthnic) return;
+            var labelFn = currentLang === 'zh'
+                ? function(name) { return '<b>' + name + '</b><br/>' + (ethnicZH[name] || '汉族为主'); }
+                : function(name) { return '<b>' + name + '</b><br/>' + (ethnicEN[name] || 'Han majority'); };
+            mapChartEthnic.setOption(makeMapOption(
+                buildMapData(function(name) { return ethnicZH[name] ? '#003d5c' : '#f0f0f0'; }),
+                labelFn
+            ));
+        }
+
+        function renderDialectLegend() {
+            var el = document.getElementById('legend-dialect');
+            if (!el) return;
+            var order = currentLang === 'zh' ? dialectOrderZH : dialectOrderEN;
+            el.innerHTML = order.map(function(g) {
+                var key = currentLang === 'zh' ? g : dialectOrderZH[dialectOrderEN.indexOf(g)];
+                return '<span><i class="map-legend-dot" style="background:' + (dialectColors[key]||'#ccc') + '"></i>' + g + '</span>';
+            }).join('');
+        }
+
+        function renderEthnicLegend() {
+            var el = document.getElementById('legend-ethnic');
+            if (!el) return;
+            if (currentLang === 'zh') {
+                el.innerHTML = '<span><i class="map-legend-dot" style="background:#003d5c"></i>有显著少数民族</span>' +
+                    '<span><i class="map-legend-dot" style="background:#f0f0f0;border:1px solid #ddd"></i>汉族占绝大多数</span>';
+            } else {
+                el.innerHTML = '<span><i class="map-legend-dot" style="background:#003d5c"></i>Significant minority pop.</span>' +
+                    '<span><i class="map-legend-dot" style="background:#f0f0f0;border:1px solid #ddd"></i>Han majority</span>';
+            }
+        }
+
+        var _origNav2 = navigateTo;
+        navigateTo = function(viewId) {
+            _origNav2(viewId);
+            if (viewId === 'view-home') {
+                setTimeout(function() {
+                    if (mapChartDialect) mapChartDialect.resize();
+                    if (mapChartEthnic) mapChartEthnic.resize();
+                }, 200);
             }
         };
 
@@ -2190,7 +2217,28 @@
                 currentLang === 'zh' ? `${readMin} 分钟阅读` : `${readMin} min read`;
 
             // Article body
+            var patterns = ['article-pattern-miao','article-pattern-zhuang','article-pattern-tibetan','article-pattern-uyghur','article-pattern-mongol'];
+            var hash = 0; for (var i = 0; i < id.length; i++) { hash = ((hash << 5) - hash) + id.charCodeAt(i); hash |= 0; }
+            var patClass = patterns[Math.abs(hash) % patterns.length];
+            var bodyWrap = document.getElementById('article-view-body').parentElement;
+            bodyWrap.className = bodyWrap.className.replace(/article-pattern-\w+/g, '') + ' ' + patClass;
+            var patterns = ['article-pattern-miao','article-pattern-zhuang','article-pattern-tibetan','article-pattern-uyghur','article-pattern-mongol'];
+            var patternNamesZH = ['苗族织锦纹样','壮族斜织纹样','藏族回字纹样','维吾尔藤蔓纹样','蒙古云纹样'];
+            var patternNamesEN = ['Miao (Hmong) textile motif','Zhuang brocade motif','Tibetan meander motif','Uyghur vine motif','Mongol cloud motif'];
+            var hash = 0; for (var i = 0; i < id.length; i++) { hash = ((hash << 5) - hash) + id.charCodeAt(i); hash |= 0; }
+            var patIdx = Math.abs(hash) % patterns.length;
+            var bodyWrap = document.getElementById('article-view-body').parentElement;
+            bodyWrap.className = bodyWrap.className.replace(/article-pattern-\w+/g, '') + ' ' + patterns[patIdx];
             document.getElementById('article-view-body').innerHTML = marked.parse(bodyText);
+            // Add pattern caption
+            var captionEl = document.getElementById('pattern-caption');
+            if (!captionEl) {
+                captionEl = document.createElement('div');
+                captionEl.id = 'pattern-caption';
+                captionEl.style.cssText = 'text-align:center;margin-top:2rem;font-size:11px;color:#b8b0a4;font-family:Inter,Noto Sans SC,sans-serif;letter-spacing:0.04em;';
+                document.getElementById('article-view-body').after(captionEl);
+            }
+            captionEl.textContent = (currentLang === 'zh' ? '背景纹样：' : 'Background pattern: ') + (currentLang === 'zh' ? patternNamesZH[patIdx] : patternNamesEN[patIdx]);
 
             // Citations
             const author = data.author[currentLang] || 'Margins &amp; Meaning';
@@ -2225,7 +2273,7 @@
                     </div>
                     <div>
                         <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">${d.tag[currentLang]}</span>
-                        <h4 class="text-sm font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">${d.title[currentLang]}</h4>
+                        <h4 class="text-sm font-serif font-bold text-pew-dark group-hover:text-[#003d5c] transition-colors leading-snug">${d.title[currentLang]}</h4>
                     </div>
                 </article>`
             ).join('');
@@ -2252,9 +2300,25 @@
         function loadGiscus() {
             const container = document.getElementById('giscus-comments');
             if (!container || container.dataset.loaded) return;
-            container.dataset.loaded = '1';
             if (SITE_CONFIG.giscusRepoId === 'R_kg_CHANGE_ME') return;
-            container.innerHTML = '<script src="https://giscus.app/client.js" data-repo="' + SITE_CONFIG.githubRepo + '" data-repo-id="' + SITE_CONFIG.giscusRepoId + '" data-category="Announcements" data-category-id="' + SITE_CONFIG.giscusCategoryId + '" data-mapping="specific" data-term="' + currentArticleId + '" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="preferred_color_scheme" data-lang="en" crossorigin="anonymous" async><\/script>';
+            container.dataset.loaded = '1';
+            container.innerHTML = '';
+            var script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', SITE_CONFIG.githubRepo);
+            script.setAttribute('data-repo-id', SITE_CONFIG.giscusRepoId);
+            script.setAttribute('data-category', 'Announcements');
+            script.setAttribute('data-category-id', SITE_CONFIG.giscusCategoryId);
+            script.setAttribute('data-mapping', 'specific');
+            script.setAttribute('data-term', currentArticleId);
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'bottom');
+            script.setAttribute('data-theme', 'preferred_color_scheme');
+            script.setAttribute('data-lang', currentLang === 'zh' ? 'zh-CN' : 'en');
+            script.crossOrigin = 'anonymous';
+            script.async = true;
+            container.appendChild(script);
         }
 
         // ─── LIKES ───

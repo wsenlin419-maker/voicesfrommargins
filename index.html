@@ -1570,6 +1570,9 @@
                     }
 
                     if (typeof ref === 'string' && ref.startsWith('http')) {
+                        if (ref.includes('github.com') && ref.includes('/blob/')) {
+                            return ref.replace('github.com', 'raw.githubusercontent.com').replace('/blob/', '/');
+                        }
                         return ref;
                     }
 

@@ -1,0 +1,2437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Margins & Meaning | Voices from the Margins</title>
+    <meta name="description" content="Preserving endangered voices. An independent research initiative exploring language, identity, and inequality.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='20' cy='50' r='8' fill='%23111'/%3E%3Ccircle cx='45' cy='30' r='6' fill='%23111'/%3E%3Ccircle cx='45' cy='70' r='6' fill='%23111'/%3E%3Ccircle cx='75' cy='15' r='4' fill='%23111'/%3E%3Ccircle cx='75' cy='50' r='4' fill='%23111'/%3E%3Ccircle cx='75' cy='85' r='4' fill='%23111'/%3E%3Cpath d='M20 50 Q 35 40 45 30' stroke='%23111' stroke-width='2' fill='none'/%3E%3Cpath d='M20 50 Q 35 60 45 70' stroke='%23111' stroke-width='2' fill='none'/%3E%3Cpath d='M45 30 Q 60 22.5 75 15' stroke='%23111' stroke-width='2' fill='none'/%3E%3Cpath d='M45 70 Q 60 77.5 75 85' stroke='%23111' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+
+    <!-- Open Graph (Google / social previews) -->
+    <meta property="og:title" content="Margins &amp; Meaning">
+    <meta property="og:description" content="Preserving endangered voices. An independent research initiative exploring language, identity, and inequality.">
+    <meta property="og:url" content="https://marginsmeaning.org">
+    <meta name="twitter:card" content="summary">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', '"Noto Sans SC"', 'sans-serif'],
+                        serif: ['Lora', '"Noto Serif SC"', 'serif'],
+                    },
+                    colors: {
+                        pew: {
+                            dark: '#1a1a1a',
+                            border: '#d1d5db',
+                            accent: '#cc1414',
+                            subtle: '#555555',
+                            bg: '#ffffff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --blue: #005587;
+            --red: #cc1414;
+            --dark: #1a1a1a;
+            --subtle: #555555;
+            --bg: #ffffff;
+            --bg-alt: #f8f9fa;
+            --bg-card: #ffffff;
+            --border: #e5e7eb;
+            --text: #1a1a1a;
+            --text-muted: #555555;
+            --transition-speed: 0.35s;
+        }
+        html.dark {
+            --blue: #5bafdc;
+            --red: #e05555;
+            --dark: #e5e3df;
+            --subtle: #9ca3af;
+            --bg: #1a1d21;
+            --bg-alt: #212529;
+            --bg-card: #282d31;
+            --border: #343a40;
+            --text: #e5e3df;
+            --text-muted: #9ca3af;
+        }
+        html.dark body { background-color: var(--bg); color: var(--text); }
+        html.dark .bg-white { background-color: var(--bg-card) !important; }
+        html.dark .bg-\[\\#fafafa\],
+        html.dark .bg-\[\\#f8f9fa\] { background-color: var(--bg-alt) !important; }
+        html.dark .text-pew-dark { color: var(--text) !important; }
+        html.dark .text-pew-subtle { color: var(--text-muted) !important; }
+        html.dark .text-gray-400,
+        html.dark .text-gray-500,
+        html.dark .text-gray-600,
+        html.dark .text-gray-700 { color: #adb5bd !important; }
+        html.dark .text-gray-300 { color: #6c757d !important; }
+        html.dark .border-gray-100,
+        html.dark .border-gray-200 { border-color: var(--border) !important; }
+        html.dark .border-b { border-color: var(--border) !important; }
+        html.dark .border-t { border-color: var(--border) !important; }
+        html.dark .divide-gray-200 > * { border-color: var(--border) !important; }
+        html.dark .page-header {
+            background: linear-gradient(135deg, #212529 0%, #1a1d21 100%) !important;
+            border-color: var(--border) !important;
+        }
+        html.dark .hero-grid-bg {
+            background-image:
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+        }
+        html.dark nav { background-color: var(--bg-card) !important; box-shadow: 0 2px 12px rgba(0,0,0,0.3) !important; }
+        html.dark .nav-item:not(.active) { color: #adb5bd; }
+        html.dark .article-sticky-bar { background: rgba(26,29,33,0.94); border-color: var(--border); }
+        html.dark .article-body { color: #d1cfc9; }
+        html.dark .article-body blockquote { color: #adb5bd; }
+        html.dark .pull-quote { background: var(--bg-alt); }
+        html.dark .research-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+        html.dark #map-section { background: #1a1d21; }
+        html.dark .map-tab { color: #6c757d; }
+        html.dark .map-tab.active { color: #e5e3df; border-color: #e5e3df; }
+        html.dark #search-overlay { background: rgba(26,29,33,0.97) !important; }
+        html.dark input { color: var(--text) !important; }
+        html.dark .bg-\[\\#f0f5fa\] { background-color: #1c2833 !important; }
+        html.dark .hover\:bg-white:hover { background-color: var(--bg-card) !important; }
+        html.dark .from-\[\\#005587\] { --tw-gradient-from: var(--blue) !important; }
+        html.dark #article-modal,
+        html.dark #legal-content,
+        html.dark #inquiry-content { background-color: var(--bg-card) !important; }
+        html.dark #subscribe-form input,
+        html.dark #subscribe-form input::placeholder { color: #adb5bd !important; }
+        html.dark header { background-color: var(--bg-card) !important; border-color: var(--border) !important; }
+        html.dark header h1, html.dark header .text-pew-dark { color: var(--text) !important; }
+        html.dark header .text-gray-400 { color: var(--text-muted) !important; }
+        html.dark .text-gray-800, html.dark .text-gray-900 { color: #d1cfc9 !important; }
+        html.dark .bg-\[\#f4f4f0\] { background-color: var(--bg-alt) !important; }
+        html.dark .bg-\[\#4a5043\] { background-color: #2d3128 !important; }
+        html.dark .bg-\[\#fdfdfb\] { background-color: var(--bg) !important; }
+        html.dark #map-section { background: #1a1d21 !important; }
+        html.dark .map-legend { background: var(--bg-card); color: var(--text); }
+        html.dark #article-view-body { color: #d1cfc9; }
+        html.dark .article-share-btn { background: var(--bg-card); border-color: var(--border); color: #adb5bd; }
+        html.dark .article-share-btn:hover { border-color: #e5e3df; color: #e5e3df; background: var(--bg-alt); }
+        html.dark .article-sticky-bar { background: rgba(26,29,33,0.94) !important; }
+        html.dark #cite-panel { background: var(--bg-alt) !important; border-color: var(--border) !important; }
+        html.dark #cite-panel .text-gray-600 { color: #adb5bd !important; }
+        html.dark .stat-item { border-color: var(--border) !important; }
+        html.dark .featured-img-wrap, html.dark .blog-card-img { border-color: var(--border) !important; }
+        html.dark .blog-card-img { background: var(--bg-alt) !important; }
+        html.dark .side-article { border-color: var(--border) !important; }
+        html.dark input, html.dark textarea { background: var(--bg-card) !important; color: var(--text) !important; border-color: var(--border) !important; }
+        html.dark input::placeholder, html.dark textarea::placeholder { color: #6c757d !important; }
+        html.dark #search-dropdown { background: var(--bg-card) !important; border-color: var(--border) !important; }
+        html.dark #search-dropdown a { color: var(--text) !important; }
+        html.dark #search-dropdown .divide-gray-100 > * { border-color: var(--border) !important; }
+        html.dark .hover\:bg-gray-50:hover { background: var(--bg-alt) !important; }
+        html.dark .bg-\[\#f0f5fa\] { background: #1c2833 !important; }
+
+        html { scroll-behavior: smooth; overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; font-kerning: normal; transition: background-color 0.35s ease, color 0.35s ease; }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: var(--dark); }
+
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .hero-grid-bg {
+            background-image:
+                linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        .page-view { display: none; }
+        .page-view.active { display: block; }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+        .reveal-delay-4 { transition-delay: 0.4s; }
+
+        .custom-modal { transition: opacity 0.3s ease, visibility 0.3s ease; }
+        .modal-content { transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1); }
+        .modal-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        .modal-visible { opacity: 1; visibility: visible; pointer-events: auto; }
+        .slide-down { transform: translateY(30px) scale(0.98); }
+        .slide-up { transform: translateY(0) scale(1); }
+
+        #search-overlay { transition: opacity 0.3s ease; }
+        .search-hidden { opacity: 0; pointer-events: none; }
+        .search-visible { opacity: 1; pointer-events: auto; }
+
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
+        .video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+        body.lang-zh { text-align: justify; }
+        .text-justify-force { text-align: justify; text-justify: inter-word; }
+
+        .nav-track { position: relative; }
+        .nav-indicator {
+            position: absolute;
+            bottom: 0;
+            height: 3px;
+            background: var(--dark);
+            transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            pointer-events: none;
+        }
+
+        .research-card {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .research-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 3px;
+            background: var(--blue);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.35s ease;
+        }
+        .research-card:hover::before { transform: scaleY(1); }
+        .research-card:hover { transform: translateX(6px); }
+
+        .blog-card-img { overflow: hidden; }
+        .blog-card-img img {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
+            filter: grayscale(15%);
+        }
+        .blog-card:hover .blog-card-img img {
+            transform: scale(1.07);
+            filter: grayscale(0%);
+        }
+
+        .blog-title-link {
+            text-decoration: underline;
+            text-decoration-color: #e5e5e5;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+            transition: text-decoration-color 0.3s ease;
+        }
+        .blog-card:hover .blog-title-link { text-decoration-color: var(--red); }
+
+        .featured-img-wrap { overflow: hidden; position: relative; }
+        .featured-img-wrap img {
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .featured-img-wrap:hover img { transform: scale(1.04); }
+
+        .stat-item {
+            border-left: 1px solid #e5e7eb;
+            padding-left: 2rem;
+        }
+        .stat-item:first-child { border-left: none; padding-left: 0; }
+
+        .pull-quote {
+            position: relative;
+            padding: 2rem 2rem 2rem 3rem;
+            background: #f8f9fa;
+            border-left: 4px solid var(--blue);
+        }
+        .pull-quote::before {
+            content: '\201C';
+            position: absolute;
+            top: -0.5rem;
+            left: 0.75rem;
+            font-size: 5rem;
+            line-height: 1;
+            color: var(--blue);
+            opacity: 0.15;
+            font-family: Georgia, serif;
+        }
+
+        .bar-fill {
+            width: 0%;
+            transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .bar-fill.animate { width: var(--target-width); }
+
+        .section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--subtle);
+        }
+        .section-label::before {
+            content: '';
+            display: block;
+            width: 2rem;
+            height: 1px;
+            background: currentColor;
+        }
+
+        .highlight-tag {
+            display: inline-block;
+            background: var(--dark);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 3px 8px;
+        }
+
+        #modal-body h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--subtle);
+            margin-top: 2.5rem;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        #modal-body p {
+            margin-bottom: 1.2rem;
+            font-size: 1.0625rem;
+            line-height: 1.85;
+            color: #374151;
+        }
+        #modal-body em { font-style: italic; color: var(--dark); }
+        #modal-body strong { font-weight: 600; color: var(--dark); }
+
+        #search-dropdown { box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+
+        .side-article {
+            transition: background 0.2s ease;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .side-article:last-child { border-bottom: none; }
+        .side-article:hover { padding-left: 0.5rem; transition: padding-left 0.2s ease, background 0.2s ease; }
+
+        .play-btn {
+            transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+        }
+        .group:hover .play-btn {
+            transform: scale(1.1);
+            background: var(--blue) !important;
+            color: white !important;
+        }
+
+        .profile-photo {
+            transition: filter 0.4s ease;
+            filter: grayscale(20%);
+        }
+        .profile-photo:hover { filter: grayscale(0%); }
+
+        .nav-item {
+            position: relative;
+            cursor: pointer;
+            white-space: nowrap;
+            padding: 0 2px;
+        }
+        .nav-item.active { color: var(--dark); font-weight: 600; }
+        .nav-item:not(.active) { color: #6b7280; }
+        .nav-item:not(.active):hover { color: var(--dark); }
+
+        .page-header {
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            border-bottom: 1px solid #e5e7eb;
+            position: relative;
+            overflow: hidden;
+        }
+        .page-header::after {
+            content: '';
+            position: absolute;
+            right: -4rem;
+            top: -4rem;
+            width: 20rem;
+            height: 20rem;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 85, 135, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .subscribe-input:focus { outline: none; box-shadow: 0 0 0 2px var(--blue); }
+
+        /* ===== ARTICLE PAGE ===== */
+        .article-sticky-bar {
+            position: sticky;
+            top: 50px;
+            z-index: 20;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(8px);
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .article-body {
+            font-family: 'Lora', 'Noto Serif SC', Georgia, serif;
+            font-size: 1.25rem;
+            line-height: 2.1;
+            color: #1f2937;
+            text-align: justify;
+        }
+        .article-body p { margin-bottom: 1.8rem; }
+        .article-body h2 { font-family: 'Inter', sans-serif; font-size: 1.6rem; font-weight: 700; margin: 3rem 0 1rem; letter-spacing: -0.01em; }
+        .article-body h3 { font-family: 'Inter', sans-serif; font-size: 1.3rem; font-weight: 700; margin: 2.5rem 0 0.75rem; }
+        .article-body blockquote {
+            border-left: 3px solid var(--blue);
+            padding: 0.5rem 0 0.5rem 1.5rem;
+            margin: 1.5rem 0;
+            color: #4b5563;
+            font-style: italic;
+        }
+        .article-body ul, .article-body ol { margin: 1rem 0 1.5rem 1.5rem; }
+        .article-body li { margin-bottom: 0.5rem; }
+        .article-body img { max-width: 100%; margin: 1.5rem 0; }
+        .article-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+
+        .like-btn { transition: transform 0.2s ease, color 0.2s ease; user-select: none; }
+        .like-btn:active { transform: scale(1.3); }
+        .like-btn.liked { color: #cc1414; }
+        .article-share-btn {
+            transition: all 0.2s ease;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid #d1d5db;
+            color: #6b7280;
+            background: white;
+        }
+        .article-share-btn:hover { border-color: var(--dark); color: var(--dark); background: #f9fafb; }
+        .copied-toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--dark);
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 200;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .copied-toast.show { opacity: 1; }
+
+        /* ===== READING PROGRESS BAR ===== */
+        #reading-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: var(--blue);
+            z-index: 9999;
+            width: 0%;
+            transition: width 0.15s linear;
+        }
+
+        /* ===== INTERACTIVE MAPS ===== */
+        #map-section { }
+        .map-tab {
+            padding: 0.6rem 1.5rem;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: #9ca3af;
+            background: none;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+        .map-tab.active { color: var(--dark); border-bottom-color: var(--dark); }
+        .map-tab:hover { color: var(--dark); }
+        #map-container { height: 520px; width: 100%; background: #f0f2f5; border-radius: 2px; }
+        .map-legend {
+            background: white;
+            padding: 12px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            line-height: 1.8;
+        }
+        .map-legend span { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 6px; vertical-align: middle; }
+        .map-tooltip {
+            background: rgba(26,26,26,0.9);
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 13px;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .map-col-title {
+            font-size: 14px; font-weight: 600; letter-spacing: 0.05em;
+            color: #374151; margin-bottom: 8px; padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .map-box { height: 500px; width: 100%; position: relative; }
+        .map-legend-row {
+            display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 12px;
+            font-size: 11px; color: #6b7280;
+        }
+        .map-legend-row span { display: inline-flex; align-items: center; gap: 5px; white-space: nowrap; }
+        .map-legend-dot { display: inline-block; width: 10px; height: 10px; border-radius: 1.5px; flex-shrink: 0; }
+
+        /* ===== MOBILE MENU ===== */
+        #mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+        #mobile-menu-btn span {
+            display: block; width: 22px; height: 2px; background: var(--dark);
+            margin: 5px 0; transition: all 0.3s ease; border-radius: 1px;
+        }
+        #mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        #mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+        #mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+        #mobile-menu-overlay {
+            position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 90;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        #mobile-menu-overlay.open { opacity: 1; visibility: visible; }
+
+        #mobile-menu-panel {
+            position: fixed; top: 0; right: 0; width: 280px; max-width: 80vw; height: 100vh;
+            background: var(--bg); z-index: 95; transform: translateX(100%);
+            transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+            overflow-y: auto; padding: 5rem 2rem 2rem; box-shadow: -4px 0 24px rgba(0,0,0,0.12);
+        }
+        #mobile-menu-panel.open { transform: translateX(0); }
+        #mobile-menu-panel button {
+            display: block; width: 100%; text-align: left; padding: 0.9rem 0;
+            font-size: 15px; font-weight: 600; font-family: 'Inter','Noto Sans SC',sans-serif;
+            text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);
+            background: none; border: none; border-bottom: 1px solid var(--border); cursor: pointer;
+            transition: color 0.2s ease;
+        }
+        #mobile-menu-panel button:hover { color: var(--dark); }
+
+        @media (max-width: 1023px) {
+            #mobile-menu-btn { display: block; }
+            #nav-track .nav-item { display: none; }
+        }
+
+        /* ===== SKELETON LOADING ===== */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body class="font-sans antialiased min-h-screen flex flex-col relative">
+
+    <!-- Reading progress bar -->
+    <div id="reading-progress"></div>
+
+    <!-- MOBILE SEARCH OVERLAY -->
+    <div id="search-overlay" class="fixed inset-0 bg-white/97 backdrop-blur-md z-[100] search-hidden flex flex-col justify-start items-center pt-32 overflow-y-auto lg:hidden">
+        <button onclick="toggleSearch()" class="absolute top-8 right-8 text-pew-dark hover:rotate-90 transition-transform duration-300 p-2">
+            <i data-lucide="x" class="w-8 h-8"></i>
+        </button>
+        <div class="w-full max-w-3xl px-6">
+            <h2 class="text-3xl font-serif text-pew-dark mb-8 text-center" data-en="Search the Initiative" data-zh="搜索智库平台">Search the Initiative</h2>
+            <form onsubmit="handleSearch(event)" class="flex items-center border-b-2 border-pew-dark pb-3 group">
+                <i data-lucide="search" class="w-6 h-6 text-gray-400 group-focus-within:text-pew-dark transition-colors mr-4"></i>
+                <input type="text" id="search-input" placeholder="Type keywords (e.g. policy, Africa, linguistics)..." class="w-full bg-transparent text-xl md:text-2xl font-sans outline-none text-pew-dark placeholder-gray-300">
+                <button type="submit" class="text-sm font-bold uppercase tracking-widest text-pew-subtle hover:text-pew-accent ml-4 transition-colors">Search</button>
+            </form>
+            <div id="search-result-msg" class="mt-8 font-serif hidden w-full"></div>
+        </div>
+    </div>
+
+    <!-- TOP BLACK BAR -->
+    <div class="bg-[#111] text-white py-2 px-6 lg:px-12 w-full z-50 relative">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-[10px] md:text-[11px] font-bold tracking-[0.15em] uppercase font-sans">
+            <span class="block" data-en="PRESERVING ENDANGERED VOICES" data-zh="守护濒危之声">PRESERVING ENDANGERED VOICES</span>
+            <div class="flex space-x-4 md:space-x-6 items-center">
+                <button onclick="scrollToFeatured()" class="hover:text-gray-300 transition-colors uppercase cursor-pointer hidden sm:block" data-en="NEWSLETTERS" data-zh="简报订阅">NEWSLETTERS</button>
+                <a href="#footer-section" class="hover:text-gray-300 transition-colors uppercase hidden sm:block" data-en="CONTACT" data-zh="联系我们">CONTACT</a>
+                <button onclick="toggleDark()" class="hover:text-gray-300 transition-colors cursor-pointer w-7 h-7 flex items-center justify-center" title="Toggle dark mode" id="dark-toggle" aria-label="Dark mode toggle">
+                    <i data-lucide="moon" class="w-3.5 h-3.5"></i>
+                </button>
+                <button onclick="toggleLang()" id="lang-label-top" class="hover:text-gray-300 transition-colors cursor-pointer text-[#cc1414]">CHINESE</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="bg-white z-40 relative pt-7 pb-6 px-6 lg:px-12 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto flex justify-between items-center w-full">
+            <div class="flex items-center cursor-pointer group" onclick="navigateTo('view-home')">
+                <svg class="w-10 h-10 md:w-11 md:h-11 mr-3 md:mr-4 text-pew-dark group-hover:text-[#005587] transition-colors duration-300 flex-shrink-0" viewBox="0 0 100 100" fill="currentColor">
+                    <circle cx="20" cy="50" r="8" />
+                    <circle cx="45" cy="30" r="6" />
+                    <circle cx="45" cy="70" r="6" />
+                    <circle cx="75" cy="15" r="4" />
+                    <circle cx="75" cy="50" r="4" />
+                    <circle cx="75" cy="85" r="4" />
+                    <path d="M20 50 Q 35 40 45 30" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                    <path d="M20 50 Q 35 60 45 70" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                    <path d="M45 30 Q 60 22.5 75 15" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                    <path d="M45 70 Q 60 77.5 75 85" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                </svg>
+                <div class="flex flex-col">
+                    <h1 class="font-serif text-[28px] md:text-[34px] font-normal text-pew-dark tracking-tight leading-none" data-en="Margins & Meaning" data-zh="边缘与意义">
+                        Margins & Meaning
+                    </h1>
+                    <span class="text-[10px] md:text-[11px] text-gray-400 uppercase tracking-[0.18em] mt-1.5 font-sans font-semibold" data-en="Voices from the Margins Project" data-zh="边缘之声研究项目">Voices from the Margins Project</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex flex-col items-end relative">
+                <div class="text-[13px] text-gray-600 mb-2.5 font-sans">
+                    <span class="text-gray-400 font-medium" data-en="Explore:" data-zh="探索:">Explore:</span>
+                    <button onclick="navigateTo('view-research')" class="text-[#005587] hover:underline ml-2 font-semibold transition-colors" data-en="Linguistics" data-zh="语言学研究">Linguistics</button>
+                    <span class="text-gray-200 px-2">|</span>
+                    <button onclick="navigateTo('view-data')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Media" data-zh="媒体与数据">Media</button>
+                    <span class="text-gray-200 px-2">|</span>
+                    <button onclick="navigateTo('view-blog')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Blog" data-zh="博客">Blog</button>
+                </div>
+                <form onsubmit="handleHeaderSearch(event)" class="flex w-[340px] border border-gray-300 hover:border-gray-500 focus-within:border-[#005587] transition-colors bg-white shadow-sm">
+                    <input type="text" id="header-search-input" placeholder="Search marginsandmeaning.org..." class="w-full px-4 py-2.5 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
+                    <button type="submit" class="bg-[#1a1a1a] hover:bg-[#005587] transition-colors text-white px-5 py-2 border-l border-gray-300 flex items-center justify-center">
+                        <i data-lucide="search" class="w-4 h-4"></i>
+                    </button>
+                </form>
+                <div id="search-dropdown" class="absolute top-full right-0 w-[400px] bg-white border border-gray-200 mt-1 hidden z-50 flex-col max-h-[400px] overflow-y-auto"></div>
+            </div>
+
+            <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-[#005587] transition-colors p-2">
+                <i data-lucide="search" class="w-7 h-7"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav class="bg-white sticky top-0 z-30 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+            <div id="nav-track" class="nav-track flex items-center lg:justify-center overflow-x-auto hide-scrollbar text-[11.5px] font-sans font-semibold uppercase tracking-[0.12em] h-[50px] gap-6 lg:gap-10 border-b border-gray-100">
+
+                <!-- Hamburger (mobile only) -->
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="absolute right-6 top-1/2 -translate-y-1/2" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <button data-target="view-home" onclick="navigateTo('view-home')" class="nav-item active py-3" data-en="HOME" data-zh="首页">HOME</button>
+                <button data-target="view-research" onclick="navigateTo('view-research')" class="nav-item py-3" data-en="RESEARCH" data-zh="学术研究">RESEARCH</button>
+                <button data-target="view-writing" onclick="navigateTo('view-writing')" class="nav-item py-3" data-en="WRITING" data-zh="观点评论">WRITING</button>
+                <button data-target="view-field" onclick="navigateTo('view-field')" class="nav-item py-3" data-en="FIELD NOTES" data-zh="田野笔记">FIELD NOTES</button>
+                <button data-target="view-voices" onclick="navigateTo('view-voices')" class="nav-item py-3" data-en="VOICES ARCHIVE" data-zh="声音档案">VOICES ARCHIVE</button>
+                <button data-target="view-data" onclick="navigateTo('view-data')" class="nav-item py-3" data-en="DATA & INSIGHTS" data-zh="数据洞察">DATA & INSIGHTS</button>
+                <button data-target="view-blog" onclick="navigateTo('view-blog')" class="nav-item py-3" data-en="BLOG" data-zh="动态博客">BLOG</button>
+                <button data-target="view-about" onclick="navigateTo('view-about')" class="nav-item py-3" data-en="ABOUT US" data-zh="关于平台">ABOUT US</button>
+
+                <div id="nav-indicator" class="nav-indicator" style="left:0;width:0;"></div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu-overlay" onclick="toggleMobileMenu()"></div>
+    <div id="mobile-menu-panel">
+        <button onclick="mobileNavTo('view-home')" data-en="HOME" data-zh="首页">HOME</button>
+        <button onclick="mobileNavTo('view-research')" data-en="RESEARCH" data-zh="学术研究">RESEARCH</button>
+        <button onclick="mobileNavTo('view-writing')" data-en="WRITING" data-zh="观点评论">WRITING</button>
+        <button onclick="mobileNavTo('view-field')" data-en="FIELD NOTES" data-zh="田野笔记">FIELD NOTES</button>
+        <button onclick="mobileNavTo('view-voices')" data-en="VOICES ARCHIVE" data-zh="声音档案">VOICES ARCHIVE</button>
+        <button onclick="mobileNavTo('view-data')" data-en="DATA & INSIGHTS" data-zh="数据洞察">DATA & INSIGHTS</button>
+        <button onclick="mobileNavTo('view-blog')" data-en="BLOG" data-zh="动态博客">BLOG</button>
+        <button onclick="mobileNavTo('view-about')" data-en="ABOUT US" data-zh="关于平台">ABOUT US</button>
+    </div>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="flex-grow w-full">
+
+        <!-- ===== VIEW: HOME ===== -->
+        <div id="view-home" class="page-view active">
+
+            <!-- HERO GRID AREA -->
+            <div class="hero-grid-bg">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-20 md:pt-28 pb-12">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16" id="hero-grid-container">
+                    </div>
+                </div>
+            </div>
+
+            <!-- KEY NUMBERS STRIP — data-target values are defaults, updated dynamically after CMS fetch -->
+            <div id="featured-section" class="border-t border-b border-gray-200 bg-white py-14">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-0 reveal">
+                        <div class="stat-item text-center py-2">
+                            <div class="text-4xl font-serif font-bold text-pew-dark leading-none mb-1.5 counter" data-target="250">0</div>
+                            <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</div>
+                        </div>
+                        <div class="stat-item text-center py-2" id="counter-conferences">
+                            <div class="text-4xl font-serif font-bold text-pew-dark leading-none mb-1.5"><span class="counter" data-target="5">0</span></div>
+                            <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</div>
+                        </div>
+                        <div class="stat-item text-center py-2" id="counter-papers">
+                            <div class="text-4xl font-serif font-bold text-pew-dark leading-none mb-1.5"><span class="counter" data-target="3">0</span></div>
+                            <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Research Papers" data-zh="学术论文">Research Papers</div>
+                        </div>
+                        <div class="stat-item text-center py-2">
+                            <div class="text-4xl font-serif font-bold text-pew-dark leading-none mb-1.5"><span class="counter" data-target="10">0</span></div>
+                            <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Years of Data (2015–2025)" data-zh="数据跨度 (2015–2025)">Years of Data</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INTERACTIVE MAPS -->
+            <div id="map-section" class="py-28">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                    <div class="section-label mb-3 reveal" data-en="Language & Ethnicity Map" data-zh="语言与民族地图">Language & Ethnicity Map</div>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 reveal">
+                        <div>
+                            <div class="map-col-title" data-en="Dialect Regions" data-zh="方言区域">Dialect Regions</div>
+                            <div id="map-dialect" class="map-box"></div>
+                            <div id="legend-dialect" class="map-legend-row"></div>
+                        </div>
+                        <div>
+                            <div class="map-col-title" data-en="Ethnic Minorities" data-zh="少数民族">Ethnic Minorities</div>
+                            <div id="map-ethnic" class="map-box"></div>
+                            <div id="legend-ethnic" class="map-legend-row"></div>
+                        </div>
+                    </div>
+                    <p class="text-[12px] text-gray-400 mt-10 font-sans text-center reveal" data-en="Hover over regions for details. Data sourced from academic linguistic surveys." data-zh="悬停区域查看详情。数据来源于学术语言调查。">Hover over regions for details. Data sourced from academic linguistic surveys.</p>
+                </div>
+            </div>
+
+            <!-- RECENT BLOG PREVIEW -->
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 py-24">
+                <div class="flex items-center justify-between mb-10 reveal">
+                    <div class="section-label" data-en="Latest from the Blog" data-zh="最新动态">Latest from the Blog</div>
+                    <button onclick="navigateTo('view-blog')" class="text-[12px] font-bold uppercase tracking-widest text-[#005587] hover:text-pew-dark transition-colors flex items-center gap-1.5" data-en="View All" data-zh="查看全部">View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="home-blog-cards">
+                    <!-- Dynamically filled from CMS -->
+                    <div class="text-center py-12 text-gray-400 font-serif col-span-3">Loading...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== VIEW: RESEARCH ===== -->
+        <div id="view-research" class="page-view pb-24">
+            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+                <div class="max-w-5xl mx-auto">
+                    <div class="section-label mb-4" data-en="Academic Work" data-zh="学术工作">Academic Work</div>
+                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Research" data-zh="学术研究">Research</h2>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-6 lg:px-12 space-y-0" id="research-container">
+            </div>
+        </div>
+
+        <!-- ===== VIEW: WRITING ===== -->
+        <div id="view-writing" class="page-view pb-24">
+            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+                <div class="max-w-5xl mx-auto">
+                    <div class="section-label mb-4" data-en="Opinion & Analysis" data-zh="观点与分析">Opinion & Analysis</div>
+                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Writing & Opinion" data-zh="观点与评论">Writing & Opinion</h2>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-6 lg:px-12">
+                <div class="pull-quote mb-14 reveal">
+                    <p class="font-serif text-2xl text-gray-700 italic leading-relaxed" data-en="Here, we move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities." data-zh="在记录事实之外，我们致力于解释世界。本专栏将抽象的研究数据转化为锋利的分析论点，探讨话语体系如何决定社会现实。">
+                        Here, we move beyond recording facts to interpreting them. This section translates abstract research into analytical arguments regarding how narrative structures dictate social realities.
+                    </p>
+                </div>
+
+                <div id="writing-container"></div>
+
+            </div>
+        </div>
+
+        <!-- ===== VIEW: FIELD NOTES ===== -->
+        <div id="view-field" class="page-view pb-24">
+            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+                <div class="max-w-5xl mx-auto">
+                    <div class="section-label mb-4" data-en="Ethnographic Work" data-zh="民族志研究">Ethnographic Work</div>
+                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Field Notes" data-zh="田野笔记">Field Notes</h2>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-6 lg:px-12" id="field-container">
+            </div>
+        </div>
+
+        <!-- ===== VIEW: DATA & INSIGHTS ===== -->
+        <div id="view-data" class="page-view pb-24">
+            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+                <div class="max-w-5xl mx-auto">
+                    <div class="section-label mb-4" data-en="Quantitative Work" data-zh="量化研究">Quantitative Work</div>
+                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</h2>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-6 lg:px-12">
+                <div class="border border-gray-200 reveal" id="data-card">
+                    <div class="p-8 md:p-10 border-b border-gray-200 bg-[#fafafa]">
+                        <div class="flex flex-wrap items-start justify-between gap-4">
+                            <div>
+                                <div class="section-label mb-3" data-en="Dataset Overview" data-zh="数据集概览">Dataset Overview</div>
+                                <h3 class="font-serif text-3xl font-bold text-pew-dark" data-en="Faces vs. Steel: Visual Framing Dataset" data-zh="面孔与钢铁：视觉政治量化数据集">Faces vs. Steel: Visual Framing Dataset</h3>
+                            </div>
+                            <button onclick="openArticle('project-faces')" class="text-[11px] font-bold uppercase tracking-widest border border-[#005587] text-[#005587] px-4 py-2 hover:bg-[#005587] hover:text-white transition-colors whitespace-nowrap" data-en="Full Research →" data-zh="查看研究 →">Full Research →</button>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-200 border-b border-gray-200">
+                        <div class="p-6 md:p-8">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 font-sans" data-en="Sample Size" data-zh="样本量">Sample Size</p>
+                            <p class="font-serif text-3xl font-bold text-pew-dark">250<span class="text-xl">+</span></p>
+                            <p class="text-sm text-gray-500 mt-1 font-sans" data-en="Images, 2015–2025" data-zh="图像，2015–2025">Images, 2015–2025</p>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 font-sans" data-en="Methodology" data-zh="研究方法">Methodology</p>
+                            <p class="font-serif text-lg font-bold text-pew-dark leading-snug" data-en="Mixed Methods" data-zh="混合研究法">Mixed Methods</p>
+                            <p class="text-sm text-gray-500 mt-1 font-sans" data-en="QCA + Multimodal Analysis + χ²" data-zh="量化内容分析 + 多模态 + 卡方检验">QCA + Multimodal Analysis + χ²</p>
+                        </div>
+                        <div class="p-6 md:p-8">
+                            <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2 font-sans">对比来源</p>
+                            <p class="font-serif text-lg font-bold text-pew-dark leading-snug">BBC · CNN · NYT</p>
+                            <p class="text-sm text-gray-500 mt-1 font-sans">vs. Xinhua · CGTN · China Daily</p>
+                        </div>
+                    </div>
+
+                    <div class="p-8 md:p-10">
+                        <p class="text-[11px] font-bold uppercase tracking-widest text-gray-400 mb-8 font-sans" data-en="Visual Frame Distribution by Media Group" data-zh="各媒体机构视觉框架分布">Visual Frame Distribution by Media Group</p>
+
+                        <div class="space-y-5 max-w-2xl" id="chart-bars">
+                            <div>
+                                <div class="flex justify-between text-[12px] font-sans mb-1.5">
+                                    <span class="font-semibold text-gray-700" data-en="Western — 'Pure Objects / Steel'" data-zh="西方媒体 — 纯粹物体/钢铁">Western — 'Pure Objects / Steel'</span>
+                                    <span class="font-bold text-[#005587]">~77%</span>
+                                </div>
+                                <div class="h-6 bg-gray-100 rounded-sm overflow-hidden">
+                                    <div class="bar-fill h-full bg-[#005587] rounded-sm" style="--target-width: 77%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[12px] font-sans mb-1.5">
+                                    <span class="font-semibold text-gray-700" data-en="Western — 'Human Focus / Faces'" data-zh="西方媒体 — 人的焦点/面孔">Western — 'Human Focus / Faces'</span>
+                                    <span class="font-bold text-[#005587]">~23%</span>
+                                </div>
+                                <div class="h-6 bg-gray-100 rounded-sm overflow-hidden">
+                                    <div class="bar-fill h-full bg-[#005587] opacity-40 rounded-sm" style="--target-width: 23%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[12px] font-sans mb-1.5">
+                                    <span class="font-semibold text-gray-700" data-en="Chinese — 'Pure Objects / Steel'" data-zh="中国媒体 — 纯粹物体/钢铁">Chinese — 'Pure Objects / Steel'</span>
+                                    <span class="font-bold text-[#cc1414]">~17%</span>
+                                </div>
+                                <div class="h-6 bg-gray-100 rounded-sm overflow-hidden">
+                                    <div class="bar-fill h-full bg-[#cc1414] opacity-40 rounded-sm" style="--target-width: 17%;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-[12px] font-sans mb-1.5">
+                                    <span class="font-semibold text-gray-700" data-en="Chinese — 'Human Warmth / Faces'" data-zh="中国媒体 — 人的温度/面孔">Chinese — 'Human Warmth / Faces'</span>
+                                    <span class="font-bold text-[#cc1414]">~83%</span>
+                                </div>
+                                <div class="h-6 bg-gray-100 rounded-sm overflow-hidden">
+                                    <div class="bar-fill h-full bg-[#cc1414] rounded-sm" style="--target-width: 83%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-10 bg-[#f0f5fa] border-l-4 border-[#005587] p-5">
+                            <p class="text-[11px] font-bold uppercase tracking-widest text-[#005587] mb-2 font-sans" data-en="Key Finding" data-zh="核心发现">Key Finding</p>
+                            <p class="font-serif text-[17px] text-gray-700 leading-relaxed" data-en="Images in international reporting are not objective reflections of reality, but carefully curated political instruments designed to dictate the boundaries of global perception." data-zh="国际报道中的图像绝非客观现实的镜像，而是被精密策划的政治工具，旨在规训全球受众的认知边界。">
+                                Images in international reporting are not objective reflections of reality, but carefully curated political instruments designed to dictate the boundaries of global perception.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== VIEW: VOICES ARCHIVE ===== -->
+        <div id="view-voices" class="page-view pb-24">
+            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+                <div class="max-w-5xl mx-auto">
+                    <div class="section-label mb-4" data-en="Primary Materials" data-zh="一手材料">Primary Materials</div>
+                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark mb-3" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</h2>
+                    <p class="text-gray-400 font-serif text-lg" data-en="Listening to the margins. Curating primary materials and ethnographic dialogues." data-zh="聆听边缘。为学界生产一手口述史、对话录与原始研究语料。">Listening to the margins. Curating primary materials and ethnographic dialogues.</p>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-6 lg:px-12" id="voices-container">
+            </div>
+        </div>
+
+        <!-- ===== VIEW: BLOG ===== -->
+        <div id="view-blog" class="page-view pb-32">
+            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+                <div class="max-w-7xl mx-auto">
+                    <div class="section-label mb-4" data-en="Updates & Events" data-zh="动态与活动">Updates & Events</div>
+                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Blog" data-zh="Blog">Blog</h2>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+                    <div class="lg:col-span-8 flex flex-col space-y-10" id="blog-container">
+                    </div>
+
+                    <!-- Sidebar -->
+                    <div class="lg:col-span-4 hidden lg:block">
+                        <div class="sticky top-24">
+                            <div class="border border-gray-200 bg-[#fafafa]">
+                                <div class="border-b border-gray-200 px-6 py-4">
+                                    <h3 class="text-[11px] font-bold uppercase tracking-widest text-pew-dark font-sans" data-en="Categories" data-zh="分类目录">Categories</h3>
+                                </div>
+                                <ul>
+                                    <li><button onclick="filterBlog('all')" class="w-full flex items-center justify-between bg-transparent hover:bg-white px-6 py-4 text-[13px] text-gray-600 hover:text-pew-dark transition-colors border-b border-gray-100 cursor-pointer" data-en="All Posts" data-zh="全部文章">All Posts <span class="text-gray-300 text-xs" id="blog-count-all">0</span></button></li>
+                                    <li><button onclick="filterBlog('conference')" class="w-full flex items-center justify-between bg-transparent hover:bg-white px-6 py-4 text-[13px] text-gray-600 hover:text-pew-dark transition-colors border-b border-gray-100 cursor-pointer" data-en="Conference Updates" data-zh="学术会议">Conference Updates <span class="text-gray-300 text-xs" id="blog-count-conference">0</span></button></li>
+                                    <li><button onclick="filterBlog('fieldwork')" class="w-full flex items-center justify-between bg-transparent hover:bg-white px-6 py-4 text-[13px] text-gray-600 hover:text-pew-dark transition-colors border-b border-gray-100 cursor-pointer" data-en="Fieldwork Logs" data-zh="田野纪实">Fieldwork Logs <span class="text-gray-300 text-xs" id="blog-count-fieldwork">0</span></button></li>
+                                    <li><button onclick="filterBlog('publication')" class="w-full flex items-center justify-between bg-transparent hover:bg-white px-6 py-4 text-[13px] text-gray-600 hover:text-pew-dark transition-colors border-b border-gray-100 cursor-pointer" data-en="Publications" data-zh="学术出版物">Publications <span class="text-gray-300 text-xs" id="blog-count-publication">0</span></button></li>
+                                    <li><button onclick="filterBlog('team')" class="w-full flex items-center justify-between bg-transparent hover:bg-white px-6 py-4 text-[13px] text-gray-600 hover:text-pew-dark transition-colors cursor-pointer" data-en="Team News" data-zh="团队动态">Team News <span class="text-gray-300 text-xs" id="blog-count-team">0</span></button></li>
+                                </ul>
+                            </div>
+
+                            <div class="mt-6 border border-gray-200 p-6 bg-white">
+                                <p class="text-[11px] font-bold uppercase tracking-widest text-pew-dark mb-3 font-sans" data-en="Stay Informed" data-zh="订阅简报">Stay Informed</p>
+                                <p class="text-[13px] text-gray-500 font-serif mb-4" data-en="Get new research and updates delivered." data-zh="接收最新研究与动态。">Get new research and updates delivered.</p>
+                                <form onsubmit="handleSubscribe(event, 'sidebar-sub-btn')" class="flex border border-gray-300 focus-within:border-[#005587] transition-colors">
+                                    <input type="email" placeholder="Email..." class="flex-1 px-3 py-2 text-[13px] outline-none placeholder-gray-300 bg-white" required>
+                                    <button type="submit" id="sidebar-sub-btn" class="px-3 py-2 bg-[#1a1a1a] text-white text-[11px] font-bold uppercase tracking-wider hover:bg-[#005587] transition-colors">Go</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== VIEW: ABOUT ===== -->
+        <div id="view-about" class="page-view pb-24">
+            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+                <div class="max-w-5xl mx-auto">
+                    <div class="section-label mb-4" data-en="The Initiative" data-zh="关于平台">The Initiative</div>
+                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="About" data-zh="关于平台">About</h2>
+                </div>
+            </div>
+
+            <div class="max-w-5xl mx-auto px-6 lg:px-12">
+                <div class="mb-20 reveal">
+                    <p class="text-3xl md:text-4xl font-serif text-pew-dark leading-relaxed mb-10 font-light" data-en="Founded April 25, 2026, Margins &amp; Meaning is an independent research initiative dedicated to documenting and revitalizing endangered languages, while examining how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality." data-zh="「边缘与意义」创立于2026年4月25日，是一个独立的青年研究平台。我们致力于濒危语言的记录与复兴，同时探讨边缘群体如何被语言与叙事所塑造，以及这些微观过程如何转化为结构性不平等。">
+                        Founded April 25, 2026, Margins &amp; Meaning is an independent research initiative dedicated to documenting and revitalizing endangered languages, while examining how marginalized communities are shaped through language and narrative—and how these processes translate into structural inequality.
+                    </p>
+                    <div class="h-px bg-gradient-to-r from-[#005587] via-gray-200 to-transparent mb-8"></div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 font-serif text-[18px] text-gray-600 leading-relaxed">
+                        <p data-en="The project is grounded in the belief that inequality is not only material, but also discursive: it is produced, reinforced, and contested through the ways people speak, are represented, and are heard." data-zh="本项目基于这样一个核心理念：不平等不仅是物质层面的，更是话语层面的。不平等通过人们说话、被表征以及被倾听的方式不断被生产、强化与抗争。">
+                            The project is grounded in the belief that inequality is not only material, but also discursive: it is produced, reinforced, and contested through the ways people speak, are represented, and are heard.
+                        </p>
+                        <p data-en="Methodologically, the project adopts an interdisciplinary approach, combining sociolinguistic fieldwork, media and discourse analysis, and quantitative inquiry to connect micro-level experiences of marginality with broader structural patterns." data-zh="在方法论上，本项目采用跨学科范式，结合社会语言学田野调查、媒体与话语分析以及量化探究，将微观层面的边缘体验与更广泛的宏观结构模式相联结。">
+                            Methodologically, the project adopts an interdisciplinary approach, combining sociolinguistic fieldwork, media and discourse analysis, and quantitative inquiry to connect micro-level experiences with broader structural patterns.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="mb-16 reveal">
+                    <div class="section-label mb-6" data-en="Areas of Focus" data-zh="研究领域">Areas of Focus</div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-200">
+                        <div class="p-7 border-b md:border-b-0 md:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
+                            <div class="w-8 h-0.5 bg-[#005587] mb-5"></div>
+                            <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Language & Identity" data-zh="语言与身份">Language & Identity</h4>
+                            <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="Linguistic hybridity and identity formation in historically marginalized regions." data-zh="历史边缘地区的语言杂糅与身份认同建构。">Linguistic hybridity and identity formation in historically marginalized regions.</p>
+                        </div>
+                        <div class="p-7 border-b md:border-b-0 md:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
+                            <div class="w-8 h-0.5 bg-[#cc1414] mb-5"></div>
+                            <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Media & Narrative" data-zh="媒体与叙事">Media & Narrative</h4>
+                            <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="Narrative framing and representation in China–Africa media contexts." data-zh="中非媒体语境中的叙事框架与视觉表征。">Narrative framing and visual representation in China–Africa media contexts.</p>
+                        </div>
+                        <div class="p-7 border-b md:border-b-0 md:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
+                            <div class="w-8 h-0.5 bg-gray-400 mb-5"></div>
+                            <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Voice & Inequality" data-zh="声音与不平等">Voice & Inequality</h4>
+                            <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="The relationship between language, voice, and structural economic inequality." data-zh="语言、声音与结构性经济不平等之间的关系。">The relationship between language, voice, and structural economic inequality.</p>
+                        </div>
+                        <div class="p-7 group hover:bg-[#f8f9fa] transition-colors">
+                            <div class="w-8 h-0.5 bg-[#2d8a56] mb-5"></div>
+                            <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Preservation & Revitalization" data-zh="语言保护与复兴">Preservation & Revitalization</h4>
+                            <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="Documenting endangered dialects and oral traditions, and supporting community-based language revitalization." data-zh="记录濒危方言与口头传统，支持以社区为本的语言复兴实践。">Documenting endangered dialects and oral traditions, and supporting community-based language revitalization.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Team -->
+                <div class="border-t border-gray-200 pt-20 reveal">
+                    <div class="section-label mb-12" data-en="The Team" data-zh="研究团队">The Team</div>
+
+                    <div class="flex flex-col md:flex-row items-center md:items-center gap-10 md:gap-16 mb-14 pb-14 border-b border-gray-200">
+                        <div class="flex-shrink-0 flex flex-col items-center">
+                            <div class="w-36 h-36 md:w-44 md:h-44 overflow-hidden rounded-full border-2 border-gray-100 shadow-md mb-4">
+                                <img src="https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true" class="profile-photo w-full h-full object-cover" alt="Senlin Wang">
+                            </div>
+                            <h4 class="font-serif text-2xl font-bold text-pew-dark text-center" data-en="Senlin Wang" data-zh="王森林">Senlin Wang</h4>
+                            <p class="text-[11px] font-bold text-[#cc1414] uppercase tracking-widest text-center mt-1" data-en="Founder" data-zh="创始人">Founder</p>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-serif text-[17px] text-gray-600 leading-relaxed text-justify-force" data-en="Senlin Wang is the founder of Margins &amp; Meaning. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world." data-zh="王森林是「边缘与意义」的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题，并特别关注在全球化世界中，语言与叙事是如何与权力结构产生深刻交集的。">
+                                Senlin Wang is the founder of Margins &amp; Meaning. His work focuses on sociolinguistics, identity, and inequality, with a particular interest in how language and narrative intersect with structures of power in a globalized world.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col md:flex-row items-center md:items-center gap-10 md:gap-16">
+                        <div class="flex-shrink-0 flex flex-col items-center">
+                            <div class="w-36 h-36 md:w-44 md:h-44 overflow-hidden rounded-full border-2 border-gray-100 shadow-md mb-4">
+                                <img src="https://github.com/wsenlin419-maker/picture/blob/main/%E6%98%9F%E5%AE%87%E7%85%A7%E7%89%87.jpg?raw=true" class="profile-photo w-full h-full object-cover" alt="Xingyu Zhang">
+                            </div>
+                            <h4 class="font-serif text-2xl font-bold text-pew-dark text-center" data-en="Xingyu Zhang" data-zh="张星宇">Xingyu Zhang</h4>
+                            <p class="text-[11px] font-bold text-[#cc1414] uppercase tracking-widest text-center mt-1" data-en="Research Associate" data-zh="研究助理">Research Associate</p>
+                        </div>
+                        <div class="flex-1">
+                            <p class="font-serif text-[17px] text-gray-600 leading-relaxed text-justify-force" data-en="Xingyu Zhang is a member of Margins &amp; Meaning. She is from Capital University of Economics and Business and her work focuses on Cross cultural communication, language and promotion." data-zh="张星宇是「边缘与意义」的核心成员。她来自首都经济贸易大学，研究工作主要聚焦于跨文化传播、语言策略以及文化推广等领域。">
+                                Xingyu Zhang is a member of Margins &amp; Meaning. She is from Capital University of Economics and Business and her work focuses on Cross cultural communication, language and promotion.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== VIEW: ARTICLE ===== -->
+        <div id="view-article" class="page-view pb-24">
+            <!-- Sticky top bar -->
+            <div class="article-sticky-bar px-6 lg:px-12 py-3">
+                <div class="max-w-6xl mx-auto flex items-center justify-between">
+                    <button onclick="closeArticle()" class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-gray-500 hover:text-pew-dark transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                        <span id="article-back-label" data-en="Back" data-zh="返回">Back</span>
+                    </button>
+                    <div class="flex items-center gap-2">
+                        <button onclick="shareArticle('copy')" class="article-share-btn" title="Copy link">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+                        </button>
+                        <button onclick="shareArticle('twitter')" class="article-share-btn" title="Share on X">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4l11.733 16h4.267l-11.733-16z"/><path d="M4 20l6.768-6.768m2.46-2.46L20 4"/></svg>
+                        </button>
+                        <button onclick="shareArticle('linkedin')" class="article-share-btn" title="Share on LinkedIn">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                        </button>
+                        <button onclick="toggleCitePanel()" class="text-[11px] font-bold uppercase tracking-widest text-gray-400 hover:text-pew-dark transition-colors ml-2" data-en="Cite" data-zh="引用">Cite</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto px-4 lg:px-16 pt-10">
+                <!-- Article header -->
+                <p id="article-view-tag" class="text-[11px] font-bold uppercase tracking-widest text-[#cc1414] mb-4"></p>
+                <h1 id="article-view-title" class="font-serif text-[2.8rem] md:text-[3.5rem] font-bold text-pew-dark leading-[1.15] mb-8"></h1>
+                <div class="flex flex-wrap items-center gap-4 text-[15px] text-gray-500 font-sans mb-12 pb-10 border-b border-gray-200">
+                    <span id="article-view-author"></span>
+                    <span class="text-gray-300">·</span>
+                    <span id="article-view-time"></span>
+                    <span class="text-gray-300">·</span>
+                    <span id="article-view-date"></span>
+                </div>
+
+                <!-- Citation panel -->
+                <div id="cite-panel" class="hidden bg-[#f8f9fa] border border-gray-200 p-6 mb-10">
+                    <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3 font-sans">Citation Formats</p>
+                    <div class="space-y-3 text-[13px] font-mono text-gray-600">
+                        <div><span class="font-bold text-gray-800">APA:</span> <span id="cite-apa"></span></div>
+                        <div><span class="font-bold text-gray-800">MLA:</span> <span id="cite-mla"></span></div>
+                        <div><span class="font-bold text-gray-800">Chicago:</span> <span id="cite-chicago"></span></div>
+                    </div>
+                    <button onclick="copyCitation()" class="mt-3 text-[11px] font-bold uppercase tracking-widest text-[#005587] hover:text-pew-dark transition-colors flex items-center gap-1">
+                        <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy APA
+                    </button>
+                </div>
+
+                <!-- Article body -->
+                <div id="article-view-body" class="article-body mb-12"></div>
+
+                <!-- Interaction row -->
+                <div class="flex items-center gap-6 py-8 border-t border-b border-gray-200 mb-12">
+                    <button onclick="toggleLike()" id="article-like-btn" class="like-btn flex items-center gap-2 text-[15px] font-semibold cursor-pointer bg-transparent border-none">
+                        <i data-lucide="heart" class="w-5 h-5"></i>
+                        <span id="article-like-count">0</span>
+                    </button>
+                    <button onclick="shareArticle('copy')" class="text-[12px] text-gray-500 hover:text-pew-dark transition-colors flex items-center gap-1.5 bg-transparent border-none cursor-pointer">
+                        <i data-lucide="share2" class="w-3.5 h-3.5"></i>
+                        <span data-en="Share" data-zh="分享">Share</span>
+                    </button>
+                </div>
+
+                <!-- Comments -->
+                <div id="giscus-comments" class="mb-16"></div>
+
+                <!-- Related -->
+                <div class="border-t border-gray-200 pt-12">
+                    <p class="section-label mb-6" data-en="Related" data-zh="相关文章">Related</p>
+                    <div id="article-related" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copied toast -->
+        <div id="copied-toast" class="copied-toast">Link copied</div>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <section id="footer-section" class="bg-[#111] text-white pt-20 pb-16 font-sans mt-20 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 border-b border-white/10 pb-12">
+
+            <div class="lg:col-span-4">
+                <div class="flex items-center mb-6">
+                    <svg class="w-7 h-7 mr-2.5 text-white" viewBox="0 0 100 100" fill="currentColor">
+                        <circle cx="20" cy="50" r="8" /><circle cx="45" cy="30" r="6" /><circle cx="45" cy="70" r="6" />
+                        <circle cx="75" cy="15" r="4" /><circle cx="75" cy="50" r="4" /><circle cx="75" cy="85" r="4" />
+                        <path d="M20 50 Q 35 40 45 30" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M20 50 Q 35 60 45 70" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M45 30 Q 60 22.5 75 15" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                        <path d="M45 70 Q 60 77.5 75 85" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
+                    </svg>
+                    <h2 class="font-serif text-[20px] font-medium tracking-tight leading-none">MARGINS & MEANING</h2>
+                </div>
+                <div class="text-[13px] text-white/50 space-y-1.5 leading-relaxed">
+                    <p data-en="308 Ningxia Road, Shinan District" data-zh="市南区宁夏路308号">308 Ningxia Road, Shinan District</p>
+                    <p data-en="Qingdao, Shandong, China" data-zh="中国，山东省，青岛市">Qingdao, Shandong, China</p>
+                    <p class="pt-3"><a href="mailto:marginsmeaning@163.com" class="hover:text-white transition-colors text-white/60">marginsmeaning@163.com</a></p>
+                    <p><button onclick="showInquiryModal()" class="text-[#60a5fa] hover:text-white transition-colors text-[13px]" data-en="Media & Research Inquiries" data-zh="媒体与研究合作">Media & Research Inquiries</button></p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-4">
+                <div class="border-b border-white/10 mb-5 pb-2">
+                    <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/40" data-en="Research Ecosystem" data-zh="研究体系">Research Ecosystem</h4>
+                </div>
+                <ul class="space-y-3 text-[13px] text-white/50">
+                    <li><a href="#" onclick="navigateTo('view-research')" class="hover:text-white transition-colors" data-en="Research Briefs" data-zh="研究简报">Research Briefs</a></li>
+                    <li><a href="#" onclick="navigateTo('view-writing')" class="hover:text-white transition-colors" data-en="Writing & Opinion" data-zh="学术评论与观点">Writing & Opinion</a></li>
+                    <li><a href="#" onclick="navigateTo('view-field')" class="hover:text-white transition-colors" data-en="Field Notes" data-zh="田野笔记">Field Notes</a></li>
+                    <li><a href="#" onclick="navigateTo('view-data')" class="hover:text-white transition-colors" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</a></li>
+                    <li><a href="#" onclick="navigateTo('view-voices')" class="hover:text-white transition-colors" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</a></li>
+                    <li><a href="#" onclick="navigateTo('view-blog')" class="hover:text-white transition-colors" data-en="Blog & Updates" data-zh="动态博客">Blog & Updates</a></li>
+                </ul>
+            </div>
+
+            <div class="lg:col-span-4">
+                <div class="border-b border-white/10 mb-5 pb-2">
+                    <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/40" data-en="STAY INFORMED" data-zh="订阅研究简报">STAY INFORMED</h4>
+                </div>
+                <p class="text-[13px] text-white/40 font-serif mb-4" data-en="Research updates and event announcements." data-zh="接收最新研究简报与活动通知。">Research updates and event announcements.</p>
+                <form id="subscribe-form" onsubmit="handleSubscribe(event, 'footer-subscribe-btn')" class="flex mb-8 w-full border border-white/20 hover:border-white/40 focus-within:border-white/60 transition-colors">
+                    <input type="email" placeholder="Email Address" class="subscribe-input w-full px-4 py-2.5 text-[13px] outline-none bg-transparent placeholder-white/30 text-white font-sans" required>
+                    <button type="submit" id="footer-subscribe-btn" class="bg-white/10 hover:bg-white/20 border-l border-white/20 px-5 transition-colors font-bold text-[11px] text-white tracking-widest uppercase whitespace-nowrap">
+                        Sign Up
+                    </button>
+                </form>
+                <div class="border-b border-white/10 mb-5 pb-2">
+                    <h4 class="text-[11px] font-bold uppercase tracking-widest text-white/40" data-en="FOLLOW" data-zh="学术网络">FOLLOW</h4>
+                </div>
+                <ul class="space-y-3 text-[13px] text-white/50">
+                    <li><a href="#" class="flex items-center hover:text-white transition-colors group"><i data-lucide="github" class="w-4 h-4 mr-3 text-white/30 group-hover:text-white"></i> GitHub Projects</a></li>
+                    <li><a href="#" class="flex items-center hover:text-white transition-colors group"><i data-lucide="linkedin" class="w-4 h-4 mr-3 text-white/30 group-hover:text-white"></i> LinkedIn Profile</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 mt-8">
+            <p class="text-[12px] text-white/30 leading-relaxed font-sans">
+                <strong class="text-white/50 uppercase tracking-widest font-bold" data-en="ABOUT MARGINS & MEANING INITIATIVE" data-zh="关于 MARGINS & MEANING 智库">ABOUT MARGINS & MEANING INITIATIVE</strong> —
+                <span data-en="An independent, nonpartisan research platform dedicated to language preservation, exploring the intersections of language, identity, inequality, and visual politics. We conduct multimodal content analysis, sociolinguistic research, and in-depth ethnographic interviews. We do not take policy positions, but rather provide data-driven insights." data-zh="「边缘之声」是一个独立、无党派倾向的青年研究平台，致力于语言保护，在语言、身份认同、不平等与视觉政治的深层交集处展开研究。我们不采取特定的政策立场，而是提供基于实证的客观数据洞察。">
+                An independent, nonpartisan research platform dedicated to language preservation, exploring the intersections of language, identity, inequality, and visual politics. We conduct multimodal content analysis, sociolinguistic research, and in-depth ethnographic interviews. We do not take policy positions, but rather provide data-driven insights.
+                </span>
+            </p>
+        </div>
+    </section>
+
+    <footer class="bg-[#0a0a0a] py-5 font-sans relative z-10">
+        <div class="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center text-[11px] text-white/30">
+            <div class="mb-3 md:mb-0">
+                <span data-en="© 2026 Margins & Meaning Initiative" data-zh="© 2026 Margins & Meaning 智库">© 2026 Margins & Meaning Initiative</span>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                <a href="#" onclick="navigateTo('view-about')" class="hover:text-white transition-colors" data-en="About" data-zh="关于我们">About</a>
+                <button onclick="navigateTo('view-terms')" class="hover:text-white transition-colors" data-en="Terms & Conditions" data-zh="条款">Terms</button>
+                <button onclick="navigateTo('view-privacy')" class="hover:text-white transition-colors" data-en="Privacy Policy" data-zh="隐私">Privacy</button>
+                <a href="#footer-section" class="hover:text-white transition-colors" data-en="Contact Us" data-zh="联系我们">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== VIEW: TERMS & CONDITIONS ===== -->
+    <div id="view-terms" class="page-view pb-24">
+        <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="max-w-4xl mx-auto">
+                <div class="section-label mb-4" data-en="Legal" data-zh="法律条款">Legal</div>
+                <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Terms & Conditions" data-zh="条款与条件">Terms & Conditions</h2>
+            </div>
+        </div>
+        <div class="max-w-3xl mx-auto px-6 lg:px-12">
+            <div class="font-serif text-[17px] leading-relaxed text-gray-600 space-y-6">
+                <p class="text-sm text-gray-400" data-en="Last updated: June 2026" data-zh="最后更新：2026年6月">Last updated: June 2026</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="1. About This Site" data-zh="1. 关于本站">1. About This Site</h3>
+                <p data-en="Margins &amp; Meaning is an independent, nonpartisan research initiative. The content on this website is provided for informational and educational purposes only. While we strive for accuracy, we make no warranties regarding the completeness or reliability of any information presented." data-zh="Margins &amp; Meaning 是一个独立、无党派倾向的研究平台。本网站内容仅供信息与教育目的。我们力求准确，但不对任何信息的完整性或可靠性作担保。">Margins &amp; Meaning is an independent, nonpartisan research initiative. The content on this website is provided for informational and educational purposes only. While we strive for accuracy, we make no warranties regarding the completeness or reliability of any information presented.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="2. Intellectual Property" data-zh="2. 知识产权">2. Intellectual Property</h3>
+                <p data-en="All original research, articles, data visualizations, and ethnographic materials published on this site are the intellectual property of Margins &amp; Meaning unless otherwise stated. You may cite and share our content with proper attribution. Reproduction for commercial purposes requires prior written permission." data-zh="本网站发布的所有原创研究、文章、数据可视化及民族志材料，除特别声明外，均为 Margins &amp; Meaning 的知识产权。您可以在正确署名的情况下引用和分享我们的内容。商业用途的转载需事先获得书面许可。">All original research, articles, data visualizations, and ethnographic materials published on this site are the intellectual property of Margins &amp; Meaning unless otherwise stated. You may cite and share our content with proper attribution. Reproduction for commercial purposes requires prior written permission.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="3. External Links" data-zh="3. 外部链接">3. External Links</h3>
+                <p data-en="This site may contain links to third-party websites. We are not responsible for the content or practices of any linked external sites." data-zh="本网站可能包含指向第三方网站的链接。我们对任何链接的外部网站的内容或做法不承担责任。">This site may contain links to third-party websites. We are not responsible for the content or practices of any linked external sites.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="4. Contact" data-zh="4. 联系方式">4. Contact</h3>
+                <p>Email: <a href="mailto:marginsmeaning@163.com" class="text-[#005587] hover:underline">marginsmeaning@163.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== VIEW: PRIVACY POLICY ===== -->
+    <div id="view-privacy" class="page-view pb-24">
+        <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="max-w-4xl mx-auto">
+                <div class="section-label mb-4" data-en="Legal" data-zh="法律条款">Legal</div>
+                <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</h2>
+            </div>
+        </div>
+        <div class="max-w-3xl mx-auto px-6 lg:px-12">
+            <div class="font-serif text-[17px] leading-relaxed text-gray-600 space-y-6">
+                <p class="text-sm text-gray-400" data-en="Last updated: June 2026" data-zh="最后更新：2026年6月">Last updated: June 2026</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="1. Data We Collect" data-zh="1. 我们收集的数据">1. Data We Collect</h3>
+                <p data-en="We collect only the information you voluntarily provide: (a) your email address when you subscribe to our newsletter, and (b) your name, email, and message when you submit a research inquiry. We do not use tracking cookies or third-party analytics." data-zh="我们仅收集您自愿提供的信息：(a) 订阅简报时提供的邮箱地址，(b) 提交研究咨询时提供的姓名、邮箱和留言内容。我们不使用追踪性 Cookie 或第三方分析工具。">We collect only the information you voluntarily provide: (a) your email address when you subscribe to our newsletter, and (b) your name, email, and message when you submit a research inquiry. We do not use tracking cookies or third-party analytics.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="2. How We Use Your Data" data-zh="2. 数据使用方式">2. How We Use Your Data</h3>
+                <p data-en="Your email address is used solely to send you research updates and event announcements. Your inquiry information is used only to respond to your message. We never sell, rent, or share your personal data with third parties." data-zh="您的邮箱地址仅用于向您发送研究更新与活动通知。您的咨询信息仅用于回复您的留言。我们绝不出售、出租或与第三方分享您的个人数据。">Your email address is used solely to send you research updates and event announcements. Your inquiry information is used only to respond to your message. We never sell, rent, or share your personal data with third parties.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="3. Data Storage" data-zh="3. 数据存储">3. Data Storage</h3>
+                <p data-en="Newsletter subscriptions and inquiry submissions are processed through Formspree, a third-party form service. Formspree&rsquo;s privacy policy governs how your submitted data is handled on their servers. You may request deletion of your data at any time by contacting us." data-zh="简报订阅与研究咨询通过第三方表单服务 Formspree 处理。您提交的数据在 Formspree 服务器上的处理方式受其隐私政策约束。您可随时联系我们请求删除您的数据。">Newsletter subscriptions and inquiry submissions are processed through Formspree, a third-party form service. Formspree&rsquo;s privacy policy governs how your submitted data is handled on their servers. You may request deletion of your data at any time by contacting us.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="4. Your Rights" data-zh="4. 您的权利">4. Your Rights</h3>
+                <p data-en="You have the right to access, correct, or delete any personal data we hold about you. To exercise these rights, or if you have any privacy-related questions, please contact us." data-zh="您有权访问、更正或删除我们持有的关于您的任何个人数据。如需行使这些权利，或对隐私问题有任何疑问，请联系我们。">You have the right to access, correct, or delete any personal data we hold about you. To exercise these rights, or if you have any privacy-related questions, please contact us.</p>
+                <h3 class="font-sans text-[13px] font-bold uppercase tracking-wider text-pew-dark mt-8" data-en="5. Contact" data-zh="5. 联系方式">5. Contact</h3>
+                <p>Email: <a href="mailto:marginsmeaning@163.com" class="text-[#005587] hover:underline">marginsmeaning@163.com</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- INQUIRY MODAL -->
+    <div id="inquiry-modal" class="fixed inset-0 bg-black/70 z-[130] custom-modal modal-hidden flex justify-center items-center backdrop-blur-sm px-4">
+        <div id="inquiry-content" class="bg-white max-w-xl w-full p-8 md:p-12 relative shadow-2xl modal-content border-t-[4px] border-[#005587]">
+            <button onclick="closeInquiryModal()" class="absolute top-6 right-6 text-gray-400 hover:text-pew-dark transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <h2 class="text-3xl font-serif font-bold text-pew-dark mb-1.5" data-en="Research Inquiries" data-zh="媒体与研究合作咨询">Research Inquiries</h2>
+            <p class="text-gray-400 font-sans text-[13px] mb-8" data-en="For media requests, data access inquiries, or collaboration proposals." data-zh="提交媒体采访需求、数据访问申请或研究合作提议。">For media requests, data access inquiries, or collaboration proposals.</p>
+            <form id="inquiry-form" onsubmit="handleInquirySubmit(event)" class="space-y-5">
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5" data-en="First Name" data-zh="名">First Name</label>
+                        <input type="text" class="w-full border border-gray-300 focus:border-[#005587] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
+                    </div>
+                    <div>
+                        <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5" data-en="Last Name" data-zh="姓">Last Name</label>
+                        <input type="text" class="w-full border border-gray-300 focus:border-[#005587] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5" data-en="Email Address" data-zh="电子邮箱">Email Address</label>
+                    <input type="email" class="w-full border border-gray-300 focus:border-[#005587] outline-none px-3 py-2 text-sm bg-white transition-colors" required>
+                </div>
+                <div>
+                    <label class="block text-[10px] font-bold text-gray-500 uppercase tracking-widest mb-1.5" data-en="Message" data-zh="留言内容">Message</label>
+                    <textarea rows="4" class="w-full border border-gray-300 focus:border-[#005587] outline-none px-3 py-2 text-sm bg-white resize-none transition-colors" required></textarea>
+                </div>
+                <button type="submit" id="inquiry-submit-btn" class="bg-pew-dark hover:bg-[#005587] text-white px-6 py-3 text-[11px] font-bold uppercase tracking-widest transition-colors w-full">
+                    <span data-en="Submit Inquiry" data-zh="提交申请">Submit Inquiry</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        let currentLang = 'en';
+        let currentArticleId = null;
+
+        /* ================================================================
+           SITE_CONFIG — edit values here, not in the 1000-line code below.
+           ================================================================ */
+        const SITE_CONFIG = {
+            // ── Contact ──
+            email: 'marginsmeaning@163.com',
+            // ── Newsletter (Formspree) ──
+            // 1. Sign up at https://formspree.io
+            // 2. Create a new form, copy its ID (e.g. 'xabc123y')
+            // 3. Paste it below, replacing CHANGE_ME
+            formspreeId: 'xdavopge',
+            // ── Comments (Giscus) ──
+            githubRepo: 'wsenlin419-maker/voicesfrommargins',
+            giscusRepoId: 'R_kgDOSPjEmg',
+            giscusCategoryId: 'DIC_kwDOSPjEms4C-efE',
+            // ── Social ──
+            githubUrl: 'https://github.com/wsenlin419-maker',
+            linkedinUrl: 'https://linkedin.com/in/senlin-wang',
+            // ── Site ──
+            siteUrl: 'https://marginsmeaning.org',
+            tagline: {
+                en: 'Preserving endangered voices.',
+                zh: '守护濒危之声。'
+            }
+        };
+
+        // ─── SEARCH ───
+        const searchOverlay = document.getElementById('search-overlay');
+        const headerSearchInput = document.getElementById('header-search-input');
+        const searchDropdown = document.getElementById('search-dropdown');
+
+        function toggleSearch() {
+            if (searchOverlay.classList.contains('search-hidden')) {
+                searchOverlay.classList.remove('search-hidden');
+                searchOverlay.classList.add('search-visible');
+                setTimeout(() => document.getElementById('search-input').focus(), 100);
+                document.body.style.overflow = 'hidden';
+            } else {
+                searchOverlay.classList.remove('search-visible');
+                searchOverlay.classList.add('search-hidden');
+                document.getElementById('search-result-msg').classList.add('hidden');
+                document.getElementById('search-input').value = '';
+                document.body.style.overflow = 'auto';
+            }
+        }
+        function handleSearch(e) {
+            e.preventDefault();
+            const query = document.getElementById('search-input').value.toLowerCase().trim();
+            if (!query) return;
+            renderSearchResults(query, document.getElementById('search-result-msg'), true);
+        }
+        function liveSearch() {
+            const query = headerSearchInput.value.toLowerCase().trim();
+            if (!query) { searchDropdown.classList.add('hidden'); return; }
+            searchDropdown.classList.remove('hidden');
+            renderSearchResults(query, searchDropdown, false);
+        }
+        function handleHeaderSearch(e) { e.preventDefault(); liveSearch(); }
+        document.addEventListener('click', function(e) {
+            if (headerSearchInput && !headerSearchInput.contains(e.target) && searchDropdown && !searchDropdown.contains(e.target)) {
+                searchDropdown.classList.add('hidden');
+            }
+        });
+        function renderSearchResults(query, container, isFullScreen) {
+            let resultHTML = isFullScreen ? '<div class="bg-white p-6 shadow-xl border border-gray-200 mt-4 text-left"><ul class="space-y-4">' : '<ul class="divide-y divide-gray-100">';
+            let found = false;
+            for (const [id, article] of Object.entries(articlesDB)) {
+                if (article.title.en.toLowerCase().includes(query) || article.title.zh.toLowerCase().includes(query) || article.body.en.toLowerCase().includes(query)) {
+                    if (isFullScreen) {
+                        resultHTML += `<li class="border-b border-gray-100 pb-3 last:border-0"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><a href="#" onclick="openArticle('${id}'); toggleSearch();" class="text-base font-serif font-bold text-[#005587] hover:text-pew-dark transition-colors">${article.title[currentLang]}</a></li>`;
+                    } else {
+                        resultHTML += `<li><a href="#" onclick="openArticle('${id}'); document.getElementById('search-dropdown').classList.add('hidden');" class="block p-4 hover:bg-gray-50 transition-colors text-left"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><span class="text-sm font-serif font-bold text-pew-dark">${article.title[currentLang]}</span></a></li>`;
+                    }
+                    found = true;
+                }
+            }
+            resultHTML += isFullScreen ? '</ul></div>' : '</ul>';
+            if (found) {
+                container.innerHTML = isFullScreen ? `<span class="text-gray-400 text-xs font-sans tracking-widest uppercase">Results for "${query}"</span>${resultHTML}` : resultHTML;
+            } else {
+                container.innerHTML = isFullScreen ? `<div class="bg-white p-6 shadow-xl text-center text-gray-400 font-sans text-sm">No results found.</div>` : `<div class="p-6 text-center text-sm text-gray-400 font-sans">No results found.</div>`;
+            }
+            container.classList.remove('hidden');
+        }
+
+        // ─── NAV ───
+        function navigateTo(viewId) {
+            document.querySelectorAll('.page-view').forEach(v => v.classList.remove('active'));
+            const targetView = document.getElementById(viewId);
+            if (targetView) targetView.classList.add('active');
+
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.toggle('active', item.dataset.target === viewId);
+            });
+
+            updateNavIndicator(viewId);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            setTimeout(() => checkReveal(), 100);
+
+            if (viewId === 'view-data') {
+                setTimeout(animateBars, 400);
+            }
+        }
+
+        // ─── MOBILE MENU ───
+        function toggleMobileMenu() {
+            var btn = document.getElementById('mobile-menu-btn');
+            var overlay = document.getElementById('mobile-menu-overlay');
+            var panel = document.getElementById('mobile-menu-panel');
+            var isOpen = panel.classList.contains('open');
+            if (isOpen) {
+                btn.classList.remove('open'); overlay.classList.remove('open'); panel.classList.remove('open');
+                document.body.style.overflow = '';
+            } else {
+                btn.classList.add('open'); overlay.classList.add('open'); panel.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        function mobileNavTo(viewId) {
+            toggleMobileMenu();
+            navigateTo(viewId);
+        }
+
+        function updateNavIndicator(viewId) {
+            const activeBtn = document.querySelector(`.nav-item[data-target="${viewId}"]`);
+            const indicator = document.getElementById('nav-indicator');
+            if (activeBtn && indicator) {
+                indicator.style.left = activeBtn.offsetLeft + 'px';
+                indicator.style.width = activeBtn.offsetWidth + 'px';
+            }
+        }
+
+        // ─── SCROLL REVEAL ───
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+        function checkReveal() {
+            document.querySelectorAll('.page-view.active .reveal').forEach(el => {
+                revealObserver.observe(el);
+            });
+        }
+
+        // ─── COUNTER ANIMATION ───
+        function animateCounters() {
+            document.querySelectorAll('#view-home .counter').forEach(el => {
+                const target = parseInt(el.dataset.target);
+                // Reset to 0 first, so re-animation works correctly
+                el.textContent = '0';
+                let current = 0;
+                const step = Math.max(1, Math.ceil(target / 40));
+                const timer = setInterval(() => {
+                    current = Math.min(current + step, target);
+                    el.textContent = current + (target >= 200 ? '+' : '');
+                    if (current >= target) clearInterval(timer);
+                }, 40);
+            });
+        }
+
+        // ─── DYNAMIC COUNTERS: auto-count from CMS data ───
+        function updateDynamicCounters() {
+            let researchCount = 0;
+            let blogCount = 0;
+
+            for (const data of Object.values(articlesDB)) {
+                const cat = (data.category || '').toLowerCase();
+                if (cat === 'research') researchCount++;
+                if (cat === 'blog') blogCount++;
+            }
+
+            // Update the conference counter (2nd stat item) and research papers counter (3rd)
+            const counters = document.querySelectorAll('#view-home .counter');
+            // counters[0] = Images Analyzed (static, leave alone)
+            if (blogCount > 0 && counters[1])     counters[1].dataset.target = blogCount;
+            if (researchCount > 0 && counters[2]) counters[2].dataset.target = researchCount;
+
+            // Re-run the counter animation with updated targets
+            animateCounters();
+        }
+
+        // ─── BAR ANIMATION ───
+        function animateBars() {
+            document.querySelectorAll('.bar-fill').forEach(bar => {
+                bar.classList.add('animate');
+            });
+        }
+
+        // ─── MODALS ───
+        function showInquiryModal() {
+            openModal('inquiry-modal', 'inquiry-content');
+        }
+        function closeInquiryModal() { closeModal('inquiry-modal', 'inquiry-content'); }
+
+        function openModal(modalId, contentId) {
+            const modal = document.getElementById(modalId);
+            const content = document.getElementById(contentId);
+            modal.classList.remove('modal-hidden');
+            modal.classList.add('modal-visible');
+            content.classList.remove('slide-down');
+            content.classList.add('slide-up');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal(modalId, contentId) {
+            const modal = document.getElementById(modalId);
+            const content = document.getElementById(contentId);
+            content.classList.remove('slide-up');
+            content.classList.add('slide-down');
+            modal.classList.remove('modal-visible');
+            modal.classList.add('modal-hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleSubscribe(e, btnId) {
+            e.preventDefault();
+            const btn = document.getElementById(btnId);
+            const orig = btn.innerHTML;
+            const email = e.target.querySelector('input[type=email]').value;
+            btn.innerHTML = '...';
+            btn.disabled = true;
+            fetch('https://formspree.io/f/' + SITE_CONFIG.formspreeId, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email, source: 'newsletter' })
+            }).then(r => {
+                if (r.ok) {
+                    btn.innerHTML = currentLang === 'zh' ? '已订阅 ✓' : 'Subscribed ✓';
+                    btn.style.background = '#16a34a';
+                    btn.style.color = '#fff';
+                    e.target.reset();
+                    // Show value-prop toast
+                    const toast = document.getElementById('copied-toast');
+                    toast.textContent = currentLang === 'zh'
+                        ? '感谢订阅！有新研究会通过邮箱通知你。'
+                        : 'Thanks! You will be notified of new research by email.';
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 4000);
+                } else {
+                    btn.innerHTML = '!';
+                    btn.style.background = '#cc1414';
+                }
+                setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4000);
+            }).catch(() => {
+                btn.innerHTML = '!';
+                btn.style.background = '#cc1414';
+                setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 3000);
+            });
+        }
+
+        function handleInquirySubmit(e) {
+            e.preventDefault();
+            const btn = document.getElementById('inquiry-submit-btn');
+            const orig = btn.innerHTML;
+            const form = e.target;
+            const data = {
+                firstName: form.querySelector('input[placeholder="First Name"]')?.value || form.querySelectorAll('input')[0]?.value,
+                lastName: form.querySelector('input[placeholder="Last Name"]')?.value || form.querySelectorAll('input')[1]?.value,
+                email: form.querySelector('input[type=email]')?.value,
+                message: form.querySelector('textarea')?.value,
+                source: 'inquiry'
+            };
+            if (SITE_CONFIG.formspreeId === 'CHANGE_ME') {
+                btn.innerHTML = 'SENT ✓';
+                btn.style.background = '#16a34a';
+                form.reset();
+                setTimeout(() => { btn.innerHTML = currentLang === 'en' ? 'Submit Inquiry' : '提交申请'; btn.style.background = ''; closeInquiryModal(); }, 2000);
+                return;
+            }
+            btn.innerHTML = '...';
+            btn.disabled = true;
+            fetch('https://formspree.io/f/' + SITE_CONFIG.formspreeId, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            }).then(r => {
+                btn.innerHTML = r.ok ? 'SENT ✓' : 'ERROR';
+                btn.style.background = r.ok ? '#16a34a' : '#cc1414';
+                if (r.ok) {
+                    form.reset();
+                    const toast = document.getElementById('copied-toast');
+                    toast.textContent = currentLang === 'zh' ? '已发送，我们会尽快回复。' : 'Sent! We will get back to you soon.';
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 3000);
+                }
+                setTimeout(() => { btn.innerHTML = currentLang === 'en' ? 'Submit Inquiry' : '提交申请'; btn.style.background = ''; btn.disabled = false; if (r.ok) closeInquiryModal(); }, 2000);
+            }).catch(() => {
+                btn.innerHTML = 'ERROR';
+                btn.style.background = '#cc1414';
+                setTimeout(() => { btn.innerHTML = currentLang === 'en' ? 'Submit Inquiry' : '提交申请'; btn.style.background = ''; btn.disabled = false; }, 2000);
+            });
+        }
+
+        function scrollToFeatured() {
+            navigateTo('view-home');
+            setTimeout(() => {
+                document.getElementById('featured-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 200);
+        }
+
+        // ─── ARTICLES ───
+        let articlesDB = {};
+
+        const SPACE_ID = 'egroy8ctp4pz';
+        const ACCESS_TOKEN = 'EwsY0dizhi2jZi8YvMXlxEK7kTTSVS5hstk6oyWg6NU';
+
+        async function fetchArticles() {
+            try {
+                const apiUrl = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=article&access_token=${ACCESS_TOKEN}&locale=*`;
+                const response = await fetch(apiUrl);
+                if (!response.ok) throw new Error('CMS request failed');
+
+                const rawData = await response.json();
+
+                const assetsDB = {};
+                if (rawData.includes && rawData.includes.Asset) {
+                    rawData.includes.Asset.forEach(asset => {
+                        const id = asset.sys.id;
+                        let url = asset.fields.file['en-US']?.url || asset.fields.file['zh-CN']?.url || '';
+                        if (url.startsWith('//')) {
+                            url = 'https:' + url;
+                        }
+                        assetsDB[id] = url;
+                    });
+                }
+
+                const getLoc = (fieldObj) => {
+                    if (!fieldObj) return { en: '', zh: '' };
+                    const enVal = fieldObj['en-US'] || fieldObj['en'] || '';
+                    const zhVal = fieldObj['zh-CN'] || fieldObj['zh'] || '';
+                    return { en: enVal, zh: zhVal };
+                };
+
+                const getCoverUrl = (coverField) => {
+                    if (!coverField) return 'https://images.unsplash.com/photo-1572214350916-571eac7bfced?auto=format&fit=crop&q=80&w=1200';
+
+                    const ref = coverField['en-US'] || coverField['zh-CN'] || coverField;
+                    if (ref && ref.sys && ref.sys.type === 'Link') {
+                        const assetId = ref.sys.id;
+                        return assetsDB[assetId] || 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800';
+                    }
+
+                    if (typeof ref === 'string' && ref.startsWith('http')) {
+                        return ref;
+                    }
+
+                    return 'https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?auto=format&fit=crop&q=80&w=800';
+                };
+
+                if (rawData.items && rawData.items.length > 0) {
+                    rawData.items.forEach(item => {
+                        const fields = item.fields;
+                        const slug = typeof fields.slug === 'object' ? (fields.slug['en-US'] || fields.slug['zh-CN']) : fields.slug;
+                        const category = typeof fields.category === 'object' ? (fields.category['en-US'] || fields.category['zh-CN']) : (fields.category || 'Research');
+
+                        if (slug) {
+                            articlesDB[slug] = {
+                                category: category.trim(),
+                                coverUrl: getCoverUrl(fields.coverImage || fields.coverUrl),
+                                publishDate: getLoc(fields.publishDate),
+                                tag: getLoc(fields.tag),
+                                title: getLoc(fields.title),
+                                author: getLoc(fields.author),
+                                affiliation: getLoc(fields.affiliation),
+                                excerpt: getLoc(fields.excerpt),
+                                body: getLoc(fields.body)
+                            };
+                        }
+                    });
+                }
+
+                // Re-render all cards with real data + update counters with accurate counts
+                renderCards();
+                updateDynamicCounters();
+
+                // Check if URL hash points to an article (shared link)
+                if (window.location.hash.startsWith('#article/')) {
+                    const slug = window.location.hash.replace('#article/', '');
+                    if (articlesDB[slug]) {
+                        openArticle(slug, true);
+                    }
+                }
+            } catch (error) {
+                console.error("Failed to load CMS content:", error);
+            }
+        }
+
+        // ====== AUTO-GENERATE HERO + CARDS ======
+        function renderHeroSection() {
+            const heroContainer = document.getElementById('hero-grid-container');
+            if (!heroContainer) return;
+
+            let featuredResearch = null;
+            let sideArticles = {
+                'writing': null,
+                'field': null,
+                'voices': null,
+                'research': null
+            };
+
+            for (const [slug, data] of Object.entries(articlesDB)) {
+                const cat = data.category.toLowerCase();
+
+                if (cat === 'research') {
+                    if (!featuredResearch) {
+                        featuredResearch = { slug, ...data };
+                    } else if (!sideArticles['research']) {
+                        sideArticles['research'] = { slug, ...data };
+                    }
+                } else if ((cat === 'writing' || cat === 'opinion') && !sideArticles['writing']) {
+                    sideArticles['writing'] = { slug, ...data };
+                } else if (cat === 'field notes' && !sideArticles['field']) {
+                    sideArticles['field'] = { slug, ...data };
+                } else if (cat === 'voices' && !sideArticles['voices']) {
+                    sideArticles['voices'] = { slug, ...data };
+                }
+            }
+
+            // Fallback when no data yet
+            if (!featuredResearch) {
+                featuredResearch = {
+                    slug: '#',
+                    coverUrl: 'https://images.unsplash.com/photo-1572214350916-571eac7bfced?auto=format&fit=crop&q=80&w=1200',
+                    tag: { en: 'Analysis', zh: '深度分析' },
+                    title: { en: 'New Research Coming Soon', zh: '最新研究即将上线' },
+                    excerpt: {
+                        en: 'We are currently compiling new data and ethnographic insights. Stay tuned for our upcoming publications.',
+                        zh: '我们正在整理最新的田野数据与研究洞察，全新深度内容即将发布，敬请期待。'
+                    }
+                };
+            }
+
+            const safeTag = featuredResearch.tag ? featuredResearch.tag[currentLang] : '';
+            const safeTitle = featuredResearch.title ? featuredResearch.title[currentLang] : '';
+            const safeExcerpt = featuredResearch.excerpt ? featuredResearch.excerpt[currentLang] : '';
+            const cover = featuredResearch.coverUrl;
+
+            let leftHTML = `
+                <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer reveal visible flex flex-col" onclick="openArticle('${featuredResearch.slug}')">
+                    <div class="section-label mb-5">${currentLang === 'en' ? 'Featured Research' : '焦点研究'}</div>
+                    <div class="featured-img-wrap w-full aspect-[16/9] bg-gray-100 mb-6 relative border border-gray-200 flex-shrink-0">
+                        <img src="${cover}" class="w-full h-full object-cover" alt="Featured Research">
+                        <div class="absolute top-4 left-4">
+                            <span class="highlight-tag">${safeTag}</span>
+                        </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    </div>
+                    <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors duration-300 mb-4 leading-snug">
+                        ${safeTitle}
+                    </h4>
+                    <p class="text-[18px] text-gray-500 font-serif leading-relaxed line-clamp-2">
+                        ${safeExcerpt}
+                    </p>
+                    <div class="mt-auto pt-5 flex items-center text-[#005587] font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
+                        <span>${currentLang === 'en' ? 'Read Research' : '阅读研究'}</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </div>
+                </div>
+            `;
+
+            let rightItemsHTML = '';
+            const displayNames = {
+                'writing': { en: 'Writing & Opinion', zh: '学术评论与观点' },
+                'field': { en: 'Field Notes', zh: '田野笔记' },
+                'voices': { en: 'Voices Archive', zh: '边缘声音档案库' },
+                'research': { en: 'Research', zh: '研究' }
+            };
+
+            for (const [key, article] of Object.entries(sideArticles)) {
+                if (article) {
+                    const sideTitle = article.title ? article.title[currentLang] : '';
+                    const dispName = displayNames[key][currentLang];
+                    rightItemsHTML += `
+                        <div class="side-article cursor-pointer group flex flex-col justify-center" onclick="openArticle('${article.slug}')">
+                            <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase">${dispName}</p>
+                            <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">
+                                ${sideTitle}
+                            </h5>
+                        </div>
+                    `;
+                }
+            }
+
+            let rightHTML = `
+                <div class="lg:col-span-5 xl:col-span-4 flex flex-col reveal reveal-delay-2 visible">
+                    <div class="section-label mb-5">${currentLang === 'en' ? 'Research Ecosystem' : '研究体系'}</div>
+                    <div class="flex flex-col flex-1 justify-evenly gap-2">
+                        ${rightItemsHTML}
+                    </div>
+                </div>
+            `;
+
+            heroContainer.innerHTML = leftHTML + rightHTML;
+        }
+
+        // ─── HOME BLOG CARDS (dynamic from CMS) ───
+        function renderHomeBlog() {
+            const container = document.getElementById('home-blog-cards');
+            if (!container) return;
+            const blogPosts = Object.entries(articlesDB)
+                .filter(([, d]) => d.category.toLowerCase() === 'blog')
+                .slice(0, 3);
+            if (blogPosts.length === 0) {
+                container.innerHTML = '<div class="text-center py-12 text-gray-400 font-serif col-span-3">' + (currentLang === 'zh' ? '暂无动态' : 'No posts yet.') + '</div>';
+                return;
+            }
+            container.innerHTML = blogPosts.map(([slug, data], i) =>
+                `<article class="blog-card cursor-pointer group reveal reveal-delay-${i+1}" onclick="openArticle('${slug}')">
+                    <div class="blog-card-img aspect-[4/3] bg-gray-100 border border-gray-200 mb-4">
+                        <img src="${data.coverUrl}" class="w-full h-full object-cover" alt="">
+                    </div>
+                    <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400 block mb-2">${data.tag[currentLang]}</span>
+                    <h3 class="font-serif text-lg font-bold text-pew-dark blog-title-link leading-snug">${data.title[currentLang]}</h3>
+                </article>`
+            ).join('');
+        }
+
+        // ─── BLOG CATEGORY FILTER ───
+        function filterBlog(cat) {
+            const blogCards = document.querySelectorAll('#blog-container > article');
+            blogCards.forEach(card => {
+                if (cat === 'all') { card.style.display = ''; return; }
+                const slug = card.getAttribute('onclick')?.match(/openArticle\('(.+?)'\)/)?.[1];
+                if (!slug || !articlesDB[slug]) { card.style.display = ''; return; }
+                const dataCat = articlesDB[slug].category.toLowerCase();
+                const show = (cat === 'conference' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('conference'))
+                    || (cat === 'fieldwork' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('field'))
+                    || (cat === 'publication' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('publication'))
+                    || (cat === 'fieldwork' && dataCat === 'field notes')
+                    || (cat === 'publication' && (dataCat === 'research' || dataCat === 'writing'));
+                card.style.display = show ? '' : 'none';
+            });
+        }
+
+        function updateBlogCounts() {
+            let counts = { all: 0, conference: 0, fieldwork: 0, publication: 0, team: 0 };
+            for (const [, data] of Object.entries(articlesDB)) {
+                const cat = data.category.toLowerCase();
+                const tag = (data.tag.en || '').toLowerCase();
+                if (cat === 'blog' || cat === 'field notes' || cat === 'research' || cat === 'writing') {
+                    counts.all++;
+                    if (cat === 'blog' && tag.includes('conference')) counts.conference++;
+                    if (cat === 'blog' && tag.includes('field')) counts.fieldwork++;
+                    if (cat === 'field notes') counts.fieldwork++;
+                    if (cat === 'research' || cat === 'writing' || (cat === 'blog' && tag.includes('publication'))) counts.publication++;
+                    if (cat === 'blog' && tag.includes('team')) counts.team++;
+                }
+            }
+            for (const [key, count] of Object.entries(counts)) {
+                const el = document.getElementById('blog-count-' + key);
+                if (el) el.textContent = count;
+            }
+        }
+
+        function renderCards() {
+            renderHeroSection();
+            renderHomeBlog();
+            updateBlogCounts();
+
+            const containers = {
+                'research': document.getElementById('research-container'),
+                'writing': document.getElementById('writing-container'),
+                'field notes': document.getElementById('field-container'),
+                'voices': document.getElementById('voices-container'),
+                'blog': document.getElementById('blog-container')
+            };
+
+            Object.values(containers).forEach(container => {
+                if (container) container.innerHTML = '';
+            });
+
+            for (const [slug, data] of Object.entries(articlesDB)) {
+                const safeTag = data.tag ? data.tag[currentLang] : '';
+                const safeTitle = data.title ? data.title[currentLang] : '';
+                const safeExcerpt = data.excerpt ? data.excerpt[currentLang] : '';
+                const cat = data.category.toLowerCase();
+                const cover = data.coverUrl;
+
+                if (cat === 'research' && containers['research']) {
+                    containers['research'].innerHTML += `
+                        <article class="research-card cursor-pointer border-b border-gray-200 pb-10 mb-0 pt-8 pl-4 reveal visible" onclick="openArticle('${slug}')">
+                            <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
+                            <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Abstract' : '阅读摘要'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                        </article>
+                    `;
+                }
+                else if ((cat === 'writing' || cat === 'opinion') && containers['writing']) {
+                    containers['writing'].innerHTML += `
+                        <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
+                            <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
+                            <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Article' : '阅读文章'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                        </article>
+                    `;
+                }
+                else if (cat === 'field notes' && containers['field notes']) {
+                    containers['field notes'].innerHTML += `
+                        <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
+                            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                                <div class="md:col-span-2 aspect-[4/3] bg-gray-100 overflow-hidden border border-gray-200">
+                                    <img src="${cover}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                                </div>
+                                <div class="md:col-span-3 flex flex-col justify-center">
+                                    <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                                    <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                                    <p class="text-[16px] text-gray-500 font-serif leading-relaxed mb-5 text-justify-force">${safeExcerpt}</p>
+                                    <div class="flex items-center gap-4">
+                                        <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">${currentLang === 'en' ? 'Read Ethnography' : '阅读田野志'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                    `;
+                }
+                else if (cat === 'voices' && containers['voices']) {
+                    containers['voices'].innerHTML += `
+                        <div class="group cursor-pointer border border-gray-200 hover:border-gray-400 transition-colors reveal visible mb-10" onclick="openArticle('${slug}')">
+                            <div class="aspect-video w-full bg-gray-900 relative overflow-hidden">
+                                <img src="${cover}" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700 ease-out">
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <div class="play-btn w-16 h-16 bg-white rounded-full flex items-center justify-center text-pew-dark shadow-2xl">
+                                        <i data-lucide="play" class="w-6 h-6 fill-current ml-0.5"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="bg-white p-8 md:p-10">
+                                <h3 class="font-serif text-3xl font-bold text-pew-dark mb-3 group-hover:text-[#005587] transition-colors">${safeTitle}</h3>
+                                <p class="text-gray-500 font-serif text-lg">${safeExcerpt}</p>
+                            </div>
+                        </div>
+                    `;
+                }
+                else if (cat === 'blog' && containers['blog']) {
+                    containers['blog'].innerHTML += `
+                        <article class="blog-card border-b border-gray-200 pb-10 cursor-pointer group flex flex-col md:flex-row gap-7 reveal visible" onclick="openArticle('${slug}')">
+                            <div class="blog-card-img w-full md:w-[220px] aspect-[4/3] bg-gray-100 border border-gray-200 flex-shrink-0">
+                                <img src="${cover}" class="w-full h-full object-cover object-center">
+                            </div>
+                            <div class="flex flex-col justify-center">
+                                <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-2.5 font-sans">${safeTag}</span>
+                                <h3 class="text-xl md:text-2xl font-serif font-bold text-pew-dark blog-title-link mb-3 leading-snug">${safeTitle}</h3>
+                                <p class="text-gray-500 font-serif text-[15px] leading-relaxed text-justify-force">${safeExcerpt}</p>
+                            </div>
+                        </article>
+                    `;
+                }
+            }
+            if(typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        function initPage() {
+            if(typeof updateLanguage === 'function') updateLanguage();
+            // Keep the currently active nav instead of forcing HOME
+            const currentView = document.querySelector('.page-view.active');
+            const viewId = currentView ? currentView.id : 'view-home';
+            if(typeof updateNavIndicator === 'function') updateNavIndicator(viewId);
+            if(typeof checkReveal === 'function') setTimeout(checkReveal, 200);
+            if(typeof animateCounters === 'function') setTimeout(animateCounters, 600);
+        }
+
+        // ─── INTERACTIVE MAPS ───
+        let mapChartDialect = null;
+        let mapChartEthnic = null;
+        let mapGeoData = null;
+
+        const dialectZH = {
+            '北京市':'官话','天津市':'官话','河北省':'官话','山西省':'晋语','内蒙古自治区':'官话/蒙古语',
+            '辽宁省':'官话','吉林省':'官话','黑龙江省':'官话','上海市':'吴语','江苏省':'官话/吴语',
+            '浙江省':'吴语','安徽省':'官话/徽语','福建省':'闽语','江西省':'赣语','山东省':'官话',
+            '河南省':'官话','湖北省':'官话','湖南省':'湘语','广东省':'粤语/客家话',
+            '广西壮族自治区':'粤语/平话/壮语','海南省':'闽语','重庆市':'官话','四川省':'官话',
+            '贵州省':'官话','云南省':'官话','西藏自治区':'藏语','陕西省':'官话','甘肃省':'官话',
+            '青海省':'官话/藏语','宁夏回族自治区':'官话','新疆维吾尔自治区':'官话/维吾尔语',
+            '台湾省':'闽语/客家话','香港特别行政区':'粤语','澳门特别行政区':'粤语'
+        };
+        const dialectEN = {
+            '北京市':'Mandarin','天津市':'Mandarin','河北省':'Mandarin','山西省':'Jin','内蒙古自治区':'Mandarin/Mongolian',
+            '辽宁省':'Mandarin','吉林省':'Mandarin','黑龙江省':'Mandarin','上海市':'Wu','江苏省':'Mandarin/Wu',
+            '浙江省':'Wu','安徽省':'Mandarin/Hui','福建省':'Min','江西省':'Gan','山东省':'Mandarin',
+            '河南省':'Mandarin','湖北省':'Mandarin','湖南省':'Xiang','广东省':'Yue/Hakka',
+            '广西壮族自治区':'Yue/Pinghua/Zhuang','海南省':'Min','重庆市':'Mandarin','四川省':'Mandarin',
+            '贵州省':'Mandarin','云南省':'Mandarin','西藏自治区':'Tibetan','陕西省':'Mandarin','甘肃省':'Mandarin',
+            '青海省':'Mandarin/Tibetan','宁夏回族自治区':'Mandarin','新疆维吾尔自治区':'Mandarin/Uyghur',
+            '台湾省':'Min/Hakka','香港特别行政区':'Yue (Cantonese)','澳门特别行政区':'Yue (Cantonese)'
+        };
+        const dialectColors = {
+            '官话':'#c2706e','晋语':'#6b8db5','吴语':'#6ea87a','闽语':'#bfa24c',
+            '赣语':'#9b7a64','湘语':'#bd8eae','粤语':'#6d9e93','藏语':'#8e7860',
+            '粤语/客家话':'#6d9e93','闽语/客家话':'#9cad74','官话/吴语':'#9582b0',
+            '官话/徽语':'#cc9a6e','官话/蒙古语':'#5f9185','粤语/平话/壮语':'#cc9078',
+            '官话/藏语':'#ae9a6c','官话/维吾尔语':'#6a9690'
+        };
+        const dialectOrderZH = ['官话','晋语','吴语','闽语','赣语','湘语','粤语','藏语'];
+        const dialectOrderEN = ['Mandarin','Jin','Wu','Min','Gan','Xiang','Yue','Tibetan'];
+        const ethnicZH = {
+            '西藏自治区':'藏族 (90%+)','新疆维吾尔自治区':'维吾尔/哈萨克 (~60%)',
+            '内蒙古自治区':'蒙古族 (~17%)','广西壮族自治区':'壮族 (~32%)',
+            '宁夏回族自治区':'回族 (~35%)','云南省':'彝/白/傣/哈尼等多族 (~33%)',
+            '贵州省':'苗/侗/布依等多族 (~36%)','青海省':'藏/回/土族 (~47%)',
+            '四川省':'藏/彝/羌族 (~6%)','湖南省':'土家/苗/侗族 (~10%)',
+            '甘肃省':'藏/回/东乡族 (~9%)','吉林省':'朝鲜/满族 (~5%)',
+            '黑龙江省':'朝鲜/满/达斡尔 (~5%)','辽宁省':'满/朝鲜族 (~10%)',
+            '海南省':'黎/苗族 (~18%)','台湾省':'南岛原住民 (~2.5%)'
+        };
+        const ethnicEN = {
+            '西藏自治区':'Tibetan (90%+)','新疆维吾尔自治区':'Uyghur/Kazakh (~60%)',
+            '内蒙古自治区':'Mongolian (~17%)','广西壮族自治区':'Zhuang (~32%)',
+            '宁夏回族自治区':'Hui (~35%)','云南省':'Yi/Bai/Dai/Hani etc. (~33%)',
+            '贵州省':'Miao/Dong/Buyi etc. (~36%)','青海省':'Tibetan/Hui/Tu (~47%)',
+            '四川省':'Tibetan/Yi/Qiang (~6%)','湖南省':'Tujia/Miao/Dong (~10%)',
+            '甘肃省':'Tibetan/Hui/Dongxiang (~9%)','吉林省':'Korean/Manchu (~5%)',
+            '黑龙江省':'Korean/Manchu/Daur (~5%)','辽宁省':'Manchu/Korean (~10%)',
+            '海南省':'Li/Miao (~18%)','台湾省':'Indigenous Austronesian (~2.5%)'
+        };
+
+        function initMap() {
+            var c1 = document.getElementById('map-dialect');
+            var c2 = document.getElementById('map-ethnic');
+            if (!c1 || !c2 || mapChartDialect) return;
+            if (typeof echarts === 'undefined') { setTimeout(initMap, 600); return; }
+
+            c1.innerHTML = '<div class="flex items-center justify-center h-full text-gray-300 font-serif text-sm">加载中...</div>';
+            c2.innerHTML = '<div class="flex items-center justify-center h-full text-gray-300 font-serif text-sm">加载中...</div>';
+
+            fetch('./china-geo.json')
+                .then(function(r) { return r.json(); })
+                .then(function(geo) {
+                    mapGeoData = geo;
+                    echarts.registerMap('china', geo);
+                    c1.innerHTML = '';
+                    c2.innerHTML = '';
+                    // Delay init to ensure containers have measured dimensions
+                    setTimeout(function() {
+                        mapChartDialect = echarts.init(c1);
+                        mapChartEthnic = echarts.init(c2);
+                        renderDialectMap();
+                        renderEthnicMap();
+                        renderDialectLegend();
+                        renderEthnicLegend();
+                    }, 150);
+                    window.addEventListener('resize', function() {
+                        if (mapChartDialect) mapChartDialect.resize();
+                        if (mapChartEthnic) mapChartEthnic.resize();
+                    });
+                })
+                .catch(function() {
+                    c1.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">地图数据暂不可用</div>';
+                    c2.innerHTML = '<div class="flex items-center justify-center h-full text-gray-400 font-serif text-sm">地图数据暂不可用</div>';
+                });
+        }
+
+        function buildMapData(colorFn) {
+            var data = [];
+            mapGeoData.features.forEach(function(f) {
+                var name = f.properties.name;
+                data.push({ name: name, itemStyle: { areaColor: colorFn(name) } });
+            });
+            return data;
+        }
+
+        function makeMapOption(data, tooltipFn) {
+            return {
+                tooltip: {
+                    trigger: 'item',
+                    formatter: function(p) { return tooltipFn(p.name); },
+                    backgroundColor: 'rgba(30,30,32,0.94)',
+                    borderColor: 'transparent',
+                    textStyle: { color: '#fff', fontSize: 13, fontFamily: 'Inter, Noto Sans SC, sans-serif' },
+                    padding: [10, 16]
+                },
+                series: [{
+                    type: 'map', map: 'china', roam: false,
+                    scaleLimit: { min: 1, max: 5 },
+                    layoutCenter: ['50%', '50%'],
+                    layoutSize: '90%',
+                    label: { show: false },
+                    itemStyle: { borderColor: '#fff', borderWidth: 1, areaColor: '#f5f5f5' },
+                    emphasis: {
+                        label: { show: true, color: '#1a1a1a', fontSize: 12 },
+                        itemStyle: { areaColor: '#faf0d7', borderWidth: 1.5, borderColor: '#333' }
+                    },
+                    data: data
+                }]
+            };
+        }
+
+        function renderDialectMap() {
+            if (!mapChartDialect) return;
+            var labelFn = currentLang === 'zh'
+                ? function(name) { return '<b>' + name + '</b><br/>' + (dialectZH[name] || '其他'); }
+                : function(name) { return '<b>' + name + '</b><br/>' + (dialectEN[name] || 'Other'); };
+            mapChartDialect.setOption(makeMapOption(
+                buildMapData(function(name) { return dialectColors[dialectZH[name]] || '#e8e8e8'; }),
+                labelFn
+            ));
+        }
+
+        function renderEthnicMap() {
+            if (!mapChartEthnic) return;
+            var labelFn = currentLang === 'zh'
+                ? function(name) { return '<b>' + name + '</b><br/>' + (ethnicZH[name] || '汉族为主'); }
+                : function(name) { return '<b>' + name + '</b><br/>' + (ethnicEN[name] || 'Han majority'); };
+            mapChartEthnic.setOption(makeMapOption(
+                buildMapData(function(name) { return ethnicZH[name] ? '#005587' : '#f0f0f0'; }),
+                labelFn
+            ));
+        }
+
+        function renderDialectLegend() {
+            var el = document.getElementById('legend-dialect');
+            if (!el) return;
+            var order = currentLang === 'zh' ? dialectOrderZH : dialectOrderEN;
+            el.innerHTML = order.map(function(g) {
+                var key = currentLang === 'zh' ? g : dialectOrderZH[dialectOrderEN.indexOf(g)];
+                return '<span><i class="map-legend-dot" style="background:' + (dialectColors[key]||'#ccc') + '"></i>' + g + '</span>';
+            }).join('');
+        }
+
+        function renderEthnicLegend() {
+            var el = document.getElementById('legend-ethnic');
+            if (!el) return;
+            if (currentLang === 'zh') {
+                el.innerHTML = '<span><i class="map-legend-dot" style="background:#005587"></i>有显著少数民族</span>' +
+                    '<span><i class="map-legend-dot" style="background:#f0f0f0;border:1px solid #ddd"></i>汉族占绝大多数</span>';
+            } else {
+                el.innerHTML = '<span><i class="map-legend-dot" style="background:#005587"></i>Significant minority pop.</span>' +
+                    '<span><i class="map-legend-dot" style="background:#f0f0f0;border:1px solid #ddd"></i>Han majority</span>';
+            }
+        }
+
+        var _origNav2 = navigateTo;
+        navigateTo = function(viewId) {
+            _origNav2(viewId);
+            if (viewId === 'view-home') {
+                setTimeout(function() {
+                    if (mapChartDialect) mapChartDialect.resize();
+                    if (mapChartEthnic) mapChartEthnic.resize();
+                }, 200);
+            }
+        };
+
+        // ─── FETCH ON LOAD ───
+        window.addEventListener('load', () => {
+            fetchArticles();
+        });
+
+        // ─── IMMEDIATE INIT: show hero + counters before CMS data arrives ───
+        window.addEventListener('load', () => {
+            updateLanguage();
+            updateNavIndicator('view-home');
+            // Render hero with fallback content immediately — before CMS fetch completes
+            renderHeroSection();
+            // Animate counters with default values; will be re-animated with real counts after fetch
+            setTimeout(animateCounters, 400);
+            setTimeout(checkReveal, 200);
+            // Initialize interactive maps
+            setTimeout(initMap, 800);
+        });
+
+        // Handle language toggle re-render
+        const _origToggleLang = window.toggleLang;
+        window.toggleLang = function() {
+            if (_origToggleLang && typeof _origToggleLang === 'function') {
+                _origToggleLang();
+            } else {
+                currentLang = currentLang === 'en' ? 'zh' : 'en';
+                updateLanguage();
+            }
+            if (Object.keys(articlesDB).length > 0) {
+                renderCards();
+            } else {
+                renderHeroSection();
+            }
+        };
+
+        // ─── ARTICLE RENDERING ───
+        let previousView = 'view-home';
+
+        function renderArticleContent(id) {
+            const data = articlesDB[id];
+            if (!data) return;
+
+            // Populate article page
+            document.getElementById('article-view-tag').textContent = data.tag[currentLang];
+            document.getElementById('article-view-title').textContent = data.title[currentLang];
+            document.getElementById('article-view-author').textContent = data.author[currentLang];
+            document.getElementById('article-view-date').textContent = data.publishDate[currentLang] || data.publishDate.en || data.tag.en || '';
+
+            // Reading time estimate
+            const bodyText = data.body[currentLang] || '';
+            const wordCount = bodyText.split(/\s+/).length;
+            const readMin = Math.max(1, Math.ceil(wordCount / 200));
+            document.getElementById('article-view-time').textContent =
+                currentLang === 'zh' ? `${readMin} 分钟阅读` : `${readMin} min read`;
+
+            // Article body
+            document.getElementById('article-view-body').innerHTML = marked.parse(bodyText);
+
+            // Citations
+            const author = data.author[currentLang] || 'Margins &amp; Meaning';
+            const title = data.title[currentLang] || '';
+            const url = SITE_CONFIG.siteUrl + '/#article/' + id;
+            document.getElementById('cite-apa').textContent = `${author} (2026). ${title}. *Margins & Meaning*. ${url}`;
+            document.getElementById('cite-mla').textContent = `${author}. "${title}." *Margins & Meaning*, 2026, ${url}.`;
+            document.getElementById('cite-chicago').textContent = `${author}. "${title}." *Margins & Meaning*, 2026. ${url}.`;
+
+            // Reset cite panel
+            document.getElementById('cite-panel').classList.add('hidden');
+
+            // Like count
+            const likes = getLikeCount(id);
+            document.getElementById('article-like-count').textContent = likes;
+            const likeBtn = document.getElementById('article-like-btn');
+            if (hasLiked(id)) {
+                likeBtn.classList.add('liked');
+            } else {
+                likeBtn.classList.remove('liked');
+            }
+
+            // Related articles (same category, max 4)
+            const cat = data.category.toLowerCase();
+            const related = Object.entries(articlesDB)
+                .filter(([s, d]) => s !== id && d.category.toLowerCase() === cat)
+                .slice(0, 4);
+            const relatedHTML = related.map(([s, d]) =>
+                `<article class="blog-card cursor-pointer group flex gap-4" onclick="openArticle('${s}')">
+                    <div class="blog-card-img w-20 h-20 flex-shrink-0 bg-gray-100 border border-gray-200">
+                        <img src="${d.coverUrl}" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">${d.tag[currentLang]}</span>
+                        <h4 class="text-sm font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">${d.title[currentLang]}</h4>
+                    </div>
+                </article>`
+            ).join('');
+            document.getElementById('article-related').innerHTML = relatedHTML || '<p class="text-gray-400 text-sm font-serif">' + (currentLang === 'zh' ? '暂无相关文章' : 'No related articles yet.') + '</p>';
+
+            // Giscus
+            loadGiscus();
+            lucide.createIcons();
+        }
+
+        function toggleCitePanel() {
+            document.getElementById('cite-panel').classList.toggle('hidden');
+        }
+
+        function copyCitation() {
+            const apa = document.getElementById('cite-apa').textContent;
+            navigator.clipboard.writeText(apa).then(() => {
+                const toast = document.getElementById('copied-toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            });
+        }
+
+        function loadGiscus() {
+            const container = document.getElementById('giscus-comments');
+            if (!container || container.dataset.loaded) return;
+            if (SITE_CONFIG.giscusRepoId === 'R_kg_CHANGE_ME') return;
+            container.dataset.loaded = '1';
+            container.innerHTML = '';
+            var script = document.createElement('script');
+            script.src = 'https://giscus.app/client.js';
+            script.setAttribute('data-repo', SITE_CONFIG.githubRepo);
+            script.setAttribute('data-repo-id', SITE_CONFIG.giscusRepoId);
+            script.setAttribute('data-category', 'Announcements');
+            script.setAttribute('data-category-id', SITE_CONFIG.giscusCategoryId);
+            script.setAttribute('data-mapping', 'specific');
+            script.setAttribute('data-term', currentArticleId);
+            script.setAttribute('data-reactions-enabled', '1');
+            script.setAttribute('data-emit-metadata', '0');
+            script.setAttribute('data-input-position', 'bottom');
+            script.setAttribute('data-theme', 'preferred_color_scheme');
+            script.setAttribute('data-lang', currentLang === 'zh' ? 'zh-CN' : 'en');
+            script.crossOrigin = 'anonymous';
+            script.async = true;
+            container.appendChild(script);
+        }
+
+        // ─── LIKES ───
+        function getLikeCount(slug) {
+            const key = 'mm_likes_' + slug;
+            return parseInt(localStorage.getItem(key) || '0');
+        }
+        function hasLiked(slug) {
+            return localStorage.getItem('mm_liked_' + slug) === '1';
+        }
+        window.toggleLike = function() {
+            if (hasLiked(currentArticleId)) {
+                // Unlike
+                localStorage.removeItem('mm_liked_' + currentArticleId);
+                const cur = getLikeCount(currentArticleId);
+                const n = Math.max(0, cur - 1);
+                localStorage.setItem('mm_likes_' + currentArticleId, n);
+                document.getElementById('article-like-count').textContent = n;
+                document.getElementById('article-like-btn').classList.remove('liked');
+            } else {
+                // Like
+                localStorage.setItem('mm_liked_' + currentArticleId, '1');
+                const n = getLikeCount(currentArticleId) + 1;
+                localStorage.setItem('mm_likes_' + currentArticleId, n);
+                document.getElementById('article-like-count').textContent = n;
+                document.getElementById('article-like-btn').classList.add('liked');
+            }
+        };
+
+        // ─── SHARE ───
+        window.shareArticle = function(platform) {
+            const url = SITE_CONFIG.siteUrl + '/#article/' + currentArticleId;
+            const title = articlesDB[currentArticleId]?.title[currentLang] || '';
+            if (platform === 'copy') {
+                navigator.clipboard.writeText(url).then(() => {
+                    const toast = document.getElementById('copied-toast');
+                    toast.textContent = currentLang === 'zh' ? '链接已复制' : 'Link copied';
+                    toast.classList.add('show');
+                    setTimeout(() => toast.classList.remove('show'), 2000);
+                });
+            } else if (platform === 'twitter') {
+                window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodeURIComponent(url), '_blank');
+            } else if (platform === 'linkedin') {
+                window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(url), '_blank');
+            }
+        };
+
+        // ─── OPEN / CLOSE ARTICLE ───
+        window.openArticle = function(id, silent) {
+            previousView = document.querySelector('.page-view.active')?.id || 'view-home';
+            currentArticleId = id;
+            renderArticleContent(id);
+            navigateTo('view-article');
+            if (!silent && window.location.hash !== '#article/' + id) {
+                history.pushState(null, '', '#article/' + id);
+            }
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        };
+
+        window.closeArticle = function() {
+            if (window.location.hash.startsWith('#article/')) {
+                history.pushState(null, '', window.location.pathname);
+            }
+            navigateTo(previousView);
+            setTimeout(() => { currentArticleId = null; }, 300);
+        };
+
+        // ─── HASH ROUTING ───
+        function handleHashChange() {
+            const hash = window.location.hash;
+            if (hash.startsWith('#article/')) {
+                const slug = hash.replace('#article/', '');
+                if (articlesDB[slug]) {
+                    openArticle(slug, true);
+                }
+            } else if (!hash) {
+                // Back to previous view if hash cleared
+                if (currentArticleId) {
+                    navigateTo(previousView);
+                    currentArticleId = null;
+                }
+            }
+        }
+        window.addEventListener('hashchange', handleHashChange);
+
+        // ─── LANGUAGE ───
+        function updateLanguage() {
+            document.querySelectorAll('[data-en][data-zh]').forEach(el => {
+                const val = el.dataset[currentLang];
+                if (val && val.includes('<')) el.innerHTML = val;
+                else if (val) el.textContent = val;
+            });
+            const topLabel = document.getElementById('lang-label-top');
+            if (currentLang === 'zh') {
+                document.body.classList.add('lang-zh');
+                if (topLabel) topLabel.textContent = 'ENGLISH';
+            } else {
+                document.body.classList.remove('lang-zh');
+                if (topLabel) topLabel.textContent = 'CHINESE';
+            }
+            // Re-align nav indicator after button widths change
+            const activeNav = document.querySelector('.nav-item.active');
+            if (activeNav) setTimeout(() => updateNavIndicator(activeNav.dataset.target), 80);
+            if (currentArticleId) renderArticleContent(currentArticleId);
+        }
+
+        // ─── DARK MODE ───
+        function applyDarkMode(enabled) {
+            if (enabled) {
+                document.documentElement.classList.add('dark');
+                var dt = document.getElementById('dark-toggle');
+                if (dt) dt.innerHTML = '<i data-lucide="sun" class="w-3.5 h-3.5"></i>';
+            } else {
+                document.documentElement.classList.remove('dark');
+                var dt2 = document.getElementById('dark-toggle');
+                if (dt2) dt2.innerHTML = '<i data-lucide="moon" class="w-3.5 h-3.5"></i>';
+            }
+            lucide.createIcons();
+        }
+        window.toggleDark = function() {
+            var isDark = document.documentElement.classList.contains('dark');
+            applyDarkMode(!isDark);
+            localStorage.setItem('mm_dark', !isDark ? '1' : '0');
+        };
+        (function() {
+            var saved = localStorage.getItem('mm_dark');
+            var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            applyDarkMode(saved === '1' || (!saved && prefersDark));
+        })();
+
+        window.toggleLang = function() {
+            currentLang = currentLang === 'en' ? 'zh' : 'en';
+            updateLanguage();
+            if (Object.keys(articlesDB).length > 0) {
+                renderCards();
+            } else {
+                renderHeroSection();
+            }
+        };
+
+        // Scroll-triggered reveal
+        window.addEventListener('scroll', checkReveal, { passive: true });
+
+        // ─── READING PROGRESS BAR ───
+        window.addEventListener('scroll', function() {
+            const bar = document.getElementById('reading-progress');
+            if (!bar) return;
+            const articleView = document.getElementById('view-article');
+            if (!articleView || !articleView.classList.contains('active')) {
+                bar.style.width = '0%';
+                return;
+            }
+            const winH = window.innerHeight;
+            const docH = document.documentElement.scrollHeight;
+            const scrollTop = window.scrollY;
+            const total = docH - winH;
+            bar.style.width = total > 0 ? Math.min(100, (scrollTop / total) * 100) + '%' : '0%';
+        }, { passive: true });
+    </script>
+</body>
+</html>

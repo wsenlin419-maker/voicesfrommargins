@@ -553,6 +553,15 @@
             #nav-track .nav-item { display: none; }
         }
 
+
+        .dl-card { background: #fff; border: 1px solid var(--border); border-radius: 3px; padding: 1.5rem; transition: all 0.25s ease; display: flex; gap: 1rem; align-items: flex-start; }
+        .dl-card:hover { border-color: #c4bfb6; box-shadow: 0 4px 16px rgba(0,0,0,0.05); transform: translateY(-1px); }
+        .dl-icon { width: 44px; height: 44px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; color: #fff; font-weight: 700; font-family: "Inter", sans-serif; }
+        .dl-pdf { background: #b8453a; } .dl-doc { background: #4c72b0; } .dl-zip { background: #6d9e93; } .dl-other { background: #6b6b6b; }
+        .dl-cat { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-bottom: 6px; }
+        .dl-cat-research { background: #f3f1ec; color: #003d5c; } .dl-cat-field { background: #f3f1ec; color: #8c5a3c; }
+        .dl-cat-template { background: #f3f1ec; color: #6b6b6b; } .dl-cat-report { background: #f3f1ec; color: #b8453a; }
+
         /* ===== SKELETON LOADING ===== */
         .skeleton {
             background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
@@ -667,6 +676,7 @@
                 <button data-target="view-voices" onclick="navigateTo('view-voices')" class="nav-item py-3" data-en="VOICES ARCHIVE" data-zh="声音档案">VOICES ARCHIVE</button>
                 <button data-target="view-data" onclick="navigateTo('view-data')" class="nav-item py-3" data-en="DATA & INSIGHTS" data-zh="数据洞察">DATA & INSIGHTS</button>
                 <button data-target="view-blog" onclick="navigateTo('view-blog')" class="nav-item py-3" data-en="BLOG" data-zh="动态博客">BLOG</button>
+                <button data-target="view-downloads" onclick="navigateTo('view-downloads')" class="nav-item py-3" data-en="DOWNLOADS" data-zh="下载中心">DOWNLOADS</button>
                 <button data-target="view-about" onclick="navigateTo('view-about')" class="nav-item py-3" data-en="ABOUT US" data-zh="关于平台">ABOUT US</button>
 
                 <div id="nav-indicator" class="nav-indicator" style="left:0;width:0;"></div>
@@ -684,6 +694,7 @@
         <button onclick="mobileNavTo('view-voices')" data-en="VOICES ARCHIVE" data-zh="声音档案">VOICES ARCHIVE</button>
         <button onclick="mobileNavTo('view-data')" data-en="DATA & INSIGHTS" data-zh="数据洞察">DATA & INSIGHTS</button>
         <button onclick="mobileNavTo('view-blog')" data-en="BLOG" data-zh="动态博客">BLOG</button>
+        <button onclick="mobileNavTo('view-downloads')" data-en="DOWNLOADS" data-zh="下载中心">DOWNLOADS</button>
         <button onclick="mobileNavTo('view-about')" data-en="ABOUT US" data-zh="关于平台">ABOUT US</button>
     </div>
 
@@ -1007,6 +1018,17 @@
             </div>
         </div>
 
+        <!-- ===== VIEW: DOWNLOADS ===== -->
+        <div id="view-downloads" class="page-view pb-24">
+            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+                <div class="max-w-5xl mx-auto"><div class="section-label mb-4" data-en="Resources" data-zh="资源中心">Resources</div><h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Downloads" data-zh="下载中心">Downloads</h2></div>
+            </div>
+            <div class="max-w-5xl mx-auto px-6 lg:px-12">
+                <div id="downloads-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="text-center py-12 text-gray-400 font-serif col-span-2">Loading...</div></div>
+            </div>
+        </div>
+
+        <!-- ===== VIEW: ARTICLE ===== -->
         <!-- ===== VIEW: ARTICLE ===== -->
         <div id="view-article" class="page-view pb-24">
             <!-- Sticky top bar -->
@@ -1968,6 +1990,25 @@
         function renderEthnicLegend(){var el=document.getElementById('legend-ethnic');if(!el)return;if(currentLang==='zh'){el.innerHTML='<span><i class="map-legend-dot" style="background:#003d5c"></i>有显著少数民族</span><span><i class="map-legend-dot" style="background:#f0f0f0;border:1px solid #ddd"></i>汉族占绝大多数</span>';}else{el.innerHTML='<span><i class="map-legend-dot" style="background:#003d5c"></i>Significant minority</span><span><i class="map-legend-dot" style="background:#f0f0f0;border:1px solid #ddd"></i>Han majority</span>';}}
         var _origNav2 = navigateTo; navigateTo = function(viewId) { _origNav2(viewId); if (viewId === 'view-home') { setTimeout(function() { if (mapChartDialect) mapChartDialect.resize(); if (mapChartEthnic) mapChartEthnic.resize(); }, 200); } };
 
+        // ─── DOWNLOADS ───
+        function loadDownloads() {
+            var container = document.getElementById('downloads-container');
+            if (!container) return;
+            fetch('./downloads.json').then(function(r){return r.json()}).then(function(items){
+                var cats={research:'Research Data',field:'Field Materials',template:'Templates',report:'Reports'};
+                var catsZH={research:'研究数据',field:'田野材料',template:'模板文件',report:'报告文档'};
+                var iconMap={pdf:'dl-pdf',doc:'dl-doc',docx:'dl-doc',zip:'dl-zip'};
+                container.innerHTML = items.map(function(f){
+                    var ext=(f.file||'').split('.').pop().toLowerCase();
+                    var ic=iconMap[ext]||'dl-other', ico=ext.toUpperCase().substring(0,3);
+                    var cat=f.category||'research';
+                    return '<div class="dl-card reveal"><div class="dl-icon '+ic+'">'+ico+'</div><div class="flex-1 min-w-0"><span class="dl-cat dl-cat-'+cat+'">'+(currentLang==='zh'?(catsZH[cat]||cat):(cats[cat]||cat))+'</span><h4 class="font-serif text-lg font-bold text-pew-dark mb-1">'+(f.name[currentLang]||f.name.en||'')+'</h4><p class="text-[13px] text-gray-500 font-serif mb-2">'+(f.desc[currentLang]||f.desc.en||'')+'</p><div class="flex items-center justify-between"><span class="text-[11px] text-gray-400 font-sans">'+(f.size||'')+'</span><a href="./downloads/'+f.file+'" download class="text-[11px] font-bold uppercase tracking-widest text-[#003d5c] hover:text-pew-dark transition-colors flex items-center gap-1">'+(currentLang==='zh'?'下载':'Download')+' <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a></div></div></div>';
+                }).join('');
+                setTimeout(checkReveal,100);
+            }).catch(function(){container.innerHTML='<div class="text-center py-12 text-gray-400 font-serif col-span-2">'+(currentLang==='zh'?'暂无下载文件':'No downloads available.')+'</div>';});
+        }
+
+        // ─── FETCH ON LOAD ───
         // ─── FETCH ON LOAD ───
         window.addEventListener('load', () => {
             fetchArticles();
@@ -1984,6 +2025,7 @@
             setTimeout(checkReveal, 200);
             // Initialize interactive maps
             setTimeout(initMap, 800);
+            setTimeout(loadDownloads, 1000);
         });
 
         // Handle language toggle re-render

@@ -1994,18 +1994,24 @@
         function loadDownloads() {
             var container = document.getElementById('downloads-container');
             if (!container) return;
-            fetch('./downloads.json').then(function(r){return r.json()}).then(function(items){
-                var cats={research:'Research Data',field:'Field Materials',template:'Templates',report:'Reports'};
-                var catsZH={research:'研究数据',field:'田野材料',template:'模板文件',report:'报告文档'};
-                var iconMap={pdf:'dl-pdf',doc:'dl-doc',docx:'dl-doc',zip:'dl-zip'};
-                container.innerHTML = items.map(function(f){
-                    var ext=(f.file||'').split('.').pop().toLowerCase();
-                    var ic=iconMap[ext]||'dl-other', ico=ext.toUpperCase().substring(0,3);
-                    var cat=f.category||'research';
-                    return '<div class="dl-card reveal"><div class="dl-icon '+ic+'">'+ico+'</div><div class="flex-1 min-w-0"><span class="dl-cat dl-cat-'+cat+'">'+(currentLang==='zh'?(catsZH[cat]||cat):(cats[cat]||cat))+'</span><h4 class="font-serif text-lg font-bold text-pew-dark mb-1">'+(f.name[currentLang]||f.name.en||'')+'</h4><p class="text-[13px] text-gray-500 font-serif mb-2">'+(f.desc[currentLang]||f.desc.en||'')+'</p><div class="flex items-center justify-between"><span class="text-[11px] text-gray-400 font-sans">'+(f.size||'')+'</span><a href="./downloads/'+f.file+'" download class="text-[11px] font-bold uppercase tracking-widest text-[#003d5c] hover:text-pew-dark transition-colors flex items-center gap-1">'+(currentLang==='zh'?'下载':'Download')+' <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a></div></div></div>';
-                }).join('');
-                setTimeout(checkReveal,100);
-            }).catch(function(){container.innerHTML='<div class="text-center py-12 text-gray-400 font-serif col-span-2">'+(currentLang==='zh'?'暂无下载文件':'No downloads available.')+'</div>';});
+            var cats={research:'Research Data',field:'Field Materials',template:'Templates',report:'Reports'};
+            var catsZH={research:'研究数据',field:'田野材料',template:'模板文件',report:'报告文档'};
+            var iconMap={pdf:'dl-pdf',doc:'dl-doc',docx:'dl-doc',zip:'dl-zip'};
+            fetch('https://cdn.contentful.com/spaces/' + SPACE_ID + '/environments/master/entries?content_type=downloadItem&access_token=' + ACCESS_TOKEN + '&locale=*')
+                .then(function(r){return r.json()}).then(function(d){
+                    var assets={};
+                    if(d.includes&&d.includes.Asset){d.includes.Asset.forEach(function(a){var u=a.fields.file['en-US']?a.fields.file['en-US'].url:'';if(u.startsWith('//'))u='https:'+u;assets[a.sys.id]=u;});}
+                    var items=[];
+                    if(d.items){d.items.forEach(function(item){var f=item.fields;var fid=(f.file&&f.file['en-US']&&f.file['en-US'].sys)?f.file['en-US'].sys.id:null;items.push({name:{en:(f.name&&f.name['en-US'])||'',zh:(f.name&&f.name['zh-CN'])||''},desc:{en:(f.desc&&f.desc['en-US'])||'',zh:(f.desc&&f.desc['zh-CN'])||''},category:(f.category&&f.category['en-US'])||'research',size:(f.size&&f.size['en-US'])||'',url:fid?(assets[fid]||''):(f.fileUrl&&f.fileUrl['en-US']||'')});});}
+                    if(items.length===0){container.innerHTML='<div class="text-center py-12 text-gray-400 font-serif col-span-2">'+(currentLang==='zh'?'暂无下载文件':'No downloads available.')+'</div>';return;}
+                    container.innerHTML = items.map(function(f){
+                        var fn=(f.url||'').split('.').pop().toLowerCase();
+                        var ic=iconMap[fn]||'dl-other', ico=fn.toUpperCase().substring(0,3);
+                        var cat=f.category||'research';
+                        return '<div class="dl-card reveal"><div class="dl-icon '+ic+'">'+ico+'</div><div class="flex-1 min-w-0"><span class="dl-cat dl-cat-'+cat+'">'+(currentLang==='zh'?(catsZH[cat]||cat):(cats[cat]||cat))+'</span><h4 class="font-serif text-lg font-bold text-pew-dark mb-1">'+(f.name[currentLang]||f.name.en||'')+'</h4><p class="text-[13px] text-gray-500 font-serif mb-2">'+(f.desc[currentLang]||f.desc.en||'')+'</p><div class="flex items-center justify-between"><span class="text-[11px] text-gray-400 font-sans">'+(f.size||'')+'</span><a href="'+f.url+'" download class="text-[11px] font-bold uppercase tracking-widest text-[#003d5c] hover:text-pew-dark transition-colors flex items-center gap-1">'+(currentLang==='zh'?'下载':'Download')+' <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></a></div></div></div>';
+                    }).join('');
+                    setTimeout(checkReveal,100);
+                }).catch(function(){container.innerHTML='<div class="text-center py-12 text-gray-400 font-serif col-span-2">'+(currentLang==='zh'?'暂无下载文件':'No downloads available.')+'</div>';});
         }
 
         // ─── FETCH ON LOAD ───

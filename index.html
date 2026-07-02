@@ -1797,6 +1797,7 @@
             if (!container) return;
             const blogPosts = Object.entries(articlesDB)
                 .filter(([, d]) => d.category.toLowerCase() === 'blog')
+                .sort(([, a], [, b]) => (b.publishDate?.en || '').localeCompare(a.publishDate?.en || ''))
                 .slice(0, 3);
             if (blogPosts.length === 0) {
                 container.innerHTML = '<div class="text-center py-12 text-gray-400 font-serif col-span-3">' + (currentLang === 'zh' ? '暂无动态' : 'No posts yet.') + '</div>';
@@ -1883,7 +1884,9 @@
                 if (container) container.innerHTML = '';
             });
 
-            for (const [slug, data] of Object.entries(articlesDB)) {
+            const sortedEntries = Object.entries(articlesDB)
+                .sort(([, a], [, b]) => (b.publishDate?.en || '').localeCompare(a.publishDate?.en || ''));
+            for (const [slug, data] of sortedEntries) {
                 const safeTag = data.tag ? data.tag[currentLang] : '';
                 const safeTitle = data.title ? data.title[currentLang] : '';
                 const safeExcerpt = data.excerpt ? data.excerpt[currentLang] : '';

@@ -1189,20 +1189,127 @@
                 <a href="#" onclick="navigateTo('view-about')" class="hover:text-white transition-colors" data-en="About" data-zh="关于我们">About</a>
                 <button onclick="showLegal('Terms')" class="hover:text-white transition-colors" data-en="Terms & Conditions" data-zh="条款">Terms</button>
                 <button onclick="showLegal('Privacy')" class="hover:text-white transition-colors" data-en="Privacy Policy" data-zh="隐私">Privacy</button>
-                <a href="#footer-section" class="hover:text-white transition-colors" data-en="Contact Us" data-zh="联系我们">Contact</a>
+                <a href="mailto:marginsmeaning@163.com" class="hover:text-white transition-colors" data-en="Contact Us" data-zh="联系我们">Contact</a>
             </div>
         </div>
     </footer>
 
     <!-- LEGAL MODAL -->
     <div id="legal-modal" class="fixed inset-0 bg-black/70 z-[130] custom-modal modal-hidden flex justify-center items-center backdrop-blur-sm px-4">
-        <div id="legal-content" class="bg-white max-w-2xl w-full p-8 md:p-12 relative shadow-2xl modal-content border-t-[4px] border-pew-dark">
-            <button onclick="closeLegal()" class="absolute top-6 right-6 text-gray-400 hover:text-pew-dark transition-colors"><i data-lucide="x" class="w-5 h-5"></i></button>
-            <h2 id="legal-title" class="text-2xl font-serif font-bold text-pew-dark mb-2">Title</h2>
-            <div class="w-10 h-0.5 bg-[#cc1414] mb-6"></div>
-            <p class="text-gray-600 font-sans text-[14px] leading-relaxed" data-en="This section is currently under development. Margins & Meaning Initiative strictly adheres to global data protection regulations. For inquiries regarding data usage or intellectual property, please contact marginsmeaning@163.com." data-zh="本版块条款正在起草中。如对数据使用或知识产权有任何疑问，请直接联系 marginsmeaning@163.com。">
-                This section is currently under development. Margins & Meaning Initiative strictly adheres to global data protection regulations. For inquiries, please contact marginsmeaning@163.com.
-            </p>
+        <div id="legal-content" class="bg-white max-w-2xl w-full p-8 md:p-12 relative shadow-2xl modal-content border-t-[4px] border-pew-dark max-h-[85vh] overflow-y-auto">
+            <button onclick="closeLegal()" class="sticky top-0 float-right -mt-2 -mr-4 text-gray-400 hover:text-pew-dark transition-colors bg-white rounded-full p-1 z-10"><i data-lucide="x" class="w-5 h-5"></i></button>
+            <!-- TERMS -->
+            <div id="legal-terms" class="legal-section">
+                <h2 class="text-2xl font-serif font-bold text-pew-dark mb-1" data-en="Terms &amp; Conditions" data-zh="使用条款">Terms &amp; Conditions</h2>
+                <p class="text-[11px] text-gray-400 uppercase tracking-wider mb-4" data-en="Last updated: July 2, 2026" data-zh="最后更新：2026年7月2日">Last updated: July 2, 2026</p>
+                <div class="w-10 h-0.5 bg-[#cc1414] mb-6"></div>
+                <div class="text-gray-600 font-sans text-[14px] leading-relaxed space-y-5">
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="1. Acceptance of Terms" data-zh="1. 接受条款">1. Acceptance of Terms</h3>
+                        <p data-en="By accessing Margins &amp; Meaning (marginsmeaning.org), you agree to these Terms and Conditions. If you do not agree, please discontinue use of this site." data-zh="访问 Margins &amp; Meaning (marginsmeaning.org) 即表示您同意本使用条款。如不同意，请停止使用本网站。">By accessing Margins &amp; Meaning (marginsmeaning.org), you agree to these Terms and Conditions. If you do not agree, please discontinue use of this site.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="2. About This Platform" data-zh="2. 平台性质">2. About This Platform</h3>
+                        <p data-en="Margins &amp; Meaning (\"Voices from the Margins Project\") is an independent, nonpartisan research initiative operated by individual scholars. We are not a registered nonprofit organization and do not accept funding that would compromise our research independence." data-zh="Margins &amp; Meaning（"边缘之声"项目）是由独立学者运营的无党派研究计划。我们并非注册非营利组织，也不接受任何可能损害研究独立性的资助。">Margins &amp; Meaning ("Voices from the Margins Project") is an independent, nonpartisan research initiative operated by individual scholars. We are not a registered nonprofit organization and do not accept funding that would compromise our research independence.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="3. Intellectual Property" data-zh="3. 知识产权">3. Intellectual Property</h3>
+                        <p data-en="All original content on this site—including but not limited to research briefs, field notes, data visualizations, opinion pieces, blog posts, and photographic material—is the intellectual property of Margins &amp; Meaning and its respective authors, protected under applicable copyright law. Third-party content, where used, is attributed to its original source." data-zh="本网站所有原创内容——包括但不限于研究简报、田野笔记、数据可视化、评论文章、博客文章及摄影素材——均为 Margins &amp; Meaning 及各自作者的知识产权，受适用版权法保护。第三方内容均已标注原始来源。">All original content on this site—including but not limited to research briefs, field notes, data visualizations, opinion pieces, blog posts, and photographic material—is the intellectual property of Margins &amp; Meaning and its respective authors, protected under applicable copyright law. Third-party content, where used, is attributed to its original source.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="4. Permitted Use" data-zh="4. 许可使用范围">4. Permitted Use</h3>
+                        <p data-en="You may read, share, and cite our content for non-commercial, educational, and research purposes, provided that you include full attribution: author name, article title, Margins &amp; Meaning, publication date, and URL. Quotation of reasonable excerpts for commentary, criticism, or scholarship is permitted under fair use / fair dealing principles." data-zh="您可为非商业、教育及研究目的阅读、分享和引用我们的内容，前提是提供完整出处：作者姓名、文章标题、Margins &amp; Meaning、发布日期及 URL。基于合理使用 / 公平交易原则，允许为评论、批评或学术目的引用合理篇幅的摘录。">You may read, share, and cite our content for non-commercial, educational, and research purposes, provided that you include full attribution: author name, article title, Margins &amp; Meaning, publication date, and URL. Quotation of reasonable excerpts for commentary, criticism, or scholarship is permitted under fair use / fair dealing principles.</p>
+                        <p class="mt-2" data-en="You may not reproduce substantial portions of our content without prior written permission; use our content for commercial purposes; or remove, alter, or obscure any copyright notices. Attribution must not imply endorsement by Margins &amp; Meaning of any cause, candidate, product, or viewpoint." data-zh="未经事先书面许可，您不得复制我们内容的实质性部分；不得将内容用于商业目的；不得删除、更改或隐藏任何版权声明。引用时不得暗示 Margins &amp; Meaning 支持任何事业、候选人、产品或观点。">You may not reproduce substantial portions of our content without prior written permission; use our content for commercial purposes; or remove, alter, or obscure any copyright notices. Attribution must not imply endorsement by Margins &amp; Meaning of any cause, candidate, product, or viewpoint.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="5. Citation Format" data-zh="5. 引用格式">5. Citation Format</h3>
+                        <p data-en="Recommended citation: Author Name. \"Article Title.\" Margins &amp; Meaning (Publication Date). URL." data-zh="推荐引用格式：作者姓名。"文章标题" Margins &amp; Meaning（发布日期）。URL。">Recommended citation: Author Name. "Article Title." Margins &amp; Meaning (Publication Date). URL.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="6. Disclaimer of Warranties" data-zh="6. 免责声明">6. Disclaimer of Warranties</h3>
+                        <p data-en="Our content is provided \"as is\" for informational and educational purposes only. While we strive for accuracy and rigor in our research, we make no representations or warranties of any kind—express or implied—regarding the completeness, accuracy, reliability, or availability of the content. The views expressed in individual articles are those of their authors and do not represent institutional positions or the views of any affiliated organization." data-zh="我们的内容按"原样"提供，仅供信息和教育目的。尽管我们力求研究的准确性和严谨性，但不对内容的完整性、准确性、可靠性或可用性作任何明示或暗示的保证。个人文章中的观点仅代表作者本人，不代表任何机构立场或关联组织的观点。">Our content is provided "as is" for informational and educational purposes only. While we strive for accuracy and rigor in our research, we make no representations or warranties of any kind—express or implied—regarding the completeness, accuracy, reliability, or availability of the content. The views expressed in individual articles are those of their authors and do not represent institutional positions or the views of any affiliated organization.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="7. Limitation of Liability" data-zh="7. 责任限制">7. Limitation of Liability</h3>
+                        <p data-en="To the maximum extent permitted by applicable law, Margins &amp; Meaning and its contributors shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from your use of, or reliance on, any content on this site. This limitation applies even if we have been advised of the possibility of such damages." data-zh="在适用法律允许的最大范围内，Margins &amp; Meaning 及其贡献者不对因使用或依赖本网站内容而产生的任何直接、间接、附带、后果性或特殊损害承担责任，即使我们已被告知此类损害的可能性。">To the maximum extent permitted by applicable law, Margins &amp; Meaning and its contributors shall not be liable for any direct, indirect, incidental, consequential, or special damages arising from your use of, or reliance on, any content on this site. This limitation applies even if we have been advised of the possibility of such damages.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="8. Third-Party Links" data-zh="8. 第三方链接">8. Third-Party Links</h3>
+                        <p data-en="Our site may link to external resources and uses third-party services including GitHub Pages (hosting), Contentful (content delivery), Formspree (newsletter), and Giscus (comments). We are not responsible for the content, accuracy, or practices of these third-party services." data-zh="本网站可能包含外部资源链接，并使用第三方服务，包括 GitHub Pages（托管）、Contentful（内容分发）、Formspree（邮件订阅）和 Giscus（评论系统）。我们对这些第三方服务的内容、准确性或做法不承担责任。">Our site may link to external resources and uses third-party services including GitHub Pages (hosting), Contentful (content delivery), Formspree (newsletter), and Giscus (comments). We are not responsible for the content, accuracy, or practices of these third-party services.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="9. Changes to These Terms" data-zh="9. 条款变更">9. Changes to These Terms</h3>
+                        <p data-en="We may revise these Terms at any time. Changes take effect upon posting. Your continued use of the site after revisions constitutes acceptance of the updated Terms." data-zh="我们可能随时修订本条款。修改内容自发布之日起生效。您在修订后继续使用本网站即表示接受更新后的条款。">We may revise these Terms at any time. Changes take effect upon posting. Your continued use of the site after revisions constitutes acceptance of the updated Terms.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="10. Contact" data-zh="10. 联系方式">10. Contact</h3>
+                        <p data-en="For permissions, inquiries, or concerns regarding these Terms, please contact us at <a href=\"mailto:marginsmeaning@163.com\" class=\"text-[#005587] hover:underline\">marginsmeaning@163.com</a>." data-zh="如需获取授权、咨询或对本条款有任何疑问，请联系 <a href=\"mailto:marginsmeaning@163.com\" class=\"text-[#005587] hover:underline\">marginsmeaning@163.com</a>。">For permissions, inquiries, or concerns regarding these Terms, please contact us at <a href="mailto:marginsmeaning@163.com" class="text-[#005587] hover:underline">marginsmeaning@163.com</a>.</p>
+                    </section>
+                </div>
+            </div>
+            <!-- PRIVACY -->
+            <div id="legal-privacy" class="legal-section modal-hidden">
+                <h2 class="text-2xl font-serif font-bold text-pew-dark mb-1" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</h2>
+                <p class="text-[11px] text-gray-400 uppercase tracking-wider mb-4" data-en="Last updated: July 2, 2026" data-zh="最后更新：2026年7月2日">Last updated: July 2, 2026</p>
+                <div class="w-10 h-0.5 bg-[#cc1414] mb-6"></div>
+                <div class="text-gray-600 font-sans text-[14px] leading-relaxed space-y-5">
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="1. Our Commitment" data-zh="1. 我们的承诺">1. Our Commitment</h3>
+                        <p data-en="Margins &amp; Meaning is committed to transparency and respecting your privacy. We are a small independent research platform—not a commercial enterprise—and we collect minimal personal information. This policy explains what we collect, why, and how we handle it." data-zh="Margins &amp; Meaning 致力于透明和尊重您的隐私。我们是一个小型独立研究平台，而非商业机构，仅收集极少的个人信息。本政策说明我们收集什么、为什么收集以及如何处理这些信息。">Margins &amp; Meaning is committed to transparency and respecting your privacy. We are a small independent research platform—not a commercial enterprise—and we collect minimal personal information. This policy explains what we collect, why, and how we handle it.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="2. Information We Collect" data-zh="2. 我们收集的信息">2. Information We Collect</h3>
+                        <p data-en="We collect only the following categories of information:" data-zh="我们仅收集以下类别的信息：">We collect only the following categories of information:</p>
+                        <ul class="list-disc pl-5 space-y-1 mt-1">
+                            <li data-en="<strong>Newsletter subscriptions:</strong> If you sign up for our newsletter via Formspree, we receive your email address. You may unsubscribe at any time using the link in any newsletter." data-zh="<strong>邮件订阅：</strong>如果您通过 Formspree 订阅我们的通讯，我们会收到您的邮箱地址。您可随时通过邮件中的退订链接取消订阅。"><strong>Newsletter subscriptions:</strong> If you sign up for our newsletter via Formspree, we receive your email address. You may unsubscribe at any time using the link in any newsletter.</li>
+                            <li data-en="<strong>Comments:</strong> If you post a comment via Giscus, your comment and GitHub username are stored publicly in the GitHub Discussions linked to our repository. We do not control or store this data independently." data-zh="<strong>评论：</strong>如果您通过 Giscus 发表评论，您的评论和 GitHub 用户名将公开存储在链接到我们仓库的 GitHub Discussions 中。我们不独立控制或存储这些数据。"><strong>Comments:</strong> If you post a comment via Giscus, your comment and GitHub username are stored publicly in the GitHub Discussions linked to our repository. We do not control or store this data independently.</li>
+                            <li data-en="<strong>Server logs:</strong> Our hosting provider (GitHub Pages) may record standard server log data including IP addresses, browser type, and pages visited. We do not directly access, analyze, or retain these logs." data-zh="<strong>服务器日志：</strong>我们的托管服务商 (GitHub Pages) 可能记录标准服务器日志数据，包括 IP 地址、浏览器类型和访问页面。我们不直接访问、分析或保留这些日志。"><strong>Server logs:</strong> Our hosting provider (GitHub Pages) may record standard server log data including IP addresses, browser type, and pages visited. We do not directly access, analyze, or retain these logs.</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="3. What We Do NOT Do" data-zh="3. 我们不做什么">3. What We Do NOT Do</h3>
+                        <p data-en="We do not use tracking cookies for advertising or profiling. We do not run advertisements or use third-party ad networks. We do not sell, rent, trade, or otherwise disclose personal information to third parties. We do not use analytics platforms that track individual users across websites (such as Google Analytics)." data-zh="我们不使用追踪 Cookie 进行广告或用户画像。我们不投放广告，也不使用第三方广告网络。我们不出售、出租、交易或以其他方式向第三方披露个人信息。我们不使用跨网站追踪个人用户的分析平台（如 Google Analytics）。">We do not use tracking cookies for advertising or profiling. We do not run advertisements or use third-party ad networks. We do not sell, rent, trade, or otherwise disclose personal information to third parties. We do not use analytics platforms that track individual users across websites (such as Google Analytics).</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="4. Third-Party Services" data-zh="4. 第三方服务">4. Third-Party Services</h3>
+                        <p data-en="Our site relies on the following third-party services, each governed by its own privacy policy:" data-zh="本网站依赖以下第三方服务，各自受其隐私政策约束：">Our site relies on the following third-party services, each governed by its own privacy policy:</p>
+                        <ul class="list-disc pl-5 space-y-1 mt-1">
+                            <li data-en="GitHub Pages — hosting (see <a href=\"https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\" target=\"_blank\" class=\"text-[#005587] hover:underline\">GitHub Privacy Statement</a>)" data-zh="GitHub Pages — 网站托管（参见 <a href=\"https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement\" target=\"_blank\" class=\"text-[#005587] hover:underline\">GitHub 隐私声明</a>）">GitHub Pages — hosting (see <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" class="text-[#005587] hover:underline">GitHub Privacy Statement</a>)</li>
+                            <li data-en="Contentful — headless content management and delivery (see <a href=\"https://www.contentful.com/legal/privacy-at-contentful/\" target=\"_blank\" class=\"text-[#005587] hover:underline\">Contentful Privacy Policy</a>)" data-zh="Contentful — 无头内容管理与分发（参见 <a href=\"https://www.contentful.com/legal/privacy-at-contentful/\" target=\"_blank\" class=\"text-[#005587] hover:underline\">Contentful 隐私政策</a>）">Contentful — headless content management and delivery (see <a href="https://www.contentful.com/legal/privacy-at-contentful/" target="_blank" class="text-[#005587] hover:underline">Contentful Privacy Policy</a>)</li>
+                            <li data-en="Formspree — newsletter form processing (see <a href=\"https://formspree.io/legal/privacy-policy/\" target=\"_blank\" class=\"text-[#005587] hover:underline\">Formspree Privacy Policy</a>)" data-zh="Formspree — 邮件订阅表单处理（参见 <a href=\"https://formspree.io/legal/privacy-policy/\" target=\"_blank\" class=\"text-[#005587] hover:underline\">Formspree 隐私政策</a>）">Formspree — newsletter form processing (see <a href="https://formspree.io/legal/privacy-policy/" target="_blank" class="text-[#005587] hover:underline">Formspree Privacy Policy</a>)</li>
+                            <li data-en="Giscus / GitHub Discussions — comments system (data stored publicly on GitHub)" data-zh="Giscus / GitHub Discussions — 评论系统（数据公开存储在 GitHub）">Giscus / GitHub Discussions — comments system (data stored publicly on GitHub)</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="5. How We Use Information" data-zh="5. 信息使用方式">5. How We Use Information</h3>
+                        <p data-en="Newsletter email addresses are used solely to send occasional updates about our research and activities. We do not use this information for any other purpose, and we do not share it with anyone. Comment data is public by design and hosted on GitHub's platform per GitHub's terms." data-zh="邮件订阅地址仅用于不定期发送研究进展和活动更新。我们不会将这些信息用于任何其他目的，也不会与任何人分享。评论数据按设计公开，托管在 GitHub 平台上并受 GitHub 条款约束。">Newsletter email addresses are used solely to send occasional updates about our research and activities. We do not use this information for any other purpose, and we do not share it with anyone. Comment data is public by design and hosted on GitHub's platform per GitHub's terms.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="6. Cookies" data-zh="6. Cookie 政策">6. Cookies</h3>
+                        <p data-en="We do not set any first-party cookies for tracking, advertising, or analytics. Third-party services integrated into our site (Giscus for comments, GitHub for hosting) may set functional cookies necessary for their operation. You may disable cookies through your browser settings, though this may affect the functionality of these third-party services." data-zh="我们不设置任何用于追踪、广告或分析的第一方 Cookie。集成到本网站的第三方服务（Giscus 评论系统、GitHub 托管）可能会设置其运行所必需的功能性 Cookie。您可以通过浏览器设置禁用 Cookie，但这可能影响第三方服务的功能。">We do not set any first-party cookies for tracking, advertising, or analytics. Third-party services integrated into our site (Giscus for comments, GitHub for hosting) may set functional cookies necessary for their operation. You may disable cookies through your browser settings, though this may affect the functionality of these third-party services.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="7. Data Retention" data-zh="7. 数据保留">7. Data Retention</h3>
+                        <p data-en="Newsletter subscriber email addresses are retained until you unsubscribe. Comment data resides on GitHub's platform and is retained per GitHub's data retention policies. We do not independently store or archive comments or server logs." data-zh="邮件订阅者的邮箱地址将保留至您取消订阅。评论数据存储在 GitHub 平台上，按 GitHub 的数据保留政策执行。我们不独立存储或存档评论或服务器日志。">Newsletter subscriber email addresses are retained until you unsubscribe. Comment data resides on GitHub's platform and is retained per GitHub's data retention policies. We do not independently store or archive comments or server logs.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="8. Your Rights" data-zh="8. 您的权利">8. Your Rights</h3>
+                        <p data-en="Depending on your jurisdiction, you may have rights to access, correct, delete, or port personal data we hold about you. To exercise any of these rights, please contact us at <a href=\"mailto:marginsmeaning@163.com\" class=\"text-[#005587] hover:underline\">marginsmeaning@163.com</a>. We will respond within a reasonable timeframe." data-zh="根据您所在的司法管辖区，您可能有权访问、更正、删除或迁移我们持有的您的个人数据。如需行使上述任何权利，请联系 <a href=\"mailto:marginsmeaning@163.com\" class=\"text-[#005587] hover:underline\">marginsmeaning@163.com</a>。我们将在合理时间内回复。">Depending on your jurisdiction, you may have rights to access, correct, delete, or port personal data we hold about you. To exercise any of these rights, please contact us at <a href="mailto:marginsmeaning@163.com" class="text-[#005587] hover:underline">marginsmeaning@163.com</a>. We will respond within a reasonable timeframe.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="9. Children's Privacy" data-zh="9. 儿童隐私">9. Children's Privacy</h3>
+                        <p data-en="We do not knowingly collect personal information from children under 13. If we become aware that a child under 13 has provided us with personal information, we will delete it promptly." data-zh="我们不会故意收集 13 岁以下儿童的个人信息。如果我们发现 13 岁以下儿童向我们提供了个人信息，我们将立即删除。">We do not knowingly collect personal information from children under 13. If we become aware that a child under 13 has provided us with personal information, we will delete it promptly.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="10. Changes to This Policy" data-zh="10. 政策变更">10. Changes to This Policy</h3>
+                        <p data-en="We may update this Privacy Policy periodically. Changes will be posted on this page with a revised effective date. We encourage you to review this policy regularly." data-zh="我们可能定期更新本隐私政策。变更将在本页面发布，并标注修订后的生效日期。我们建议您定期查阅本政策。">We may update this Privacy Policy periodically. Changes will be posted on this page with a revised effective date. We encourage you to review this policy regularly.</p>
+                    </section>
+                    <section>
+                        <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="11. Contact" data-zh="11. 联系方式">11. Contact</h3>
+                        <p data-en="For questions or concerns about this Privacy Policy, please contact us at <a href=\"mailto:marginsmeaning@163.com\" class=\"text-[#005587] hover:underline\">marginsmeaning@163.com</a>." data-zh="如对本隐私政策有任何疑问或顾虑，请联系 <a href=\"mailto:marginsmeaning@163.com\" class=\"text-[#005587] hover:underline\">marginsmeaning@163.com</a>。">For questions or concerns about this Privacy Policy, please contact us at <a href="mailto:marginsmeaning@163.com" class="text-[#005587] hover:underline">marginsmeaning@163.com</a>.</p>
+                    </section>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1442,7 +1549,15 @@
         function closeInquiryModal() { closeModal('inquiry-modal', 'inquiry-content'); }
 
         function showLegal(type) {
-            document.getElementById('legal-title').textContent = type === 'Terms' ? (currentLang === 'en' ? 'Terms & Conditions' : '条款与条件') : (currentLang === 'en' ? 'Privacy Policy' : '隐私政策');
+            const termsEl = document.getElementById('legal-terms');
+            const privacyEl = document.getElementById('legal-privacy');
+            if (type === 'Terms') {
+                termsEl.classList.remove('modal-hidden');
+                privacyEl.classList.add('modal-hidden');
+            } else {
+                privacyEl.classList.remove('modal-hidden');
+                termsEl.classList.add('modal-hidden');
+            }
             openModal('legal-modal', 'legal-content');
         }
         function closeLegal() { closeModal('legal-modal', 'legal-content'); }

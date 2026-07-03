@@ -601,7 +601,7 @@
 
     <!-- TOP BLACK BAR -->
     <div class="bg-[#111] text-white py-2 px-6 lg:px-12 w-full z-50 relative">
-        <div class="max-w-7xl mx-auto flex justify-between items-center text-[10px] md:text-[11px] font-bold tracking-[0.15em] uppercase font-sans">
+        <div class="max-w-7xl mx-auto flex justify-between items-center text-[11px] md:text-[12px] font-medium tracking-[0.2em] uppercase font-sans">
             <span class="block" data-en="PRESERVING ENDANGERED VOICES" data-zh="守护濒危之声">PRESERVING ENDANGERED VOICES</span>
             <div class="flex space-x-4 md:space-x-6 items-center">
                 <button onclick="scrollToFeatured()" class="hover:text-gray-300 transition-colors uppercase cursor-pointer hidden sm:block" data-en="NEWSLETTERS" data-zh="NEWSLETTERS">NEWSLETTERS</button>
@@ -665,7 +665,7 @@
     <!-- NAVIGATION -->
     <nav class="bg-white sticky top-0 z-30 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
-            <div id="nav-track" class="nav-track flex items-center lg:justify-center overflow-x-auto hide-scrollbar text-[11.5px] font-sans font-semibold uppercase tracking-[0.12em] h-[50px] gap-6 lg:gap-10 border-b border-gray-100">
+            <div id="nav-track" class="nav-track flex items-center lg:justify-center overflow-x-auto hide-scrollbar text-[12px] font-sans font-medium uppercase tracking-[0.15em] h-[56px] gap-6 lg:gap-10 border-b border-gray-100">
 
                 <!-- Hamburger (mobile only) -->
                 <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="absolute right-6 top-1/2 -translate-y-1/2" aria-label="Menu">
@@ -708,31 +708,31 @@
 
             <!-- HERO GRID AREA -->
             <div class="hero-grid-bg">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-28 md:pt-40 pb-16">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16" id="hero-grid-container">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center" style="min-height:82vh">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full py-12" id="hero-grid-container">
                     </div>
                 </div>
             </div>
 
             <!-- KEY NUMBERS STRIP — data-target values are defaults, updated dynamically after CMS fetch -->
-            <div id="featured-section" class="border-t border-b border-gray-200 bg-white py-20">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div id="featured-section" class="border-t border-b border-gray-200 bg-white py-24 md:py-32">
+                <div class="max-w-4xl mx-auto px-6 lg:px-12">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-0 reveal">
                         <div class="stat-item text-center py-2">
-                            <div class="text-6xl font-serif font-bold text-pew-dark leading-none mb-2 counter" data-target="250">0</div>
-                            <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</div>
+                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-2 counter" data-target="250">0</div>
+                            <div class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium" data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</div>
                         </div>
                         <div class="stat-item text-center py-2" id="counter-conferences">
-                            <div class="text-4xl font-serif font-bold text-pew-dark leading-none mb-1.5"><span class="counter" data-target="5">0</span></div>
-                            <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</div>
+                            <div class="text-6xl md:text-7xl font-serif font-bold text-pew-dark leading-none mb-2"><span class="counter" data-target="5">0</span></div>
+                            <div class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium" data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</div>
                         </div>
                         <div class="stat-item text-center py-2" id="counter-papers">
-                            <div class="text-4xl font-serif font-bold text-pew-dark leading-none mb-1.5"><span class="counter" data-target="3">0</span></div>
-                            <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Research Papers" data-zh="学术论文">Research Papers</div>
+                            <div class="text-6xl md:text-7xl font-serif font-bold text-pew-dark leading-none mb-2"><span class="counter" data-target="3">0</span></div>
+                            <div class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium" data-en="Research Papers" data-zh="学术论文">Research Papers</div>
                         </div>
                         <div class="stat-item text-center py-2">
                             <div class="text-4xl font-serif font-bold text-pew-dark leading-none mb-1.5"><span class="counter" data-target="10">0</span></div>
-                            <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Years of Data (2015–2025)" data-zh="数据跨度 (2015–2025)">Years of Data</div>
+                            <div class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium" data-en="Years of Data (2015–2025)" data-zh="数据跨度 (2015–2025)">Years of Data</div>
                         </div>
                     </div>
                 </div>
@@ -767,7 +767,7 @@
             <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Academic Work" data-zh="学术工作">Academic Work</div>
-                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Research" data-zh="学术研究">Research</h2>
+                    <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Research" data-zh="学术研究">Research</h2>
                 </div>
             </div>
 
@@ -780,7 +780,7 @@
             <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Opinion & Analysis" data-zh="观点与分析">Opinion & Analysis</div>
-                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Writing & Opinion" data-zh="观点与评论">Writing & Opinion</h2>
+                    <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Writing & Opinion" data-zh="观点与评论">Writing & Opinion</h2>
                 </div>
             </div>
 
@@ -801,7 +801,7 @@
             <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Ethnographic Work" data-zh="民族志研究">Ethnographic Work</div>
-                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Field Notes" data-zh="田野笔记">Field Notes</h2>
+                    <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Field Notes" data-zh="田野笔记">Field Notes</h2>
                 </div>
             </div>
 
@@ -814,7 +814,7 @@
             <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Quantitative Work" data-zh="量化研究">Quantitative Work</div>
-                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</h2>
+                    <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</h2>
                 </div>
             </div>
 
@@ -906,7 +906,7 @@
             <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Primary Materials" data-zh="一手材料">Primary Materials</div>
-                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark mb-3" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</h2>
+                    <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark mb-3" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</h2>
                     <p class="text-gray-400 font-serif text-lg" data-en="Listening to the margins. Curating primary materials and ethnographic dialogues." data-zh="聆听边缘。为学界生产一手口述史、对话录与原始研究语料。">Listening to the margins. Curating primary materials and ethnographic dialogues.</p>
                 </div>
             </div>
@@ -920,7 +920,7 @@
             <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-7xl mx-auto">
                     <div class="section-label mb-4" data-en="Updates & Events" data-zh="动态与活动">Updates & Events</div>
-                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Blog" data-zh="Blog">Blog</h2>
+                    <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Blog" data-zh="Blog">Blog</h2>
                 </div>
             </div>
 
@@ -964,7 +964,7 @@
             <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="The Initiative" data-zh="关于平台">The Initiative</div>
-                    <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="About" data-zh="关于平台">About</h2>
+                    <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="About" data-zh="关于平台">About</h2>
                 </div>
             </div>
 
@@ -1026,7 +1026,7 @@
         <!-- ===== VIEW: DOWNLOADS ===== -->
         <div id="view-downloads" class="page-view pb-24">
             <div class="page-header py-28 px-6 lg:px-12 mb-16">
-                <div class="max-w-5xl mx-auto"><div class="section-label mb-4" data-en="Resources" data-zh="资源中心">Resources</div><h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Downloads" data-zh="下载中心">Downloads</h2></div>
+                <div class="max-w-5xl mx-auto"><div class="section-label mb-4" data-en="Resources" data-zh="资源中心">Resources</div><h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Downloads" data-zh="下载中心">Downloads</h2></div>
             </div>
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 <div id="downloads-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="text-center py-12 text-gray-400 font-serif col-span-2">Loading...</div></div>
@@ -1943,7 +1943,7 @@
             }
             container.innerHTML = blogPosts.map(([slug, data], i) =>
                 `<article class="blog-card cursor-pointer group reveal reveal-delay-${i+1}" onclick="openArticle('${slug}')">
-                    <div class="blog-card-img aspect-[4/3] bg-gray-100 border border-gray-200 mb-4">
+                    <div class="blog-card-img aspect-[16/10] bg-gray-100 border border-gray-200 mb-4">
                         <img src="${data.coverUrl}" class="w-full h-full object-cover" alt="">
                     </div>
                     <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400 block mb-2">${data.tag[currentLang]}</span>
@@ -2091,7 +2091,7 @@
                 else if (cat === 'blog' && containers['blog']) {
                     containers['blog'].innerHTML += `
                         <article class="blog-card border-b border-gray-200 pb-10 cursor-pointer group flex flex-col md:flex-row gap-7 reveal visible" onclick="openArticle('${slug}')">
-                            <div class="blog-card-img w-full md:w-[220px] aspect-[4/3] bg-gray-100 border border-gray-200 flex-shrink-0">
+                            <div class="blog-card-img w-full md:w-[260px] aspect-[16/10] bg-gray-100 border border-gray-200 flex-shrink-0">
                                 <img src="${cover}" class="w-full h-full object-cover object-center">
                             </div>
                             <div class="flex flex-col justify-center">

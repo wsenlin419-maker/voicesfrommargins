@@ -107,6 +107,7 @@
         html.dark .map-tab { color: #6c757d; }
         html.dark .map-tab.active { color: #e5e3df; border-color: #e5e3df; }
         html.dark #search-overlay { background: rgba(26,29,33,0.97) !important; }
+        html.dark .search-highlight { color: #e5e3df; font-weight: 700; }
         html.dark input { color: var(--text) !important; }
         html.dark .bg-\[\\#f0f5fa\] { background-color: #1c2833 !important; }
         html.dark .hover\:bg-white:hover { background-color: var(--bg-card) !important; }
@@ -198,6 +199,7 @@
         #search-overlay { transition: opacity 0.3s ease; }
         .search-hidden { opacity: 0; pointer-events: none; }
         .search-visible { opacity: 1; pointer-events: auto; }
+        .search-highlight { background: none; color: #1a1a1a; font-weight: 700; }
 
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
         .video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
@@ -1413,15 +1415,36 @@
                 searchDropdown.classList.add('hidden');
             }
         });
+        function highlightText(text, query) {
+            if (!query || !text) return text;
+            const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+            return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark class="search-highlight">$1</mark>');
+        }
+        function getBodySnippet(bodyHtml, query) {
+            if (!bodyHtml || !query) return '';
+            const text = bodyHtml.replace(/<[^>]*>/g, ' ');
+            const idx = text.toLowerCase().indexOf(query.toLowerCase());
+            if (idx === -1) return '';
+            const start = Math.max(0, idx - 40);
+            const end = Math.min(text.length, idx + query.length + 80);
+            let snippet = (start > 0 ? '...' : '') + text.substring(start, end) + (end < text.length ? '...' : '');
+            return highlightText(snippet, query);
+        }
         function renderSearchResults(query, container, isFullScreen) {
             let resultHTML = isFullScreen ? '<div class="bg-white p-6 shadow-xl border border-gray-200 mt-4 text-left"><ul class="space-y-4">' : '<ul class="divide-y divide-gray-100">';
             let found = false;
             for (const [id, article] of Object.entries(articlesDB)) {
-                if (article.title.en.toLowerCase().includes(query) || article.title.zh.toLowerCase().includes(query) || article.body.en.toLowerCase().includes(query)) {
+                const inTitleEn = article.title.en.toLowerCase().includes(query);
+                const inTitleZh = article.title.zh.toLowerCase().includes(query);
+                const inBody = article.body.en.toLowerCase().includes(query);
+                if (inTitleEn || inTitleZh || inBody) {
+                    const title = article.title[currentLang];
+                    const highlightedTitle = highlightText(title, query);
+                    const snippet = getBodySnippet(article.body.en, query);
                     if (isFullScreen) {
-                        resultHTML += `<li class="border-b border-gray-100 pb-3 last:border-0"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><a href="#" onclick="openArticle('${id}'); toggleSearch();" class="text-base font-serif font-bold text-[#005587] hover:text-pew-dark transition-colors">${article.title[currentLang]}</a></li>`;
+                        resultHTML += `<li class="border-b border-gray-100 pb-4 last:border-0"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><a href="#" onclick="openArticle('${id}'); toggleSearch(); return false;" class="text-base font-serif font-bold text-[#005587] hover:text-pew-dark transition-colors">${highlightedTitle}</a>${snippet ? `<p class="text-[13px] text-gray-500 font-sans mt-1.5 leading-relaxed line-clamp-2">${snippet}</p>` : ''}</li>`;
                     } else {
-                        resultHTML += `<li><a href="#" onclick="openArticle('${id}'); document.getElementById('search-dropdown').classList.add('hidden');" class="block p-4 hover:bg-gray-50 transition-colors text-left"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><span class="text-sm font-serif font-bold text-pew-dark">${article.title[currentLang]}</span></a></li>`;
+                        resultHTML += `<li><a href="#" onclick="openArticle('${id}'); document.getElementById('search-dropdown').classList.add('hidden'); return false;" class="block p-4 hover:bg-gray-50 transition-colors text-left"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><span class="text-sm font-serif font-bold text-pew-dark">${highlightedTitle}</span>${snippet ? `<p class="text-[12px] text-gray-400 font-sans mt-1 leading-relaxed line-clamp-2">${snippet}</p>` : ''}</li>`;
                     }
                     found = true;
                 }

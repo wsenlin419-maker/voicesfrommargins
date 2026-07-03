@@ -97,7 +97,6 @@
         html.dark .article-body { color: #d1cfc9; }
         html.dark .article-body blockquote { color: #adb5bd; }
         html.dark .article-body figcaption { color: #6c757d; }
-        html.dark .article-body > p:first-of-type::first-letter { color: #e5e3df; }
         html.dark .pull-quote { background: var(--bg-alt); }
         html.dark .research-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
         html.dark #map-section { background: #1a1d21; }
@@ -423,12 +422,12 @@
         }
         .article-body ul, .article-body ol { margin: 1rem 0 1.5rem 1.5rem; }
         .article-body li { margin-bottom: 0.5rem; }
-        .article-body img { display: block; float: left; max-width: 45%; height: auto; margin: 0.5rem 2rem 1.5rem 0; clear: left; }
-        .article-body figure { float: left; max-width: 45%; margin: 0.5rem 2rem 1.5rem 0; clear: left; }
+        .article-body img { display: block; float: left; max-width: 45%; height: auto; margin: 0 2rem 1.5rem 0; clear: left; }
+        .article-body figure { float: left; max-width: 45%; margin: 0 2rem 1.5rem 0; clear: left; }
         .article-body figure img { margin: 0; width: 100%; }
         .article-body figure::after { content: ''; display: table; clear: both; }
         .article-body figcaption { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.7rem; color: #9ca3af; text-align: left; margin-top: 0.4rem; line-height: 1.5; font-style: italic; }
-        .article-body > p:first-of-type::first-letter { float: left; font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; font-size: 4.5rem; font-weight: 400; line-height: 0.85; margin: 0.12em 0.15em 0 0; color: #1a1a1a; }
+        .article-body > p:first-of-type::first-letter { float: left; font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; font-size: 4.5rem; font-weight: 400; line-height: 0.85; margin: 0.12em 0.15em 0 0; }
         .article-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
 
         .like-btn { transition: transform 0.2s ease, color 0.2s ease; user-select: none; }

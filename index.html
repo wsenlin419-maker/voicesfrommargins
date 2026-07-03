@@ -697,11 +697,7 @@
             <div id="featured-section" class="border-b border-gray-200 bg-white py-28 md:py-36">
                 <div class="max-w-4xl mx-auto px-6 lg:px-12">
                     <p class="text-center text-[11px] font-medium uppercase tracking-[0.25em] text-gray-400 font-sans mb-16" data-en="By the Numbers" data-zh="数据一览">By the Numbers</p>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-0 reveal">
-                        <div class="stat-item text-center py-2 flex flex-col items-center">
-                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-3 counter" data-target="250">0</div>
-                            <div class="h-8 flex items-center"><p class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium leading-tight text-center" data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</p></div>
-                        </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-0 reveal">
                         <div class="stat-item text-center py-2 flex flex-col items-center" id="counter-conferences">
                             <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-3"><span class="counter" data-target="5">0</span></div>
                             <div class="h-8 flex items-center"><p class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium leading-tight text-center" data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</p></div>
@@ -1766,11 +1762,13 @@
                             tmData.items.forEach(function(item) {
                                 var f = item.fields;
                                 var photoId = (f.photo && f.photo['en-US'] && f.photo['en-US'].sys) ? f.photo['en-US'].sys.id : null;
+                                var website = (f.website && f.website['en-US']) || (f.url && f.url['en-US']) || (f.homepage && f.homepage['en-US']) || '';
                                 window._teamMembers.push({
                                     name: { en: (f.name && f.name['en-US']) || '', zh: (f.name && f.name['zh-CN']) || '' },
                                     role: { en: (f.role && f.role['en-US']) || '', zh: (f.role && f.role['zh-CN']) || '' },
                                     bio: { en: (f.bio && f.bio['en-US']) || '', zh: (f.bio && f.bio['zh-CN']) || '' },
-                                    photo: photoId ? (tmAssets[photoId] || '') : ''
+                                    photo: photoId ? (tmAssets[photoId] || '') : '',
+                                    website: website
                                 });
                             });
                         }
@@ -1778,9 +1776,9 @@
                 } catch(e) { window._teamMembers = null; }
                 if (!window._teamMembers || window._teamMembers.length === 0) {
                     window._teamMembers = [
-                        { name: { en: 'Senlin Wang', zh: '王森林' }, role: { en: 'Founder', zh: '创始人' }, bio: { en: 'Senlin Wang is the founder of Margins &amp; Meaning. His work focuses on sociolinguistics, identity, and inequality.', zh: '王森林是「边缘与意义」的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题。' }, photo: 'https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true' },
-                        { name: { en: 'Xingyu Zhang', zh: '张星宇' }, role: { en: 'Research Associate', zh: '研究助理' }, bio: { en: 'Xingyu Zhang is a member of Margins &amp; Meaning. She is from Capital University of Economics and Business.', zh: '张星宇是「边缘与意义」的核心成员。她来自首都经济贸易大学。' }, photo: 'https://github.com/wsenlin419-maker/picture/blob/main/%E6%98%9F%E5%AE%87%E7%85%A7%E7%89%87.jpg?raw=true' },
-                        { name: { en: 'Zhiguo Huang', zh: '黄治国' }, role: { en: 'Research Associate', zh: '研究助理' }, bio: { en: 'Zhiguo Huang is a member of Margins &amp; Meaning. He is from Yueyang, Hunan Province. His research focuses on language evolution and the social functions of language.', zh: '黄治国是「边缘与意义」的核心成员，来自湖南省岳阳市。他的研究聚焦于语言演化与语言的社会功能。' }, photo: 'https://github.com/wsenlin419-maker/picture/blob/main/Zhiguo%20Huang.jpg?raw=true' }
+                        { name: { en: 'Senlin Wang', zh: '王森林' }, role: { en: 'Founder', zh: '创始人' }, bio: { en: 'Senlin Wang is the founder of Margins &amp; Meaning. His work focuses on sociolinguistics, identity, and inequality.', zh: '王森林是「边缘与意义」的创始人。他的研究聚焦于社会语言学、身份认同与不平等议题。' }, photo: 'https://github.com/wsenlin419-maker/picture/blob/main/25741ff30c8d2f74921cf2380274684.jpg?raw=true', website: '' },
+                        { name: { en: 'Xingyu Zhang', zh: '张星宇' }, role: { en: 'Research Associate', zh: '研究助理' }, bio: { en: 'Xingyu Zhang is a member of Margins &amp; Meaning. She is from Capital University of Economics and Business.', zh: '张星宇是「边缘与意义」的核心成员。她来自首都经济贸易大学。' }, photo: 'https://github.com/wsenlin419-maker/picture/blob/main/%E6%98%9F%E5%AE%87%E7%85%A7%E7%89%87.jpg?raw=true', website: '' },
+                        { name: { en: 'Zhiguo Huang', zh: '黄治国' }, role: { en: 'Research Associate', zh: '研究助理' }, bio: { en: 'Zhiguo Huang is a member of Margins &amp; Meaning. He is from Yueyang, Hunan Province. His research focuses on language evolution and the social functions of language.', zh: '黄治国是「边缘与意义」的核心成员，来自湖南省岳阳市。他的研究聚焦于语言演化与语言的社会功能。' }, photo: 'https://github.com/wsenlin419-maker/picture/blob/main/Zhiguo%20Huang.jpg?raw=true', website: '' }
                     ];
                 }
                 renderTeam();
@@ -1990,7 +1988,9 @@
                     + '<img src="' + (m.photo || '') + '" class="profile-photo w-full h-full object-cover" alt="' + (m.name.en || '') + '"></div>'
                     + '<h4 class="font-serif text-2xl font-bold text-pew-dark text-center">' + (m.name[currentLang] || m.name.en || '') + '</h4>'
                     + '<p class="text-[11px] font-bold text-[#cc1414] uppercase tracking-widest text-center mt-1">' + (m.role[currentLang] || m.role.en || '') + '</p></div>'
-                    + '<div class="flex-1"><p class="font-serif text-[17px] text-gray-600 leading-relaxed text-justify-force">' + (m.bio[currentLang] || m.bio.en || '') + '</p></div></div>';
+                    + '<div class="flex-1"><p class="font-serif text-[17px] text-gray-600 leading-relaxed text-justify-force">' + (m.bio[currentLang] || m.bio.en || '') + '</p>'
+                    + (m.website ? '<a href="' + m.website + '" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 mt-3 text-[13px] font-sans font-medium text-[#005587] hover:text-pew-dark transition-colors"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> ' + (currentLang === 'zh' ? '学术主页' : 'Academic Website') + '</a>' : '')
+                    + '</div></div>';
             }).join('');
         }
 

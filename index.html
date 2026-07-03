@@ -1910,7 +1910,7 @@
                 </div>
             `;
             ecoHTML += '</div></div>';
-            ecoStrip.innerHTML = ecoHTML;
+            if (ecoStrip) ecoStrip.innerHTML = ecoHTML;
         }
 
         // ─── HOME BLOG CARDS (dynamic from CMS) ───
@@ -2018,7 +2018,7 @@
                 if (cat === 'research' && containers['research']) {
                     containers['research'].innerHTML += `
                         <article class="research-card cursor-pointer border-b border-gray-200 pb-10 mb-0 pt-8 pl-4 reveal visible" onclick="openArticle('${slug}')">
-                            <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                            <p class="text-[11px] text-gray-400 mb-3 font-sans uppercase tracking-[0.15em] font-medium">${safeTag}</p>
                             <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
                             <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
                             <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Abstract' : '阅读摘要'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
@@ -2028,7 +2028,7 @@
                 else if ((cat === 'writing' || cat === 'opinion') && containers['writing']) {
                     containers['writing'].innerHTML += `
                         <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
-                            <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                            <p class="text-[11px] text-gray-400 mb-3 font-sans uppercase tracking-[0.15em] font-medium">${safeTag}</p>
                             <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
                             <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
                             <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Article' : '阅读文章'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
@@ -2043,7 +2043,7 @@
                                     <img src="${cover}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                                 </div>
                                 <div class="md:col-span-3 flex flex-col justify-center">
-                                    <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
+                                    <p class="text-[11px] text-gray-400 mb-3 font-sans uppercase tracking-[0.15em] font-medium">${safeTag}</p>
                                     <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
                                     <p class="text-[16px] text-gray-500 font-serif leading-relaxed mb-5 text-justify-force">${safeExcerpt}</p>
                                     <div class="flex items-center gap-4">
@@ -2075,11 +2075,11 @@
                 else if (cat === 'blog' && containers['blog']) {
                     containers['blog'].innerHTML += `
                         <article class="blog-card border-b border-gray-200 pb-10 cursor-pointer group flex flex-col md:flex-row gap-7 reveal visible" onclick="openArticle('${slug}')">
-                            <div class="blog-card-img w-full md:w-[260px] aspect-[16/10] bg-gray-100 border border-gray-200 flex-shrink-0">
-                                <img src="${cover}" class="w-full h-full object-cover object-center">
+                            <div class="blog-card-img w-full md:w-[280px] aspect-[16/10] bg-gray-100 overflow-hidden flex-shrink-0">
+                                <img src="${cover}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                             </div>
                             <div class="flex flex-col justify-center">
-                                <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-2.5 font-sans">${safeTag}</span>
+                                <span class="text-[11px] font-medium tracking-[0.15em] uppercase text-gray-400 mb-2.5 font-sans">${safeTag}</span>
                                 <h3 class="text-xl md:text-2xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-3 leading-snug">${safeTitle}</h3>
                                 <p class="text-gray-500 font-serif text-[15px] leading-relaxed text-justify-force">${safeExcerpt}</p>
                             </div>

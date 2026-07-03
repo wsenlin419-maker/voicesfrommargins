@@ -1992,7 +1992,7 @@
                     + '<img src="' + (m.photo || '') + '" class="profile-photo w-full h-full object-cover" alt="' + (m.name.en || '') + '"></div>'
                     + '<h4 class="font-serif text-2xl font-bold text-pew-dark text-center">' + (m.name[currentLang] || m.name.en || '') + '</h4>'
                     + '<p class="text-[11px] font-bold text-[#cc1414] uppercase tracking-widest text-center mt-1">' + (m.role[currentLang] || m.role.en || '') + '</p></div>'
-                    + '<div class="flex-1"><p class="font-serif text-[17px] text-gray-600 leading-relaxed text-justify-force">' + (m.bio[currentLang] || m.bio.en || '') + '</p>'
+                    + '<div class="flex-1"><p class="font-serif text-[17px] text-gray-600 leading-relaxed text-justify-force">' + (m.bio[currentLang] || m.bio.en || '').replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener" class="text-[#005587] hover:underline">$1</a>') + '</p>'
                     + (m.website ? '<a href="' + m.website + '" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 mt-3 text-[13px] font-sans font-medium text-[#005587] hover:text-pew-dark transition-colors"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> ' + (currentLang === 'zh' ? '学术主页' : 'Academic Website') + '</a>' : '')
                     + '</div></div>';
             }).join('');

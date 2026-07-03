@@ -96,6 +96,7 @@
         html.dark .article-sticky-bar { background: rgba(26,29,33,0.94); border-color: var(--border); }
         html.dark .article-body { color: #d1cfc9; }
         html.dark .article-body blockquote { color: #adb5bd; }
+        html.dark .article-body figcaption { color: #6c757d; }
         html.dark .pull-quote { background: var(--bg-alt); }
         html.dark .research-card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
         html.dark #map-section { background: #1a1d21; }
@@ -421,7 +422,10 @@
         }
         .article-body ul, .article-body ol { margin: 1rem 0 1.5rem 1.5rem; }
         .article-body li { margin-bottom: 0.5rem; }
-        .article-body img { max-width: 100%; margin: 1.5rem 0; }
+        .article-body img { display: block; max-width: calc(100% + 8rem); width: 100%; margin: 3rem -4rem; }
+        .article-body figure { margin: 3rem -4rem; }
+        .article-body figure img { margin: 0; }
+        .article-body figcaption { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.8rem; color: #9ca3af; text-align: center; margin-top: 0.75rem; line-height: 1.5; }
         .article-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
 
         .like-btn { transition: transform 0.2s ease, color 0.2s ease; user-select: none; }

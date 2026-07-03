@@ -260,16 +260,16 @@
         .featured-img-wrap:hover img { transform: scale(1.04); }
 
         .stat-item {
-            border-left: 1px solid #e5e7eb;
-            padding-left: 2rem;
+            border-left: none;
+            padding: 0 1.5rem;
         }
-        .stat-item:first-child { border-left: none; padding-left: 0; }
+        .stat-item:first-child { padding-left: 1.5rem; }
 
         .pull-quote {
             position: relative;
-            padding: 2rem 2rem 2rem 3rem;
-            background: #f8f9fa;
-            border-left: 4px solid var(--blue);
+            padding: 2.5rem 2.5rem 2.5rem 3.5rem;
+            background: #fafaf8;
+            border-left: 3px solid var(--blue);
         }
         .pull-quote::before {
             content: '\201C';
@@ -293,29 +293,29 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.15em;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
             text-transform: uppercase;
             color: var(--subtle);
         }
         .section-label::before {
             content: '';
             display: block;
-            width: 2rem;
+            width: 2.5rem;
             height: 1px;
-            background: currentColor;
+            background: var(--blue);
         }
 
         .highlight-tag {
             display: inline-block;
             background: var(--dark);
             color: #fff;
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.12em;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            padding: 3px 8px;
+            padding: 4px 10px;
         }
 
         #modal-body h3 {

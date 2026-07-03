@@ -2223,7 +2223,13 @@
             var pIdx = Math.abs(pHash) % patClasses.length;
             var bodyWrap = document.getElementById('article-view-body').parentElement;
             bodyWrap.className = bodyWrap.className.replace(/article-pattern-\w+/g, '').trim() + ' ' + patClasses[pIdx];
-            document.getElementById('article-view-body').innerHTML = marked.parse(bodyText);
+            var bodyEl = document.getElementById('article-view-body');
+            bodyEl.innerHTML = marked.parse(bodyText);
+            // Move first image to top so float:left aligns with text start
+            var firstImg = bodyEl.querySelector('img, figure');
+            if (firstImg && firstImg !== bodyEl.firstChild) {
+                bodyEl.insertBefore(firstImg, bodyEl.firstChild);
+            }
             var captionEl = document.getElementById('pattern-caption');
             if (!captionEl) { captionEl = document.createElement('div'); captionEl.id = 'pattern-caption'; captionEl.style.cssText = 'text-align:center;margin-top:2rem;font-size:11px;color:#b8b0a4;font-family:Inter,Noto Sans SC,sans-serif;letter-spacing:0.04em;'; document.getElementById('article-view-body').after(captionEl); }
             captionEl.textContent = (currentLang === 'zh' ? '背景纹样：' : 'Background pattern: ') + (currentLang === 'zh' ? patNamesZH[pIdx] : patNamesEN[pIdx]);

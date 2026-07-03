@@ -224,22 +224,11 @@
 
         .blog-card-img { overflow: hidden; }
         .blog-card-img img {
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
-            filter: grayscale(15%);
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         .blog-card:hover .blog-card-img img {
-            transform: scale(1.07);
-            filter: grayscale(0%);
+            transform: scale(1.05);
         }
-
-        .blog-title-link {
-            text-decoration: underline;
-            text-decoration-color: #e5e5e5;
-            text-decoration-thickness: 2px;
-            text-underline-offset: 4px;
-            transition: text-decoration-color 0.3s ease;
-        }
-        .blog-card:hover .blog-title-link { text-decoration-color: var(--red); }
 
         .featured-img-wrap { overflow: hidden; position: relative; }
         .featured-img-wrap img {
@@ -1887,7 +1876,6 @@
             };
 
             const ecoKeys = Object.keys(sideArticles).filter(k => sideArticles[k]);
-            const ecoCount = ecoKeys.length;
             let ecoHTML = '<div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 md:py-16"><div class="text-center mb-10"><span class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium">' + (currentLang === 'en' ? 'Research Ecosystem' : '研究体系') + '</span></div><div class="flex flex-wrap justify-center gap-10 md:gap-16">';
 
             let idx = 1;
@@ -1897,17 +1885,30 @@
                     const dispName = displayNames[key][currentLang];
                     const num = String(idx).padStart(2, '0');
                     ecoHTML += `
-                        <div class="cursor-pointer group text-center max-w-xs" onclick="openArticle('${article.slug}')">
+                        <div class="cursor-pointer group text-center max-w-[260px] w-full" onclick="openArticle('${article.slug}')">
                             <p class="text-5xl md:text-6xl font-serif font-bold text-[#e5e5e5] group-hover:text-[#005587] transition-colors leading-none mb-4">${num}</p>
-                            <p class="text-[10px] text-[#005587] mb-3 font-bold tracking-widest uppercase">${dispName}</p>
-                            <h5 class="text-base md:text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug line-clamp-2">
-                                ${sideTitle}
-                            </h5>
+                            <p class="text-[10px] text-[#005587] mb-2 font-bold tracking-widest uppercase">${dispName}</p>
+                            <div class="min-h-[3.5rem] flex items-center justify-center"><h5 class="text-base md:text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug line-clamp-2">${sideTitle}</h5></div>
                         </div>
                     `;
                     idx++;
                 }
             }
+            // Static entries for Voices Archive and Data & Insights
+            ecoHTML += `
+                <div class="cursor-pointer group text-center max-w-[260px] w-full" onclick="navigateTo('view-voices')">
+                    <p class="text-5xl md:text-6xl font-serif font-bold text-[#e5e5e5] group-hover:text-[#005587] transition-colors leading-none mb-4">${String(idx).padStart(2, '0')}</p>
+                    <p class="text-[10px] text-[#005587] mb-2 font-bold tracking-widest uppercase">${currentLang === 'en' ? 'Voices Archive' : '边缘声音档案库'}</p>
+                    <div class="min-h-[3.5rem] flex items-center justify-center"><h5 class="text-base md:text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">${currentLang === 'en' ? 'Explore primary sources &amp; oral histories' : '探索一手资料与口述历史'}</h5></div>
+                </div>
+            `; idx++;
+            ecoHTML += `
+                <div class="cursor-pointer group text-center max-w-[260px] w-full" onclick="navigateTo('view-data')">
+                    <p class="text-5xl md:text-6xl font-serif font-bold text-[#e5e5e5] group-hover:text-[#005587] transition-colors leading-none mb-4">${String(idx).padStart(2, '0')}</p>
+                    <p class="text-[10px] text-[#005587] mb-2 font-bold tracking-widest uppercase">${currentLang === 'en' ? 'Data & Insights' : '数据与洞察'}</p>
+                    <div class="min-h-[3.5rem] flex items-center justify-center"><h5 class="text-base md:text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">${currentLang === 'en' ? 'Quantitative research &amp; visual datasets' : '量化研究与可视化数据集'}</h5></div>
+                </div>
+            `;
             ecoHTML += '</div></div>';
             ecoStrip.innerHTML = ecoHTML;
         }
@@ -1926,11 +1927,11 @@
             }
             container.innerHTML = blogPosts.map(([slug, data], i) =>
                 `<article class="blog-card cursor-pointer group reveal reveal-delay-${i+1}" onclick="openArticle('${slug}')">
-                    <div class="blog-card-img aspect-[16/10] bg-gray-100 border border-gray-200 mb-4">
-                        <img src="${data.coverUrl}" class="w-full h-full object-cover" alt="">
+                    <div class="blog-card-img aspect-[16/10] bg-gray-100 mb-4 overflow-hidden">
+                        <img src="${data.coverUrl}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="">
                     </div>
-                    <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400 block mb-2">${data.tag[currentLang]}</span>
-                    <h3 class="font-serif text-lg font-bold text-pew-dark blog-title-link leading-snug">${data.title[currentLang]}</h3>
+                    <span class="text-[11px] font-medium tracking-[0.15em] uppercase text-gray-400 block mb-3 font-sans">${data.tag[currentLang]}</span>
+                    <h3 class="font-serif text-xl font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">${data.title[currentLang]}</h3>
                 </article>`
             ).join('');
         }
@@ -2079,7 +2080,7 @@
                             </div>
                             <div class="flex flex-col justify-center">
                                 <span class="text-[10px] font-bold tracking-widest uppercase text-gray-400 mb-2.5 font-sans">${safeTag}</span>
-                                <h3 class="text-xl md:text-2xl font-serif font-bold text-pew-dark blog-title-link mb-3 leading-snug">${safeTitle}</h3>
+                                <h3 class="text-xl md:text-2xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-3 leading-snug">${safeTitle}</h3>
                                 <p class="text-gray-500 font-serif text-[15px] leading-relaxed text-justify-force">${safeExcerpt}</p>
                             </div>
                         </article>

@@ -697,7 +697,11 @@
             <div id="featured-section" class="border-b border-gray-200 bg-white py-28 md:py-36">
                 <div class="max-w-4xl mx-auto px-6 lg:px-12">
                     <p class="text-center text-[11px] font-medium uppercase tracking-[0.25em] text-gray-400 font-sans mb-16" data-en="By the Numbers" data-zh="数据一览">By the Numbers</p>
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-0 reveal">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-0 reveal">
+                        <div class="stat-item text-center py-2 flex flex-col items-center">
+                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-3 counter" data-target="250">0</div>
+                            <div class="h-8 flex items-center"><p class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium leading-tight text-center" data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</p></div>
+                        </div>
                         <div class="stat-item text-center py-2 flex flex-col items-center" id="counter-conferences">
                             <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-3"><span class="counter" data-target="5">0</span></div>
                             <div class="h-8 flex items-center"><p class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium leading-tight text-center" data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</p></div>
@@ -1507,7 +1511,7 @@
                 const step = Math.max(1, Math.ceil(target / 40));
                 const timer = setInterval(() => {
                     current = Math.min(current + step, target);
-                    el.textContent = current + (target >= 200 ? '+' : '');
+                    el.textContent = current;
                     if (current >= target) clearInterval(timer);
                 }, 40);
             });
@@ -1762,7 +1766,7 @@
                             tmData.items.forEach(function(item) {
                                 var f = item.fields;
                                 var photoId = (f.photo && f.photo['en-US'] && f.photo['en-US'].sys) ? f.photo['en-US'].sys.id : null;
-                                var website = (f.website && f.website['en-US']) || (f.url && f.url['en-US']) || (f.homepage && f.homepage['en-US']) || '';
+                                var website = (f.website && f.website['en-US']) || (f.url && f.url['en-US']) || (f.homepage && f.homepage['en-US']) || (f.academicWebsite && f.academicWebsite['en-US']) || (f.personalUrl && f.personalUrl['en-US']) || (f.websiteUrl && f.websiteUrl['en-US']) || '';
                                 window._teamMembers.push({
                                     name: { en: (f.name && f.name['en-US']) || '', zh: (f.name && f.name['zh-CN']) || '' },
                                     role: { en: (f.role && f.role['en-US']) || '', zh: (f.role && f.role['zh-CN']) || '' },

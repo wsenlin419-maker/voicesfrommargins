@@ -2230,14 +2230,19 @@
             if (firstImg && firstImg !== bodyEl.firstChild) {
                 bodyEl.insertBefore(firstImg, bodyEl.firstChild);
             }
-            // Auto-create captions from alt text for images without figcaption
+            // Wrap images in figure + create proper captions
             bodyEl.querySelectorAll('img').forEach(function(img) {
-                var alt = img.getAttribute('alt');
-                if (alt && alt.trim() && !img.closest('figure')) {
-                    var cap = document.createElement('div');
-                    cap.className = 'img-caption';
+                if (img.closest('figure')) return;
+                var alt = img.getAttribute('alt') || '';
+                // Skip filenames / random strings (hex-like, no spaces, >20 chars)
+                var isFilename = /^[a-f0-9]{10,}$/i.test(alt.trim()) || /^[a-zA-Z0-9_-]+\.(jpg|png|gif|webp)$/i.test(alt.trim());
+                var fig = document.createElement('figure');
+                img.parentNode.insertBefore(fig, img);
+                fig.appendChild(img);
+                if (alt.trim() && !isFilename) {
+                    var cap = document.createElement('figcaption');
                     cap.textContent = alt.trim();
-                    img.parentNode.insertBefore(cap, img.nextSibling);
+                    fig.appendChild(cap);
                 }
             });
             var captionEl = document.getElementById('pattern-caption');

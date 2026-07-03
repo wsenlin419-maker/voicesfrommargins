@@ -706,13 +706,11 @@
         <!-- ===== VIEW: HOME ===== -->
         <div id="view-home" class="page-view active">
 
-            <!-- HERO GRID AREA -->
-            <div class="hero-grid-bg">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12 flex items-center" style="min-height:82vh">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 w-full py-12" id="hero-grid-container">
-                    </div>
-                </div>
-            </div>
+            <!-- HERO: full-bleed featured image -->
+            <div id="hero-container"></div>
+
+            <!-- RESEARCH ECOSYSTEM STRIP -->
+            <div id="ecosystem-strip" class="border-b border-gray-200 bg-white"></div>
 
             <!-- KEY NUMBERS STRIP — data-target values are defaults, updated dynamically after CMS fetch -->
             <div id="featured-section" class="border-t border-b border-gray-200 bg-white py-24 md:py-32">
@@ -723,11 +721,11 @@
                             <div class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium" data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</div>
                         </div>
                         <div class="stat-item text-center py-2" id="counter-conferences">
-                            <div class="text-6xl md:text-7xl font-serif font-bold text-pew-dark leading-none mb-2"><span class="counter" data-target="5">0</span></div>
+                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-2"><span class="counter" data-target="5">0</span></div>
                             <div class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium" data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</div>
                         </div>
                         <div class="stat-item text-center py-2" id="counter-papers">
-                            <div class="text-6xl md:text-7xl font-serif font-bold text-pew-dark leading-none mb-2"><span class="counter" data-target="3">0</span></div>
+                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-2"><span class="counter" data-target="3">0</span></div>
                             <div class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium" data-en="Research Papers" data-zh="学术论文">Research Papers</div>
                         </div>
                         <div class="stat-item text-center py-2">
@@ -1823,7 +1821,8 @@
 
         // ====== AUTO-GENERATE HERO + CARDS ======
         function renderHeroSection() {
-            const heroContainer = document.getElementById('hero-grid-container');
+            const heroContainer = document.getElementById('hero-container');
+            const ecoStrip = document.getElementById('ecosystem-strip');
             if (!heroContainer) return;
 
             let featuredResearch = null;
@@ -1836,7 +1835,6 @@
 
             for (const [slug, data] of Object.entries(articlesDB)) {
                 const cat = data.category.toLowerCase();
-
                 if (cat === 'research') {
                     if (!featuredResearch) {
                         featuredResearch = { slug, ...data };
@@ -1852,7 +1850,7 @@
                 }
             }
 
-            // Fallback when no data yet
+            // Fallback
             if (!featuredResearch) {
                 featuredResearch = {
                     slug: '#',
@@ -1860,8 +1858,8 @@
                     tag: { en: 'Analysis', zh: '深度分析' },
                     title: { en: 'New Research Coming Soon', zh: '最新研究即将上线' },
                     excerpt: {
-                        en: 'We are currently compiling new data and ethnographic insights. Stay tuned for our upcoming publications.',
-                        zh: '我们正在整理最新的田野数据与研究洞察，全新深度内容即将发布，敬请期待。'
+                        en: 'We are currently compiling new data and ethnographic insights. Stay tuned.',
+                        zh: '我们正在整理最新的田野数据与研究洞察，敬请期待。'
                     }
                 };
             }
@@ -1871,30 +1869,28 @@
             const safeExcerpt = featuredResearch.excerpt ? featuredResearch.excerpt[currentLang] : '';
             const cover = featuredResearch.coverUrl;
 
-            let leftHTML = `
-                <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer reveal visible flex flex-col" onclick="openArticle('${featuredResearch.slug}')">
-                    <div class="text-[13px] font-serif italic text-[#005587] mb-5 tracking-normal">${currentLang === 'en' ? 'Featured Research' : '焦点研究'}</div>
-                    <div class="featured-img-wrap w-full aspect-[16/9] bg-gray-100 mb-6 relative border border-gray-200 flex-shrink-0">
-                        <img src="${cover}" class="w-full h-full object-cover" alt="Featured Research">
-                        <div class="absolute top-4 left-4">
-                            <span class="highlight-tag">${safeTag}</span>
+            // HERO: full-bleed image with text overlay
+            heroContainer.innerHTML = `
+                <div class="relative w-full cursor-pointer group" style="min-height:78vh" onclick="openArticle('${featuredResearch.slug}')">
+                    <img src="${cover}" class="absolute inset-0 w-full h-full object-cover" alt="">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
+                    <div class="relative z-10 flex flex-col justify-end h-full max-w-7xl mx-auto px-6 lg:px-12" style="min-height:78vh;padding-bottom:5rem;padding-top:5rem">
+                        <span class="highlight-tag mb-5 inline-block w-fit">${safeTag}</span>
+                        <h1 class="text-4xl md:text-7xl font-serif font-bold text-white leading-tight mb-5 max-w-4xl group-hover:opacity-90 transition-opacity">
+                            ${safeTitle}
+                        </h1>
+                        <p class="text-lg md:text-xl text-white/75 font-serif leading-relaxed max-w-2xl mb-6">
+                            ${safeExcerpt}
+                        </p>
+                        <div class="flex items-center text-white font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
+                            <span>${currentLang === 'en' ? 'Read Research' : '阅读研究'}</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </div>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    </div>
-                    <h4 class="text-4xl md:text-6xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors duration-300 mb-5 leading-tight">
-                        ${safeTitle}
-                    </h4>
-                    <p class="text-[18px] text-gray-500 font-serif leading-relaxed line-clamp-2">
-                        ${safeExcerpt}
-                    </p>
-                    <div class="mt-auto pt-5 flex items-center text-[#005587] font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
-                        <span>${currentLang === 'en' ? 'Read Research' : '阅读研究'}</span>
-                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
                     </div>
                 </div>
             `;
 
-            let rightItemsHTML = '';
+            // RESEARCH ECOSYSTEM STRIP
             const displayNames = {
                 'writing': { en: 'Writing & Opinion', zh: '学术评论与观点' },
                 'field': { en: 'Field Notes', zh: '田野笔记' },
@@ -1902,31 +1898,28 @@
                 'research': { en: 'Research', zh: '研究' }
             };
 
+            let ecoHTML = '<div class="max-w-7xl mx-auto px-6 lg:px-12 py-8"><div class="flex items-center gap-3 mb-6"><span class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium">' + (currentLang === 'en' ? 'Research Ecosystem' : '研究体系') + '</span></div><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">';
+
+            let idx = 1;
             for (const [key, article] of Object.entries(sideArticles)) {
                 if (article) {
                     const sideTitle = article.title ? article.title[currentLang] : '';
                     const dispName = displayNames[key][currentLang];
-                    rightItemsHTML += `
-                        <div class="side-article cursor-pointer group flex flex-col justify-center" onclick="openArticle('${article.slug}')">
-                            <p class="text-[10px] text-[#005587] mb-1.5 font-bold tracking-widest uppercase">${dispName}</p>
-                            <h5 class="text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">
+                    const num = String(idx).padStart(2, '0');
+                    ecoHTML += `
+                        <div class="cursor-pointer group" onclick="openArticle('${article.slug}')">
+                            <p class="text-4xl font-serif font-bold text-[#e5e7eb] group-hover:text-[#005587] transition-colors leading-none mb-3">${num}</p>
+                            <p class="text-[10px] text-[#005587] mb-2 font-bold tracking-widest uppercase">${dispName}</p>
+                            <h5 class="text-base font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug line-clamp-2">
                                 ${sideTitle}
                             </h5>
                         </div>
                     `;
+                    idx++;
                 }
             }
-
-            let rightHTML = `
-                <div class="lg:col-span-5 xl:col-span-4 flex flex-col reveal reveal-delay-2 visible">
-                    <div class="section-label mb-5">${currentLang === 'en' ? 'Research Ecosystem' : '研究体系'}</div>
-                    <div class="flex flex-col flex-1 justify-evenly gap-2">
-                        ${rightItemsHTML}
-                    </div>
-                </div>
-            `;
-
-            heroContainer.innerHTML = leftHTML + rightHTML;
+            ecoHTML += '</div></div>';
+            ecoStrip.innerHTML = ecoHTML;
         }
 
         // ─── HOME BLOG CARDS (dynamic from CMS) ───

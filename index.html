@@ -19,7 +19,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
     <script src="https://unpkg.com/lucide@latest"></script>
 
@@ -29,7 +29,7 @@
                 extend: {
                     fontFamily: {
                         sans: ['Inter', '"Noto Sans SC"', 'sans-serif'],
-                        serif: ['Lora', '"Noto Serif SC"', 'serif'],
+                        serif: ['"EB Garamond"', '"Noto Serif SC"', 'serif'],
                     },
                     colors: {
                         pew: {
@@ -154,7 +154,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
             pointer-events: none;
             z-index: 9999;
-            opacity: 0.4;
+            opacity: 0.18;
         }
 
         ::-webkit-scrollbar { width: 4px; }
@@ -211,7 +211,7 @@
         .nav-indicator {
             position: absolute;
             bottom: 0;
-            height: 3px;
+            height: 4px;
             background: var(--dark);
             transition: left 0.35s cubic-bezier(0.4, 0, 0.2, 1), width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
             pointer-events: none;
@@ -426,9 +426,9 @@
             border-bottom: 1px solid #e5e7eb;
         }
         .article-body {
-            font-family: 'Lora', 'Noto Serif SC', Georgia, serif;
-            font-size: 1.25rem;
-            line-height: 2.1;
+            font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif;
+            font-size: 1.2rem;
+            line-height: 2.0;
             color: #1f2937;
             text-align: justify;
         }
@@ -708,18 +708,18 @@
 
             <!-- HERO GRID AREA -->
             <div class="hero-grid-bg">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-20 md:pt-28 pb-12">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-28 md:pt-40 pb-16">
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16" id="hero-grid-container">
                     </div>
                 </div>
             </div>
 
             <!-- KEY NUMBERS STRIP — data-target values are defaults, updated dynamically after CMS fetch -->
-            <div id="featured-section" class="border-t border-b border-gray-200 bg-white py-14">
+            <div id="featured-section" class="border-t border-b border-gray-200 bg-white py-20">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-0 reveal">
                         <div class="stat-item text-center py-2">
-                            <div class="text-4xl font-serif font-bold text-pew-dark leading-none mb-1.5 counter" data-target="250">0</div>
+                            <div class="text-6xl font-serif font-bold text-pew-dark leading-none mb-2 counter" data-target="250">0</div>
                             <div class="text-[11px] uppercase tracking-widest text-gray-500 font-sans font-semibold" data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</div>
                         </div>
                         <div class="stat-item text-center py-2" id="counter-conferences">
@@ -750,7 +750,7 @@
                 </div>
             </div>
 <!-- RECENT BLOG PREVIEW -->
-            <div class="max-w-7xl mx-auto px-6 lg:px-12 py-24">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 py-28">
                 <div class="flex items-center justify-between mb-10 reveal">
                     <div class="section-label" data-en="Latest from the Blog" data-zh="最新动态">Latest from the Blog</div>
                     <button onclick="navigateTo('view-blog')" class="text-[12px] font-bold uppercase tracking-widest text-[#005587] hover:text-pew-dark transition-colors flex items-center gap-1.5" data-en="View All" data-zh="查看全部">View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
@@ -764,7 +764,7 @@
 
         <!-- ===== VIEW: RESEARCH ===== -->
         <div id="view-research" class="page-view pb-24">
-            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Academic Work" data-zh="学术工作">Academic Work</div>
                     <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Research" data-zh="学术研究">Research</h2>
@@ -777,7 +777,7 @@
 
         <!-- ===== VIEW: WRITING ===== -->
         <div id="view-writing" class="page-view pb-24">
-            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Opinion & Analysis" data-zh="观点与分析">Opinion & Analysis</div>
                     <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Writing & Opinion" data-zh="观点与评论">Writing & Opinion</h2>
@@ -798,7 +798,7 @@
 
         <!-- ===== VIEW: FIELD NOTES ===== -->
         <div id="view-field" class="page-view pb-24">
-            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Ethnographic Work" data-zh="民族志研究">Ethnographic Work</div>
                     <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Field Notes" data-zh="田野笔记">Field Notes</h2>
@@ -811,7 +811,7 @@
 
         <!-- ===== VIEW: DATA & INSIGHTS ===== -->
         <div id="view-data" class="page-view pb-24">
-            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Quantitative Work" data-zh="量化研究">Quantitative Work</div>
                     <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</h2>
@@ -903,7 +903,7 @@
 
         <!-- ===== VIEW: VOICES ARCHIVE ===== -->
         <div id="view-voices" class="page-view pb-24">
-            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="Primary Materials" data-zh="一手材料">Primary Materials</div>
                     <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark mb-3" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</h2>
@@ -917,7 +917,7 @@
 
         <!-- ===== VIEW: BLOG ===== -->
         <div id="view-blog" class="page-view pb-32">
-            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-7xl mx-auto">
                     <div class="section-label mb-4" data-en="Updates & Events" data-zh="动态与活动">Updates & Events</div>
                     <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Blog" data-zh="Blog">Blog</h2>
@@ -961,7 +961,7 @@
 
         <!-- ===== VIEW: ABOUT ===== -->
         <div id="view-about" class="page-view pb-24">
-            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto">
                     <div class="section-label mb-4" data-en="The Initiative" data-zh="关于平台">The Initiative</div>
                     <h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="About" data-zh="关于平台">About</h2>
@@ -1025,7 +1025,7 @@
 
         <!-- ===== VIEW: DOWNLOADS ===== -->
         <div id="view-downloads" class="page-view pb-24">
-            <div class="page-header py-20 px-6 lg:px-12 mb-16">
+            <div class="page-header py-28 px-6 lg:px-12 mb-16">
                 <div class="max-w-5xl mx-auto"><div class="section-label mb-4" data-en="Resources" data-zh="资源中心">Resources</div><h2 class="font-serif text-5xl md:text-6xl font-light text-pew-dark" data-en="Downloads" data-zh="下载中心">Downloads</h2></div>
             </div>
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
@@ -1061,7 +1061,7 @@
             <div class="max-w-6xl mx-auto px-4 lg:px-16 pt-10">
                 <!-- Article header -->
                 <p id="article-view-tag" class="text-[11px] font-bold uppercase tracking-widest text-[#cc1414] mb-4"></p>
-                <h1 id="article-view-title" class="font-serif text-[2.6rem] md:text-[3.3rem] font-semibold text-pew-dark leading-[1.12] tracking-[-0.01em] mb-8 text-center" style="text-wrap:balance;"></h1>
+                <h1 id="article-view-title" class="font-serif text-[3rem] md:text-[3.8rem] font-semibold text-pew-dark leading-[1.12] tracking-[-0.01em] mb-8 text-center" style="text-wrap:balance;"></h1>
                 <div class="flex flex-wrap items-center gap-4 text-[15px] text-gray-500 font-sans mb-12 pb-10 border-b border-gray-200">
                     <span id="article-view-author"></span>
                     <span class="text-gray-300">·</span>
@@ -1115,7 +1115,7 @@
     </main>
 
     <!-- ===== FOOTER ===== -->
-    <section id="footer-section" class="bg-[#111] text-white pt-20 pb-16 font-sans mt-20 relative z-10">
+    <section id="footer-section" class="bg-[#111] text-white pt-24 pb-20 font-sans mt-24 relative z-10">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 border-b border-white/10 pb-12">
 
             <div class="lg:col-span-4">
@@ -1873,7 +1873,7 @@
 
             let leftHTML = `
                 <div class="lg:col-span-7 xl:col-span-8 group cursor-pointer reveal visible flex flex-col" onclick="openArticle('${featuredResearch.slug}')">
-                    <div class="section-label mb-5">${currentLang === 'en' ? 'Featured Research' : '焦点研究'}</div>
+                    <div class="text-[13px] font-serif italic text-[#005587] mb-5 tracking-normal">${currentLang === 'en' ? 'Featured Research' : '焦点研究'}</div>
                     <div class="featured-img-wrap w-full aspect-[16/9] bg-gray-100 mb-6 relative border border-gray-200 flex-shrink-0">
                         <img src="${cover}" class="w-full h-full object-cover" alt="Featured Research">
                         <div class="absolute top-4 left-4">
@@ -1881,7 +1881,7 @@
                         </div>
                         <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                     </div>
-                    <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors duration-300 mb-4 leading-snug">
+                    <h4 class="text-4xl md:text-6xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors duration-300 mb-5 leading-tight">
                         ${safeTitle}
                     </h4>
                     <p class="text-[18px] text-gray-500 font-serif leading-relaxed line-clamp-2">
@@ -2035,7 +2035,7 @@
                     containers['research'].innerHTML += `
                         <article class="research-card cursor-pointer border-b border-gray-200 pb-10 mb-0 pt-8 pl-4 reveal visible" onclick="openArticle('${slug}')">
                             <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
-                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                            <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
                             <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
                             <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Abstract' : '阅读摘要'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                         </article>
@@ -2045,7 +2045,7 @@
                     containers['writing'].innerHTML += `
                         <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
                             <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
-                            <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                            <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
                             <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
                             <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Article' : '阅读文章'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                         </article>
@@ -2060,7 +2060,7 @@
                                 </div>
                                 <div class="md:col-span-3 flex flex-col justify-center">
                                     <p class="text-[10px] text-gray-400 mb-3 font-sans uppercase tracking-widest font-semibold">${safeTag}</p>
-                                    <h4 class="text-2xl md:text-3xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-4 leading-snug">${safeTitle}</h4>
+                                    <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
                                     <p class="text-[16px] text-gray-500 font-serif leading-relaxed mb-5 text-justify-force">${safeExcerpt}</p>
                                     <div class="flex items-center gap-4">
                                         <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">${currentLang === 'en' ? 'Read Ethnography' : '阅读田野志'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>

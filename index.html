@@ -1210,7 +1210,7 @@
                     </section>
                     <section>
                         <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="2. About This Platform" data-zh="2. 平台性质">2. About This Platform</h3>
-                        <p data-en="Margins &amp; Meaning (&quot;Voices from the Margins Project&quot;) is an independent, nonpartisan research initiative operated by individual scholars. We are not a registered nonprofit organization and do not accept funding that would compromise our research independence." data-zh="Margins &amp; Meaning（"边缘之声"项目）是由独立学者运营的无党派研究计划。我们并非注册非营利组织，也不接受任何可能损害研究独立性的资助。">Margins &amp; Meaning ("Voices from the Margins Project") is an independent, nonpartisan research initiative operated by individual scholars. We are not a registered nonprofit organization and do not accept funding that would compromise our research independence.</p>
+                        <p data-en="Margins &amp; Meaning (&quot;Voices from the Margins Project&quot;) is an independent, nonpartisan research initiative operated by individual scholars. We are not a registered nonprofit organization and do not accept funding that would compromise our research independence." data-zh="Margins &amp; Meaning（「边缘之声」项目）是由独立学者运营的无党派研究计划。我们并非注册非营利组织，也不接受任何可能损害研究独立性的资助。">Margins &amp; Meaning ("Voices from the Margins Project") is an independent, nonpartisan research initiative operated by individual scholars. We are not a registered nonprofit organization and do not accept funding that would compromise our research independence.</p>
                     </section>
                     <section>
                         <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="3. Intellectual Property" data-zh="3. 知识产权">3. Intellectual Property</h3>
@@ -1223,11 +1223,11 @@
                     </section>
                     <section>
                         <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="5. Citation Format" data-zh="5. 引用格式">5. Citation Format</h3>
-                        <p data-en="Recommended citation: Author Name. &quot;Article Title.&quot; Margins &amp; Meaning (Publication Date). URL." data-zh="推荐引用格式：作者姓名。"文章标题" Margins &amp; Meaning（发布日期）。URL。">Recommended citation: Author Name. "Article Title." Margins &amp; Meaning (Publication Date). URL.</p>
+                        <p data-en="Recommended citation: Author Name. &quot;Article Title.&quot; Margins &amp; Meaning (Publication Date). URL." data-zh="推荐引用格式：作者姓名。「文章标题」Margins &amp; Meaning（发布日期）。URL。">Recommended citation: Author Name. "Article Title." Margins &amp; Meaning (Publication Date). URL.</p>
                     </section>
                     <section>
                         <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="6. Disclaimer of Warranties" data-zh="6. 免责声明">6. Disclaimer of Warranties</h3>
-                        <p data-en="Our content is provided &quot;as is&quot; for informational and educational purposes only. While we strive for accuracy and rigor in our research, we make no representations or warranties of any kind—express or implied—regarding the completeness, accuracy, reliability, or availability of the content. The views expressed in individual articles are those of their authors and do not represent institutional positions or the views of any affiliated organization." data-zh="我们的内容按"原样"提供，仅供信息和教育目的。尽管我们力求研究的准确性和严谨性，但不对内容的完整性、准确性、可靠性或可用性作任何明示或暗示的保证。个人文章中的观点仅代表作者本人，不代表任何机构立场或关联组织的观点。">Our content is provided "as is" for informational and educational purposes only. While we strive for accuracy and rigor in our research, we make no representations or warranties of any kind—express or implied—regarding the completeness, accuracy, reliability, or availability of the content. The views expressed in individual articles are those of their authors and do not represent institutional positions or the views of any affiliated organization.</p>
+                        <p data-en="Our content is provided &quot;as is&quot; for informational and educational purposes only. While we strive for accuracy and rigor in our research, we make no representations or warranties of any kind—express or implied—regarding the completeness, accuracy, reliability, or availability of the content. The views expressed in individual articles are those of their authors and do not represent institutional positions or the views of any affiliated organization." data-zh="我们的内容按「原样」提供，仅供信息和教育目的。尽管我们力求研究的准确性和严谨性，但不对内容的完整性、准确性、可靠性或可用性作任何明示或暗示的保证。个人文章中的观点仅代表作者本人，不代表任何机构立场或关联组织的观点。">Our content is provided "as is" for informational and educational purposes only. While we strive for accuracy and rigor in our research, we make no representations or warranties of any kind—express or implied—regarding the completeness, accuracy, reliability, or availability of the content. The views expressed in individual articles are those of their authors and do not represent institutional positions or the views of any affiliated organization.</p>
                     </section>
                     <section>
                         <h3 class="text-[11px] font-bold text-pew-dark uppercase tracking-widest mb-2" data-en="7. Limitation of Liability" data-zh="7. 责任限制">7. Limitation of Liability</h3>
@@ -1248,7 +1248,7 @@
                 </div>
             </div>
             <!-- PRIVACY -->
-            <div id="legal-privacy" class="legal-section modal-hidden">
+            <div id="legal-privacy" class="legal-section" style="display:none">
                 <h2 class="text-2xl font-serif font-bold text-pew-dark mb-1" data-en="Privacy Policy" data-zh="隐私政策">Privacy Policy</h2>
                 <p class="text-[11px] text-gray-400 uppercase tracking-wider mb-4" data-en="Last updated: July 2, 2026" data-zh="最后更新：2026年7月2日">Last updated: July 2, 2026</p>
                 <div class="w-10 h-0.5 bg-[#cc1414] mb-6"></div>
@@ -1552,11 +1552,11 @@
             const termsEl = document.getElementById('legal-terms');
             const privacyEl = document.getElementById('legal-privacy');
             if (type === 'Terms') {
-                termsEl.classList.remove('modal-hidden');
-                privacyEl.classList.add('modal-hidden');
+                termsEl.style.display = 'block';
+                privacyEl.style.display = 'none';
             } else {
-                privacyEl.classList.remove('modal-hidden');
-                termsEl.classList.add('modal-hidden');
+                privacyEl.style.display = 'block';
+                termsEl.style.display = 'none';
             }
             openModal('legal-modal', 'legal-content');
         }

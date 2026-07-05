@@ -192,67 +192,33 @@
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
         .video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-        /* ── Voice Hero ── */
-        .voice-hero { border: 1px solid #e8e5e0; background: #faf9f6; overflow: hidden; }
-        .voice-hero .player-wrap { position: relative; background: #000; cursor: pointer; }
-        .voice-hero .player-wrap video { display: block; width: 100%; }
-        .voice-hero .player-wrap .play-overlay {
-            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.35); transition: opacity 0.3s;
-        }
-        .voice-hero .player-wrap.playing .play-overlay { opacity: 0; pointer-events: none; }
-        .voice-hero .player-wrap .play-overlay .play-ring {
-            width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.95);
-            display: flex; align-items: center; justify-content: center; transition: transform 0.25s;
-        }
-        .voice-hero .player-wrap:hover .play-overlay .play-ring { transform: scale(1.08); }
-        .voice-hero .player-wrap .replay-overlay {
-            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
-            background: rgba(0,0,0,0.2); opacity: 0; pointer-events: none; transition: opacity 0.35s;
-        }
-        .voice-hero .player-wrap.ended .replay-overlay { opacity: 1; pointer-events: auto; cursor: pointer; }
-        .voice-hero .player-wrap.ended .replay-overlay .replay-ring {
-            width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.92);
-            display: flex; align-items: center; justify-content: center; transition: transform 0.2s;
-        }
-        .voice-hero .player-wrap.ended .replay-overlay:hover .replay-ring { transform: scale(1.1); }
-
-        .voice-meta { display: flex; flex-wrap: wrap; gap: 10px; }
-        .voice-meta .meta-chip {
-            display: inline-flex; align-items: center; gap: 6px;
-            font-size: 11px; font-family: var(--sans); font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.08em;
-            padding: 5px 14px; border: 1px solid #e0dcd5; border-radius: 20px;
-            background: #fff; color: #555;
-        }
-        .voice-meta .meta-chip i { width: 13px; height: 13px; color: #003d5c; }
-
-        .transcript-panel { border: 1px solid #e8e5e0; background: #fff; }
-        .transcript-toggle {
-            width: 100%; display: flex; align-items: center; justify-content: space-between;
-            padding: 14px 22px; background: #faf9f7; border: none; cursor: pointer;
-            font-size: 12px; font-family: var(--sans); font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.1em; color: #2d2d2d;
-            transition: background 0.2s;
-        }
-        .transcript-toggle:hover { background: #f0edE7; }
-        .transcript-toggle .chevron { transition: transform 0.3s; }
-        .transcript-toggle.open .chevron { transform: rotate(180deg); }
-        .transcript-body { display: none; padding: 22px; border-top: 1px solid #e8e5e0; }
-        .transcript-body.open { display: block; }
-        .transcript-body .trans-line { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding: 8px 0; border-bottom: 1px dotted #eee; font-size: 14px; line-height: 1.6; }
-        .transcript-body .trans-line:last-child { border-bottom: none; }
-        .transcript-body .trans-line .tl-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 2px; }
-        .transcript-body .trans-line .tl-dialect { color: #b8453a; font-style: italic; }
-        .transcript-body .trans-line .tl-zh { color: #2d2d2d; }
-        .transcript-body .trans-line .tl-en { color: #555; }
-
-        .ethno-note { border-left: 3px solid #b8453a; padding: 14px 20px; background: #fdfaf7; font-family: var(--serif); font-size: 15px; line-height: 1.7; color: #665; }
-
+        /* ── Voice Archive Item (academic archive style) ── */
+        .voice-item { }
+        .voice-item .voice-player { background: #111; margin-bottom: 1.5rem; }
+        .voice-item .voice-player video { display: block; width: 100%; }
+        .voice-item .voice-title-line { margin-bottom: 0.25rem; }
+        .voice-item .voice-title { font-family: Georgia, 'Noto Serif SC', serif; font-size: 1.6rem; font-weight: 700; color: var(--dark); line-height: 1.3; }
+        .voice-item .voice-subtitle { font-size: 0.85rem; color: #888; font-family: 'Inter', 'Noto Sans SC', sans-serif; margin-top: 0.25rem; }
+        .voice-item .voice-section { margin-top: 2rem; }
+        .voice-item .voice-section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #999; border-bottom: 1px solid #e8e5e0; padding-bottom: 0.5rem; margin-bottom: 0.85rem; }
+        /* Metadata table */
+        .voice-item .meta-table { width: 100%; border-collapse: collapse; }
+        .voice-item .meta-table td { vertical-align: top; padding: 0.35rem 0; font-size: 0.88rem; line-height: 1.55; }
+        .voice-item .meta-table .meta-label { width: 120px; font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #999; padding-right: 1rem; white-space: nowrap; }
+        .voice-item .meta-table .meta-value { color: #333; font-family: Georgia, 'Noto Serif SC', serif; }
+        /* Transcription */
+        .voice-item .trans-block { margin-bottom: 1.2rem; }
+        .voice-item .trans-block .trans-speaker { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; margin-bottom: 0.15rem; }
+        .voice-item .trans-block .trans-lines { border-left: 2px solid #e8e5e0; padding-left: 0.85rem; }
+        .voice-item .trans-block .trans-lines .tl { font-size: 0.9rem; line-height: 1.55; margin-bottom: 0.15rem; }
+        .voice-item .trans-block .trans-lines .tl.dialect { color: #555; font-style: italic; }
+        .voice-item .trans-block .trans-lines .tl.chinese { color: #333; }
+        .voice-item .trans-block .trans-lines .tl.english { color: #777; font-size: 0.83rem; }
+        /* Context note */
+        .voice-item .voice-note { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.9rem; line-height: 1.7; color: #555; }
         @media (max-width: 768px) {
-            .voice-meta { gap: 6px; }
-            .voice-meta .meta-chip { font-size: 10px; padding: 4px 10px; }
-            .transcript-body .trans-line { grid-template-columns: 1fr; gap: 6px; }
+            .voice-item .meta-table .meta-label { width: 90px; }
+            .voice-item .voice-title { font-size: 1.3rem; }
         }
 
         body.lang-zh { text-align: justify; }
@@ -2195,8 +2161,8 @@
             transcriptZh: '[画外老人] 看那里，看看看，看…姨妈。\n[女孩] 森林哥哥。',
             transcriptEn: '[elder off-screen] Look over there — look look look… Your auntie.\n[girl in frame] Brother Senlin.',
             ethnographicNote: {
-                en: 'This brief clip captures a spontaneous family interaction during a childhood birthday celebration in Nanjiang Town, Pingjiang County, Hunan (~2016). An elder (off-screen) directs the child\'s attention using the local Nanjiang dialect — "看各哩" (kàn gè lǐ, "look over there"), a characteristic dialect form for standard Mandarin "看那里". The girl in frame (age 6–7) responds with "森林哥哥" (Brother Senlin), addressing the researcher behind the camera. The layered participation structure — elder\'s dialect directive, child\'s response, and the researcher\'s invisible presence — offers a compact sociolinguistic moment of dialect use in naturalistic family discourse in rural Hunan.',
-                zh: '这段简短影像记录了湖南省平江县南江镇一次童年庆生场景中的自然家庭互动（约2016年）。画外老人使用南江方言指引孩子的注意力——"看各哩"（"看那里"的方言表达）。画面中6-7岁的女孩以"森林哥哥"回应，指向镜头后的研究者。画外老人的方言指引、画内女孩的回应、镜头后研究者的隐形在场——三重参与结构构成了一个紧凑的社会语言学切片：南江方言在日常家庭话语中的自然使用。'
+                en: 'Spontaneous family interaction during a childhood birthday celebration. An elder (off-screen) draws the child\'s attention using the local Nanjiang dialect; the girl in frame (age 6–7) responds, addressing the researcher behind the camera. Note the dialect form 看各哩 (kàn gè lǐ) for standard Mandarin 看那里.',
+                zh: '童年庆生场景中的自然家庭互动。画外老人使用南江方言指引孩子注意画面内容；女孩（6–7岁）以"森林哥哥"回应，指向镜头后的研究者。注意方言表达"看各哩"对应普通话"看那里"。'
             },
             _isDefault: true
         };
@@ -2284,82 +2250,83 @@
             var videoSrc = v.videoUrl || '';
             var posterSrc = v.posterUrl || '';
 
+            // Parse transcript blocks: "[speaker] text" format, one per language
+            function parseTransLines(text) {
+                if (!text) return [];
+                return text.split('\n').filter(function(l) { return l.trim(); });
+            }
+            var dialectLines = parseTransLines(v.transcriptDialect);
+            var zhLines = parseTransLines(v.transcriptZh);
+            var enLines = parseTransLines(v.transcriptEn);
+
+            // Build transcript HTML — group by speaker block
+            var transHTML = '';
+            for (var i = 0; i < Math.max(dialectLines.length, zhLines.length, enLines.length); i++) {
+                var dLine = dialectLines[i] || '';
+                var zLine = zhLines[i] || '';
+                var eLine = enLines[i] || '';
+                // Extract speaker label from dialect line: "[老人] text" → label="老人", text="text"
+                var speakerMatch = dLine.match(/^\[([^\]]+)\]\s*(.*)/);
+                var speaker = speakerMatch ? speakerMatch[1] : '';
+                var dText = speakerMatch ? speakerMatch[2] : dLine;
+                // Also strip speaker label from zh/en if present
+                var zText = (zLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', zLine])[1];
+                var eText = (eLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', eLine])[1];
+
+                transHTML += '<div class="trans-block">' +
+                    (speaker ? '<div class="trans-speaker">' + speaker + '</div>' : '') +
+                    '<div class="trans-lines">' +
+                        (dText ? '<div class="tl dialect">' + dText + '</div>' : '') +
+                        (zText ? '<div class="tl chinese">' + zText + '</div>' : '') +
+                        (eText ? '<div class="tl english">' + eText + '</div>' : '') +
+                    '</div>' +
+                '</div>';
+            }
+
             container.innerHTML =
-                '<div class="voice-hero reveal visible">' +
-                    // Player
-                    '<div class="player-wrap" id="voice-player-wrap">' +
-                        '<video id="voice-hero-video" src="' + videoSrc + '" poster="' + posterSrc + '" preload="metadata" playsinline></video>' +
-                        '<div class="play-overlay" id="voice-play-overlay">' +
-                            '<div class="play-ring"><i data-lucide="play" class="w-7 h-7 fill-current ml-0.5"></i></div>' +
-                        '</div>' +
-                        '<div class="replay-overlay" id="voice-replay-overlay">' +
-                            '<div class="replay-ring"><i data-lucide="rotate-cw" class="w-6 h-6"></i></div>' +
+                '<div class="voice-item reveal visible">' +
+                    // Video player — plain, no overlays
+                    '<div class="voice-player">' +
+                        '<video id="voice-hero-video" src="' + videoSrc + '" poster="' + posterSrc + '" preload="metadata" controls playsinline></video>' +
+                    '</div>' +
+                    // Title + subtitle line
+                    '<div class="voice-title-line">' +
+                        '<div class="voice-title">' + t(v.title) + '</div>' +
+                        '<div class="voice-subtitle">' +
+                            [t(v.location), v.recordingDate, v.duration].filter(function(x) { return x; }).join('  ·  ') +
                         '</div>' +
                     '</div>' +
-                    // Info section
-                    '<div class="p-6 md:p-8 bg-white">' +
-                        '<h3 class="font-serif text-2xl md:text-3xl font-bold text-pew-dark mb-2">' + t(v.title) + '</h3>' +
-                        // Metadata chips
-                        '<div class="voice-meta mt-4 mb-6">' +
-                            (t(v.dialectName) ? '<span class="meta-chip"><i data-lucide="languages"></i>' + t(v.dialectName) + '</span>' : '') +
-                            (t(v.speakerInfo) ? '<span class="meta-chip"><i data-lucide="user"></i>' + t(v.speakerInfo) + '</span>' : '') +
-                            (t(v.location) ? '<span class="meta-chip"><i data-lucide="map-pin"></i>' + t(v.location) + '</span>' : '') +
-                            (v.duration ? '<span class="meta-chip"><i data-lucide="clock"></i>' + v.duration + '</span>' : '') +
-                        '</div>' +
-                        // Ethnographic note
-                        (noteText ? '<div class="ethno-note mb-6">' + noteText + '</div>' : '') +
-                        // Transcript toggle
-                        (hasTranscript ? '' +
-                            '<div class="transcript-panel">' +
-                                '<button class="transcript-toggle" id="transcript-toggle" onclick="this.classList.toggle(\'open\'); document.getElementById(\'transcript-body\').classList.toggle(\'open\');">' +
-                                    '<span>' + (currentLang === 'en' ? 'Transcription &amp; Translation' : '转写与翻译') + '</span>' +
-                                    '<i data-lucide="chevron-down" class="chevron w-4 h-4"></i>' +
-                                '</button>' +
-                                '<div class="transcript-body" id="transcript-body">' +
-                                    '<div class="trans-line">' +
-                                        '<div><div class="tl-label">' + (currentLang === 'en' ? 'Dialect' : '方言转写') + '</div><div class="tl-dialect">' + (v.transcriptDialect || '—') + '</div></div>' +
-                                        '<div><div class="tl-label">' + (currentLang === 'en' ? 'Chinese' : '普通话') + '</div><div class="tl-zh">' + (v.transcriptZh || '—') + '</div></div>' +
-                                        '<div><div class="tl-label">English</div><div class="tl-en">' + (v.transcriptEn || '—') + '</div></div>' +
-                                    '</div>' +
-                                '</div>' +
-                            '</div>' : '') +
+                    // Metadata
+                    '<div class="voice-section">' +
+                        '<div class="voice-section-title" data-en="Metadata" data-zh="元数据">Metadata</div>' +
+                        '<table class="meta-table">' +
+                            (t(v.dialectName) ? '<tr><td class="meta-label" data-en="Dialect" data-zh="方言">Dialect</td><td class="meta-value">' + t(v.dialectName) + '</td></tr>' : '') +
+                            (t(v.speakerInfo) ? '<tr><td class="meta-label" data-en="Speakers" data-zh="说话人">Speakers</td><td class="meta-value">' + t(v.speakerInfo) + '</td></tr>' : '') +
+                            (t(v.location) ? '<tr><td class="meta-label" data-en="Location" data-zh="地点">Location</td><td class="meta-value">' + t(v.location) + '</td></tr>' : '') +
+                            (v.recordingDate ? '<tr><td class="meta-label" data-en="Date" data-zh="日期">Date</td><td class="meta-value">' + v.recordingDate + '</td></tr>' : '') +
+                            (v.duration ? '<tr><td class="meta-label" data-en="Duration" data-zh="时长">Duration</td><td class="meta-value">' + v.duration + '</td></tr>' : '') +
+                        '</table>' +
                     '</div>' +
+                    // Transcription
+                    (hasTranscript ? '' +
+                    '<div class="voice-section">' +
+                        '<div class="voice-section-title" data-en="Transcription" data-zh="转写">Transcription</div>' +
+                        transHTML +
+                    '</div>' : '') +
+                    // Context notes
+                    (noteText ? '' +
+                    '<div class="voice-section">' +
+                        '<div class="voice-section-title" data-en="Context Notes" data-zh="田野笔记">Context Notes</div>' +
+                        '<div class="voice-note">' + noteText + '</div>' +
+                    '</div>' : '') +
                 '</div>';
 
             if (typeof lucide !== 'undefined') lucide.createIcons();
-            setupVoicePlayer();
+            if (typeof updateLanguage === 'function') updateLanguage();
         }
 
         function setupVoicePlayer() {
-            var video = document.getElementById('voice-hero-video');
-            var wrap = document.getElementById('voice-player-wrap');
-            var playOverlay = document.getElementById('voice-play-overlay');
-            var replayOverlay = document.getElementById('voice-replay-overlay');
-            if (!video || !wrap) return;
-
-            // Play
-            var doPlay = function() {
-                video.play().then(function() {
-                    wrap.classList.add('playing');
-                    wrap.classList.remove('ended');
-                }).catch(function() {});
-            };
-            playOverlay && playOverlay.addEventListener('click', doPlay);
-            video.addEventListener('click', function() {
-                if (video.paused && !video.ended) { doPlay(); }
-                else if (video.ended) { doPlay(); }
-            });
-
-            // Replay at end (loop for short clips)
-            video.addEventListener('ended', function() {
-                wrap.classList.remove('playing');
-                wrap.classList.add('ended');
-            });
-            replayOverlay && replayOverlay.addEventListener('click', function(e) {
-                e.stopPropagation();
-                video.currentTime = 0;
-                doPlay();
-            });
+            // Native controls — nothing to set up
         }
 
         function initPage() {

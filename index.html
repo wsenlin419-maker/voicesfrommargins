@@ -2364,8 +2364,17 @@
                 var dText = speakerMatch ? speakerMatch[2] : dLine;
                 var zText = (zLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', zLine])[1];
                 var eText = (eLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', eLine])[1];
+                // Translate speaker labels for current language
+                var speakerLabels = {
+                    '画外老人': { en: 'Elder (off-screen)', zh: '画外老人' },
+                    '女孩': { en: 'Girl (in frame)', zh: '女孩' },
+                    '画外男童': { en: 'Boy (off-screen)', zh: '画外男童' },
+                    '画外成人': { en: 'Adult (off-screen)', zh: '画外成人' }
+                };
+                var speakerDisplay = speakerLabels[speaker] ? speakerLabels[speaker][currentLang] : speaker;
+
                 transHTML += '<div class="trans-block">' +
-                    (speaker ? '<div class="trans-speaker">' + speaker + '</div>' : '') +
+                    (speaker ? '<div class="trans-speaker">' + speakerDisplay + '</div>' : '') +
                     '<div class="trans-lines">' +
                         (dText ? '<div class="tl dialect">' + dText + '</div>' : '') +
                         (zText ? '<div class="tl chinese">' + zText + '</div>' : '') +

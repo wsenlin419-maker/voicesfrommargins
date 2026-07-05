@@ -195,6 +195,7 @@
         /* ── Voice Archive Item (academic archive style) ── */
         /* ── Voice Gallery Cards ── */
         .voice-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem 1.5rem; }
+        .voice-gallery.sparse { grid-template-columns: repeat(auto-fit, minmax(280px, 380px)); justify-content: center; }
         .voice-card { cursor: pointer; }
         .voice-card .card-media { position: relative; background: #111; overflow: hidden; margin-bottom: 0.85rem; }
         .voice-card .card-media img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: opacity 0.3s; }
@@ -204,9 +205,9 @@
         .voice-card .card-media .card-play svg { color: #fff; width: 36px; height: 36px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5)); }
         .voice-card .card-info { padding: 0 2px; }
         .voice-card .card-loc { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 0.2rem; }
-        .voice-card .card-dialect { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.85rem; color: #555; margin-bottom: 0.15rem; }
+        .voice-card .card-dialect { font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; font-size: 0.85rem; color: #555; margin-bottom: 0.15rem; }
         .voice-card .card-dialect .accent-bar { display: inline-block; width: 8px; height: 8px; margin-right: 0.4rem; vertical-align: middle; position: relative; top: -1px; }
-        .voice-card .card-title { font-family: Georgia, 'Noto Serif SC', serif; font-size: 1.05rem; font-weight: 600; color: #1a1a1a; line-height: 1.35; margin-bottom: 0.2rem; }
+        .voice-card .card-title { font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; font-size: 1.05rem; font-weight: 600; color: #1a1a1a; line-height: 1.35; margin-bottom: 0.2rem; }
         .voice-card .card-genre { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; color: #aaa; letter-spacing: 0.02em; }
 
         /* ── Voice Detail (reuses .voice-item etc from below) ── */
@@ -214,14 +215,14 @@
         .voice-item .voice-player { background: #111; margin-bottom: 1.5rem; }
         .voice-item .voice-player video { display: block; width: 100%; }
         .voice-item .voice-title-line { margin-bottom: 0.25rem; }
-        .voice-item .voice-title { font-family: Georgia, 'Noto Serif SC', serif; font-size: 1.6rem; font-weight: 700; color: var(--dark); line-height: 1.3; }
+        .voice-item .voice-title { font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; font-size: 1.6rem; font-weight: 700; color: var(--dark); line-height: 1.3; }
         .voice-item .voice-subtitle { font-size: 0.85rem; color: #888; font-family: 'Inter', 'Noto Sans SC', sans-serif; margin-top: 0.25rem; }
         .voice-item .voice-section { margin-top: 2rem; }
         .voice-item .voice-section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #999; border-bottom: 1px solid #e8e5e0; padding-bottom: 0.5rem; margin-bottom: 0.85rem; }
         .voice-item .meta-table { width: 100%; border-collapse: collapse; }
         .voice-item .meta-table td { vertical-align: top; padding: 0.35rem 0; font-size: 0.88rem; line-height: 1.55; }
         .voice-item .meta-table .meta-label { width: 120px; font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #999; padding-right: 1rem; white-space: nowrap; }
-        .voice-item .meta-table .meta-value { color: #333; font-family: Georgia, 'Noto Serif SC', serif; }
+        .voice-item .meta-table .meta-value { color: #333; font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; }
         .voice-item .trans-block { margin-bottom: 1.2rem; }
         .voice-item .trans-block .trans-speaker { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; margin-bottom: 0.15rem; }
         .voice-item .trans-block .trans-lines { border-left: 2px solid #e8e5e0; padding-left: 0.85rem; }
@@ -229,12 +230,12 @@
         .voice-item .trans-block .trans-lines .tl.dialect { color: #555; font-style: italic; }
         .voice-item .trans-block .trans-lines .tl.chinese { color: #333; }
         .voice-item .trans-block .trans-lines .tl.english { color: #777; font-size: 0.83rem; }
-        .voice-item .voice-note { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.9rem; line-height: 1.7; color: #555; }
-        .ethics-banner { border-left: 3px solid #ccc; padding: 0.85rem 1.1rem; font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.82rem; line-height: 1.65; color: #777; background: #fafafa; margin-bottom: 2rem; }
+        .voice-item .voice-note { font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; font-size: 0.9rem; line-height: 1.7; color: #555; }
+        .ethics-banner { border-left: 3px solid #ccc; padding: 0.85rem 1.1rem; font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; font-size: 0.82rem; line-height: 1.65; color: #777; background: #fafafa; margin-bottom: 2rem; }
         .ethics-banner .ethics-title { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 0.35rem; }
         .voice-classification { margin-top: 1.5rem; }
         .voice-classification .class-label { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; }
-        .voice-classification .class-tags { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.82rem; color: #777; line-height: 1.7; }
+        .voice-classification .class-tags { font-family: 'EB Garamond', 'Noto Serif SC', Georgia, serif; font-size: 0.82rem; color: #777; line-height: 1.7; }
         .voice-classification .class-tags span { color: #555; }
         .voice-classification .class-tags .sep { color: #ddd; margin: 0 0.45rem; }
         .voice-consent { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; color: #aaa; margin-top: 1.2rem; padding-top: 0.8rem; border-top: 1px solid #eee; }
@@ -2316,7 +2317,8 @@
             var container = document.getElementById('voice-gallery');
             if (!container) return;
             var entries = getAllVoiceEntries();
-            var html = '<div class="voice-gallery">';
+            var sparseClass = entries.length <= 2 ? ' sparse' : '';
+            var html = '<div class="voice-gallery' + sparseClass + '">';
             entries.forEach(function(e) { html += renderVoiceCard(e); });
             html += '</div>';
             container.innerHTML = html;

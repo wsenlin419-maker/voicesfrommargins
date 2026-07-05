@@ -216,6 +216,17 @@
         .voice-item .trans-block .trans-lines .tl.english { color: #777; font-size: 0.83rem; }
         /* Context note */
         .voice-item .voice-note { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.9rem; line-height: 1.7; color: #555; }
+        /* Ethics banner */
+        .ethics-banner { border-left: 3px solid #ccc; padding: 0.85rem 1.1rem; font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.82rem; line-height: 1.65; color: #777; background: #fafafa; margin-bottom: 2rem; }
+        .ethics-banner .ethics-title { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 0.35rem; }
+        /* Classification tags — like library subject headings, not SaaS pills */
+        .voice-classification { margin-top: 1.5rem; }
+        .voice-classification .class-label { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; }
+        .voice-classification .class-tags { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.82rem; color: #777; line-height: 1.7; }
+        .voice-classification .class-tags span { color: #555; }
+        .voice-classification .class-tags .sep { color: #ddd; margin: 0 0.45rem; }
+        /* Consent line */
+        .voice-consent { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; color: #aaa; margin-top: 1.2rem; padding-top: 0.8rem; border-top: 1px solid #eee; }
         @media (max-width: 768px) {
             .voice-item .meta-table .meta-label { width: 90px; }
             .voice-item .voice-title { font-size: 1.3rem; }
@@ -921,6 +932,14 @@
                     <div class="section-label mb-4" data-en="Primary Materials" data-zh="一手材料">Primary Materials</div>
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark mb-3" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</h2>
                     <p class="text-gray-400 font-serif text-lg" data-en="Listening to the margins. Curating primary materials and ethnographic dialogues." data-zh="聆听边缘。为学界生产一手口述史、对话录与原始研究语料。">Listening to the margins. Curating primary materials and ethnographic dialogues.</p>
+                </div>
+            </div>
+
+            <!-- Ethics notice -->
+            <div class="max-w-5xl mx-auto px-6 lg:px-12 mb-12" id="ethics-banner">
+                <div class="ethics-banner">
+                    <div class="ethics-title" data-en="Ethics Statement" data-zh="伦理声明">Ethics Statement</div>
+                    <span data-en="All recordings in this archive were collected with the informed consent of participants (or their legal guardians). Each item includes specific access conditions and anonymisation notes. For questions regarding data use, please " data-zh="本档案库所有录音均在参与者（或其法定监护人）知情同意下采集。每一条目均标注具体的访问条件与匿名化处理说明。如有数据使用疑问，请">All recordings in this archive were collected with the informed consent of participants (or their legal guardians). Each item includes specific access conditions and anonymisation notes. For questions regarding data use, please </span><a href="#" onclick="navigateTo('view-terms')" class="underline hover:text-pew-dark transition-colors" data-en="contact us" data-zh="联系我们">contact us</a>.
                 </div>
             </div>
 
@@ -2157,6 +2176,14 @@
             location: { en: 'Nanjiang Town, Pingjiang County, Hunan', zh: '湖南省平江县南江镇' },
             duration: '0:06',
             recordingDate: '~2016',
+            // Classification (OLAC-inspired)
+            speechGenre: { en: 'Family interaction', zh: '家庭互动' },
+            interactionType: { en: 'Adult–child directive', zh: '成人–儿童指引' },
+            setting: { en: 'Domestic, birthday celebration', zh: '家庭庆生场景' },
+            // Consent & ethics
+            accessConditions: { en: 'Open access — informed consent obtained from guardian', zh: '开放获取 — 已获得监护人知情同意' },
+            anonymization: { en: 'First names retained with permission; no full names or identifying details disclosed', zh: '经许可保留名字称呼；未披露全名或其他身份识别信息' },
+            collectedBy: { en: 'Senlin Wang', zh: '王森林' },
             transcriptDialect: '[画外老人] 看各哩，看看看，看…姨妈。\n[女孩] 森林哥哥。',
             transcriptZh: '[画外老人] 看那里，看看看，看…姨妈。\n[女孩] 森林哥哥。',
             transcriptEn: '[elder off-screen] Look over there — look look look… Your auntie.\n[girl in frame] Brother Senlin.',
@@ -2211,6 +2238,12 @@
                             location: getLoc(f.location),
                             duration: f.duration ? (f.duration['en-US'] || f.duration['zh-CN'] || f.duration) : '',
                             recordingDate: f.recordingDate ? (f.recordingDate['en-US'] || f.recordingDate['zh-CN'] || f.recordingDate) : '',
+                            speechGenre: getLoc(f.speechGenre),
+                            interactionType: getLoc(f.interactionType),
+                            setting: getLoc(f.setting),
+                            accessConditions: getLoc(f.accessConditions),
+                            anonymization: getLoc(f.anonymization),
+                            collectedBy: getLoc(f.collectedBy),
                             transcriptDialect: f.transcriptDialect ? (f.transcriptDialect['en-US'] || f.transcriptDialect['zh-CN'] || f.transcriptDialect) : '',
                             transcriptZh: f.transcriptZh ? (f.transcriptZh['en-US'] || f.transcriptZh['zh-CN'] || f.transcriptZh) : '',
                             transcriptEn: f.transcriptEn ? (f.transcriptEn['en-US'] || f.transcriptEn['zh-CN'] || f.transcriptEn) : '',
@@ -2305,7 +2338,17 @@
                             (t(v.location) ? '<tr><td class="meta-label" data-en="Location" data-zh="地点">Location</td><td class="meta-value">' + t(v.location) + '</td></tr>' : '') +
                             (v.recordingDate ? '<tr><td class="meta-label" data-en="Date" data-zh="日期">Date</td><td class="meta-value">' + v.recordingDate + '</td></tr>' : '') +
                             (v.duration ? '<tr><td class="meta-label" data-en="Duration" data-zh="时长">Duration</td><td class="meta-value">' + v.duration + '</td></tr>' : '') +
+                            (t(v.collectedBy) ? '<tr><td class="meta-label" data-en="Collected by" data-zh="采集者">Collected by</td><td class="meta-value">' + t(v.collectedBy) + '</td></tr>' : '') +
                         '</table>' +
+                    '</div>' +
+                    // Classification — library subject-heading style
+                    '<div class="voice-classification">' +
+                        '<span class="class-label" data-en="Classification" data-zh="分类">Classification</span>' +
+                        '<div class="class-tags">' +
+                            (t(v.speechGenre) ? '<span>' + t(v.speechGenre) + '</span><span class="sep">·</span>' : '') +
+                            (t(v.interactionType) ? '<span>' + t(v.interactionType) + '</span><span class="sep">·</span>' : '') +
+                            (t(v.setting) ? '<span>' + t(v.setting) + '</span>' : '') +
+                        '</div>' +
                     '</div>' +
                     // Transcription
                     (hasTranscript ? '' +
@@ -2319,6 +2362,11 @@
                         '<div class="voice-section-title" data-en="Context Notes" data-zh="田野笔记">Context Notes</div>' +
                         '<div class="voice-note">' + noteText + '</div>' +
                     '</div>' : '') +
+                    // Access & consent
+                    '<div class="voice-consent">' +
+                        (t(v.accessConditions) ? '<div>' + t(v.accessConditions) + '</div>' : '') +
+                        (t(v.anonymization) ? '<div style="margin-top:0.2rem">' + t(v.anonymization) + '</div>' : '') +
+                    '</div>' +
                 '</div>';
 
             if (typeof lucide !== 'undefined') lucide.createIcons();

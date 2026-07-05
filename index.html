@@ -192,6 +192,69 @@
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000; }
         .video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
+        /* ── Voice Hero ── */
+        .voice-hero { border: 1px solid #e8e5e0; background: #faf9f6; overflow: hidden; }
+        .voice-hero .player-wrap { position: relative; background: #000; cursor: pointer; }
+        .voice-hero .player-wrap video { display: block; width: 100%; }
+        .voice-hero .player-wrap .play-overlay {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.35); transition: opacity 0.3s;
+        }
+        .voice-hero .player-wrap.playing .play-overlay { opacity: 0; pointer-events: none; }
+        .voice-hero .player-wrap .play-overlay .play-ring {
+            width: 72px; height: 72px; border-radius: 50%; background: rgba(255,255,255,0.95);
+            display: flex; align-items: center; justify-content: center; transition: transform 0.25s;
+        }
+        .voice-hero .player-wrap:hover .play-overlay .play-ring { transform: scale(1.08); }
+        .voice-hero .player-wrap .replay-overlay {
+            position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+            background: rgba(0,0,0,0.2); opacity: 0; pointer-events: none; transition: opacity 0.35s;
+        }
+        .voice-hero .player-wrap.ended .replay-overlay { opacity: 1; pointer-events: auto; cursor: pointer; }
+        .voice-hero .player-wrap.ended .replay-overlay .replay-ring {
+            width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,0.92);
+            display: flex; align-items: center; justify-content: center; transition: transform 0.2s;
+        }
+        .voice-hero .player-wrap.ended .replay-overlay:hover .replay-ring { transform: scale(1.1); }
+
+        .voice-meta { display: flex; flex-wrap: wrap; gap: 10px; }
+        .voice-meta .meta-chip {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-size: 11px; font-family: var(--sans); font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.08em;
+            padding: 5px 14px; border: 1px solid #e0dcd5; border-radius: 20px;
+            background: #fff; color: #555;
+        }
+        .voice-meta .meta-chip i { width: 13px; height: 13px; color: #003d5c; }
+
+        .transcript-panel { border: 1px solid #e8e5e0; background: #fff; }
+        .transcript-toggle {
+            width: 100%; display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 22px; background: #faf9f7; border: none; cursor: pointer;
+            font-size: 12px; font-family: var(--sans); font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.1em; color: #2d2d2d;
+            transition: background 0.2s;
+        }
+        .transcript-toggle:hover { background: #f0edE7; }
+        .transcript-toggle .chevron { transition: transform 0.3s; }
+        .transcript-toggle.open .chevron { transform: rotate(180deg); }
+        .transcript-body { display: none; padding: 22px; border-top: 1px solid #e8e5e0; }
+        .transcript-body.open { display: block; }
+        .transcript-body .trans-line { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; padding: 8px 0; border-bottom: 1px dotted #eee; font-size: 14px; line-height: 1.6; }
+        .transcript-body .trans-line:last-child { border-bottom: none; }
+        .transcript-body .trans-line .tl-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #999; margin-bottom: 2px; }
+        .transcript-body .trans-line .tl-dialect { color: #b8453a; font-style: italic; }
+        .transcript-body .trans-line .tl-zh { color: #2d2d2d; }
+        .transcript-body .trans-line .tl-en { color: #555; }
+
+        .ethno-note { border-left: 3px solid #b8453a; padding: 14px 20px; background: #fdfaf7; font-family: var(--serif); font-size: 15px; line-height: 1.7; color: #665; }
+
+        @media (max-width: 768px) {
+            .voice-meta { gap: 6px; }
+            .voice-meta .meta-chip { font-size: 10px; padding: 4px 10px; }
+            .transcript-body .trans-line { grid-template-columns: 1fr; gap: 6px; }
+        }
+
         body.lang-zh { text-align: justify; }
         .text-justify-force { text-align: justify; text-justify: inter-word; }
 
@@ -895,7 +958,13 @@
                 </div>
             </div>
 
-            <div class="max-w-5xl mx-auto px-6 lg:px-12" id="voices-container">
+            <!-- Featured Voice Hero -->
+            <div class="max-w-5xl mx-auto px-6 lg:px-12 mb-16" id="voice-hero-container"></div>
+
+            <!-- More from the Archive -->
+            <div class="max-w-5xl mx-auto px-6 lg:px-12">
+                <div class="section-label mb-10 pb-4 border-b border-gray-200" data-en="More from the Archive" data-zh="更多档案记录" id="more-label">More from the Archive</div>
+                <div id="voices-container"></div>
             </div>
         </div>
 
@@ -1793,6 +1862,7 @@
 
                 // Re-render all cards with real data + update counters with accurate counts
                 renderCards();
+                renderVoiceHero();
                 updateDynamicCounters();
 
                 // Check if URL hash points to an article (shared link)
@@ -2100,7 +2170,196 @@
                     `;
                 }
             }
+            // Show/hide "More from the Archive" label based on voice entries
+            var moreLabel = document.getElementById('more-label');
+            var voicesContainer = document.getElementById('voices-container');
+            if (moreLabel && voicesContainer) {
+                moreLabel.style.display = voicesContainer.innerHTML.trim() ? '' : 'none';
+            }
+
             if(typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
+        // ─── VOICE HERO ───
+        const VOICE_HERO_DEFAULT = {
+            slug: 'birthday-dialect',
+            title: { en: 'Childhood Birthday Celebration in Dialect', zh: '方言中的童年庆生' },
+            videoUrl: 'assets/videos/birthday_dialect.mp4',
+            posterUrl: 'assets/videos/birthday_poster.jpg',
+            dialectName: { en: 'Nanjiang Dialect (Pingjiang, Hunan)', zh: '南江方言（湖南平江）' },
+            speakerInfo: { en: 'Girl (age 6–7) + elder off-screen', zh: '女孩（6-7岁）+ 画外老人' },
+            location: { en: 'Nanjiang Town, Pingjiang County, Hunan', zh: '湖南省平江县南江镇' },
+            duration: '0:06',
+            recordingDate: '~2016',
+            transcriptDialect: '[画外老人] 看各哩，看看看，看…姨妈。\n[女孩] 森林哥哥。',
+            transcriptZh: '[画外老人] 看那里，看看看，看…姨妈。\n[女孩] 森林哥哥。',
+            transcriptEn: '[elder off-screen] Look over there — look look look… Your auntie.\n[girl in frame] Brother Senlin.',
+            ethnographicNote: {
+                en: 'This brief clip captures a spontaneous family interaction during a childhood birthday celebration in Nanjiang Town, Pingjiang County, Hunan (~2016). An elder (off-screen) directs the child\'s attention using the local Nanjiang dialect — "看各哩" (kàn gè lǐ, "look over there"), a characteristic dialect form for standard Mandarin "看那里". The girl in frame (age 6–7) responds with "森林哥哥" (Brother Senlin), addressing the researcher behind the camera. The layered participation structure — elder\'s dialect directive, child\'s response, and the researcher\'s invisible presence — offers a compact sociolinguistic moment of dialect use in naturalistic family discourse in rural Hunan.',
+                zh: '这段简短影像记录了湖南省平江县南江镇一次童年庆生场景中的自然家庭互动（约2016年）。画外老人使用南江方言指引孩子的注意力——"看各哩"（"看那里"的方言表达）。画面中6-7岁的女孩以"森林哥哥"回应，指向镜头后的研究者。画外老人的方言指引、画内女孩的回应、镜头后研究者的隐形在场——三重参与结构构成了一个紧凑的社会语言学切片：南江方言在日常家庭话语中的自然使用。'
+            },
+            _isDefault: true
+        };
+
+        async function fetchVoiceEntries() {
+            try {
+                const apiUrl = `https://cdn.contentful.com/spaces/${SPACE_ID}/environments/master/entries?content_type=voiceEntry&access_token=${ACCESS_TOKEN}&locale=*`;
+                const response = await fetch(apiUrl);
+                if (!response.ok) return;
+
+                const rawData = await response.json();
+                const assetsDB = {};
+                if (rawData.includes && rawData.includes.Asset) {
+                    rawData.includes.Asset.forEach(function(asset) {
+                        var u = asset.fields.file['en-US'] ? asset.fields.file['en-US'].url : (asset.fields.file['zh-CN'] ? asset.fields.file['zh-CN'].url : '');
+                        if (u && u.startsWith('//')) u = 'https:' + u;
+                        assetsDB[asset.sys.id] = u;
+                    });
+                }
+
+                const getLoc = function(fieldObj) {
+                    if (!fieldObj) return { en: '', zh: '' };
+                    return { en: fieldObj['en-US'] || fieldObj['en'] || '', zh: fieldObj['zh-CN'] || fieldObj['zh'] || '' };
+                };
+
+                const getMediaUrl = function(field) {
+                    if (!field) return '';
+                    var ref = field['en-US'] || field['zh-CN'] || field;
+                    if (ref && ref.sys && ref.sys.type === 'Link') {
+                        return assetsDB[ref.sys.id] || '';
+                    }
+                    return '';
+                };
+
+                window._voiceEntries = [];
+                if (rawData.items && rawData.items.length > 0) {
+                    rawData.items.forEach(function(item) {
+                        var f = item.fields;
+                        var entry = {
+                            slug: typeof f.slug === 'object' ? (f.slug['en-US'] || f.slug['zh-CN']) : f.slug,
+                            title: getLoc(f.title),
+                            videoUrl: getMediaUrl(f.videoFile),
+                            posterUrl: getMediaUrl(f.posterImage) || (f.posterUrl ? f.posterUrl['en-US'] || f.posterUrl['zh-CN'] || f.posterUrl : ''),
+                            dialectName: getLoc(f.dialectName),
+                            speakerInfo: getLoc(f.speakerInfo),
+                            location: getLoc(f.location),
+                            duration: f.duration ? (f.duration['en-US'] || f.duration['zh-CN'] || f.duration) : '',
+                            recordingDate: f.recordingDate ? (f.recordingDate['en-US'] || f.recordingDate['zh-CN'] || f.recordingDate) : '',
+                            transcriptDialect: f.transcriptDialect ? (f.transcriptDialect['en-US'] || f.transcriptDialect['zh-CN'] || f.transcriptDialect) : '',
+                            transcriptZh: f.transcriptZh ? (f.transcriptZh['en-US'] || f.transcriptZh['zh-CN'] || f.transcriptZh) : '',
+                            transcriptEn: f.transcriptEn ? (f.transcriptEn['en-US'] || f.transcriptEn['zh-CN'] || f.transcriptEn) : '',
+                            ethnographicNote: getLoc(f.ethnographicNote),
+                            featured: f.featured ? (f.featured['en-US'] || f.featured['zh-CN'] || f.featured) : false
+                        };
+                        window._voiceEntries.push(entry);
+                    });
+                }
+                // Re-render hero with CMS data if entries were loaded
+                if (window._voiceEntries.length > 0) {
+                    renderVoiceHero();
+                }
+            } catch(e) {
+                // Contentful voiceEntry type may not exist yet — will use hardcoded default
+            }
+        }
+
+        function getVoiceHeroData() {
+            if (window._voiceEntries && window._voiceEntries.length > 0) {
+                var featured = window._voiceEntries.find(function(e) { return e.featured; });
+                if (featured) return featured;
+                return window._voiceEntries[0];
+            }
+            return VOICE_HERO_DEFAULT;
+        }
+
+        function renderVoiceHero() {
+            var container = document.getElementById('voice-hero-container');
+            if (!container) return;
+
+            var v = getVoiceHeroData();
+            var t = function(field) { return field ? (field[currentLang] || field.en || '') : ''; };
+
+            var hasTranscript = (v.transcriptDialect || v.transcriptZh || v.transcriptEn);
+            var noteText = t(v.ethnographicNote);
+            var videoSrc = v.videoUrl || '';
+            var posterSrc = v.posterUrl || '';
+
+            container.innerHTML =
+                '<div class="voice-hero reveal visible">' +
+                    // Player
+                    '<div class="player-wrap" id="voice-player-wrap">' +
+                        '<video id="voice-hero-video" src="' + videoSrc + '" poster="' + posterSrc + '" preload="metadata" playsinline></video>' +
+                        '<div class="play-overlay" id="voice-play-overlay">' +
+                            '<div class="play-ring"><i data-lucide="play" class="w-7 h-7 fill-current ml-0.5"></i></div>' +
+                        '</div>' +
+                        '<div class="replay-overlay" id="voice-replay-overlay">' +
+                            '<div class="replay-ring"><i data-lucide="rotate-cw" class="w-6 h-6"></i></div>' +
+                        '</div>' +
+                    '</div>' +
+                    // Info section
+                    '<div class="p-6 md:p-8 bg-white">' +
+                        '<h3 class="font-serif text-2xl md:text-3xl font-bold text-pew-dark mb-2">' + t(v.title) + '</h3>' +
+                        // Metadata chips
+                        '<div class="voice-meta mt-4 mb-6">' +
+                            (t(v.dialectName) ? '<span class="meta-chip"><i data-lucide="languages"></i>' + t(v.dialectName) + '</span>' : '') +
+                            (t(v.speakerInfo) ? '<span class="meta-chip"><i data-lucide="user"></i>' + t(v.speakerInfo) + '</span>' : '') +
+                            (t(v.location) ? '<span class="meta-chip"><i data-lucide="map-pin"></i>' + t(v.location) + '</span>' : '') +
+                            (v.duration ? '<span class="meta-chip"><i data-lucide="clock"></i>' + v.duration + '</span>' : '') +
+                        '</div>' +
+                        // Ethnographic note
+                        (noteText ? '<div class="ethno-note mb-6">' + noteText + '</div>' : '') +
+                        // Transcript toggle
+                        (hasTranscript ? '' +
+                            '<div class="transcript-panel">' +
+                                '<button class="transcript-toggle" id="transcript-toggle" onclick="this.classList.toggle(\'open\'); document.getElementById(\'transcript-body\').classList.toggle(\'open\');">' +
+                                    '<span>' + (currentLang === 'en' ? 'Transcription &amp; Translation' : '转写与翻译') + '</span>' +
+                                    '<i data-lucide="chevron-down" class="chevron w-4 h-4"></i>' +
+                                '</button>' +
+                                '<div class="transcript-body" id="transcript-body">' +
+                                    '<div class="trans-line">' +
+                                        '<div><div class="tl-label">' + (currentLang === 'en' ? 'Dialect' : '方言转写') + '</div><div class="tl-dialect">' + (v.transcriptDialect || '—') + '</div></div>' +
+                                        '<div><div class="tl-label">' + (currentLang === 'en' ? 'Chinese' : '普通话') + '</div><div class="tl-zh">' + (v.transcriptZh || '—') + '</div></div>' +
+                                        '<div><div class="tl-label">English</div><div class="tl-en">' + (v.transcriptEn || '—') + '</div></div>' +
+                                    '</div>' +
+                                '</div>' +
+                            '</div>' : '') +
+                    '</div>' +
+                '</div>';
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            setupVoicePlayer();
+        }
+
+        function setupVoicePlayer() {
+            var video = document.getElementById('voice-hero-video');
+            var wrap = document.getElementById('voice-player-wrap');
+            var playOverlay = document.getElementById('voice-play-overlay');
+            var replayOverlay = document.getElementById('voice-replay-overlay');
+            if (!video || !wrap) return;
+
+            // Play
+            var doPlay = function() {
+                video.play().then(function() {
+                    wrap.classList.add('playing');
+                    wrap.classList.remove('ended');
+                }).catch(function() {});
+            };
+            playOverlay && playOverlay.addEventListener('click', doPlay);
+            video.addEventListener('click', function() {
+                if (video.paused && !video.ended) { doPlay(); }
+                else if (video.ended) { doPlay(); }
+            });
+
+            // Replay at end (loop for short clips)
+            video.addEventListener('ended', function() {
+                wrap.classList.remove('playing');
+                wrap.classList.add('ended');
+            });
+            replayOverlay && replayOverlay.addEventListener('click', function(e) {
+                e.stopPropagation();
+                video.currentTime = 0;
+                doPlay();
+            });
         }
 
         function initPage() {
@@ -2159,6 +2418,7 @@
         // ─── FETCH ON LOAD ───
         window.addEventListener('load', () => {
             fetchArticles();
+            fetchVoiceEntries();
         });
 
         // ─── IMMEDIATE INIT: show hero + counters before CMS data arrives ───
@@ -2167,6 +2427,7 @@
             updateNavIndicator('view-home');
             // Render hero with fallback content immediately — before CMS fetch completes
             renderHeroSection();
+            renderVoiceHero();
             // Animate counters with default values; will be re-animated with real counts after fetch
             setTimeout(animateCounters, 400);
             setTimeout(checkReveal, 200);
@@ -2186,9 +2447,11 @@
             }
             if (Object.keys(articlesDB).length > 0) {
                 renderCards();
+                renderVoiceHero();
                 renderTeam();
             } else {
                 renderHeroSection();
+                renderVoiceHero();
             }
         };
 
@@ -2445,9 +2708,11 @@
             updateLanguage();
             if (Object.keys(articlesDB).length > 0) {
                 renderCards();
+                renderVoiceHero();
                 renderTeam();
             } else {
                 renderHeroSection();
+                renderVoiceHero();
             }
         };
 

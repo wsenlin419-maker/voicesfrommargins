@@ -2330,6 +2330,9 @@
 
         function renderVoiceDetail(slug) {
             var container = document.getElementById('voice-detail-content');
+            if (!container) return;
+            var v = getVoiceEntryBySlug(slug);
+            if (!v) return;
             var t = function(field) { return field ? (field[currentLang] || field.en || '') : ''; };
             var hasTranscript = (v.transcriptDialect || v.transcriptZh || v.transcriptEn);
             var noteText = t(v.ethnographicNote);

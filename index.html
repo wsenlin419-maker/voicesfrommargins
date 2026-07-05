@@ -193,6 +193,23 @@
         .video-container iframe, .video-container video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
         /* ── Voice Archive Item (academic archive style) ── */
+        /* ── Voice Gallery Cards ── */
+        .voice-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem 1.5rem; }
+        .voice-card { cursor: pointer; }
+        .voice-card .card-media { position: relative; background: #111; overflow: hidden; margin-bottom: 0.85rem; }
+        .voice-card .card-media img { display: block; width: 100%; aspect-ratio: 16/10; object-fit: cover; transition: opacity 0.3s; }
+        .voice-card:hover .card-media img { opacity: 0.7; }
+        .voice-card .card-media .card-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.25s; }
+        .voice-card:hover .card-media .card-play { opacity: 1; }
+        .voice-card .card-media .card-play svg { color: #fff; width: 36px; height: 36px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5)); }
+        .voice-card .card-info { padding: 0 2px; }
+        .voice-card .card-loc { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 0.2rem; }
+        .voice-card .card-dialect { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.85rem; color: #555; margin-bottom: 0.15rem; }
+        .voice-card .card-dialect .accent-bar { display: inline-block; width: 8px; height: 8px; margin-right: 0.4rem; vertical-align: middle; position: relative; top: -1px; }
+        .voice-card .card-title { font-family: Georgia, 'Noto Serif SC', serif; font-size: 1.05rem; font-weight: 600; color: #1a1a1a; line-height: 1.35; margin-bottom: 0.2rem; }
+        .voice-card .card-genre { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; color: #aaa; letter-spacing: 0.02em; }
+
+        /* ── Voice Detail (reuses .voice-item etc from below) ── */
         .voice-item { }
         .voice-item .voice-player { background: #111; margin-bottom: 1.5rem; }
         .voice-item .voice-player video { display: block; width: 100%; }
@@ -201,12 +218,10 @@
         .voice-item .voice-subtitle { font-size: 0.85rem; color: #888; font-family: 'Inter', 'Noto Sans SC', sans-serif; margin-top: 0.25rem; }
         .voice-item .voice-section { margin-top: 2rem; }
         .voice-item .voice-section-title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #999; border-bottom: 1px solid #e8e5e0; padding-bottom: 0.5rem; margin-bottom: 0.85rem; }
-        /* Metadata table */
         .voice-item .meta-table { width: 100%; border-collapse: collapse; }
         .voice-item .meta-table td { vertical-align: top; padding: 0.35rem 0; font-size: 0.88rem; line-height: 1.55; }
         .voice-item .meta-table .meta-label { width: 120px; font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #999; padding-right: 1rem; white-space: nowrap; }
         .voice-item .meta-table .meta-value { color: #333; font-family: Georgia, 'Noto Serif SC', serif; }
-        /* Transcription */
         .voice-item .trans-block { margin-bottom: 1.2rem; }
         .voice-item .trans-block .trans-speaker { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #aaa; margin-bottom: 0.15rem; }
         .voice-item .trans-block .trans-lines { border-left: 2px solid #e8e5e0; padding-left: 0.85rem; }
@@ -214,18 +229,14 @@
         .voice-item .trans-block .trans-lines .tl.dialect { color: #555; font-style: italic; }
         .voice-item .trans-block .trans-lines .tl.chinese { color: #333; }
         .voice-item .trans-block .trans-lines .tl.english { color: #777; font-size: 0.83rem; }
-        /* Context note */
         .voice-item .voice-note { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.9rem; line-height: 1.7; color: #555; }
-        /* Ethics banner */
         .ethics-banner { border-left: 3px solid #ccc; padding: 0.85rem 1.1rem; font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.82rem; line-height: 1.65; color: #777; background: #fafafa; margin-bottom: 2rem; }
         .ethics-banner .ethics-title { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: #999; margin-bottom: 0.35rem; }
-        /* Classification tags — like library subject headings, not SaaS pills */
         .voice-classification { margin-top: 1.5rem; }
         .voice-classification .class-label { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; }
         .voice-classification .class-tags { font-family: Georgia, 'Noto Serif SC', serif; font-size: 0.82rem; color: #777; line-height: 1.7; }
         .voice-classification .class-tags span { color: #555; }
         .voice-classification .class-tags .sep { color: #ddd; margin: 0 0.45rem; }
-        /* Consent line */
         .voice-consent { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; color: #aaa; margin-top: 1.2rem; padding-top: 0.8rem; border-top: 1px solid #eee; }
         @media (max-width: 768px) {
             .voice-item .meta-table .meta-label { width: 90px; }
@@ -939,17 +950,22 @@
             <div class="max-w-5xl mx-auto px-6 lg:px-12 mb-12" id="ethics-banner">
                 <div class="ethics-banner">
                     <div class="ethics-title" data-en="Ethics Statement" data-zh="伦理声明">Ethics Statement</div>
-                    <span data-en="All recordings in this archive were collected with the informed consent of participants (or their legal guardians). Each item includes specific access conditions and anonymisation notes. For questions regarding data use, please " data-zh="本档案库所有录音均在参与者（或其法定监护人）知情同意下采集。每一条目均标注具体的访问条件与匿名化处理说明。如有数据使用疑问，请">All recordings in this archive were collected with the informed consent of participants (or their legal guardians). Each item includes specific access conditions and anonymisation notes. For questions regarding data use, please </span><a href="#" onclick="navigateTo('view-terms')" class="underline hover:text-pew-dark transition-colors" data-en="contact us" data-zh="联系我们">contact us</a>.
+                    <span data-en="All recordings in this archive were collected with the informed consent of participants (or their legal guardians). Each item includes specific access conditions and anonymisation notes. For questions regarding data use, please " data-zh="本档案库所有录音均在参与者（或其法定监护人）知情同意下采集。每一条目均标注具体的访问条件与匿名化处理说明。如有数据使用疑问，请">All recordings in this archive were collected with the informed consent of participants (or their legal guardians). Each item includes specific access conditions and anonymisation notes. For questions regarding data use, please </span><a href="#" onclick="event.preventDefault(); showInquiryModal();" class="underline hover:text-pew-dark transition-colors" data-en="contact us" data-zh="联系我们">contact us</a>.
                 </div>
             </div>
 
-            <!-- Featured Voice Hero -->
-            <div class="max-w-5xl mx-auto px-6 lg:px-12 mb-16" id="voice-hero-container"></div>
+            <!-- Voice gallery grid -->
+            <div class="max-w-5xl mx-auto px-6 lg:px-12" id="voice-gallery"></div>
+        </div>
 
-            <!-- More from the Archive -->
-            <div class="max-w-5xl mx-auto px-6 lg:px-12">
-                <div class="section-label mb-10 pb-4 border-b border-gray-200" data-en="More from the Archive" data-zh="更多档案记录" id="more-label">More from the Archive</div>
-                <div id="voices-container"></div>
+        <!-- ===== VIEW: VOICE DETAIL ===== -->
+        <div id="view-voice-detail" class="page-view pb-24">
+            <div class="max-w-5xl mx-auto px-6 lg:px-12 pt-6">
+                <button onclick="closeVoiceItem()" class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-gray-500 hover:text-pew-dark transition-colors mb-10">
+                    <i data-lucide="arrow-left" class="w-4 h-4"></i>
+                    <span data-en="Back to Archive" data-zh="返回档案库">Back to Archive</span>
+                </button>
+                <div id="voice-detail-content"></div>
             </div>
         </div>
 
@@ -1847,7 +1863,7 @@
 
                 // Re-render all cards with real data + update counters with accurate counts
                 renderCards();
-                renderVoiceHero();
+                renderVoiceGallery();
                 updateDynamicCounters();
 
                 // Check if URL hash points to an article (shared link)
@@ -2255,35 +2271,71 @@
                 }
                 // Re-render hero with CMS data if entries were loaded
                 if (window._voiceEntries.length > 0) {
-                    renderVoiceHero();
+                    renderVoiceGallery();
                 }
             } catch(e) {
                 // Contentful voiceEntry type may not exist yet — will use hardcoded default
             }
         }
 
-        function getVoiceHeroData() {
-            if (window._voiceEntries && window._voiceEntries.length > 0) {
-                var featured = window._voiceEntries.find(function(e) { return e.featured; });
-                if (featured) return featured;
-                return window._voiceEntries[0];
-            }
-            return VOICE_HERO_DEFAULT;
+        function getAllVoiceEntries() {
+            if (window._voiceEntries && window._voiceEntries.length > 0) return window._voiceEntries;
+            return [VOICE_HERO_DEFAULT];
+        }
+
+        function getVoiceEntryBySlug(slug) {
+            var entries = getAllVoiceEntries();
+            return entries.find(function(e) { return e.slug === slug; }) || null;
+        }
+
+        // ── Gallery accent colours (deterministic, per-dialect) ──
+        var ACCENT_COLORS = ['#3a5a7c','#8b5e3c','#5c7a5e','#5c6b73','#9b7b4c','#6b5b6b','#4a7a7a','#9b5b4a'];
+        function getAccentColor(slug) {
+            var h = 0; for (var i = 0; i < slug.length; i++) { h = ((h << 5) - h) + slug.charCodeAt(i); h |= 0; }
+            return ACCENT_COLORS[Math.abs(h) % ACCENT_COLORS.length];
+        }
+
+        function renderVoiceCard(entry) {
+            var accent = getAccentColor(entry.slug);
+            var t = function(f) { return f ? (f[currentLang] || f.en || '') : ''; };
+            return '<div class="voice-card" onclick="openVoiceItem(\'' + entry.slug + '\')">' +
+                '<div class="card-media">' +
+                    '<img src="' + (entry.posterUrl || '') + '" alt="" loading="lazy">' +
+                    '<div class="card-play"><i data-lucide="play-circle"></i></div>' +
+                '</div>' +
+                '<div class="card-info">' +
+                    '<div class="card-loc">' + t(entry.location) + '</div>' +
+                    '<div class="card-dialect"><span class="accent-bar" style="background:' + accent + '"></span>' + t(entry.dialectName) + ' &middot; ' + (entry.duration || '') + '</div>' +
+                    '<div class="card-title">' + t(entry.title) + '</div>' +
+                    '<div class="card-genre">' + t(entry.speechGenre) + '</div>' +
+                '</div>' +
+            '</div>';
+        }
+
+        function renderVoiceGallery() {
+            var container = document.getElementById('voice-gallery');
+            if (!container) return;
+            var entries = getAllVoiceEntries();
+            var html = '<div class="voice-gallery">';
+            entries.forEach(function(e) { html += renderVoiceCard(e); });
+            html += '</div>';
+            container.innerHTML = html;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            if (typeof updateLanguage === 'function') updateLanguage();
         }
 
         function renderVoiceHero() {
-            var container = document.getElementById('voice-hero-container');
-            if (!container) return;
+            // Legacy — now handled by renderVoiceGallery() + renderVoiceDetail()
+        }
 
-            var v = getVoiceHeroData();
+        function renderVoiceDetail(slug) {
+            var container = document.getElementById('voice-detail-content');
             var t = function(field) { return field ? (field[currentLang] || field.en || '') : ''; };
-
             var hasTranscript = (v.transcriptDialect || v.transcriptZh || v.transcriptEn);
             var noteText = t(v.ethnographicNote);
             var videoSrc = v.videoUrl || '';
             var posterSrc = v.posterUrl || '';
 
-            // Parse transcript blocks: "[speaker] text" format, one per language
             function parseTransLines(text) {
                 if (!text) return [];
                 return text.split('\n').filter(function(l) { return l.trim(); });
@@ -2292,20 +2344,16 @@
             var zhLines = parseTransLines(v.transcriptZh);
             var enLines = parseTransLines(v.transcriptEn);
 
-            // Build transcript HTML — group by speaker block
             var transHTML = '';
             for (var i = 0; i < Math.max(dialectLines.length, zhLines.length, enLines.length); i++) {
                 var dLine = dialectLines[i] || '';
                 var zLine = zhLines[i] || '';
                 var eLine = enLines[i] || '';
-                // Extract speaker label from dialect line: "[老人] text" → label="老人", text="text"
                 var speakerMatch = dLine.match(/^\[([^\]]+)\]\s*(.*)/);
                 var speaker = speakerMatch ? speakerMatch[1] : '';
                 var dText = speakerMatch ? speakerMatch[2] : dLine;
-                // Also strip speaker label from zh/en if present
                 var zText = (zLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', zLine])[1];
                 var eText = (eLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', eLine])[1];
-
                 transHTML += '<div class="trans-block">' +
                     (speaker ? '<div class="trans-speaker">' + speaker + '</div>' : '') +
                     '<div class="trans-lines">' +
@@ -2318,18 +2366,15 @@
 
             container.innerHTML =
                 '<div class="voice-item reveal visible">' +
-                    // Video player — plain, no overlays
                     '<div class="voice-player">' +
-                        '<video id="voice-hero-video" src="' + videoSrc + '" poster="' + posterSrc + '" preload="metadata" controls playsinline></video>' +
+                        '<video src="' + videoSrc + '" poster="' + posterSrc + '" preload="metadata" controls playsinline style="display:block;width:100%"></video>' +
                     '</div>' +
-                    // Title + subtitle line
                     '<div class="voice-title-line">' +
                         '<div class="voice-title">' + t(v.title) + '</div>' +
                         '<div class="voice-subtitle">' +
                             [t(v.location), v.recordingDate, v.duration].filter(function(x) { return x; }).join('  ·  ') +
                         '</div>' +
                     '</div>' +
-                    // Metadata
                     '<div class="voice-section">' +
                         '<div class="voice-section-title" data-en="Metadata" data-zh="元数据">Metadata</div>' +
                         '<table class="meta-table">' +
@@ -2341,7 +2386,6 @@
                             (t(v.collectedBy) ? '<tr><td class="meta-label" data-en="Collected by" data-zh="采集者">Collected by</td><td class="meta-value">' + t(v.collectedBy) + '</td></tr>' : '') +
                         '</table>' +
                     '</div>' +
-                    // Classification — library subject-heading style
                     '<div class="voice-classification">' +
                         '<span class="class-label" data-en="Classification" data-zh="分类">Classification</span>' +
                         '<div class="class-tags">' +
@@ -2350,19 +2394,16 @@
                             (t(v.setting) ? '<span>' + t(v.setting) + '</span>' : '') +
                         '</div>' +
                     '</div>' +
-                    // Transcription
                     (hasTranscript ? '' +
                     '<div class="voice-section">' +
                         '<div class="voice-section-title" data-en="Transcription" data-zh="转写">Transcription</div>' +
                         transHTML +
                     '</div>' : '') +
-                    // Context notes
                     (noteText ? '' +
                     '<div class="voice-section">' +
                         '<div class="voice-section-title" data-en="Context Notes" data-zh="田野笔记">Context Notes</div>' +
                         '<div class="voice-note">' + noteText + '</div>' +
                     '</div>' : '') +
-                    // Access & consent
                     '<div class="voice-consent">' +
                         (t(v.accessConditions) ? '<div>' + t(v.accessConditions) + '</div>' : '') +
                         (t(v.anonymization) ? '<div style="margin-top:0.2rem">' + t(v.anonymization) + '</div>' : '') +
@@ -2373,8 +2414,22 @@
             if (typeof updateLanguage === 'function') updateLanguage();
         }
 
-        function setupVoicePlayer() {
-            // Native controls — nothing to set up
+        var voicePreviousView = 'view-home';
+        function openVoiceItem(slug) {
+            voicePreviousView = document.querySelector('.page-view.active')?.id || 'view-home';
+            renderVoiceDetail(slug);
+            navigateTo('view-voice-detail');
+            if (window.location.hash !== '#voice/' + slug) {
+                history.pushState(null, '', '#voice/' + slug);
+            }
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        function closeVoiceItem() {
+            if (window.location.hash && window.location.hash.startsWith('#voice/')) {
+                history.pushState(null, '', window.location.pathname);
+            }
+            navigateTo('view-voices');
         }
 
         function initPage() {
@@ -2442,7 +2497,7 @@
             updateNavIndicator('view-home');
             // Render hero with fallback content immediately — before CMS fetch completes
             renderHeroSection();
-            renderVoiceHero();
+            renderVoiceGallery();
             // Animate counters with default values; will be re-animated with real counts after fetch
             setTimeout(animateCounters, 400);
             setTimeout(checkReveal, 200);
@@ -2462,11 +2517,11 @@
             }
             if (Object.keys(articlesDB).length > 0) {
                 renderCards();
-                renderVoiceHero();
+                renderVoiceGallery();
                 renderTeam();
             } else {
                 renderHeroSection();
-                renderVoiceHero();
+                renderVoiceGallery();
             }
         };
 
@@ -2663,11 +2718,15 @@
                 if (articlesDB[slug]) {
                     openArticle(slug, true);
                 }
+            } else if (hash.startsWith('#voice/')) {
+                const vSlug = hash.replace('#voice/', '');
+                openVoiceItem(vSlug);
             } else if (!hash) {
-                // Back to previous view if hash cleared
                 if (currentArticleId) {
                     navigateTo(previousView);
                     currentArticleId = null;
+                } else if (document.getElementById('view-voice-detail')?.classList.contains('active')) {
+                    navigateTo('view-voices');
                 }
             }
         }
@@ -2723,11 +2782,11 @@
             updateLanguage();
             if (Object.keys(articlesDB).length > 0) {
                 renderCards();
-                renderVoiceHero();
+                renderVoiceGallery();
                 renderTeam();
             } else {
                 renderHeroSection();
-                renderVoiceHero();
+                renderVoiceGallery();
             }
         };
 

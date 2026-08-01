@@ -166,11 +166,23 @@
         html.dark .rand-related-card p { color: var(--text-muted) !important; }
         html.dark .rand-search-form,
         html.dark .rand-search-result,
+        html.dark .rand-search-filters,
+        html.dark .rand-search-filter-row,
+        html.dark .voice-report-main,
+        html.dark .voice-report-aside,
+        html.dark .voice-report-transcript,
         html.dark .rand-article-tools,
         html.dark .rand-article-body blockquote { border-color: var(--border) !important; }
         html.dark .rand-search-form input { background: transparent !important; }
         html.dark .rand-search-result:hover,
         html.dark .rand-related-card:hover { background: #101923 !important; }
+        html.dark .rand-search-filters,
+        html.dark .voice-report-aside,
+        html.dark .voice-report-card,
+        html.dark .voice-report-transcript { background: var(--bg-alt) !important; }
+        html.dark .voice-report-title,
+        html.dark .voice-report-heading,
+        html.dark .voice-report-transcript .tl { color: var(--text) !important; }
 
         html { scroll-behavior: smooth; overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg); color: var(--text); overflow-x: hidden; font-kerning: normal; transition: background-color 0.35s ease, color 0.35s ease; }
@@ -278,9 +290,153 @@
         .voice-classification .class-tags span { color: #555; }
         .voice-classification .class-tags .sep { color: #ddd; margin: 0 0.45rem; }
         .voice-consent { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; color: #aaa; margin-top: 1.2rem; padding-top: 0.8rem; border-top: 1px solid #eee; }
+        .voice-report { max-width: 1120px; margin: 0 auto; }
+        .voice-report-header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: clamp(2rem, 5vw, 3.8rem);
+            margin-bottom: clamp(2rem, 5vw, 3.8rem);
+        }
+        .voice-report-kicker {
+            display: inline-flex;
+            border-left: 4px solid var(--blue);
+            padding-left: 0.75rem;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+        }
+        .voice-report-title {
+            margin-top: 1.1rem;
+            max-width: 900px;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: clamp(2.35rem, 6vw, 5rem);
+            line-height: 0.98;
+            font-weight: 800;
+            letter-spacing: 0;
+            color: var(--dark);
+            text-wrap: balance;
+        }
+        .voice-report-deck {
+            max-width: 760px;
+            margin-top: 1.25rem;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            color: #4d5965;
+            font-size: clamp(1rem, 1.7vw, 1.24rem);
+            line-height: 1.58;
+        }
+        .voice-report-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem 1rem;
+            margin-top: 1.45rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            color: #586571;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .voice-report-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 720px) minmax(240px, 1fr);
+            gap: clamp(2rem, 5vw, 4rem);
+            align-items: start;
+        }
+        .voice-report-player {
+            background: #07111a;
+            border-top: 4px solid var(--blue);
+        }
+        .voice-report-player video { display: block; width: 100%; }
+        .voice-report-aside,
+        .voice-report-card {
+            background: #f6f8fa;
+            border-top: 4px solid var(--blue);
+            padding: 1.25rem;
+            min-width: 0;
+        }
+        .voice-report-heading {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 0.9rem;
+        }
+        .voice-report-list { display: grid; gap: 0; }
+        .voice-report-list div {
+            display: grid;
+            grid-template-columns: 110px minmax(0, 1fr);
+            gap: 1rem;
+            padding: 0.72rem 0;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.86rem;
+            line-height: 1.45;
+        }
+        .voice-report-list dt {
+            color: #6f7b86;
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+        }
+        .voice-report-list dd { min-width: 0; color: #2d3741; overflow-wrap: anywhere; }
+        .voice-report-transcript {
+            margin-top: 2rem;
+            border-top: 4px solid var(--blue);
+            background: #fff;
+            padding: 1.25rem;
+        }
+        .voice-report-transcript .trans-block {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .voice-report-transcript .trans-speaker {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--blue);
+            margin-bottom: 0.5rem;
+        }
+        .voice-report-transcript .trans-lines {
+            border-left: 4px solid var(--blue);
+            padding-left: 1rem;
+        }
+        .voice-report-transcript .tl {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            color: #2b343d;
+            overflow-wrap: anywhere;
+        }
+        .voice-report-transcript .tl.english { color: #66717c; font-size: 0.86rem; }
+        .voice-report-note {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #46515c;
+        }
+        .voice-report-consent {
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.76rem;
+            line-height: 1.55;
+            color: #73808b;
+        }
         @media (max-width: 768px) {
             .voice-item .meta-table .meta-label { width: 90px; }
             .voice-item .voice-title { font-size: 1.3rem; }
+            .voice-report-grid { grid-template-columns: 1fr; }
+            .voice-report-list div { grid-template-columns: 1fr; gap: 0.25rem; }
         }
 
         body.lang-zh { text-align: left; }
@@ -904,6 +1060,78 @@
             margin-top: 1.25rem;
             border-top: 1px solid var(--border);
         }
+        .rand-search-workbench {
+            display: grid;
+            grid-template-columns: 215px minmax(0, 1fr);
+            gap: 1.5rem;
+            margin-top: 1.35rem;
+            align-items: start;
+        }
+        .rand-search-filters {
+            border-top: 4px solid var(--blue);
+            background: #f6f8fa;
+            padding: 1rem;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+        .rand-search-filter-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--dark);
+            margin-bottom: 0.8rem;
+        }
+        .rand-search-filter-row {
+            display: grid;
+            grid-template-columns: 14px minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.62rem 0;
+            border-top: 1px solid var(--border);
+            color: #3d4954;
+            font-size: 0.82rem;
+            line-height: 1.25;
+        }
+        .rand-search-check {
+            width: 13px;
+            height: 13px;
+            border: 1px solid #6c7a87;
+            background: #fff;
+            box-shadow: inset 0 0 0 3px #fff;
+        }
+        .rand-search-filter-row.is-active .rand-search-check { background: var(--blue); }
+        .rand-search-filter-row span:nth-child(2) {
+            min-width: 0;
+            overflow-wrap: anywhere;
+            font-weight: 700;
+        }
+        .rand-search-filter-row span:last-child {
+            color: var(--text-muted);
+            font-size: 0.72rem;
+            font-weight: 800;
+        }
+        .rand-search-panel-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.8rem;
+            margin-bottom: 0.2rem;
+        }
+        .rand-search-panel-title h3 {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        .rand-search-panel-title span {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+        }
         .rand-search-result {
             display: block;
             padding: 1.15rem 0;
@@ -933,6 +1161,21 @@
             line-height: 1.58;
             color: var(--text-muted);
         }
+        #search-dropdown .rand-search-workbench {
+            grid-template-columns: 150px minmax(0, 1fr);
+            gap: 1rem;
+            margin: 0;
+            padding: 1rem;
+        }
+        #search-dropdown .rand-search-filters { padding: 0.8rem; }
+        #search-dropdown .rand-search-filter-row {
+            grid-template-columns: 11px minmax(0, 1fr) auto;
+            font-size: 0.72rem;
+            padding: 0.48rem 0;
+        }
+        #search-dropdown .rand-search-result { padding: 0.78rem 0; }
+        #search-dropdown .rand-search-result-title { font-size: 0.9rem; }
+        #search-dropdown .rand-search-result p { font-size: 0.76rem; line-height: 1.45; }
         .search-highlight {
             background: transparent;
             color: var(--blue);
@@ -1329,6 +1572,11 @@
                 grid-template-columns: auto minmax(0, 1fr);
                 padding: 0 0.85rem;
             }
+            .rand-search-workbench,
+            #search-dropdown .rand-search-workbench {
+                grid-template-columns: 1fr;
+            }
+            #search-dropdown .rand-search-filters { display: none; }
             .rand-search-submit {
                 grid-column: 1 / -1;
                 width: 100%;
@@ -1379,7 +1627,7 @@
                 <form onsubmit="handleSearch(event)" class="rand-search-form group">
                     <i data-lucide="search" class="w-5 h-5 text-gray-400 group-focus-within:text-pew-dark transition-colors"></i>
                     <input type="text" id="search-input" placeholder="Search by topic, place, language, or archive..." class="w-full bg-transparent font-sans outline-none placeholder-gray-400">
-                    <button type="submit" class="rand-search-submit">Search</button>
+                    <button type="submit" class="rand-search-submit">Submit search and filters</button>
             </form>
                 <div id="search-result-msg" class="hidden w-full"></div>
             </div>
@@ -1434,10 +1682,10 @@
                     <span class="text-gray-200 px-2">|</span>
                     <button onclick="navigateTo('view-blog')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Blog" data-zh="博客">Blog</button>
                 </div>
-                <div class="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#005587] mb-1.5 font-sans">Research Search</div>
+                <div class="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#005587] mb-1.5 font-sans">Search by keyword</div>
                 <form onsubmit="handleHeaderSearch(event)" class="site-search flex w-[340px] border border-gray-300 hover:border-gray-500 focus-within:border-[#263f52] transition-colors bg-white shadow-sm">
                     <input type="text" id="header-search-input" placeholder="Search topics, places, field notes..." class="w-full px-4 py-2.5 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
-                    <button type="submit" class="bg-[#1a1a1a] hover:bg-[#005587] transition-colors text-white px-5 py-2 border-l border-gray-300 flex items-center justify-center" aria-label="Search">
+                    <button type="submit" class="bg-[#1a1a1a] hover:bg-[#005587] transition-colors text-white px-5 py-2 border-l border-gray-300 flex items-center justify-center" aria-label="Submit search and filters">
                         <i data-lucide="search" class="w-4 h-4"></i>
                     </button>
                 </form>
@@ -2275,9 +2523,28 @@
                 }
             }
 
+            const typeCounts = {};
+            matches.forEach(([, article]) => {
+                const label = article.tag[currentLang] || article.category || 'Research';
+                typeCounts[label] = (typeCounts[label] || 0) + 1;
+            });
+            const filtersHTML = Object.entries(typeCounts).map(([label, count], idx) =>
+                `<div class="rand-search-filter-row ${idx === 0 ? 'is-active' : ''}">
+                    <span class="rand-search-check"></span>
+                    <span>${label}</span>
+                    <span>${count}</span>
+                </div>`
+            ).join('');
+
             if (!matches.length) {
                 container.innerHTML = isFullScreen
-                    ? `<div class="rand-search-results"><div class="p-6 text-center text-sm text-gray-400 font-sans">No results found.</div></div>`
+                    ? `<div class="rand-search-workbench">
+                        <aside class="rand-search-filters">
+                            <div class="rand-search-filter-title">Content Type</div>
+                            <div class="rand-search-filter-row"><span class="rand-search-check"></span><span>Research</span><span>0</span></div>
+                        </aside>
+                        <section class="rand-search-results"><div class="p-6 text-center text-sm text-gray-400 font-sans">No results found.</div></section>
+                    </div>`
                     : `<div class="p-5 text-center text-sm text-gray-400 font-sans">No results found.</div>`;
                 container.classList.remove('hidden');
                 return;
@@ -2299,13 +2566,24 @@
                 </a>`;
             });
 
-            if (isFullScreen) {
-                container.innerHTML = `<div class="rand-search-results">
-                    <div class="rand-search-count py-4">${matches.length} results for "${query}"</div>
+            const searchShell = `<div class="rand-search-workbench">
+                <aside class="rand-search-filters">
+                    <div class="rand-search-filter-title">Content Type</div>
+                    ${filtersHTML}
+                </aside>
+                <section class="rand-search-results">
+                    <div class="rand-search-panel-title">
+                        <h3>${matches.length} results for "${query}"</h3>
+                        <span>Sort by relevance</span>
+                    </div>
                     ${resultHTML}
-                </div>`;
+                </section>
+            </div>`;
+
+            if (isFullScreen) {
+                container.innerHTML = searchShell;
             } else {
-                container.innerHTML = `<div class="rand-search-results mt-0 px-4">${resultHTML}</div>`;
+                container.innerHTML = searchShell;
             }
             container.classList.remove('hidden');
         }
@@ -3253,6 +3531,90 @@
                     '<div class="voice-consent">' +
                         (t(v.accessConditions) ? '<div>' + t(v.accessConditions) + '</div>' : '') +
                         (t(v.anonymization) ? '<div style="margin-top:0.2rem">' + t(v.anonymization) + '</div>' : '') +
+                    '</div>' +
+                '</div>';
+
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            if (typeof updateLanguage === 'function') updateLanguage();
+        }
+
+        function renderVoiceDetail(slug) {
+            var container = document.getElementById('voice-detail-content');
+            if (!container) return;
+            var v = getVoiceEntryBySlug(slug);
+            if (!v) return;
+            var t = function(field) { return field ? (field[currentLang] || field.en || '') : ''; };
+            var noteText = t(v.ethnographicNote);
+            var videoSrc = v.videoUrl || '';
+            var posterSrc = v.posterUrl || '';
+
+            function parseTransLines(text) {
+                if (!text) return [];
+                return text.split('\n').filter(function(line) { return line.trim(); });
+            }
+
+            var dialectLines = parseTransLines(v.transcriptDialect);
+            var zhLines = parseTransLines(v.transcriptZh);
+            var enLines = parseTransLines(v.transcriptEn);
+            var hasTranscript = dialectLines.length || zhLines.length || enLines.length;
+            var transHTML = '';
+            for (var i = 0; i < Math.max(dialectLines.length, zhLines.length, enLines.length); i++) {
+                var dLine = dialectLines[i] || '';
+                var zLine = zhLines[i] || '';
+                var eLine = enLines[i] || '';
+                var speakerMatch = dLine.match(/^\[([^\]]+)\]\s*(.*)/);
+                var speaker = speakerMatch ? speakerMatch[1] : '';
+                var dText = speakerMatch ? speakerMatch[2] : dLine;
+                var zText = (zLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', zLine])[1];
+                var eText = (eLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', eLine])[1];
+                transHTML += '<div class="trans-block">' +
+                    (speaker ? '<div class="trans-speaker">' + speaker + '</div>' : '') +
+                    '<div class="trans-lines">' +
+                        (dText ? '<div class="tl dialect">' + dText + '</div>' : '') +
+                        (zText ? '<div class="tl chinese">' + zText + '</div>' : '') +
+                        (eText ? '<div class="tl english">' + eText + '</div>' : '') +
+                    '</div>' +
+                '</div>';
+            }
+
+            var metaRows = [
+                ['Dialect', t(v.dialectName)],
+                ['Speakers', t(v.speakerInfo)],
+                ['Location', t(v.location)],
+                ['Date', v.recordingDate],
+                ['Duration', v.duration],
+                ['Collected by', t(v.collectedBy)]
+            ].filter(function(row) { return row[1]; }).map(function(row) {
+                return '<div><dt>' + row[0] + '</dt><dd>' + row[1] + '</dd></div>';
+            }).join('');
+            var classParts = [t(v.speechGenre), t(v.interactionType), t(v.setting)].filter(function(x) { return x; });
+            var deck = noteText || [t(v.dialectName), t(v.speakerInfo), t(v.location)].filter(function(x) { return x; }).join('. ');
+
+            container.innerHTML =
+                '<div class="voice-report reveal visible">' +
+                    '<header class="voice-report-header">' +
+                        '<div class="voice-report-kicker">Audio Archive Record</div>' +
+                        '<h1 class="voice-report-title">' + t(v.title) + '</h1>' +
+                        (deck ? '<p class="voice-report-deck">' + deck + '</p>' : '') +
+                        '<div class="voice-report-meta-row">' + [t(v.location), v.recordingDate, v.duration].filter(function(x) { return x; }).join('  /  ') + '</div>' +
+                    '</header>' +
+                    '<div class="voice-report-grid">' +
+                        '<main class="voice-report-main">' +
+                            '<div class="voice-report-player">' +
+                                '<video src="' + videoSrc + '" poster="' + posterSrc + '" preload="metadata" controls playsinline></video>' +
+                            '</div>' +
+                            (hasTranscript ? '<section class="voice-report-transcript"><h2 class="voice-report-heading">Transcription</h2>' + transHTML + '</section>' : '') +
+                            (noteText ? '<section class="voice-report-card mt-8"><h2 class="voice-report-heading">Context Notes</h2><div class="voice-report-note">' + noteText + '</div></section>' : '') +
+                        '</main>' +
+                        '<aside class="voice-report-aside">' +
+                            '<h2 class="voice-report-heading">Document Details</h2>' +
+                            '<dl class="voice-report-list">' + metaRows + '</dl>' +
+                            (classParts.length ? '<div class="voice-report-consent"><strong class="voice-report-heading" style="display:block;margin-bottom:0.6rem">Classification</strong>' + classParts.join(' / ') + '</div>' : '') +
+                            '<div class="voice-report-consent">' +
+                                (t(v.accessConditions) ? '<div>' + t(v.accessConditions) + '</div>' : '') +
+                                (t(v.anonymization) ? '<div style="margin-top:0.35rem">' + t(v.anonymization) + '</div>' : '') +
+                            '</div>' +
+                        '</aside>' +
                     '</div>' +
                 '</div>';
 

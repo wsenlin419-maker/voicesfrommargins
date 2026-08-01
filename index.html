@@ -64,16 +64,18 @@
             --transition-speed: 0.35s;
         }
         html.dark {
-            --blue: #5bafdc;
-            --red: #e05555;
-            --dark: #e5e3df;
-            --subtle: #9ca3af;
-            --bg: #1a1d21;
-            --bg-alt: #212529;
-            --bg-card: #282d31;
-            --border: #343a40;
-            --text: #e5e3df;
-            --text-muted: #9ca3af;
+            --blue: #7cc7f2;
+            --red: #f08a7a;
+            --dark: #f2f6f9;
+            --subtle: #9fb0bf;
+            --bg: #0b1117;
+            --bg-alt: #111a23;
+            --bg-card: #151f29;
+            --border: #273544;
+            --text: #e7edf3;
+            --text-muted: #9fb0bf;
+            --paper: #151f29;
+            --ink-soft: #c7d1dc;
         }
         html.dark body { background-color: var(--bg); color: var(--text); }
         html.dark .bg-white { background-color: var(--bg-card) !important; }
@@ -105,7 +107,7 @@
         html.dark #map-section { background: #1a1d21; }
         html.dark .map-tab { color: #6c757d; }
         html.dark .map-tab.active { color: #e5e3df; border-color: #e5e3df; }
-        html.dark #search-overlay { background: rgba(26,29,33,0.97) !important; }
+        html.dark #search-overlay { background: rgba(11,17,23,0.98) !important; }
         html.dark .search-highlight { color: #e5e3df; font-weight: 700; }
         html.dark input { color: var(--text) !important; }
         html.dark .bg-\[\\#f0f5fa\] { background-color: #1c2833 !important; }
@@ -142,6 +144,33 @@
         html.dark #search-dropdown .divide-gray-100 > * { border-color: var(--border) !important; }
         html.dark .hover\:bg-gray-50:hover { background: var(--bg-alt) !important; }
         html.dark .bg-\[\#f0f5fa\] { background: #1c2833 !important; }
+        html.dark .rand-hero,
+        html.dark .rand-section,
+        html.dark .rand-latest,
+        html.dark .rand-card,
+        html.dark .rand-number,
+        html.dark .rand-search-panel,
+        html.dark .rand-article-header,
+        html.dark .rand-article-sidebar,
+        html.dark .rand-related-card {
+            background: var(--bg-card) !important;
+            border-color: var(--border) !important;
+            color: var(--text) !important;
+        }
+        html.dark .rand-hero-copy,
+        html.dark .rand-card p,
+        html.dark .rand-search-result p,
+        html.dark .rand-article-summary,
+        html.dark .rand-article-body,
+        html.dark .rand-article-meta,
+        html.dark .rand-related-card p { color: var(--text-muted) !important; }
+        html.dark .rand-search-form,
+        html.dark .rand-search-result,
+        html.dark .rand-article-tools,
+        html.dark .rand-article-body blockquote { border-color: var(--border) !important; }
+        html.dark .rand-search-form input { background: transparent !important; }
+        html.dark .rand-search-result:hover,
+        html.dark .rand-related-card:hover { background: #101923 !important; }
 
         html { scroll-behavior: smooth; overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg); color: var(--text); overflow-x: hidden; font-kerning: normal; transition: background-color 0.35s ease, color 0.35s ease; }
@@ -792,6 +821,103 @@
         #modal-body strong { font-weight: 600; color: var(--dark); }
 
         #search-dropdown { box-shadow: 0 20px 60px rgba(0,0,0,0.12); }
+        #search-overlay {
+            background: rgba(255,255,255,0.98);
+            transition: opacity 0.28s ease, visibility 0.28s ease;
+        }
+        .rand-search-panel {
+            background: #fff;
+            border-top: 5px solid var(--blue);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: clamp(1.35rem, 4vw, 2.5rem);
+            box-shadow: 0 22px 50px rgba(9, 20, 31, 0.1);
+        }
+        .rand-search-title {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-weight: 800;
+            letter-spacing: 0;
+            color: var(--dark);
+            line-height: 1.02;
+            font-size: clamp(2.1rem, 9vw, 4.25rem);
+        }
+        .rand-search-kicker,
+        .rand-search-kind,
+        .rand-search-count {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+        }
+        .rand-search-form {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 0.9rem;
+            border: 1px solid #b9c2cb;
+            background: #fff;
+            min-height: 58px;
+            padding: 0 0.85rem 0 1.05rem;
+            margin-top: 1.75rem;
+        }
+        .rand-search-form input {
+            min-width: 0;
+            height: 56px;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        .rand-search-submit {
+            height: 40px;
+            padding: 0 1.1rem;
+            background: var(--blue);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: background 0.2s ease;
+        }
+        .rand-search-submit:hover { background: #152f43; }
+        .rand-search-results {
+            margin-top: 1.25rem;
+            border-top: 1px solid var(--border);
+        }
+        .rand-search-result {
+            display: block;
+            padding: 1.15rem 0;
+            border-bottom: 1px solid var(--border);
+            text-align: left;
+            transition: background 0.18s ease, padding-left 0.18s ease;
+        }
+        .rand-search-result:hover {
+            background: #f6f8fa;
+            padding-left: 0.75rem;
+        }
+        .rand-search-result h3,
+        .rand-search-result-title {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 1.06rem;
+            font-weight: 800;
+            line-height: 1.24;
+            color: var(--dark);
+            letter-spacing: 0;
+        }
+        .rand-search-result p {
+            margin-top: 0.5rem;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.86rem;
+            line-height: 1.58;
+            color: var(--text-muted);
+        }
+        .search-highlight {
+            background: transparent;
+            color: var(--blue);
+            font-weight: 800;
+        }
 
         .side-article {
             transition: background 0.2s ease;
@@ -873,35 +999,188 @@
             position: sticky;
             top: 50px;
             z-index: 20;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(8px);
-            border-bottom: 1px solid #e5e7eb;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+        }
+        .rand-article-shell { background: var(--bg); }
+        .rand-article-sticky-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .rand-article-header {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+            padding: clamp(2.5rem, 7vw, 5.5rem) 0 clamp(2.2rem, 5vw, 4rem);
+        }
+        .rand-article-header-inner {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: minmax(0, 2.1fr) 320px;
+            gap: clamp(2rem, 6vw, 5rem);
+            align-items: start;
+        }
+        #view-article .rand-article-header-inner {
+            grid-template-columns: minmax(0, 940px);
+        }
+        .rand-article-label {
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            border-left: 4px solid var(--blue);
+            padding-left: 0.75rem;
+            color: var(--blue);
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .rand-article-title {
+            margin-top: 1.1rem;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: clamp(2.4rem, 6vw, 5.3rem);
+            line-height: 0.98;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: 0;
+            text-wrap: balance;
+        }
+        .rand-article-summary {
+            margin-top: 1.35rem;
+            max-width: 760px;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: clamp(1.05rem, 2vw, 1.32rem);
+            line-height: 1.55;
+            color: #4d5965;
+        }
+        .rand-article-sidebar {
+            border-top: 4px solid var(--blue);
+            background: #f6f8fa;
+            padding: 1.25rem;
+        }
+        .rand-article-meta {
+            display: grid;
+            gap: 1rem;
+            color: #53606b;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+        .rand-article-meta span { display: block; }
+        .rand-article-header .rand-article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.65rem 1rem;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 1.25rem;
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-weight: 700;
+        }
+        .rand-meta-label {
+            display: block;
+            margin-bottom: 0.28rem;
+            color: var(--blue);
+            font-size: 0.64rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .rand-article-tools {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            margin-top: 1.25rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid var(--border);
+        }
+        .rand-article-main {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: clamp(2rem, 5vw, 4rem) 1.5rem 0;
+            display: grid;
+            grid-template-columns: minmax(0, 760px) minmax(220px, 1fr);
+            gap: clamp(2rem, 5vw, 4.5rem);
+            align-items: start;
         }
         .article-body {
             font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif;
-            font-size: 1.25rem;
-            line-height: 2.0;
-            color: #1f2937;
-            text-align: justify;
+            font-size: 1.18rem;
+            line-height: 1.82;
+            color: #202933;
+            text-align: left;
         }
-        .article-body p { margin-bottom: 1.8rem; }
-        .article-body h2 { font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif; font-size: 2rem; font-weight: 600; margin: 3.5rem 0 1.2rem; letter-spacing: -0.01em; }
-        .article-body h3 { font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif; font-size: 1.5rem; font-weight: 600; margin: 2.5rem 0 0.75rem; }
+        .article-body p { margin-bottom: 1.55rem; }
+        .article-body h2 { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 1.65rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: 0; line-height: 1.18; }
+        .article-body h3 { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 1.25rem; font-weight: 800; margin: 2.25rem 0 0.75rem; line-height: 1.25; }
         .article-body blockquote {
-            border-left: 2px solid var(--blue);
-            padding: 0.8rem 0 0.8rem 2rem;
-            margin: 2rem 0;
-            color: #4b5563;
-            font-style: italic;
+            border-left: 5px solid var(--blue);
+            padding: 1.1rem 0 1.1rem 1.4rem;
+            margin: 2.25rem 0;
+            color: #465461;
+            font-style: normal;
+            background: #f6f8fa;
         }
         .article-body ul, .article-body ol { margin: 1rem 0 1.5rem 1.5rem; }
         .article-body li { margin-bottom: 0.5rem; }
-        .article-body img { display: block; float: left; max-width: 55%; height: auto; margin: 0 2rem 1.5rem 0; clear: left; }
-        .article-body figure { float: left; max-width: 55%; margin: 0 2rem 1.5rem 0; clear: left; }
+        .article-body img { display: block; float: none; max-width: 100%; height: auto; margin: 2.2rem 0; clear: both; border: 1px solid var(--border); }
+        .article-body figure { float: none; max-width: 100%; margin: 2.2rem 0; clear: both; }
         .article-body figure img { margin: 0; width: 100%; }
         .article-body figure::after { content: ''; display: table; clear: both; }
-        .article-body > p:first-of-type::first-letter { float: left; font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif; font-size: 4.5rem; font-weight: 300; line-height: 0.85; margin: 0.12em 0.15em 0 0; }
+        .article-body > p:first-of-type::first-letter { float: none; font-family: inherit; font-size: inherit; font-weight: inherit; line-height: inherit; margin: 0; }
         .article-body a { color: var(--blue); text-decoration: underline; text-underline-offset: 3px; }
+        .rand-reading-card {
+            position: sticky;
+            top: 7.5rem;
+            border-top: 4px solid var(--blue);
+            background: #f6f8fa;
+            padding: 1.25rem;
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+        }
+        .rand-reading-card h3 {
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 0.8rem;
+        }
+        .rand-reading-card p {
+            font-size: 0.88rem;
+            line-height: 1.55;
+            color: var(--text-muted);
+        }
+        .rand-related-card {
+            display: grid;
+            grid-template-columns: 86px minmax(0, 1fr);
+            gap: 1rem;
+            border-top: 4px solid var(--blue);
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: #fff;
+            padding: 1rem;
+            cursor: pointer;
+            transition: background 0.18s ease, transform 0.18s ease;
+        }
+        .rand-related-card:hover { background: #f6f8fa; transform: translateY(-1px); }
+        .rand-related-card h4 {
+            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 800;
+            line-height: 1.25;
+            color: var(--dark);
+        }
 
         .like-btn { transition: transform 0.2s ease, color 0.2s ease; user-select: none; }
         .like-btn:active { transform: scale(1.3); }
@@ -1009,10 +1288,27 @@
         @media (max-width: 1023px) {
             #mobile-menu-btn { display: block; }
             #nav-track .nav-item { display: none; }
+            .rand-article-header-inner,
+            .rand-article-main {
+                grid-template-columns: 1fr;
+            }
+            .rand-reading-card { position: relative; top: auto; }
         }
         @media (max-width: 640px) {
             .article-body img, .article-body figure { float: none; max-width: 100%; margin: 2rem auto; display: block; clear: both; }
-            .article-body > p:first-of-type::first-letter { font-size: 3.5rem; }
+            .article-body > p:first-of-type::first-letter { font-size: inherit; }
+            .rand-search-form {
+                grid-template-columns: auto minmax(0, 1fr);
+                padding: 0 0.85rem;
+            }
+            .rand-search-submit {
+                grid-column: 1 / -1;
+                width: 100%;
+                margin-bottom: 0.85rem;
+            }
+            .rand-article-sticky-inner { align-items: flex-start; }
+            .rand-article-tools { flex-wrap: wrap; }
+            .rand-related-card { grid-template-columns: 74px minmax(0, 1fr); }
         }
 
 
@@ -1044,18 +1340,21 @@
     <div id="reading-progress"></div>
 
     <!-- MOBILE SEARCH OVERLAY -->
-    <div id="search-overlay" class="fixed inset-0 bg-white/97 backdrop-blur-md z-[100] search-hidden flex flex-col justify-start items-center pt-32 overflow-y-auto lg:hidden">
-        <button onclick="toggleSearch()" class="absolute top-8 right-8 text-pew-dark hover:rotate-90 transition-transform duration-300 p-2">
+    <div id="search-overlay" class="fixed inset-0 z-[100] search-hidden flex flex-col justify-start items-center pt-24 overflow-y-auto lg:hidden">
+        <button onclick="toggleSearch()" class="absolute top-7 right-7 text-pew-dark transition-colors duration-200 p-2" aria-label="Close search">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
-        <div class="w-full max-w-3xl px-6">
-            <h2 class="text-3xl font-serif text-pew-dark mb-8 text-center" data-en="Search the Initiative" data-zh="搜索智库平台">Search the Initiative</h2>
-            <form onsubmit="handleSearch(event)" class="flex items-center border-b-2 border-pew-dark pb-3 group">
-                <i data-lucide="search" class="w-6 h-6 text-gray-400 group-focus-within:text-pew-dark transition-colors mr-4"></i>
-                <input type="text" id="search-input" placeholder="Type keywords (e.g. policy, Africa, linguistics)..." class="w-full bg-transparent text-xl md:text-2xl font-sans outline-none text-pew-dark placeholder-gray-300">
-                <button type="submit" class="text-sm font-bold uppercase tracking-widest text-pew-subtle hover:text-pew-accent ml-4 transition-colors">Search</button>
+        <div class="w-full max-w-4xl px-5">
+            <div class="rand-search-panel">
+                <p class="rand-search-kicker mb-3" data-en="Research Search" data-zh="Research Search">Research Search</p>
+                <h2 class="rand-search-title" data-en="Search research, field notes, and voices." data-zh="Search research, field notes, and voices.">Search research, field notes, and voices.</h2>
+                <form onsubmit="handleSearch(event)" class="rand-search-form group">
+                    <i data-lucide="search" class="w-5 h-5 text-gray-400 group-focus-within:text-pew-dark transition-colors"></i>
+                    <input type="text" id="search-input" placeholder="Search by topic, place, language, or archive..." class="w-full bg-transparent font-sans outline-none placeholder-gray-400">
+                    <button type="submit" class="rand-search-submit">Search</button>
             </form>
-            <div id="search-result-msg" class="mt-8 font-serif hidden w-full"></div>
+                <div id="search-result-msg" class="hidden w-full"></div>
+            </div>
         </div>
     </div>
 
@@ -1528,10 +1827,10 @@
 
         <!-- ===== VIEW: ARTICLE ===== -->
         <!-- ===== VIEW: ARTICLE ===== -->
-        <div id="view-article" class="page-view pb-24">
+        <div id="view-article" class="page-view rand-article-shell pb-24">
             <!-- Sticky top bar -->
             <div class="article-sticky-bar px-6 lg:px-12 py-3">
-                <div class="max-w-3xl mx-auto flex items-center justify-between">
+                <div class="rand-article-sticky-inner">
                     <button onclick="closeArticle()" class="flex items-center gap-2 text-[12px] font-bold uppercase tracking-widest text-gray-500 hover:text-pew-dark transition-colors">
                         <i data-lucide="arrow-left" class="w-4 h-4"></i>
                         <span id="article-back-label" data-en="Back" data-zh="返回">Back</span>
@@ -1551,11 +1850,14 @@
                 </div>
             </div>
 
-            <div class="max-w-3xl mx-auto px-4 lg:px-0 pt-10">
+            <div class="rand-article-header">
+                <div class="rand-article-header-inner">
+                    <div>
                 <!-- Article header -->
-                <p id="article-view-tag" class="text-[11px] font-bold uppercase tracking-widest text-[#cc1414] mb-4"></p>
-                <h1 id="article-view-title" class="font-serif text-[2.8rem] md:text-[3.8rem] font-bold text-pew-dark leading-[1.12] tracking-[-0.01em] mb-8 text-center" style="text-wrap:balance;"></h1>
-                <div class="flex flex-wrap items-center gap-5 text-[13px] text-gray-400 font-sans font-medium uppercase tracking-wider mb-14 pb-12 border-b border-gray-200">
+                <p id="article-view-tag" class="rand-article-label"></p>
+                <h1 id="article-view-title" class="rand-article-title"></h1>
+                <p id="article-view-summary" class="rand-article-summary"></p>
+                <div class="rand-article-meta mt-8">
                     <span id="article-view-author"></span>
                     <span class="text-gray-300">·</span>
                     <span id="article-view-time"></span>
@@ -1563,6 +1865,12 @@
                     <span id="article-view-date"></span>
                 </div>
 
+                    </div>
+                </div>
+            </div>
+
+            <div class="rand-article-main">
+                <article>
                 <!-- Citation panel -->
                 <div id="cite-panel" class="hidden bg-[#f8f9fa] border border-gray-200 p-6 mb-10">
                     <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-3 font-sans">Citation Formats</p>
@@ -1577,7 +1885,7 @@
                 </div>
 
                 <!-- Article body -->
-                <div id="article-view-body" class="article-body mb-12"></div>
+                <div id="article-view-body" class="article-body rand-article-body mb-12"></div>
 
                 <!-- Interaction row -->
                 <div class="flex items-center gap-6 py-8 border-t border-b border-gray-200 mb-12">
@@ -1594,11 +1902,13 @@
                 <!-- Comments -->
                 <div id="giscus-comments" class="mb-16"></div>
 
-                <!-- Related -->
-                <div class="border-t border-gray-200 pt-12">
-                    <p class="section-label mb-6" data-en="Related" data-zh="相关文章">Related</p>
-                    <div id="article-related" class="grid grid-cols-1 md:grid-cols-2 gap-6"></div>
-                </div>
+                </article>
+
+                <aside class="rand-reading-card">
+                    <h3 data-en="Related" data-zh="Related">Related</h3>
+                    <p data-en="Selected from the same research category for a focused reading path." data-zh="Selected from the same research category for a focused reading path.">Selected from the same research category for a focused reading path.</p>
+                    <div id="article-related" class="grid grid-cols-1 gap-4 mt-5"></div>
+                </aside>
             </div>
         </div>
 
@@ -1924,29 +2234,49 @@
             return highlightText(snippet, query);
         }
         function renderSearchResults(query, container, isFullScreen) {
-            let resultHTML = isFullScreen ? '<div class="bg-white p-6 shadow-xl border border-gray-200 mt-4 text-left"><ul class="space-y-4">' : '<ul class="divide-y divide-gray-100">';
-            let found = false;
+            const matches = [];
             for (const [id, article] of Object.entries(articlesDB)) {
                 const inTitleEn = article.title.en.toLowerCase().includes(query);
                 const inTitleZh = article.title.zh.toLowerCase().includes(query);
-                const inBody = article.body.en.toLowerCase().includes(query);
-                if (inTitleEn || inTitleZh || inBody) {
-                    const title = article.title[currentLang];
-                    const highlightedTitle = highlightText(title, query);
-                    const snippet = getBodySnippet(article.body.en, query);
-                    if (isFullScreen) {
-                        resultHTML += `<li class="border-b border-gray-100 pb-4 last:border-0"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><a href="#" onclick="openArticle('${id}'); toggleSearch(); return false;" class="text-base font-serif font-bold text-[#005587] hover:text-pew-dark transition-colors">${highlightedTitle}</a>${snippet ? `<p class="text-[13px] text-gray-500 font-sans mt-1.5 leading-relaxed line-clamp-2">${snippet}</p>` : ''}</li>`;
-                    } else {
-                        resultHTML += `<li><a href="#" onclick="openArticle('${id}'); document.getElementById('search-dropdown').classList.add('hidden'); return false;" class="block p-4 hover:bg-gray-50 transition-colors text-left"><span class="text-[10px] uppercase font-bold text-gray-400 tracking-widest block mb-1">${article.tag[currentLang]}</span><span class="text-sm font-serif font-bold text-pew-dark">${highlightedTitle}</span>${snippet ? `<p class="text-[12px] text-gray-400 font-sans mt-1 leading-relaxed line-clamp-2">${snippet}</p>` : ''}</li>`;
-                    }
-                    found = true;
+                const inBodyEn = article.body.en.toLowerCase().includes(query);
+                const inBodyZh = (article.body.zh || '').toLowerCase().includes(query);
+                const inTag = (article.tag.en + ' ' + article.tag.zh + ' ' + article.category).toLowerCase().includes(query);
+                if (inTitleEn || inTitleZh || inBodyEn || inBodyZh || inTag) {
+                    matches.push([id, article]);
                 }
             }
-            resultHTML += isFullScreen ? '</ul></div>' : '</ul>';
-            if (found) {
-                container.innerHTML = isFullScreen ? `<span class="text-gray-400 text-xs font-sans tracking-widest uppercase">Results for "${query}"</span>${resultHTML}` : resultHTML;
+
+            if (!matches.length) {
+                container.innerHTML = isFullScreen
+                    ? `<div class="rand-search-results"><div class="p-6 text-center text-sm text-gray-400 font-sans">No results found.</div></div>`
+                    : `<div class="p-5 text-center text-sm text-gray-400 font-sans">No results found.</div>`;
+                container.classList.remove('hidden');
+                return;
+            }
+
+            let resultHTML = '';
+            matches.forEach(([id, article]) => {
+                const title = article.title[currentLang];
+                const highlightedTitle = highlightText(title, query);
+                const snippet = getBodySnippet(article.body[currentLang] || article.body.en, query) || (article.excerpt ? highlightText(article.excerpt[currentLang] || article.excerpt.en || '', query) : '');
+                const date = (article.publishDate && (article.publishDate[currentLang] || article.publishDate.en)) || '';
+                const action = isFullScreen
+                    ? `openArticle('${id}'); toggleSearch(); return false;`
+                    : `openArticle('${id}'); document.getElementById('search-dropdown').classList.add('hidden'); return false;`;
+                resultHTML += `<a href="#" onclick="${action}" class="rand-search-result">
+                    <span class="rand-search-kind">${article.tag[currentLang]}${date ? ` / ${date}` : ''}</span>
+                    <h3 class="rand-search-result-title">${highlightedTitle}</h3>
+                    ${snippet ? `<p>${snippet}</p>` : ''}
+                </a>`;
+            });
+
+            if (isFullScreen) {
+                container.innerHTML = `<div class="rand-search-results">
+                    <div class="rand-search-count py-4">${matches.length} results for "${query}"</div>
+                    ${resultHTML}
+                </div>`;
             } else {
-                container.innerHTML = isFullScreen ? `<div class="bg-white p-6 shadow-xl text-center text-gray-400 font-sans text-sm">No results found.</div>` : `<div class="p-6 text-center text-sm text-gray-400 font-sans">No results found.</div>`;
+                container.innerHTML = `<div class="rand-search-results mt-0 px-4">${resultHTML}</div>`;
             }
             container.classList.remove('hidden');
         }
@@ -3024,6 +3354,10 @@
             document.getElementById('article-view-title').textContent = data.title[currentLang];
             document.getElementById('article-view-author').textContent = data.author[currentLang];
             document.getElementById('article-view-date').textContent = data.publishDate[currentLang] || data.publishDate.en || data.tag.en || '';
+            const summaryEl = document.getElementById('article-view-summary');
+            if (summaryEl) {
+                summaryEl.textContent = data.excerpt ? (data.excerpt[currentLang] || data.excerpt.en || '') : '';
+            }
 
             // Reading time estimate
             const bodyText = data.body[currentLang] || '';
@@ -3039,17 +3373,12 @@
             var pHash = 0; for (var i = 0; i < id.length; i++) { pHash = ((pHash << 5) - pHash) + id.charCodeAt(i); pHash |= 0; }
             var pIdx = Math.abs(pHash) % patClasses.length;
             var articlePage = document.getElementById('view-article');
-            articlePage.className = articlePage.className.replace(/article-pattern-\w+/g, '').trim() + ' ' + patClasses[pIdx];
+            articlePage.className = articlePage.className.replace(/article-pattern-\w+/g, '').trim();
             var bodyEl = document.getElementById('article-view-body');
             bodyEl.innerHTML = marked.parse(bodyText);
-            // Move first image to top so float:left aligns with text start
-            var firstImg = bodyEl.querySelector('img, figure');
-            if (firstImg && firstImg !== bodyEl.firstChild) {
-                bodyEl.insertBefore(firstImg, bodyEl.firstChild);
-            }
+            // Keep article media in its editorial position instead of forcing a decorative layout.
             var captionEl = document.getElementById('pattern-caption');
-            if (!captionEl) { captionEl = document.createElement('div'); captionEl.id = 'pattern-caption'; captionEl.style.cssText = 'text-align:center;margin-top:2rem;font-size:11px;color:#b8b0a4;font-family:Inter,Noto Sans SC,sans-serif;letter-spacing:0.04em;'; document.getElementById('article-view-body').after(captionEl); }
-            captionEl.textContent = (currentLang === 'zh' ? '背景纹样：' : 'Background pattern: ') + (currentLang === 'zh' ? patNamesZH[pIdx] : patNamesEN[pIdx]);
+            if (captionEl) captionEl.remove();
 
             // Citations
             const author = data.author[currentLang] || 'Margins &amp; Meaning';
@@ -3078,13 +3407,13 @@
                 .filter(([s, d]) => s !== id && d.category.toLowerCase() === cat)
                 .slice(0, 4);
             const relatedHTML = related.map(([s, d]) =>
-                `<article class="blog-card cursor-pointer group flex gap-4" onclick="openArticle('${s}')">
-                    <div class="blog-card-img w-20 h-20 flex-shrink-0 bg-gray-100 border border-gray-200">
+                `<article class="rand-related-card group" onclick="openArticle('${s}')">
+                    <div class="w-full aspect-square bg-gray-100 border border-gray-200 overflow-hidden">
                         <img src="${d.coverUrl}" class="w-full h-full object-cover">
                     </div>
                     <div>
-                        <span class="text-[10px] font-bold uppercase tracking-widest text-gray-400 block mb-1">${d.tag[currentLang]}</span>
-                        <h4 class="text-sm font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">${d.title[currentLang]}</h4>
+                        <span class="rand-search-kind block mb-2">${d.tag[currentLang]}</span>
+                        <h4 class="group-hover:text-[#005587] transition-colors">${d.title[currentLang]}</h4>
                     </div>
                 </article>`
             ).join('');

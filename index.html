@@ -464,13 +464,15 @@
         }
         .home-voice-feature {
             display: grid;
-            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-            gap: clamp(2rem, 5vw, 5rem);
+            grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+            gap: clamp(1.5rem, 4vw, 3rem);
             align-items: start;
+            padding-top: 1.5rem;
+            border-top: 4px solid var(--blue);
         }
         .home-voice-media {
             position: relative;
-            aspect-ratio: 4 / 3;
+            aspect-ratio: 16 / 10;
             background: #191919;
             overflow: hidden;
         }
@@ -499,11 +501,12 @@
             text-transform: uppercase;
         }
         .home-voice-title {
-            font-size: clamp(2rem, 3.5vw, 3.7rem);
-            line-height: 1.04;
-            font-weight: 600;
+            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-size: clamp(1.55rem, 2.8vw, 2.65rem);
+            line-height: 1.1;
+            font-weight: 800;
             color: var(--text);
-            letter-spacing: 0;
+            letter-spacing: -0.015em;
             text-wrap: balance;
         }
         .home-voice-meta {
@@ -513,7 +516,8 @@
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             padding: 1.25rem 0;
-            color: var(--text-muted);
+            color: #3f4852;
+            font-family: Inter, "Noto Sans SC", sans-serif;
         }
         .home-voice-meta span {
             display: block;
@@ -571,6 +575,161 @@
             line-height: 1.18;
         }
 
+        .rand-hero {
+            background: #fff;
+            border-bottom: 1px solid var(--border);
+        }
+        .rand-hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: start;
+        }
+        .rand-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            color: var(--blue);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .rand-eyebrow::before {
+            content: '';
+            width: 2.25rem;
+            height: 2px;
+            background: var(--blue);
+        }
+        .rand-hero-title {
+            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-size: clamp(2.5rem, 5.4vw, 5.15rem);
+            font-weight: 800;
+            line-height: 0.98;
+            letter-spacing: -0.02em;
+            color: var(--dark);
+            text-wrap: balance;
+        }
+        .rand-hero-copy {
+            max-width: 620px;
+            color: #39434d;
+            font-size: clamp(1.02rem, 1.5vw, 1.22rem);
+            line-height: 1.6;
+        }
+        .rand-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+        .rand-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 44px;
+            padding: 0 1rem;
+            border: 1px solid var(--blue);
+            background: var(--blue);
+            color: #fff;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+        }
+        .rand-button.secondary { background: #fff; color: var(--blue); }
+        .rand-button:hover { background: #071d2d; border-color: #071d2d; color: #fff; }
+        .rand-latest { border-left: 1px solid var(--border); padding-left: clamp(1.5rem, 3vw, 3rem); }
+        .rand-latest-title,
+        .rand-section-title {
+            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--dark);
+        }
+        .rand-latest-feature {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 1.25rem;
+            padding: 1.25rem 0;
+            border-top: 4px solid var(--blue);
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+        .rand-latest-feature img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; background: #eef1f3; }
+        .rand-tag {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            padding: 0.24rem 0.48rem;
+            background: #e8f1f7;
+            color: var(--blue);
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .rand-latest-heading {
+            font-family: Inter, "Noto Sans SC", sans-serif;
+            color: var(--dark);
+            font-size: clamp(1.45rem, 2vw, 2.05rem);
+            font-weight: 800;
+            line-height: 1.12;
+            letter-spacing: -0.015em;
+        }
+        .rand-latest-list article { padding: 1rem 0; border-bottom: 1px solid var(--border); cursor: pointer; }
+        .rand-latest-list h4,
+        .rand-card h3 {
+            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-weight: 800;
+            color: var(--dark);
+            letter-spacing: -0.01em;
+        }
+        .rand-latest-list article:hover h4,
+        .rand-card:hover h3,
+        .rand-latest-feature:hover .rand-latest-heading { color: var(--blue); }
+        .rand-section { background: #f6f7f8; border-bottom: 1px solid var(--border); }
+        .rand-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+        .rand-card {
+            background: #fff;
+            border-top: 4px solid var(--blue);
+            padding: 1.35rem;
+            min-height: 245px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            cursor: pointer;
+            box-shadow: 0 1px 0 rgba(0,0,0,0.04);
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .rand-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); }
+        .rand-card h3 { font-size: 1.22rem; line-height: 1.2; margin-top: 0.85rem; }
+        .rand-card p { color: #4c5661; font-size: 0.94rem; line-height: 1.55; margin-top: 1rem; }
+        .rand-number-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            border-top: 1px solid var(--border);
+            border-left: 1px solid var(--border);
+        }
+        .rand-number {
+            padding: 1.5rem;
+            border-right: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            background: #fff;
+        }
+        .rand-number strong {
+            display: block;
+            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-size: clamp(2.4rem, 4vw, 4rem);
+            line-height: 1;
+            color: var(--blue);
+            letter-spacing: -0.04em;
+        }
+        .rand-number span {
+            display: block;
+            margin-top: 0.75rem;
+            color: #4c5661;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
         @media (max-width: 900px) {
             .home-hero {
                 min-height: 68vh;
@@ -584,9 +743,15 @@
                 line-height: 1.02;
             }
             .home-voice-feature,
-            .home-ecosystem-grid {
+            .home-ecosystem-grid,
+            .rand-hero-grid,
+            .rand-latest-feature,
+            .rand-card-grid,
+            .rand-number-grid {
                 grid-template-columns: 1fr;
             }
+            .rand-latest { border-left: none; padding-left: 0; }
+            .rand-hero-title { font-size: clamp(2.25rem, 11vw, 3.8rem); }
             .home-ecosystem-item {
                 min-height: 150px;
             }
@@ -926,7 +1091,7 @@
                     <path d="M45 70 Q 60 77.5 75 85" stroke="currentColor" stroke-width="2" fill="none" opacity="0.5"/>
                 </svg>
                 <div class="flex flex-col">
-                    <h1 class="font-serif text-[28px] md:text-[34px] font-normal text-pew-dark tracking-tight leading-none" data-en="Margins & Meaning" data-zh="边缘与意义">
+                    <h1 class="font-sans text-[25px] md:text-[31px] font-extrabold text-pew-dark tracking-tight leading-none" data-en="Margins & Meaning" data-zh="边缘与意义">
                         Margins & Meaning
                     </h1>
                     <span class="text-[10px] md:text-[11px] text-gray-400 uppercase tracking-[0.18em] mt-1.5 font-sans font-semibold" data-en="Voices from the Margins Project" data-zh="边缘之声研究项目">Voices from the Margins Project</span>
@@ -1004,46 +1169,48 @@
             <!-- HERO: full-bleed featured image -->
             <div id="hero-container"></div>
 
-            <!-- RESEARCH ECOSYSTEM STRIP -->
-            <section id="home-voices-section" class="home-voices-section py-20 md:py-28">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                    <div class="flex items-end justify-between gap-8 mb-12">
-                        <div>
-                            <div class="section-label mb-4" data-en="Primary Material" data-zh="一手材料">Primary Material</div>
-                            <h2 class="font-serif text-4xl md:text-6xl font-semibold leading-none text-pew-dark" data-en="From the Voices Archive" data-zh="声音档案选录">From the Voices Archive</h2>
-                        </div>
-                        <button onclick="navigateTo('view-voices')" class="hidden md:inline-flex text-[12px] font-bold uppercase tracking-widest text-[#263f52] hover:text-pew-dark transition-colors items-center gap-1.5" data-en="Open Archive" data-zh="打开档案">Open Archive <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
-                    </div>
-                    <div id="home-voice-feature"></div>
-                </div>
-            </section>
-
             <div id="ecosystem-strip" class="home-ecosystem-section border-b border-gray-200 bg-white"></div>
 
             <!-- KEY NUMBERS STRIP -->
-            <div id="featured-section" class="border-b border-gray-200 bg-white py-28 md:py-36">
-                <div class="max-w-4xl mx-auto px-6 lg:px-12">
-                    <p class="text-center text-[11px] font-medium uppercase tracking-[0.25em] text-gray-400 font-sans mb-16" data-en="By the Numbers" data-zh="数据一览">By the Numbers</p>
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-0 reveal">
-                        <div class="stat-item text-center py-2 flex flex-col items-center">
-                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-3 counter" data-target="250">0</div>
-                            <div class="h-8 flex items-center"><p class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium leading-tight text-center" data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</p></div>
+            <div id="featured-section" class="border-b border-gray-200 bg-white py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                    <div class="mb-10">
+                        <div class="rand-eyebrow mb-4" data-en="By the Numbers" data-zh="数据一览">By the Numbers</div>
+                        <h2 class="rand-section-title text-3xl md:text-4xl" data-en="A growing research record" data-zh="持续增长的研究记录">A growing research record</h2>
+                    </div>
+                    <div class="rand-number-grid reveal">
+                        <div class="rand-number">
+                            <strong class="counter" data-target="250">0</strong>
+                            <span data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</span>
                         </div>
-                        <div class="stat-item text-center py-2 flex flex-col items-center" id="counter-conferences">
-                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-3"><span class="counter" data-target="5">0</span></div>
-                            <div class="h-8 flex items-center"><p class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium leading-tight text-center" data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</p></div>
+                        <div class="rand-number" id="counter-conferences">
+                            <strong class="counter" data-target="5">0</strong>
+                            <span data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</span>
                         </div>
-                        <div class="stat-item text-center py-2 flex flex-col items-center" id="counter-papers">
-                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-3"><span class="counter" data-target="3">0</span></div>
-                            <div class="h-8 flex items-center"><p class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium leading-tight text-center" data-en="Research Papers" data-zh="学术论文">Research Papers</p></div>
+                        <div class="rand-number" id="counter-papers">
+                            <strong class="counter" data-target="3">0</strong>
+                            <span data-en="Research Papers" data-zh="学术论文">Research Papers</span>
                         </div>
-                        <div class="stat-item text-center py-2 flex flex-col items-center">
-                            <div class="text-7xl md:text-8xl font-serif font-bold text-pew-dark leading-none mb-3"><span class="counter" data-target="10">0</span></div>
-                            <div class="h-8 flex items-center"><p class="text-[11px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium leading-tight text-center" data-en="Years of Data" data-zh="数据跨度">Years of Data</p></div>
+                        <div class="rand-number">
+                            <strong class="counter" data-target="10">0</strong>
+                            <span data-en="Years of Data" data-zh="数据跨度">Years of Data</span>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <section id="home-voices-section" class="home-voices-section py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                    <div class="flex items-end justify-between gap-8 mb-10">
+                        <div>
+                            <div class="rand-eyebrow mb-4" data-en="Primary Material" data-zh="一手材料">Primary Material</div>
+                            <h2 class="rand-section-title text-3xl md:text-4xl" data-en="From the Voices Archive" data-zh="声音档案选录">From the Voices Archive</h2>
+                        </div>
+                        <button onclick="navigateTo('view-voices')" class="hidden md:inline-flex rand-button secondary" data-en="Open Archive" data-zh="打开档案">Open Archive <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                    <div id="home-voice-feature"></div>
+                </div>
+            </section>
 
             <!-- INTERACTIVE MAPS -->
             <div id="map-section" class="py-20 md:py-24">
@@ -2195,87 +2362,79 @@
                 };
             }
 
-            const safeTag = featuredResearch.tag ? featuredResearch.tag[currentLang] : '';
-            const safeTitle = featuredResearch.title ? featuredResearch.title[currentLang] : '';
-            const safeExcerpt = featuredResearch.excerpt ? featuredResearch.excerpt[currentLang] : '';
-            const cover = featuredResearch.coverUrl;
-            const heroAction = featuredResearch.slug === '#' ? "navigateTo('view-research')" : "openArticle('" + featuredResearch.slug + "')";
-            const archiveLabel = currentLang === 'en' ? 'Field archive / language, identity, inequality' : '田野档案 / 语言、身份与不平等';
-            const issueLabel = currentLang === 'en' ? 'Independent research initiative' : '独立研究计划';
+            const t = function(field) { return field ? (field[currentLang] || field.en || '') : ''; };
+            const allEntries = Object.entries(articlesDB)
+                .map(([slug, data]) => ({ slug, ...data }))
+                .sort((a, b) => (b.publishDate?.en || '').localeCompare(a.publishDate?.en || ''));
+            const feature = allEntries.find(a => a.category.toLowerCase() === 'research') || featuredResearch;
+            const latest = allEntries.filter(a => a.slug !== feature.slug).slice(0, 4);
+            const featureTag = t(feature.tag) || (currentLang === 'en' ? 'Research' : '研究');
+            const featureDate = t(feature.publishDate) || '';
+            const featureAction = feature.slug === '#' ? "navigateTo('view-research')" : "openArticle('" + feature.slug + "')";
 
-            // HERO: exhibition-style feature with text overlay
             heroContainer.innerHTML = `
-                <div class="home-hero relative w-full cursor-pointer group overflow-hidden" onclick="${heroAction}">
-                    <img src="${cover}" class="absolute inset-0 w-full h-full object-cover" alt="" onerror="this.style.display='none'">
-                    <div class="relative z-10 flex flex-col justify-end h-full max-w-7xl mx-auto px-6 lg:px-12" style="min-height:inherit;padding-bottom:clamp(4rem,8vw,7rem);padding-top:clamp(5rem,8vw,8rem)">
-                        <span class="home-hero-kicker mb-6">${safeTag || archiveLabel}</span>
-                        <h1 class="home-hero-title font-serif mb-6 group-hover:opacity-90 transition-opacity">
-                            ${safeTitle}
-                        </h1>
-                        <p class="home-hero-copy font-serif leading-relaxed mb-8">
-                            ${safeExcerpt}
-                        </p>
-                        <div class="home-hero-meta flex flex-col md:flex-row md:items-center gap-3 md:gap-8 pt-5 max-w-3xl text-[12px] font-sans uppercase tracking-[0.13em]">
-                            <span>${archiveLabel}</span>
-                            <span>${issueLabel}</span>
-                        </div>
-                        <div class="home-hero-cta flex items-center font-sans font-semibold text-sm uppercase group-hover:gap-3 gap-2 transition-all duration-300 mt-8">
-                            <span>${currentLang === 'en' ? 'Read Research' : '阅读研究'}</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // RESEARCH ECOSYSTEM STRIP
-            const displayNames = {
-                'writing': { en: 'Writing & Opinion', zh: '学术评论与观点' },
-                'field': { en: 'Field Notes', zh: '田野笔记' },
-                'voices': { en: 'Voices Archive', zh: '边缘声音档案库' },
-                'research': { en: 'Research', zh: '研究' }
-            };
-
-            const ecoKeys = Object.keys(sideArticles).filter(k => sideArticles[k]);
-            let ecoHTML = '<div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 md:py-24"><div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10"><div><div class="section-label mb-4">' + (currentLang === 'en' ? 'Research Ecosystem' : '研究体系') + '</div><h2 class="font-serif text-4xl md:text-6xl font-medium leading-none text-pew-dark">' + (currentLang === 'en' ? 'A reading room for margins.' : '一个关于边缘的阅读室。') + '</h2></div><p class="max-w-md text-sm md:text-base text-gray-500 font-serif leading-relaxed">' + (currentLang === 'en' ? 'Research, field notes, oral histories, and datasets are treated as one connected archive.' : '研究、田野笔记、口述材料与数据集在这里共同构成一个互相关联的档案。') + '</p></div><div class="home-ecosystem-grid">';
-
-            let idx = 1;
-            for (const [key, article] of Object.entries(sideArticles)) {
-                if (article) {
-                    const sideTitle = article.title ? article.title[currentLang] : '';
-                    const dispName = displayNames[key][currentLang];
-                    const num = String(idx).padStart(2, '0');
-                    ecoHTML += `
-                        <div class="home-ecosystem-item cursor-pointer group" onclick="openArticle('${article.slug}')">
-                            <p class="home-ecosystem-no">${num}</p>
-                            <div>
-                                <p class="home-ecosystem-type">${dispName}</p>
-                                <h5 class="home-ecosystem-title line-clamp-3">${sideTitle}</h5>
+                <section class="rand-hero py-14 md:py-20">
+                    <div class="max-w-7xl mx-auto px-6 lg:px-12 rand-hero-grid">
+                        <div>
+                            <div class="rand-eyebrow mb-6">${currentLang === 'en' ? 'Objective language research' : '客观语言研究'}</div>
+                            <h1 class="rand-hero-title mb-6">${currentLang === 'en' ? 'Research on language, identity, and inequality.' : '关于语言、身份与不平等的研究。'}</h1>
+                            <p class="rand-hero-copy">${currentLang === 'en' ? 'Margins & Meaning is an independent research initiative documenting endangered voices, field materials, and the social structures that shape language use.' : 'Margins & Meaning 是一个独立研究计划，记录濒危声音、田野材料，以及塑造语言使用的社会结构。'}</p>
+                            <div class="rand-actions">
+                                <button class="rand-button" onclick="navigateTo('view-research')">${currentLang === 'en' ? 'Explore Research' : '浏览研究'} <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                                <button class="rand-button secondary" onclick="navigateTo('view-voices')">${currentLang === 'en' ? 'Voices Archive' : '声音档案'}</button>
                             </div>
                         </div>
-                    `;
-                    idx++;
-                }
-            }
-            // Static entries for Voices Archive and Data & Insights
-            ecoHTML += `
-                <div class="home-ecosystem-item cursor-pointer group" onclick="navigateTo('view-voices')">
-                    <p class="home-ecosystem-no">${String(idx).padStart(2, '0')}</p>
-                    <div>
-                        <p class="home-ecosystem-type">${currentLang === 'en' ? 'Voices Archive' : '边缘声音档案库'}</p>
-                        <h5 class="home-ecosystem-title">${currentLang === 'en' ? 'Explore primary sources &amp; oral histories' : '探索一手资料与口述历史'}</h5>
+                        <div class="rand-latest">
+                            <h2 class="rand-latest-title mb-5">${currentLang === 'en' ? 'The Latest from Margins & Meaning' : '最新研究与动态'}</h2>
+                            <article class="rand-latest-feature" onclick="${featureAction}">
+                                <img src="${feature.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                                <div>
+                                    <span class="rand-tag mb-3">${featureTag}</span>
+                                    <h3 class="rand-latest-heading mb-3">${t(feature.title)}</h3>
+                                    <p class="text-sm text-gray-600 leading-relaxed mb-4">${t(feature.excerpt)}</p>
+                                    <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${featureDate}</p>
+                                </div>
+                            </article>
+                            <div class="rand-latest-list">
+                                ${latest.map(function(article) {
+                                    return `<article onclick="openArticle('${article.slug}')">
+                                        <span class="rand-tag mb-2">${t(article.tag) || article.category}</span>
+                                        <h4 class="text-lg leading-snug">${t(article.title)}</h4>
+                                        <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500 mt-2">${t(article.publishDate) || article.category}</p>
+                                    </article>`;
+                                }).join('')}
+                            </div>
+                        </div>
                     </div>
-                </div>
-            `; idx++;
-            ecoHTML += `
-                <div class="home-ecosystem-item cursor-pointer group" onclick="navigateTo('view-data')">
-                    <p class="home-ecosystem-no">${String(idx).padStart(2, '0')}</p>
-                    <div>
-                        <p class="home-ecosystem-type">${currentLang === 'en' ? 'Data & Insights' : '数据与洞察'}</p>
-                        <h5 class="home-ecosystem-title">${currentLang === 'en' ? 'Quantitative research &amp; visual datasets' : '量化研究与可视化数据集'}</h5>
-                    </div>
-                </div>
+                </section>
             `;
-            ecoHTML += '</div></div>';
+
+            const featuredCards = allEntries
+                .filter(function(a) { return ['research', 'writing', 'opinion', 'field notes'].includes(a.category.toLowerCase()); })
+                .slice(0, 3);
+            let ecoHTML = `<section class="rand-section py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
+                        <div>
+                            <div class="rand-eyebrow mb-4">${currentLang === 'en' ? 'Featured Research' : '重点研究'}</div>
+                            <h2 class="rand-section-title text-3xl md:text-4xl">${currentLang === 'en' ? 'Research and commentary' : '研究与评论'}</h2>
+                        </div>
+                        <p class="max-w-md text-sm text-gray-600 leading-relaxed">${currentLang === 'en' ? 'Evidence, field notes, and analysis organized for readers who need clarity before opinion.' : '以证据、田野记录与分析为基础，为需要清晰判断的读者组织内容。'}</p>
+                    </div>
+                    <div class="rand-card-grid">`;
+
+            featuredCards.forEach(function(article) {
+                ecoHTML += `<article class="rand-card" onclick="openArticle('${article.slug}')">
+                    <div>
+                        <span class="rand-tag">${t(article.tag) || article.category}</span>
+                        <h3>${t(article.title)}</h3>
+                        <p>${t(article.excerpt)}</p>
+                    </div>
+                    <span class="text-[11px] uppercase tracking-widest font-bold text-gray-500 mt-8">${t(article.publishDate) || (currentLang === 'en' ? 'Read more' : '阅读全文')}</span>
+                </article>`;
+            });
+
+            ecoHTML += `</div></div></section>`;
             if (ecoStrip) ecoStrip.innerHTML = ecoHTML;
         }
 

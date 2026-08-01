@@ -892,7 +892,6 @@
             grid-template-columns: 1fr;
             gap: 1rem;
             padding: 1.15rem 0 1.25rem;
-            border-top: 4px solid var(--blue);
             border-bottom: 1px solid var(--border);
             cursor: pointer;
         }
@@ -3227,6 +3226,10 @@
         function getContentLabel(article) {
             const cat = ((article && article.category) || '').toLowerCase();
             const tag = (article && article.tag) || {};
+            const tagText = (tag[currentLang] || tag.en || tag['en-US'] || tag.zh || tag['zh-CN'] || '').trim();
+            if (tagText && tagText.length <= 26 && !/[•·]/.test(tagText) && !/\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)\b|\d{4}/i.test(tagText)) {
+                return tagText;
+            }
             const tagEn = (tag.en || tag['en-US'] || '').toLowerCase();
             const tagZh = tag.zh || tag['zh-CN'] || '';
             const haystack = [cat, tagEn, tagZh].join(' ').toLowerCase();
@@ -3241,6 +3244,9 @@
             }
             if (/voice|audio|recording|archive|声音|录音|档案/.test(haystack) || cat === 'voices') {
                 return currentLang === 'en' ? 'Voices' : '声音';
+            }
+            if (/research|研究/.test(haystack) || cat === 'research') {
+                return currentLang === 'en' ? 'Research' : '研究';
             }
             if (/team|update|news|团队|动态/.test(haystack) || cat === 'blog') {
                 return currentLang === 'en' ? 'Update' : '动态';
@@ -3361,18 +3367,19 @@
                 </section>
             `;
 
+            const featuredTypes = ['research', 'writing', 'opinion', 'field notes', 'blog'];
             let featuredCards = allEntries
-                .filter(function(a) { return a.category.toLowerCase() === 'research' && !latestSlugs.has(a.slug); })
+                .filter(function(a) { return featuredTypes.includes(a.category.toLowerCase()) && !latestSlugs.has(a.slug); })
                 .slice(0, 4);
             if (featuredCards.length === 0) {
                 featuredCards = allEntries
-                    .filter(function(a) { return a.category.toLowerCase() === 'research'; })
+                    .filter(function(a) { return featuredTypes.includes(a.category.toLowerCase()); })
                     .slice(0, 4);
             }
             let ecoHTML = `<section class="rand-section py-16 md:py-24">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
                     <div class="rand-section-heading">
-                        <div class="rand-eyebrow">${currentLang === 'en' ? 'Featured Research' : '重点研究'}</div>
+                        <div class="rand-eyebrow">${currentLang === 'en' ? 'Featured Content' : '精选内容'}</div>
                     </div>
                     <div class="rand-featured-editorial">`;
 

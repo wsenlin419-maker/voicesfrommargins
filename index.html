@@ -146,6 +146,8 @@
         }
         html.dark .site-status-bar button,
         html.dark .site-status-bar a { color: #f7f1e6 !important; }
+        html.dark .site-search-trigger { color: var(--text) !important; }
+        html.dark .site-search-trigger:hover { color: var(--blue) !important; }
         html.dark #search-dropdown { background: var(--bg-card) !important; border-color: var(--border) !important; }
         html.dark #search-dropdown a { color: var(--text) !important; }
         html.dark #search-dropdown .divide-gray-100 > * { border-color: var(--border) !important; }
@@ -576,6 +578,28 @@
         .site-logo-mark { color: var(--dark); }
         .site-header-actions a,
         .site-header-actions button { color: var(--blue) !important; }
+        .site-search-trigger {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            border: 0;
+            background: transparent;
+            color: var(--dark) !important;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: clamp(1.1rem, 1.6vw, 1.45rem);
+            font-weight: 500;
+            letter-spacing: 0;
+            line-height: 1;
+            padding: 0.65rem 0;
+            cursor: pointer;
+            transition: color 0.18s ease;
+        }
+        .site-search-trigger:hover { color: var(--blue) !important; }
+        .site-search-trigger i {
+            width: 1.55rem;
+            height: 1.55rem;
+            stroke-width: 2;
+        }
         .site-search {
             width: 430px !important;
             min-height: 48px;
@@ -1918,7 +1942,7 @@
     <div id="reading-progress"></div>
 
     <!-- MOBILE SEARCH OVERLAY -->
-    <div id="search-overlay" class="fixed inset-0 z-[100] search-hidden flex flex-col justify-start items-center pt-24 overflow-y-auto lg:hidden">
+    <div id="search-overlay" class="fixed inset-0 z-[100] search-hidden flex flex-col justify-start items-center pt-24 overflow-y-auto">
         <button onclick="toggleSearch()" class="absolute top-7 right-7 text-pew-dark transition-colors duration-200 p-2" aria-label="Close search">
             <i data-lucide="x" class="w-8 h-8"></i>
         </button>
@@ -1975,22 +1999,11 @@
                 </div>
             </div>
 
-            <div class="site-header-actions hidden lg:flex flex-col items-end relative">
-                <div class="text-[13px] text-gray-600 mb-2.5 font-sans">
-                    <span class="text-gray-400 font-medium" data-en="Explore:" data-zh="探索:">Explore:</span>
-                    <button onclick="navigateTo('view-research')" class="text-[#005587] hover:underline ml-2 font-semibold transition-colors" data-en="Linguistics" data-zh="语言学研究">Linguistics</button>
-                    <span class="text-gray-200 px-2">|</span>
-                    <button onclick="navigateTo('view-data')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Media" data-zh="媒体与数据">Media</button>
-                    <span class="text-gray-200 px-2">|</span>
-                    <button onclick="navigateTo('view-blog')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Blog" data-zh="博客">Blog</button>
-                </div>
-                <form onsubmit="handleHeaderSearch(event)" class="site-search flex w-[340px] border border-gray-300 hover:border-gray-500 focus-within:border-[#263f52] transition-colors bg-white shadow-sm">
-                    <input type="text" id="header-search-input" placeholder="Search topics, places, field notes..." class="w-full px-4 py-2.5 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
-                    <button type="submit" class="bg-[#1a1a1a] hover:bg-[#005587] transition-colors text-white px-5 py-2 border-l border-gray-300 flex items-center justify-center" aria-label="Submit search and filters">
-                        <i data-lucide="search" class="w-4 h-4"></i>
-                    </button>
-                </form>
-                <div id="search-dropdown" class="absolute top-full right-0 w-[400px] bg-white border border-gray-200 mt-1 hidden z-50 flex-col max-h-[400px] overflow-y-auto"></div>
+            <div class="site-header-actions hidden lg:flex items-center relative">
+                <button onclick="toggleSearch()" class="site-search-trigger" aria-label="Open search">
+                    <span data-en="Search" data-zh="搜索">Search</span>
+                    <i data-lucide="search"></i>
+                </button>
             </div>
 
             <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-[#263f52] transition-colors p-2">
@@ -2780,6 +2793,7 @@
             renderSearchResults(query, document.getElementById('search-result-msg'), true);
         }
         function liveSearch() {
+            if (!headerSearchInput || !searchDropdown) return;
             const query = headerSearchInput.value.toLowerCase().trim();
             if (!query) { searchDropdown.classList.add('hidden'); return; }
             searchDropdown.classList.remove('hidden');

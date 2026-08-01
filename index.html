@@ -47,16 +47,20 @@
 
     <style>
         :root {
-            --blue: #005587;
-            --red: #cc1414;
-            --dark: #1a1a1a;
-            --subtle: #555555;
-            --bg: #ffffff;
-            --bg-alt: #f8f9fa;
+            --blue: #263f52;
+            --red: #9c3f32;
+            --dark: #151515;
+            --subtle: #666157;
+            --bg: #f8f5ee;
+            --bg-alt: #eee8dc;
             --bg-card: #ffffff;
-            --border: #e5e7eb;
-            --text: #1a1a1a;
-            --text-muted: #555555;
+            --border: #ded6c9;
+            --text: #1f1d19;
+            --text-muted: #6f695f;
+            --paper: #fbfaf6;
+            --ink-soft: #39352f;
+            --moss: #4d5c4a;
+            --archive-red: #9c3f32;
             --transition-speed: 0.35s;
         }
         html.dark {
@@ -249,7 +253,7 @@
             .voice-item .voice-title { font-size: 1.3rem; }
         }
 
-        body.lang-zh { text-align: justify; }
+        body.lang-zh { text-align: left; }
         .text-justify-force { text-align: justify; text-justify: inter-word; }
 
         .nav-track { position: relative; }
@@ -350,6 +354,250 @@
             letter-spacing: 0.15em;
             text-transform: uppercase;
             padding: 4px 10px;
+        }
+
+        .site-status-bar {
+            background: var(--dark);
+            color: #f7f1e6;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .site-status-bar button,
+        .site-status-bar a { color: inherit; }
+
+        .site-header {
+            background: rgba(251,250,246,0.96) !important;
+            border-bottom: 1px solid var(--border) !important;
+        }
+        .site-logo-mark { color: var(--dark); }
+        .site-header-actions a,
+        .site-header-actions button { color: var(--blue) !important; }
+        .site-search {
+            border-color: var(--border) !important;
+            box-shadow: none !important;
+            background: rgba(255,255,255,0.62) !important;
+        }
+        .site-search button { background: var(--dark) !important; }
+        .site-search button:hover { background: var(--blue) !important; }
+        .site-nav {
+            background: rgba(251,250,246,0.94) !important;
+            box-shadow: none !important;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(16px);
+        }
+        .site-nav #nav-track {
+            border-bottom: none !important;
+            letter-spacing: 0.13em;
+        }
+        .nav-indicator {
+            height: 2px;
+            background: var(--archive-red);
+        }
+
+        .home-hero {
+            min-height: min(760px, calc(100vh - 8rem));
+            background: #1f211e;
+            isolation: isolate;
+        }
+        .home-hero img {
+            filter: grayscale(0.35) saturate(0.78) contrast(0.9);
+            transform: scale(1.01);
+        }
+        .home-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            z-index: 1;
+            background:
+                linear-gradient(90deg, rgba(18,18,16,0.88) 0%, rgba(18,18,16,0.52) 42%, rgba(18,18,16,0.16) 100%),
+                linear-gradient(0deg, rgba(18,18,16,0.78) 0%, rgba(18,18,16,0.1) 42%, rgba(18,18,16,0.28) 100%);
+        }
+        .home-hero-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: #e6ddcc;
+            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+        .home-hero-kicker::before {
+            content: '';
+            width: 2.75rem;
+            height: 1px;
+            background: var(--archive-red);
+        }
+        .home-hero-title {
+            max-width: 900px;
+            color: #fffaf0;
+            font-size: clamp(2.55rem, 7vw, 6.4rem);
+            font-weight: 500;
+            line-height: 0.98;
+            letter-spacing: 0;
+            overflow-wrap: anywhere;
+            text-wrap: balance;
+        }
+        .home-hero-copy {
+            max-width: 650px;
+            color: rgba(255,250,240,0.74);
+            font-size: clamp(1rem, 1.45vw, 1.28rem);
+        }
+        .home-hero-meta {
+            color: rgba(255,250,240,0.62);
+            border-top: 1px solid rgba(255,250,240,0.24);
+        }
+        .home-hero-cta {
+            color: #fffaf0;
+            letter-spacing: 0.14em;
+        }
+
+        .home-voices-section,
+        .home-ecosystem-section {
+            background: var(--paper);
+            border-bottom: 1px solid var(--border);
+        }
+        .home-voice-feature {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: start;
+        }
+        .home-voice-media {
+            position: relative;
+            aspect-ratio: 4 / 3;
+            background: #191919;
+            overflow: hidden;
+        }
+        .home-voice-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(0.18) saturate(0.86);
+            opacity: 0.9;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .home-voice-feature:hover .home-voice-media img { transform: scale(1.035); }
+        .home-voice-play {
+            position: absolute;
+            left: 1.25rem;
+            bottom: 1.25rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.75rem 0.95rem;
+            background: rgba(251,250,246,0.92);
+            color: var(--dark);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .home-voice-title {
+            font-size: clamp(2.25rem, 4.5vw, 5rem);
+            line-height: 0.98;
+            font-weight: 500;
+            color: var(--text);
+            letter-spacing: 0;
+            text-wrap: balance;
+        }
+        .home-voice-meta {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 0;
+            color: var(--text-muted);
+        }
+        .home-voice-meta span {
+            display: block;
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--blue);
+            margin-bottom: 0.25rem;
+        }
+        .voice-wave {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            height: 46px;
+            margin-top: 1.5rem;
+        }
+        .voice-wave i {
+            width: 2px;
+            height: var(--h);
+            background: var(--archive-red);
+            opacity: 0.76;
+        }
+        .home-ecosystem-grid {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+        .home-ecosystem-item {
+            min-height: 210px;
+            background: var(--paper);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+        .home-ecosystem-item:hover {
+            background: var(--dark);
+            color: #fffaf0;
+        }
+        .home-ecosystem-no {
+            font-family: "EB Garamond", "Noto Serif SC", Georgia, serif;
+            font-size: 3.25rem;
+            line-height: 0.9;
+            color: #d8d0c4;
+        }
+        .home-ecosystem-item:hover .home-ecosystem-no { color: rgba(255,250,240,0.34); }
+        .home-ecosystem-type {
+            color: var(--blue);
+            font-size: 0.66rem;
+            font-weight: 800;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+        .home-ecosystem-item:hover .home-ecosystem-type { color: #dcb7aa; }
+        .home-ecosystem-title {
+            margin-top: 0.75rem;
+            font-family: "EB Garamond", "Noto Serif SC", Georgia, serif;
+            font-size: 1.22rem;
+            font-weight: 600;
+            line-height: 1.18;
+        }
+
+        @media (max-width: 900px) {
+            .home-hero {
+                min-height: 72vh;
+            }
+            .home-hero::after {
+                background:
+                    linear-gradient(0deg, rgba(18,18,16,0.92) 0%, rgba(18,18,16,0.32) 72%, rgba(18,18,16,0.2) 100%);
+            }
+            .home-hero-title {
+                font-size: clamp(2.25rem, 13vw, 3.85rem);
+                line-height: 1.02;
+            }
+            .home-voice-feature,
+            .home-ecosystem-grid {
+                grid-template-columns: 1fr;
+            }
+            .home-ecosystem-item {
+                min-height: 150px;
+            }
+            .site-header {
+                padding-top: 1.35rem !important;
+                padding-bottom: 1.35rem !important;
+            }
         }
 
         #modal-body h3 {
@@ -642,7 +890,7 @@
     </div>
 
     <!-- TOP BLACK BAR -->
-    <div class="bg-[#111] text-white py-2 px-6 lg:px-12 w-full z-50 relative">
+    <div class="site-status-bar py-2 px-6 lg:px-12 w-full z-50 relative">
         <div class="max-w-7xl mx-auto flex justify-between items-center text-[11px] md:text-[12px] font-medium tracking-[0.2em] uppercase font-sans">
             <span class="block" data-en="PRESERVING ENDANGERED VOICES" data-zh="守护濒危之声">PRESERVING ENDANGERED VOICES</span>
             <div class="flex space-x-4 md:space-x-6 items-center">
@@ -651,16 +899,16 @@
                 <button onclick="toggleDark()" class="hover:text-gray-300 transition-colors cursor-pointer w-7 h-7 flex items-center justify-center" title="Toggle dark mode" id="dark-toggle" aria-label="Dark mode toggle">
                     <i data-lucide="moon" class="w-3.5 h-3.5"></i>
                 </button>
-                <button onclick="toggleLang()" id="lang-label-top" class="hover:text-gray-300 transition-colors cursor-pointer text-[#cc1414]">CHINESE</button>
+                <button onclick="toggleLang()" id="lang-label-top" class="hover:text-gray-300 transition-colors cursor-pointer text-[#dcb7aa]">CHINESE</button>
             </div>
         </div>
     </div>
 
     <!-- MAIN HEADER -->
-    <header class="bg-white z-40 relative pt-7 pb-6 px-6 lg:px-12 border-b border-gray-100">
+    <header class="site-header bg-white z-40 relative pt-7 pb-6 px-6 lg:px-12 border-b border-gray-100">
         <div class="max-w-7xl mx-auto flex justify-between items-center w-full">
             <div class="flex items-center cursor-pointer group" onclick="navigateTo('view-home')">
-                <svg class="w-11 h-11 md:w-12 md:h-12 mr-3 md:mr-4 text-pew-dark group-hover:text-[#005587] transition-colors duration-300 flex-shrink-0" viewBox="0 0 100 100" fill="currentColor">
+                <svg class="site-logo-mark w-11 h-11 md:w-12 md:h-12 mr-3 md:mr-4 text-pew-dark group-hover:text-[#263f52] transition-colors duration-300 flex-shrink-0" viewBox="0 0 100 100" fill="currentColor">
                     <circle cx="20" cy="50" r="8" />
                     <circle cx="45" cy="30" r="6" />
                     <circle cx="45" cy="70" r="6" />
@@ -680,7 +928,7 @@
                 </div>
             </div>
 
-            <div class="hidden lg:flex flex-col items-end relative">
+            <div class="site-header-actions hidden lg:flex flex-col items-end relative">
                 <div class="text-[13px] text-gray-600 mb-2.5 font-sans">
                     <span class="text-gray-400 font-medium" data-en="Explore:" data-zh="探索:">Explore:</span>
                     <button onclick="navigateTo('view-research')" class="text-[#005587] hover:underline ml-2 font-semibold transition-colors" data-en="Linguistics" data-zh="语言学研究">Linguistics</button>
@@ -689,8 +937,8 @@
                     <span class="text-gray-200 px-2">|</span>
                     <button onclick="navigateTo('view-blog')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Blog" data-zh="博客">Blog</button>
                 </div>
-                <form onsubmit="handleHeaderSearch(event)" class="flex w-[340px] border border-gray-300 hover:border-gray-500 focus-within:border-[#005587] transition-colors bg-white shadow-sm">
-                    <input type="text" id="header-search-input" placeholder="Search marginsandmeaning.org..." class="w-full px-4 py-2.5 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
+                <form onsubmit="handleHeaderSearch(event)" class="site-search flex w-[340px] border border-gray-300 hover:border-gray-500 focus-within:border-[#263f52] transition-colors bg-white shadow-sm">
+                    <input type="text" id="header-search-input" placeholder="Search marginsmeaning.org..." class="w-full px-4 py-2.5 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
                     <button type="submit" class="bg-[#1a1a1a] hover:bg-[#005587] transition-colors text-white px-5 py-2 border-l border-gray-300 flex items-center justify-center">
                         <i data-lucide="search" class="w-4 h-4"></i>
                     </button>
@@ -698,14 +946,14 @@
                 <div id="search-dropdown" class="absolute top-full right-0 w-[400px] bg-white border border-gray-200 mt-1 hidden z-50 flex-col max-h-[400px] overflow-y-auto"></div>
             </div>
 
-            <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-[#005587] transition-colors p-2">
+            <button onclick="toggleSearch()" class="lg:hidden text-pew-dark hover:text-[#263f52] transition-colors p-2">
                 <i data-lucide="search" class="w-7 h-7"></i>
             </button>
         </div>
     </header>
 
     <!-- NAVIGATION -->
-    <nav class="bg-white sticky top-0 z-30 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+    <nav class="site-nav bg-white sticky top-0 z-30 shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
         <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
             <div id="nav-track" class="nav-track flex items-center lg:justify-center overflow-x-auto hide-scrollbar text-[12px] font-sans font-medium uppercase tracking-[0.15em] h-[56px] gap-6 lg:gap-10 border-b border-gray-100">
 
@@ -752,7 +1000,20 @@
             <div id="hero-container"></div>
 
             <!-- RESEARCH ECOSYSTEM STRIP -->
-            <div id="ecosystem-strip" class="border-b border-gray-200 bg-white"></div>
+            <section id="home-voices-section" class="home-voices-section py-20 md:py-28">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                    <div class="flex items-end justify-between gap-8 mb-12">
+                        <div>
+                            <div class="section-label mb-4" data-en="Featured Voice" data-zh="声音精选">Featured Voice</div>
+                            <h2 class="font-serif text-4xl md:text-6xl font-medium leading-none text-pew-dark" data-en="The archive should speak first." data-zh="让档案先开口。">The archive should speak first.</h2>
+                        </div>
+                        <button onclick="navigateTo('view-voices')" class="hidden md:inline-flex text-[12px] font-bold uppercase tracking-widest text-[#263f52] hover:text-pew-dark transition-colors items-center gap-1.5" data-en="Open Archive" data-zh="打开档案">Open Archive <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                    </div>
+                    <div id="home-voice-feature"></div>
+                </div>
+            </section>
+
+            <div id="ecosystem-strip" class="home-ecosystem-section border-b border-gray-200 bg-white"></div>
 
             <!-- KEY NUMBERS STRIP -->
             <div id="featured-section" class="border-b border-gray-200 bg-white py-28 md:py-36">
@@ -1933,21 +2194,27 @@
             const safeTitle = featuredResearch.title ? featuredResearch.title[currentLang] : '';
             const safeExcerpt = featuredResearch.excerpt ? featuredResearch.excerpt[currentLang] : '';
             const cover = featuredResearch.coverUrl;
+            const heroAction = featuredResearch.slug === '#' ? "navigateTo('view-research')" : "openArticle('" + featuredResearch.slug + "')";
+            const archiveLabel = currentLang === 'en' ? 'Field archive / language, identity, inequality' : '田野档案 / 语言、身份与不平等';
+            const issueLabel = currentLang === 'en' ? 'Independent research initiative' : '独立研究计划';
 
-            // HERO: full-bleed image with text overlay
+            // HERO: exhibition-style feature with text overlay
             heroContainer.innerHTML = `
-                <div class="relative w-full cursor-pointer group" style="min-height:78vh" onclick="openArticle('${featuredResearch.slug}')">
-                    <img src="${cover}" class="absolute inset-0 w-full h-full object-cover" alt="">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10"></div>
-                    <div class="relative z-10 flex flex-col justify-end h-full max-w-7xl mx-auto px-6 lg:px-12" style="min-height:78vh;padding-bottom:5rem;padding-top:5rem">
-                        <span class="highlight-tag mb-5 inline-block w-fit">${safeTag}</span>
-                        <h1 class="text-4xl md:text-7xl font-serif font-bold text-white leading-tight mb-5 max-w-4xl group-hover:opacity-90 transition-opacity">
+                <div class="home-hero relative w-full cursor-pointer group overflow-hidden" onclick="${heroAction}">
+                    <img src="${cover}" class="absolute inset-0 w-full h-full object-cover" alt="" onerror="this.style.display='none'">
+                    <div class="relative z-10 flex flex-col justify-end h-full max-w-7xl mx-auto px-6 lg:px-12" style="min-height:inherit;padding-bottom:clamp(4rem,8vw,7rem);padding-top:clamp(5rem,8vw,8rem)">
+                        <span class="home-hero-kicker mb-6">${safeTag || archiveLabel}</span>
+                        <h1 class="home-hero-title font-serif mb-6 group-hover:opacity-90 transition-opacity">
                             ${safeTitle}
                         </h1>
-                        <p class="text-lg md:text-xl text-white/75 font-serif leading-relaxed max-w-2xl mb-6">
+                        <p class="home-hero-copy font-serif leading-relaxed mb-8">
                             ${safeExcerpt}
                         </p>
-                        <div class="flex items-center text-white font-sans font-semibold text-sm uppercase tracking-widest group-hover:gap-3 gap-2 transition-all duration-300">
+                        <div class="home-hero-meta flex flex-col md:flex-row md:items-center gap-3 md:gap-8 pt-5 max-w-3xl text-[12px] font-sans uppercase tracking-[0.13em]">
+                            <span>${archiveLabel}</span>
+                            <span>${issueLabel}</span>
+                        </div>
+                        <div class="home-hero-cta flex items-center font-sans font-semibold text-sm uppercase group-hover:gap-3 gap-2 transition-all duration-300 mt-8">
                             <span>${currentLang === 'en' ? 'Read Research' : '阅读研究'}</span>
                             <i data-lucide="arrow-right" class="w-4 h-4"></i>
                         </div>
@@ -1964,7 +2231,7 @@
             };
 
             const ecoKeys = Object.keys(sideArticles).filter(k => sideArticles[k]);
-            let ecoHTML = '<div class="max-w-7xl mx-auto px-6 lg:px-12 py-12 md:py-16"><div class="text-center mb-10"><span class="text-[12px] uppercase tracking-[0.2em] text-gray-400 font-sans font-medium">' + (currentLang === 'en' ? 'Research Ecosystem' : '研究体系') + '</span></div><div class="flex flex-wrap justify-center gap-10 md:gap-16">';
+            let ecoHTML = '<div class="max-w-7xl mx-auto px-6 lg:px-12 py-16 md:py-24"><div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5 mb-10"><div><div class="section-label mb-4">' + (currentLang === 'en' ? 'Research Ecosystem' : '研究体系') + '</div><h2 class="font-serif text-4xl md:text-6xl font-medium leading-none text-pew-dark">' + (currentLang === 'en' ? 'A reading room for margins.' : '一个关于边缘的阅读室。') + '</h2></div><p class="max-w-md text-sm md:text-base text-gray-500 font-serif leading-relaxed">' + (currentLang === 'en' ? 'Research, field notes, oral histories, and datasets are treated as one connected archive.' : '研究、田野笔记、口述材料与数据集在这里共同构成一个互相关联的档案。') + '</p></div><div class="home-ecosystem-grid">';
 
             let idx = 1;
             for (const [key, article] of Object.entries(sideArticles)) {
@@ -1973,10 +2240,12 @@
                     const dispName = displayNames[key][currentLang];
                     const num = String(idx).padStart(2, '0');
                     ecoHTML += `
-                        <div class="cursor-pointer group text-center max-w-[260px] w-full" onclick="openArticle('${article.slug}')">
-                            <p class="text-5xl md:text-6xl font-serif font-bold text-[#e5e5e5] group-hover:text-[#005587] transition-colors leading-none mb-4">${num}</p>
-                            <p class="text-[10px] text-[#005587] mb-2 font-bold tracking-widest uppercase">${dispName}</p>
-                            <div class="min-h-[3.5rem] flex items-center justify-center"><h5 class="text-base md:text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug line-clamp-2">${sideTitle}</h5></div>
+                        <div class="home-ecosystem-item cursor-pointer group" onclick="openArticle('${article.slug}')">
+                            <p class="home-ecosystem-no">${num}</p>
+                            <div>
+                                <p class="home-ecosystem-type">${dispName}</p>
+                                <h5 class="home-ecosystem-title line-clamp-3">${sideTitle}</h5>
+                            </div>
                         </div>
                     `;
                     idx++;
@@ -1984,17 +2253,21 @@
             }
             // Static entries for Voices Archive and Data & Insights
             ecoHTML += `
-                <div class="cursor-pointer group text-center max-w-[260px] w-full" onclick="navigateTo('view-voices')">
-                    <p class="text-5xl md:text-6xl font-serif font-bold text-[#e5e5e5] group-hover:text-[#005587] transition-colors leading-none mb-4">${String(idx).padStart(2, '0')}</p>
-                    <p class="text-[10px] text-[#005587] mb-2 font-bold tracking-widest uppercase">${currentLang === 'en' ? 'Voices Archive' : '边缘声音档案库'}</p>
-                    <div class="min-h-[3.5rem] flex items-center justify-center"><h5 class="text-base md:text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">${currentLang === 'en' ? 'Explore primary sources &amp; oral histories' : '探索一手资料与口述历史'}</h5></div>
+                <div class="home-ecosystem-item cursor-pointer group" onclick="navigateTo('view-voices')">
+                    <p class="home-ecosystem-no">${String(idx).padStart(2, '0')}</p>
+                    <div>
+                        <p class="home-ecosystem-type">${currentLang === 'en' ? 'Voices Archive' : '边缘声音档案库'}</p>
+                        <h5 class="home-ecosystem-title">${currentLang === 'en' ? 'Explore primary sources &amp; oral histories' : '探索一手资料与口述历史'}</h5>
+                    </div>
                 </div>
             `; idx++;
             ecoHTML += `
-                <div class="cursor-pointer group text-center max-w-[260px] w-full" onclick="navigateTo('view-data')">
-                    <p class="text-5xl md:text-6xl font-serif font-bold text-[#e5e5e5] group-hover:text-[#005587] transition-colors leading-none mb-4">${String(idx).padStart(2, '0')}</p>
-                    <p class="text-[10px] text-[#005587] mb-2 font-bold tracking-widest uppercase">${currentLang === 'en' ? 'Data & Insights' : '数据与洞察'}</p>
-                    <div class="min-h-[3.5rem] flex items-center justify-center"><h5 class="text-base md:text-lg font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors leading-snug">${currentLang === 'en' ? 'Quantitative research &amp; visual datasets' : '量化研究与可视化数据集'}</h5></div>
+                <div class="home-ecosystem-item cursor-pointer group" onclick="navigateTo('view-data')">
+                    <p class="home-ecosystem-no">${String(idx).padStart(2, '0')}</p>
+                    <div>
+                        <p class="home-ecosystem-type">${currentLang === 'en' ? 'Data & Insights' : '数据与洞察'}</p>
+                        <h5 class="home-ecosystem-title">${currentLang === 'en' ? 'Quantitative research &amp; visual datasets' : '量化研究与可视化数据集'}</h5>
+                    </div>
                 </div>
             `;
             ecoHTML += '</div></div>';
@@ -2278,6 +2551,7 @@
                 // Re-render hero with CMS data if entries were loaded
                 if (window._voiceEntries.length > 0) {
                     renderVoiceGallery();
+                    renderHomeVoiceFeature();
                 }
             } catch(e) {
                 // Contentful voiceEntry type may not exist yet — will use hardcoded default
@@ -2318,8 +2592,40 @@
             '</div>';
         }
 
+        function renderHomeVoiceFeature() {
+            var container = document.getElementById('home-voice-feature');
+            if (!container) return;
+            var entries = getAllVoiceEntries();
+            var entry = entries.find(function(e) { return e.featured; }) || entries[0];
+            if (!entry) return;
+            var t = function(f) { return f ? (f[currentLang] || f.en || '') : ''; };
+            var waveHeights = [18, 30, 14, 38, 24, 42, 20, 32, 16, 36, 28, 44, 22, 34, 18, 40, 25, 31, 15, 37, 21, 29, 17, 35];
+            var wave = waveHeights.map(function(h) { return '<i style="--h:' + h + 'px"></i>'; }).join('');
+            container.innerHTML =
+                '<div class="home-voice-feature cursor-pointer group" onclick="openVoiceItem(\'' + entry.slug + '\')">' +
+                    '<div class="home-voice-media">' +
+                        '<img src="' + (entry.posterUrl || '') + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' +
+                        '<div class="home-voice-play"><i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>' + (currentLang === 'en' ? 'Listen' : '聆听') + '</div>' +
+                    '</div>' +
+                    '<div>' +
+                        '<p class="home-ecosystem-type mb-5">' + (currentLang === 'en' ? 'Oral history fragment' : '口述材料片段') + '</p>' +
+                        '<h3 class="home-voice-title font-serif mb-7">' + t(entry.title) + '</h3>' +
+                        '<div class="home-voice-meta font-serif text-base leading-relaxed mb-7">' +
+                            '<p><span>' + (currentLang === 'en' ? 'Place' : '地点') + '</span>' + t(entry.location) + '</p>' +
+                            '<p><span>' + (currentLang === 'en' ? 'Dialect' : '方言') + '</span>' + t(entry.dialectName) + '</p>' +
+                            '<p><span>' + (currentLang === 'en' ? 'Genre' : '类型') + '</span>' + t(entry.speechGenre) + '</p>' +
+                            '<p><span>' + (currentLang === 'en' ? 'Duration' : '时长') + '</span>' + (entry.duration || '') + '</p>' +
+                        '</div>' +
+                        '<p class="font-serif text-lg text-gray-600 leading-relaxed">' + t(entry.ethnographicNote) + '</p>' +
+                        '<div class="voice-wave" aria-hidden="true">' + wave + '</div>' +
+                    '</div>' +
+                '</div>';
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        }
+
         function renderVoiceGallery() {
             var container = document.getElementById('voice-gallery');
+            renderHomeVoiceFeature();
             if (!container) return;
             var entries = getAllVoiceEntries();
             var sparseClass = entries.length <= 2 ? ' sparse' : '';

@@ -826,7 +826,7 @@
         }
         .rand-button.secondary { background: #fff; color: var(--blue); }
         .rand-button:hover { background: #071d2d; border-color: #071d2d; color: #fff; }
-        .rand-latest { border-left: 1px solid var(--border); padding-left: clamp(1.5rem, 3vw, 3rem); }
+        .rand-latest { border-left: none; padding-left: 0; margin-top: clamp(2.5rem, 5vw, 4rem); }
         .rand-latest-title,
         .rand-section-title {
             font-family: Inter, "Noto Sans SC", sans-serif;
@@ -882,6 +882,43 @@
         .rand-latest-list article:hover h4,
         .rand-card:hover h3,
         .rand-latest-feature:hover .rand-latest-heading { color: var(--blue); }
+        .rand-latest-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.65fr) minmax(0, 0.9fr);
+            gap: clamp(1.5rem, 3.2vw, 2.8rem);
+            align-items: start;
+            border-top: 1px solid var(--dark);
+            padding-top: 2.25rem;
+        }
+        .rand-latest-col {
+            display: grid;
+            gap: 2.1rem;
+        }
+        .rand-latest-side-card {
+            display: grid;
+            gap: 0.8rem;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1.65rem;
+        }
+        .rand-latest-side-card img {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            background: #eef1f3;
+        }
+        .rand-latest-side-card h4 {
+            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-size: clamp(1.05rem, 1.35vw, 1.38rem);
+            line-height: 1.15;
+            font-weight: 800;
+            color: var(--dark);
+            overflow-wrap: anywhere;
+        }
+        .rand-latest-side-card:hover h4 { color: var(--blue); }
+        .rand-latest-feature img {
+            aspect-ratio: 16 / 8.3;
+        }
         .rand-section { background: #f6f7f8; border-bottom: 1px solid var(--border); }
         .rand-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
         .rand-card {
@@ -944,6 +981,7 @@
             .home-voice-feature,
             .home-ecosystem-grid,
             .rand-hero-grid,
+            .rand-latest-grid,
             .rand-latest-feature,
             .rand-card-grid,
             .rand-number-grid {
@@ -991,7 +1029,7 @@
         #modal-body strong { font-weight: 600; color: var(--dark); }
 
         #search-dropdown {
-            width: min(560px, calc(100vw - 3rem)) !important;
+            width: min(620px, calc(100vw - 3rem)) !important;
             border-top: 4px solid var(--blue) !important;
             box-shadow: 0 24px 55px rgba(7, 22, 36, 0.16);
         }
@@ -1162,12 +1200,12 @@
             color: var(--text-muted);
         }
         #search-dropdown .rand-search-workbench {
-            grid-template-columns: 150px minmax(0, 1fr);
-            gap: 1rem;
+            grid-template-columns: 1fr;
+            gap: 0;
             margin: 0;
             padding: 1rem;
         }
-        #search-dropdown .rand-search-filters { padding: 0.8rem; }
+        #search-dropdown .rand-search-filters { display: none; }
         #search-dropdown .rand-search-filter-row {
             grid-template-columns: 11px minmax(0, 1fr) auto;
             font-size: 0.72rem;
@@ -1428,8 +1466,8 @@
         }
         .rand-related-card {
             display: grid;
-            grid-template-columns: 68px minmax(0, 1fr);
-            gap: 0.85rem;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
             border-top: 4px solid var(--blue);
             border-left: 1px solid var(--border);
             border-right: 1px solid var(--border);
@@ -1445,12 +1483,16 @@
         .rand-related-card:hover { background: #f6f8fa; transform: translateY(-1px); }
         .rand-related-card h4 {
             font-family: 'Inter', 'Noto Sans SC', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.98rem;
             font-weight: 800;
-            line-height: 1.28;
+            line-height: 1.18;
             color: var(--dark);
             overflow-wrap: anywhere;
             word-break: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .like-btn { transition: transform 0.2s ease, color 0.2s ease; user-select: none; }
@@ -1584,7 +1626,7 @@
             }
             .rand-article-sticky-inner { align-items: flex-start; }
             .rand-article-tools { flex-wrap: wrap; }
-            .rand-related-card { grid-template-columns: 74px minmax(0, 1fr); }
+            .rand-related-card { grid-template-columns: 1fr; }
         }
 
 
@@ -1682,7 +1724,6 @@
                     <span class="text-gray-200 px-2">|</span>
                     <button onclick="navigateTo('view-blog')" class="text-[#005587] hover:underline font-semibold transition-colors" data-en="Blog" data-zh="博客">Blog</button>
                 </div>
-                <div class="text-[10px] font-extrabold uppercase tracking-[0.16em] text-[#005587] mb-1.5 font-sans">Search by keyword</div>
                 <form onsubmit="handleHeaderSearch(event)" class="site-search flex w-[340px] border border-gray-300 hover:border-gray-500 focus-within:border-[#263f52] transition-colors bg-white shadow-sm">
                     <input type="text" id="header-search-input" placeholder="Search topics, places, field notes..." class="w-full px-4 py-2.5 text-[14px] font-sans outline-none placeholder-gray-400 text-pew-dark bg-transparent" autocomplete="off" oninput="liveSearch()">
                     <button type="submit" class="bg-[#1a1a1a] hover:bg-[#005587] transition-colors text-white px-5 py-2 border-l border-gray-300 flex items-center justify-center" aria-label="Submit search and filters">
@@ -3011,7 +3052,7 @@
 
             heroContainer.innerHTML = `
                 <section class="rand-hero py-14 md:py-20">
-                    <div class="max-w-7xl mx-auto px-6 lg:px-12 rand-hero-grid">
+                    <div class="max-w-7xl mx-auto px-6 lg:px-12">
                         <div>
                             <div class="rand-eyebrow mb-6">${currentLang === 'en' ? 'Objective language research' : '客观语言研究'}</div>
                             <h1 class="rand-hero-title mb-6">${currentLang === 'en' ? 'Research on language, identity, and inequality.' : '关于语言、身份与不平等的研究。'}</h1>
@@ -3023,23 +3064,36 @@
                         </div>
                         <div class="rand-latest">
                             <h2 class="rand-latest-title mb-5">${currentLang === 'en' ? 'The Latest from Margins & Meaning' : '最新研究与动态'}</h2>
-                            <article class="rand-latest-feature" onclick="${featureAction}">
-                                <img src="${feature.coverUrl || ''}" alt="" onerror="this.style.display='none'">
-                                <div>
-                                    <span class="rand-tag mb-3">${featureTag}</span>
-                                    <h3 class="rand-latest-heading mb-3">${t(feature.title)}</h3>
-                                    <p class="text-sm text-gray-600 leading-relaxed mb-4">${t(feature.excerpt)}</p>
-                                    <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${featureDate}</p>
+                            <div class="rand-latest-grid">
+                                <div class="rand-latest-col">
+                                    ${latest.slice(0, 2).map(function(article) {
+                                        return `<article class="rand-latest-side-card" onclick="openArticle('${article.slug}')">
+                                            <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                                            <span class="rand-tag">${t(article.tag) || article.category}</span>
+                                            <h4>${t(article.title)}</h4>
+                                            <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${t(article.publishDate) || article.category}</p>
+                                        </article>`;
+                                    }).join('')}
                                 </div>
-                            </article>
-                            <div class="rand-latest-list">
-                                ${latest.map(function(article) {
-                                    return `<article onclick="openArticle('${article.slug}')">
-                                        <span class="rand-tag mb-2">${t(article.tag) || article.category}</span>
-                                        <h4 class="text-lg leading-snug">${t(article.title)}</h4>
-                                        <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500 mt-2">${t(article.publishDate) || article.category}</p>
-                                    </article>`;
-                                }).join('')}
+                                <article class="rand-latest-feature" onclick="${featureAction}">
+                                    <img src="${feature.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                                    <div>
+                                        <span class="rand-tag mb-3">${featureTag}</span>
+                                        <h3 class="rand-latest-heading mb-4">${t(feature.title)}</h3>
+                                        <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-5">${t(feature.excerpt)}</p>
+                                        <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${featureDate}</p>
+                                    </div>
+                                </article>
+                                <div class="rand-latest-col">
+                                    ${latest.slice(2, 4).map(function(article) {
+                                        return `<article class="rand-latest-side-card" onclick="openArticle('${article.slug}')">
+                                            <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                                            <span class="rand-tag">${t(article.tag) || article.category}</span>
+                                            <h4>${t(article.title)}</h4>
+                                            <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${t(article.publishDate) || article.category}</p>
+                                        </article>`;
+                                    }).join('')}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -3799,7 +3853,7 @@
                 .slice(0, 4);
             const relatedHTML = related.map(([s, d]) =>
                 `<article class="rand-related-card group" onclick="openArticle('${s}')">
-                    <div class="w-full aspect-square bg-gray-100 border border-gray-200 overflow-hidden">
+                    <div class="w-full aspect-[16/9] bg-gray-100 border border-gray-200 overflow-hidden">
                         <img src="${d.coverUrl}" class="w-full h-full object-cover">
                     </div>
                     <div>

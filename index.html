@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -28,8 +28,8 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', '"Noto Sans SC"', 'sans-serif'],
-                        serif: ['"Source Serif 4"', '"Noto Serif SC"', 'serif'],
+                        sans: ['Arial', 'Helvetica', '"Noto Sans SC"', 'sans-serif'],
+                        serif: ['Georgia', '"Times New Roman"', '"Noto Serif SC"', 'serif'],
                     },
                     colors: {
                         pew: {
@@ -183,6 +183,10 @@
         html.dark .voice-report-title,
         html.dark .voice-report-heading,
         html.dark .voice-report-transcript .tl { color: var(--text) !important; }
+        html.dark .rand-home-mission { background: #171a2d !important; }
+        html.dark .rand-home-mission h1,
+        html.dark .rand-home-mission p { color: var(--text) !important; }
+        html.dark .rand-image-label { background: var(--bg-card); color: var(--text); }
 
         html { scroll-behavior: smooth; overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg); color: var(--text); overflow-x: hidden; font-kerning: normal; transition: background-color 0.35s ease, color 0.35s ease; }
@@ -813,19 +817,22 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            min-height: 44px;
-            padding: 0 1rem;
-            border: 1px solid var(--blue);
-            background: var(--blue);
-            color: #fff;
-            font-size: 0.78rem;
+            width: fit-content;
+            min-height: auto;
+            padding: 0 0 0.08rem;
+            border: 0;
+            border-bottom: 2px solid currentColor;
+            background: transparent;
+            color: #6d22e6;
+            font-family: "Courier New", "Noto Sans SC", monospace;
+            font-size: 1rem;
             font-weight: 800;
-            letter-spacing: 0.06em;
+            letter-spacing: 0.08em;
             text-transform: uppercase;
             transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
         }
-        .rand-button.secondary { background: #fff; color: var(--blue); }
-        .rand-button:hover { background: #071d2d; border-color: #071d2d; color: #fff; }
+        .rand-button.secondary { background: transparent; color: #6d22e6; }
+        .rand-button:hover { background: transparent; border-color: currentColor; color: #4b12aa; }
         .rand-latest { border-left: none; padding-left: 0; margin-top: clamp(2.5rem, 5vw, 4rem); }
         .rand-latest-title,
         .rand-section-title {
@@ -844,6 +851,26 @@
             cursor: pointer;
         }
         .rand-latest-feature img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #eef1f3; }
+        .rand-media-wrap { position: relative; width: 100%; background: #eef1f3; overflow: hidden; }
+        .rand-media-wrap img { display: block; width: 100%; height: 100%; object-fit: cover; }
+        .rand-image-label {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            display: inline-flex;
+            align-items: center;
+            min-height: 1.7rem;
+            padding: 0.18rem 0.48rem;
+            background: #fff;
+            color: #20190c;
+            font-family: "Courier New", "Noto Sans SC", monospace;
+            font-size: 0.88rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .rand-latest-feature .rand-media-wrap { aspect-ratio: 16 / 8.3; }
+        .rand-latest-side-card .rand-media-wrap { aspect-ratio: 16 / 9; }
         .rand-tag {
             display: inline-flex;
             align-items: center;
@@ -919,6 +946,53 @@
         .rand-latest-feature img {
             aspect-ratio: 16 / 8.3;
         }
+        .rand-home-mission {
+            margin-top: clamp(3rem, 6vw, 5.5rem);
+            background: #e8e7f7;
+            min-height: 340px;
+            padding: clamp(3rem, 7vw, 5rem) clamp(2rem, 8vw, 7rem);
+            position: relative;
+            overflow: hidden;
+        }
+        .rand-home-mission::after {
+            content: '';
+            position: absolute;
+            right: -9rem;
+            top: -8rem;
+            width: 34rem;
+            height: 34rem;
+            opacity: 0.58;
+            background-image: radial-gradient(circle, #766fea 0 2px, transparent 2.3px);
+            background-size: 16px 16px;
+            transform: rotate(18deg);
+            pointer-events: none;
+        }
+        .rand-home-mission h1 {
+            max-width: 760px;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: clamp(2.6rem, 5.2vw, 5.4rem);
+            line-height: 1.03;
+            font-weight: 900;
+            color: #171204;
+            letter-spacing: 0;
+            position: relative;
+            z-index: 1;
+        }
+        .rand-home-mission p {
+            max-width: 680px;
+            margin-top: 2.25rem;
+            font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+            font-size: clamp(1.35rem, 2.2vw, 2rem);
+            line-height: 1.35;
+            color: #211b0f;
+            position: relative;
+            z-index: 1;
+        }
+        .rand-home-mission .rand-actions {
+            position: relative;
+            z-index: 1;
+            margin-top: 2.75rem;
+        }
         .rand-section { background: #f6f7f8; border-bottom: 1px solid var(--border); }
         .rand-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
         .rand-card {
@@ -987,6 +1061,8 @@
             .rand-number-grid {
                 grid-template-columns: 1fr;
             }
+            .rand-home-mission { min-height: auto; padding: 2.2rem 1.5rem; }
+            .rand-home-mission::after { right: -18rem; top: 5rem; opacity: 0.28; }
             .rand-latest { border-left: none; padding-left: 0; }
             .rand-hero-title { font-size: clamp(2.25rem, 11vw, 3.8rem); }
             .home-ecosystem-item {
@@ -3053,32 +3129,27 @@
             heroContainer.innerHTML = `
                 <section class="rand-hero py-14 md:py-20">
                     <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                        <div>
-                            <div class="rand-eyebrow mb-6">${currentLang === 'en' ? 'Objective language research' : '客观语言研究'}</div>
-                            <h1 class="rand-hero-title mb-6">${currentLang === 'en' ? 'Research on language, identity, and inequality.' : '关于语言、身份与不平等的研究。'}</h1>
-                            <p class="rand-hero-copy">${currentLang === 'en' ? 'Margins & Meaning is an independent research initiative documenting endangered voices, field materials, and the social structures that shape language use.' : 'Margins & Meaning 是一个独立研究计划，记录濒危声音、田野材料，以及塑造语言使用的社会结构。'}</p>
-                            <div class="rand-actions">
-                                <button class="rand-button" onclick="navigateTo('view-research')">${currentLang === 'en' ? 'Explore Research' : '浏览研究'} <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
-                                <button class="rand-button secondary" onclick="navigateTo('view-voices')">${currentLang === 'en' ? 'Voices Archive' : '声音档案'}</button>
-                            </div>
-                        </div>
                         <div class="rand-latest">
                             <h2 class="rand-latest-title mb-5">${currentLang === 'en' ? 'The Latest from Margins & Meaning' : '最新研究与动态'}</h2>
                             <div class="rand-latest-grid">
                                 <div class="rand-latest-col">
                                     ${latest.slice(0, 2).map(function(article) {
                                         return `<article class="rand-latest-side-card" onclick="openArticle('${article.slug}')">
-                                            <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
-                                            <span class="rand-tag">${t(article.tag) || article.category}</span>
+                                            <div class="rand-media-wrap">
+                                                <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                                                <span class="rand-image-label">${t(article.tag) || article.category}</span>
+                                            </div>
                                             <h4>${t(article.title)}</h4>
                                             <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${t(article.publishDate) || article.category}</p>
                                         </article>`;
                                     }).join('')}
                                 </div>
                                 <article class="rand-latest-feature" onclick="${featureAction}">
-                                    <img src="${feature.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                                    <div class="rand-media-wrap">
+                                        <img src="${feature.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                                        <span class="rand-image-label">${featureTag}</span>
+                                    </div>
                                     <div>
-                                        <span class="rand-tag mb-3">${featureTag}</span>
                                         <h3 class="rand-latest-heading mb-4">${t(feature.title)}</h3>
                                         <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-5">${t(feature.excerpt)}</p>
                                         <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${featureDate}</p>
@@ -3087,8 +3158,10 @@
                                 <div class="rand-latest-col">
                                     ${latest.slice(2, 4).map(function(article) {
                                         return `<article class="rand-latest-side-card" onclick="openArticle('${article.slug}')">
-                                            <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
-                                            <span class="rand-tag">${t(article.tag) || article.category}</span>
+                                            <div class="rand-media-wrap">
+                                                <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                                                <span class="rand-image-label">${t(article.tag) || article.category}</span>
+                                            </div>
                                             <h4>${t(article.title)}</h4>
                                             <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${t(article.publishDate) || article.category}</p>
                                         </article>`;
@@ -3096,6 +3169,14 @@
                                 </div>
                             </div>
                         </div>
+                        <section class="rand-home-mission">
+                            <h1>${currentLang === 'en' ? 'Research on language, identity, and inequality.' : '关于语言、身份与不平等的研究。'}</h1>
+                            <p>${currentLang === 'en' ? 'Margins & Meaning is an independent research initiative documenting endangered voices, field materials, and the social structures that shape language use.' : 'Margins & Meaning 是一个独立研究计划，记录濒危声音、田野材料，以及塑造语言使用的社会结构。'}</p>
+                            <div class="rand-actions">
+                                <button class="rand-button" onclick="navigateTo('view-research')">${currentLang === 'en' ? 'Explore Research' : '浏览研究'} <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                                <button class="rand-button secondary" onclick="navigateTo('view-voices')">${currentLang === 'en' ? 'Voices Archive' : '声音档案'}</button>
+                            </div>
+                        </section>
                     </div>
                 </section>
             `;

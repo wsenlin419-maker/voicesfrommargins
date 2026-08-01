@@ -617,7 +617,7 @@
             align-items: center;
             gap: 0.75rem;
             color: #e6ddcc;
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.16em;
@@ -697,12 +697,12 @@
             text-transform: uppercase;
         }
         .home-voice-title {
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(1.55rem, 2.8vw, 2.65rem);
             line-height: 1.1;
-            font-weight: 800;
+            font-weight: 900;
             color: var(--text);
-            letter-spacing: -0.015em;
+            letter-spacing: 0;
             text-wrap: balance;
         }
         .home-voice-meta {
@@ -713,7 +713,7 @@
             border-bottom: 1px solid var(--border);
             padding: 1.25rem 0;
             color: #3f4852;
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: "Courier New", "Noto Sans SC", monospace;
         }
         .home-voice-meta span {
             display: block;
@@ -727,6 +727,7 @@
         .home-voice-note {
             border-top: 1px solid var(--border);
             padding-top: 1.15rem;
+            font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
         }
         .home-ecosystem-grid {
             display: grid;
@@ -797,8 +798,32 @@
             height: 2px;
             background: var(--blue);
         }
+        .rand-section-heading {
+            display: grid;
+            grid-template-columns: auto minmax(0, 1fr);
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: clamp(2rem, 4vw, 3.8rem);
+        }
+        .rand-section-heading .rand-eyebrow {
+            color: #171204;
+            font-family: "Courier New", "Noto Sans SC", monospace;
+            font-size: clamp(1rem, 1.4vw, 1.45rem);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+        }
+        .rand-section-heading .rand-eyebrow::before {
+            width: 0.42rem;
+            height: 1.55rem;
+            background: #6d22e6;
+        }
+        .rand-section-heading::after {
+            content: '';
+            height: 1px;
+            background: #171204;
+        }
         .rand-hero-title {
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(2.5rem, 5.4vw, 5.15rem);
             font-weight: 800;
             line-height: 0.98;
@@ -823,7 +848,7 @@
             border: 0;
             border-bottom: 2px solid currentColor;
             background: transparent;
-            color: #6d22e6;
+            color: var(--blue);
             font-family: "Courier New", "Noto Sans SC", monospace;
             font-size: 1rem;
             font-weight: 800;
@@ -831,12 +856,12 @@
             text-transform: uppercase;
             transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
         }
-        .rand-button.secondary { background: transparent; color: #6d22e6; }
-        .rand-button:hover { background: transparent; border-color: currentColor; color: #4b12aa; }
+        .rand-button.secondary { background: transparent; color: var(--blue); }
+        .rand-button:hover { background: transparent; border-color: currentColor; color: #071d2d; }
         .rand-latest { border-left: none; padding-left: 0; margin-top: clamp(2.5rem, 5vw, 4rem); }
         .rand-latest-title,
         .rand-section-title {
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 1.15rem;
             font-weight: 800;
             color: var(--dark);
@@ -875,16 +900,17 @@
             display: inline-flex;
             align-items: center;
             width: fit-content;
-            padding: 0.24rem 0.48rem;
-            background: #e8f1f7;
-            color: var(--blue);
-            font-size: 0.68rem;
-            font-weight: 800;
-            letter-spacing: 0.05em;
+            padding: 0;
+            background: transparent;
+            color: #20190c;
+            font-family: "Courier New", "Noto Sans SC", monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
             text-transform: uppercase;
         }
         .rand-latest-heading {
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             color: var(--dark);
             font-size: clamp(1.22rem, 1.7vw, 1.58rem);
             font-weight: 800;
@@ -901,7 +927,7 @@
         .rand-latest-list article { padding: 1rem 0; border-bottom: 1px solid var(--border); cursor: pointer; }
         .rand-latest-list h4,
         .rand-card h3 {
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-weight: 800;
             color: var(--dark);
             letter-spacing: -0.01em;
@@ -914,8 +940,7 @@
             grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.65fr) minmax(0, 0.9fr);
             gap: clamp(1.5rem, 3.2vw, 2.8rem);
             align-items: start;
-            border-top: 1px solid var(--dark);
-            padding-top: 2.25rem;
+            padding-top: 0;
         }
         .rand-latest-col {
             display: grid;
@@ -935,7 +960,7 @@
             background: #eef1f3;
         }
         .rand-latest-side-card h4 {
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(1.05rem, 1.35vw, 1.38rem);
             line-height: 1.15;
             font-weight: 800;
@@ -948,7 +973,7 @@
         }
         .rand-home-mission {
             margin-top: clamp(3rem, 6vw, 5.5rem);
-            background: #e8e7f7;
+            background: #eef4f8;
             min-height: 340px;
             padding: clamp(3rem, 7vw, 5rem) clamp(2rem, 8vw, 7rem);
             position: relative;
@@ -962,7 +987,7 @@
             width: 34rem;
             height: 34rem;
             opacity: 0.58;
-            background-image: radial-gradient(circle, #766fea 0 2px, transparent 2.3px);
+            background-image: radial-gradient(circle, #7daec8 0 2px, transparent 2.3px);
             background-size: 16px 16px;
             transform: rotate(18deg);
             pointer-events: none;
@@ -995,6 +1020,70 @@
         }
         .rand-section { background: #f6f7f8; border-bottom: 1px solid var(--border); }
         .rand-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+        .rand-featured-editorial {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+            gap: clamp(2rem, 4vw, 4rem);
+            align-items: start;
+        }
+        .rand-featured-lead,
+        .rand-featured-row {
+            cursor: pointer;
+        }
+        .rand-featured-lead .rand-media-wrap {
+            aspect-ratio: 16 / 8.4;
+        }
+        .rand-featured-lead h3 {
+            margin-top: 1.4rem;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: clamp(2.2rem, 4vw, 4.6rem);
+            line-height: 1.03;
+            font-weight: 900;
+            color: var(--dark);
+            overflow-wrap: anywhere;
+        }
+        .rand-featured-lead p {
+            margin-top: 1.4rem;
+            max-width: 780px;
+            font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+            font-size: clamp(1.1rem, 1.55vw, 1.55rem);
+            line-height: 1.45;
+            color: #56616c;
+        }
+        .rand-date {
+            display: block;
+            margin-top: 1.3rem;
+            font-family: "Courier New", "Noto Sans SC", monospace;
+            font-size: 0.92rem;
+            letter-spacing: 0.04em;
+            color: #6f7378;
+        }
+        .rand-featured-list {
+            display: grid;
+            gap: 0;
+        }
+        .rand-featured-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(180px, 0.8fr);
+            gap: clamp(1.2rem, 2.4vw, 2.6rem);
+            align-items: start;
+            padding: 1.55rem 0;
+            border-top: 1px solid #b8bdc2;
+        }
+        .rand-featured-row:first-child { padding-top: 0; border-top: 0; }
+        .rand-featured-row .rand-media-wrap {
+            aspect-ratio: 16 / 9;
+        }
+        .rand-featured-row h4 {
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: clamp(1.25rem, 1.8vw, 2.1rem);
+            line-height: 1.12;
+            font-weight: 900;
+            color: var(--dark);
+            overflow-wrap: anywhere;
+        }
+        .rand-featured-lead:hover h3,
+        .rand-featured-row:hover h4 { color: var(--blue); }
         .rand-card {
             background: #fff;
             border-top: 4px solid var(--blue);
@@ -1024,7 +1113,7 @@
         }
         .rand-number strong {
             display: block;
-            font-family: Inter, "Noto Sans SC", sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(2.4rem, 4vw, 4rem);
             line-height: 1;
             color: var(--blue);
@@ -1057,6 +1146,8 @@
             .rand-hero-grid,
             .rand-latest-grid,
             .rand-latest-feature,
+            .rand-featured-editorial,
+            .rand-featured-row,
             .rand-card-grid,
             .rand-number-grid {
                 grid-template-columns: 1fr;
@@ -3122,7 +3213,15 @@
                 .sort((a, b) => (b.publishDate?.en || '').localeCompare(a.publishDate?.en || ''));
             const feature = allEntries.find(a => a.category.toLowerCase() === 'research') || featuredResearch;
             const latest = allEntries.filter(a => a.slug !== feature.slug).slice(0, 4);
-            const featureTag = t(feature.tag) || (currentLang === 'en' ? 'Research' : '研究');
+            const labelFor = function(article) {
+                const cat = (article.category || '').toLowerCase();
+                if (cat === 'research') return currentLang === 'en' ? 'Research' : '研究';
+                if (cat === 'writing' || cat === 'opinion') return currentLang === 'en' ? 'Commentary' : '评论';
+                if (cat === 'field notes') return currentLang === 'en' ? 'Field Notes' : '田野笔记';
+                if (cat === 'voices') return currentLang === 'en' ? 'Voices' : '声音';
+                return currentLang === 'en' ? 'Research' : '研究';
+            };
+            const featureTag = labelFor(feature);
             const featureDate = t(feature.publishDate) || '';
             const featureAction = feature.slug === '#' ? "navigateTo('view-research')" : "openArticle('" + feature.slug + "')";
 
@@ -3130,14 +3229,13 @@
                 <section class="rand-hero py-14 md:py-20">
                     <div class="max-w-7xl mx-auto px-6 lg:px-12">
                         <div class="rand-latest">
-                            <h2 class="rand-latest-title mb-5">${currentLang === 'en' ? 'The Latest from Margins & Meaning' : '最新研究与动态'}</h2>
                             <div class="rand-latest-grid">
                                 <div class="rand-latest-col">
                                     ${latest.slice(0, 2).map(function(article) {
                                         return `<article class="rand-latest-side-card" onclick="openArticle('${article.slug}')">
                                             <div class="rand-media-wrap">
                                                 <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
-                                                <span class="rand-image-label">${t(article.tag) || article.category}</span>
+                                                <span class="rand-image-label">${labelFor(article)}</span>
                                             </div>
                                             <h4>${t(article.title)}</h4>
                                             <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${t(article.publishDate) || article.category}</p>
@@ -3160,7 +3258,7 @@
                                         return `<article class="rand-latest-side-card" onclick="openArticle('${article.slug}')">
                                             <div class="rand-media-wrap">
                                                 <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
-                                                <span class="rand-image-label">${t(article.tag) || article.category}</span>
+                                                <span class="rand-image-label">${labelFor(article)}</span>
                                             </div>
                                             <h4>${t(article.title)}</h4>
                                             <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${t(article.publishDate) || article.category}</p>
@@ -3183,30 +3281,43 @@
 
             const featuredCards = allEntries
                 .filter(function(a) { return ['research', 'writing', 'opinion', 'field notes'].includes(a.category.toLowerCase()); })
-                .slice(0, 3);
+                .slice(0, 4);
             let ecoHTML = `<section class="rand-section py-16 md:py-24">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
-                        <div>
-                            <div class="rand-eyebrow mb-4">${currentLang === 'en' ? 'Featured Research' : '重点研究'}</div>
-                            <h2 class="rand-section-title text-3xl md:text-4xl">${currentLang === 'en' ? 'Research and commentary' : '研究与评论'}</h2>
-                        </div>
-                        <p class="max-w-md text-sm text-gray-600 leading-relaxed">${currentLang === 'en' ? 'Evidence, field notes, and analysis organized for readers who need clarity before opinion.' : '以证据、田野记录与分析为基础，为需要清晰判断的读者组织内容。'}</p>
+                    <div class="rand-section-heading">
+                        <div class="rand-eyebrow">${currentLang === 'en' ? 'Featured Research' : '重点研究'}</div>
                     </div>
-                    <div class="rand-card-grid">`;
+                    <div class="rand-featured-editorial">`;
 
-            featuredCards.forEach(function(article) {
-                ecoHTML += `<article class="rand-card" onclick="openArticle('${article.slug}')">
-                    <div>
-                        <span class="rand-tag">${t(article.tag) || article.category}</span>
-                        <h3>${t(article.title)}</h3>
-                        <p>${t(article.excerpt)}</p>
+            const leadFeatured = featuredCards[0];
+            const sideFeatured = featuredCards.slice(1, 4);
+            if (leadFeatured) {
+                ecoHTML += `<article class="rand-featured-lead" onclick="openArticle('${leadFeatured.slug}')">
+                    <div class="rand-media-wrap">
+                        <img src="${leadFeatured.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                        <span class="rand-image-label">${labelFor(leadFeatured)}</span>
                     </div>
-                    <span class="text-[11px] uppercase tracking-widest font-bold text-gray-500 mt-8">${t(article.publishDate) || (currentLang === 'en' ? 'Read more' : '阅读全文')}</span>
+                    <h3>${t(leadFeatured.title)}</h3>
+                    <p>${t(leadFeatured.excerpt)}</p>
+                    <span class="rand-date">${t(leadFeatured.publishDate) || ''}</span>
+                </article>`;
+            }
+            ecoHTML += `<div class="rand-featured-list">`;
+            sideFeatured.forEach(function(article) {
+                ecoHTML += `<article class="rand-featured-row" onclick="openArticle('${article.slug}')">
+                    <div>
+                        <span class="rand-tag mb-3">${labelFor(article)}</span>
+                        <h4>${t(article.title)}</h4>
+                        <span class="rand-date">${t(article.publishDate) || ''}</span>
+                    </div>
+                    <div class="rand-media-wrap">
+                        <img src="${article.coverUrl || ''}" alt="" onerror="this.style.display='none'">
+                        <span class="rand-image-label">${labelFor(article)}</span>
+                    </div>
                 </article>`;
             });
 
-            ecoHTML += `</div></div></section>`;
+            ecoHTML += `</div></div></div></section>`;
             if (ecoStrip) ecoStrip.innerHTML = ecoHTML;
         }
 

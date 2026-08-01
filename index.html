@@ -933,7 +933,7 @@
         .rand-latest-heading {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             color: var(--dark);
-            font-size: clamp(1.22rem, 1.7vw, 1.58rem);
+            font-size: clamp(1.42rem, 2.2vw, 2.1rem);
             font-weight: 800;
             line-height: 1.18;
             letter-spacing: 0;
@@ -982,7 +982,7 @@
         }
         .rand-latest-side-card h4 {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(1.05rem, 1.35vw, 1.38rem);
+            font-size: clamp(1.14rem, 1.55vw, 1.62rem);
             line-height: 1.15;
             font-weight: 800;
             color: var(--dark);
@@ -1057,8 +1057,8 @@
         .rand-featured-lead h3 {
             margin-top: 1.15rem;
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(2.05rem, 3.5vw, 3.9rem);
-            line-height: 1.03;
+            font-size: clamp(1.72rem, 2.8vw, 3.05rem);
+            line-height: 1.06;
             font-weight: 900;
             color: var(--dark);
             overflow-wrap: anywhere;
@@ -1083,6 +1083,7 @@
             letter-spacing: 0.04em;
             color: #6f7378;
         }
+        .rand-date.tight { margin-top: 0.75rem; }
         .rand-featured-list {
             display: grid;
             gap: 0;
@@ -1101,7 +1102,7 @@
         }
         .rand-featured-row h4 {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(1.16rem, 1.55vw, 1.75rem);
+            font-size: clamp(1.02rem, 1.3vw, 1.42rem);
             line-height: 1.12;
             font-weight: 900;
             color: var(--dark);
@@ -1579,9 +1580,9 @@
         .rand-article-title {
             margin-top: 1.1rem;
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(2.4rem, 6vw, 5.3rem);
-            line-height: 0.98;
-            font-weight: 800;
+            font-size: clamp(2rem, 4.2vw, 3.75rem);
+            line-height: 1.04;
+            font-weight: 900;
             color: var(--dark);
             letter-spacing: 0;
             text-wrap: balance;
@@ -3297,8 +3298,10 @@
             const allEntries = Object.entries(articlesDB)
                 .map(([slug, data]) => ({ slug, ...data }))
                 .sort((a, b) => (b.publishDate?.en || '').localeCompare(a.publishDate?.en || ''));
-            const feature = allEntries.find(a => a.category.toLowerCase() === 'research') || featuredResearch;
-            const latest = allEntries.filter(a => a.slug !== feature.slug).slice(0, 4);
+            const latestStream = allEntries.slice(0, 5);
+            const feature = latestStream[0] || featuredResearch;
+            const latest = latestStream.filter(a => a.slug !== feature.slug).slice(0, 4);
+            const latestSlugs = new Set(latestStream.map(a => a.slug));
             const labelFor = getContentLabel;
             const featureTag = labelFor(feature);
             const featureDate = t(feature.publishDate) || '';
@@ -3317,7 +3320,7 @@
                                                 <span class="rand-image-label">${labelFor(article)}</span>
                                             </div>
                                             <h4>${t(article.title)}</h4>
-                                            <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${t(article.publishDate) || article.category}</p>
+                                            <span class="rand-date tight">${t(article.publishDate) || article.category}</span>
                                         </article>`;
                                     }).join('')}
                                 </div>
@@ -3329,7 +3332,7 @@
                                     <div>
                                         <h3 class="rand-latest-heading mb-4">${t(feature.title)}</h3>
                                         <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-5">${t(feature.excerpt)}</p>
-                                        <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${featureDate}</p>
+                                        <span class="rand-date tight">${featureDate}</span>
                                     </div>
                                 </article>
                                 <div class="rand-latest-col">
@@ -3340,7 +3343,7 @@
                                                 <span class="rand-image-label">${labelFor(article)}</span>
                                             </div>
                                             <h4>${t(article.title)}</h4>
-                                            <p class="text-[11px] uppercase tracking-widest font-bold text-gray-500">${t(article.publishDate) || article.category}</p>
+                                            <span class="rand-date tight">${t(article.publishDate) || article.category}</span>
                                         </article>`;
                                     }).join('')}
                                 </div>
@@ -3358,9 +3361,14 @@
                 </section>
             `;
 
-            const featuredCards = allEntries
-                .filter(function(a) { return ['research', 'writing', 'opinion', 'field notes'].includes(a.category.toLowerCase()); })
+            let featuredCards = allEntries
+                .filter(function(a) { return a.category.toLowerCase() === 'research' && !latestSlugs.has(a.slug); })
                 .slice(0, 4);
+            if (featuredCards.length === 0) {
+                featuredCards = allEntries
+                    .filter(function(a) { return a.category.toLowerCase() === 'research'; })
+                    .slice(0, 4);
+            }
             let ecoHTML = `<section class="rand-section py-16 md:py-24">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
                     <div class="rand-section-heading">

@@ -187,6 +187,14 @@
         html.dark .rand-home-mission h1,
         html.dark .rand-home-mission p { color: var(--text) !important; }
         html.dark .rand-image-label { background: var(--bg-card); color: var(--text); }
+        html.dark .rand-section-heading .rand-eyebrow { color: var(--text) !important; }
+        html.dark .rand-section-heading::after,
+        html.dark .rand-featured-row,
+        html.dark .home-voice-feature,
+        html.dark .rand-number-grid,
+        html.dark .rand-number { border-color: var(--border) !important; }
+        html.dark .rand-number strong { color: var(--text) !important; }
+        html.dark .rand-number span { color: var(--text-muted) !important; }
 
         html { scroll-behavior: smooth; overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg); color: var(--text); overflow-x: hidden; font-kerning: normal; transition: background-color 0.35s ease, color 0.35s ease; }
@@ -254,11 +262,11 @@
         .voice-card:hover .card-media .card-play { opacity: 1; }
         .voice-card .card-media .card-play svg { color: #fff; width: 40px; height: 40px; filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5)); }
         .voice-card .card-info { display: flex; flex-direction: column; justify-content: center; }
-        .voice-card .card-loc { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 0.25rem; }
-        .voice-card .card-dialect { font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif; font-size: 1rem; color: #555; margin-bottom: 0.25rem; }
+        .voice-card .card-loc { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #aaa; margin-bottom: 0.25rem; }
+        .voice-card .card-dialect { font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; font-size: 1rem; color: #555; margin-bottom: 0.25rem; }
         .voice-card .card-dialect .accent-bar { display: inline-block; width: 9px; height: 9px; margin-right: 0.5rem; vertical-align: middle; position: relative; top: -1px; }
-        .voice-card .card-title { font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif; font-size: 1.3rem; font-weight: 600; color: #1a1a1a; line-height: 1.3; margin-bottom: 0.3rem; }
-        .voice-card .card-genre { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.72rem; color: #aaa; letter-spacing: 0.02em; }
+        .voice-card .card-title { font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; font-size: 1.3rem; font-weight: 600; color: #1a1a1a; line-height: 1.3; margin-bottom: 0.3rem; }
+        .voice-card .card-genre { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.72rem; color: #aaa; letter-spacing: 0.02em; }
         @media (max-width: 640px) {
             .voice-card { grid-template-columns: 1fr; gap: 1rem; }
             .voice-card .card-title { font-size: 1.1rem; }
@@ -269,31 +277,31 @@
         .voice-item .voice-player { background: #111; margin: 1.5rem 0 1.75rem; border: 1px solid var(--border); }
         .voice-item .voice-player video { display: block; width: 100%; }
         .voice-item .voice-title-line { margin-bottom: 0.5rem; }
-        .voice-item .voice-title { font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif; font-size: clamp(2.25rem, 4vw, 3.6rem); font-weight: 500; color: var(--dark); line-height: 1.05; letter-spacing: 0; }
-        .voice-item .voice-subtitle { font-size: 0.78rem; color: #5f6872; font-family: 'Inter', 'Noto Sans SC', sans-serif; margin-top: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
+        .voice-item .voice-title { font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; font-size: clamp(2.25rem, 4vw, 3.6rem); font-weight: 500; color: var(--dark); line-height: 1.05; letter-spacing: 0; }
+        .voice-item .voice-subtitle { font-size: 0.78rem; color: #5f6872; font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; margin-top: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; }
         .voice-item .voice-section { margin-top: 2.25rem; }
         .voice-item .voice-section-title { font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); border-bottom: 1px solid var(--border); padding-bottom: 0.55rem; margin-bottom: 0; }
         .voice-item .meta-table { width: 100%; border-collapse: collapse; }
         .voice-item .meta-table tr { border-bottom: 1px solid var(--border); }
         .voice-item .meta-table td { vertical-align: top; padding: 0.72rem 0; font-size: 0.92rem; line-height: 1.55; }
-        .voice-item .meta-table .meta-label { width: 150px; font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #7a828a; padding-right: 1rem; white-space: nowrap; }
-        .voice-item .meta-table .meta-value { color: #2b2f33; font-family: 'Inter', 'Noto Sans SC', sans-serif; }
+        .voice-item .meta-table .meta-label { width: 150px; font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: #7a828a; padding-right: 1rem; white-space: nowrap; }
+        .voice-item .meta-table .meta-value { color: #2b2f33; font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; }
         .voice-item .trans-block { padding: 1rem 0; border-bottom: 1px solid var(--border); margin-bottom: 0; }
-        .voice-item .trans-block .trans-speaker { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #7a828a; margin-bottom: 0.35rem; }
+        .voice-item .trans-block .trans-speaker { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.68rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: #7a828a; margin-bottom: 0.35rem; }
         .voice-item .trans-block .trans-lines { border-left: 2px solid var(--blue); padding-left: 0.9rem; }
         .voice-item .trans-block .trans-lines .tl { font-size: 0.92rem; line-height: 1.6; margin-bottom: 0.18rem; }
         .voice-item .trans-block .trans-lines .tl.dialect { color: #3b4147; font-style: italic; }
         .voice-item .trans-block .trans-lines .tl.chinese { color: #333; }
         .voice-item .trans-block .trans-lines .tl.english { color: #606972; font-size: 0.86rem; }
-        .voice-item .voice-note { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.95rem; line-height: 1.7; color: #4c535a; padding-top: 1rem; }
-        .ethics-banner { border-left: 3px solid var(--blue); padding: 0.95rem 1.1rem; font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.82rem; line-height: 1.65; color: #5f6872; background: #f6f7f8; margin-bottom: 2rem; }
-        .ethics-banner .ethics-title { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 0.35rem; }
+        .voice-item .voice-note { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.95rem; line-height: 1.7; color: #4c535a; padding-top: 1rem; }
+        .ethics-banner { border-left: 3px solid var(--blue); padding: 0.95rem 1.1rem; font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.82rem; line-height: 1.65; color: #5f6872; background: #f6f7f8; margin-bottom: 2rem; }
+        .ethics-banner .ethics-title { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.12em; color: var(--blue); margin-bottom: 0.35rem; }
         .voice-classification { margin-top: 1.5rem; }
-        .voice-classification .class-label { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; }
-        .voice-classification .class-tags { font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif; font-size: 0.82rem; color: #777; line-height: 1.7; }
+        .voice-classification .class-label { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #bbb; }
+        .voice-classification .class-tags { font-family: Georgia, "Times New Roman", "Noto Serif SC", serif; font-size: 0.82rem; color: #777; line-height: 1.7; }
         .voice-classification .class-tags span { color: #555; }
         .voice-classification .class-tags .sep { color: #ddd; margin: 0 0.45rem; }
-        .voice-consent { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 0.68rem; color: #aaa; margin-top: 1.2rem; padding-top: 0.8rem; border-top: 1px solid #eee; }
+        .voice-consent { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 0.68rem; color: #aaa; margin-top: 1.2rem; padding-top: 0.8rem; border-top: 1px solid #eee; }
         .voice-report { max-width: 1120px; margin: 0 auto; }
         .voice-report-header {
             border-bottom: 1px solid var(--border);
@@ -304,7 +312,7 @@
             display: inline-flex;
             border-left: 4px solid var(--blue);
             padding-left: 0.75rem;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.72rem;
             font-weight: 800;
             letter-spacing: 0.12em;
@@ -314,7 +322,7 @@
         .voice-report-title {
             margin-top: 1.1rem;
             max-width: 900px;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(2.35rem, 6vw, 5rem);
             line-height: 0.98;
             font-weight: 800;
@@ -325,7 +333,7 @@
         .voice-report-deck {
             max-width: 760px;
             margin-top: 1.25rem;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             color: #4d5965;
             font-size: clamp(1rem, 1.7vw, 1.24rem);
             line-height: 1.58;
@@ -338,7 +346,7 @@
             padding-top: 1rem;
             border-top: 1px solid var(--border);
             color: #586571;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.78rem;
             font-weight: 800;
             letter-spacing: 0.08em;
@@ -363,7 +371,7 @@
             min-width: 0;
         }
         .voice-report-heading {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.72rem;
             font-weight: 800;
             letter-spacing: 0.12em;
@@ -378,7 +386,7 @@
             gap: 1rem;
             padding: 0.72rem 0;
             border-top: 1px solid var(--border);
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.86rem;
             line-height: 1.45;
         }
@@ -401,7 +409,7 @@
             border-bottom: 1px solid var(--border);
         }
         .voice-report-transcript .trans-speaker {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.68rem;
             font-weight: 800;
             text-transform: uppercase;
@@ -414,7 +422,7 @@
             padding-left: 1rem;
         }
         .voice-report-transcript .tl {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.92rem;
             line-height: 1.6;
             color: #2b343d;
@@ -422,7 +430,7 @@
         }
         .voice-report-transcript .tl.english { color: #66717c; font-size: 0.86rem; }
         .voice-report-note {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.95rem;
             line-height: 1.7;
             color: #46515c;
@@ -431,7 +439,7 @@
             margin-top: 1.5rem;
             padding-top: 1rem;
             border-top: 1px solid var(--border);
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.76rem;
             line-height: 1.55;
             color: #73808b;
@@ -660,15 +668,16 @@
         }
         .home-voice-feature {
             display: grid;
-            grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-            gap: clamp(1.5rem, 4vw, 3rem);
-            align-items: start;
-            padding-top: 1.5rem;
-            border-top: 4px solid var(--blue);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: clamp(1.5rem, 3.2vw, 3.4rem);
+            align-items: center;
+            padding: 1.45rem 0 1.7rem;
+            border-top: 1px solid #171204;
+            border-bottom: 1px solid #c8cdd2;
         }
         .home-voice-media {
             position: relative;
-            aspect-ratio: 16 / 10;
+            aspect-ratio: 16 / 8.8;
             background: #191919;
             overflow: hidden;
         }
@@ -698,8 +707,8 @@
         }
         .home-voice-title {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(1.55rem, 2.8vw, 2.65rem);
-            line-height: 1.1;
+            font-size: clamp(1.85rem, 3.4vw, 3.75rem);
+            line-height: 1.04;
             font-weight: 900;
             color: var(--text);
             letter-spacing: 0;
@@ -708,10 +717,10 @@
         .home-voice-meta {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1rem;
+            gap: 0.75rem 1.25rem;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 1.25rem 0;
+            padding: 1rem 0;
             color: #3f4852;
             font-family: "Courier New", "Noto Sans SC", monospace;
         }
@@ -726,8 +735,12 @@
         }
         .home-voice-note {
             border-top: 1px solid var(--border);
-            padding-top: 1.15rem;
+            padding-top: 1rem;
             font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .home-ecosystem-grid {
             display: grid;
@@ -750,7 +763,7 @@
             color: var(--text);
         }
         .home-ecosystem-no {
-            font-family: "Source Serif 4", "Noto Serif SC", Georgia, serif;
+            font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
             font-size: 3.25rem;
             line-height: 0.9;
             color: #d8d0c4;
@@ -766,7 +779,7 @@
         .home-ecosystem-item:hover .home-ecosystem-type { color: var(--archive-red); }
         .home-ecosystem-title {
             margin-top: 0.75rem;
-            font-family: "Source Serif 4", "Noto Serif SC", Georgia, serif;
+            font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
             font-size: 1.22rem;
             font-weight: 600;
             line-height: 1.18;
@@ -815,13 +828,21 @@
         .rand-section-heading .rand-eyebrow::before {
             width: 0.42rem;
             height: 1.55rem;
-            background: #6d22e6;
+            background: var(--blue);
         }
         .rand-section-heading::after {
             content: '';
             height: 1px;
             background: #171204;
         }
+        .home-section-head-with-action {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: clamp(2rem, 4vw, 3.8rem);
+        }
+        .home-section-head-with-action .rand-section-heading { margin-bottom: 0; }
         .rand-hero-title {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(2.5rem, 5.4vw, 5.15rem);
@@ -1022,8 +1043,8 @@
         .rand-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
         .rand-featured-editorial {
             display: grid;
-            grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
-            gap: clamp(2rem, 4vw, 4rem);
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: clamp(1.5rem, 3vw, 3rem);
             align-items: start;
         }
         .rand-featured-lead,
@@ -1031,24 +1052,28 @@
             cursor: pointer;
         }
         .rand-featured-lead .rand-media-wrap {
-            aspect-ratio: 16 / 8.4;
+            aspect-ratio: 16 / 7.7;
         }
         .rand-featured-lead h3 {
-            margin-top: 1.4rem;
+            margin-top: 1.15rem;
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(2.2rem, 4vw, 4.6rem);
+            font-size: clamp(2.05rem, 3.5vw, 3.9rem);
             line-height: 1.03;
             font-weight: 900;
             color: var(--dark);
             overflow-wrap: anywhere;
         }
         .rand-featured-lead p {
-            margin-top: 1.4rem;
-            max-width: 780px;
+            margin-top: 1rem;
+            max-width: none;
             font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
-            font-size: clamp(1.1rem, 1.55vw, 1.55rem);
-            line-height: 1.45;
+            font-size: clamp(1.02rem, 1.25vw, 1.28rem);
+            line-height: 1.42;
             color: #56616c;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
         .rand-date {
             display: block;
@@ -1064,10 +1089,10 @@
         }
         .rand-featured-row {
             display: grid;
-            grid-template-columns: minmax(0, 1fr) minmax(180px, 0.8fr);
-            gap: clamp(1.2rem, 2.4vw, 2.6rem);
+            grid-template-columns: minmax(0, 1fr) minmax(200px, 0.86fr);
+            gap: clamp(1rem, 2vw, 2rem);
             align-items: start;
-            padding: 1.55rem 0;
+            padding: 1.15rem 0;
             border-top: 1px solid #b8bdc2;
         }
         .rand-featured-row:first-child { padding-top: 0; border-top: 0; }
@@ -1076,7 +1101,7 @@
         }
         .rand-featured-row h4 {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(1.25rem, 1.8vw, 2.1rem);
+            font-size: clamp(1.16rem, 1.55vw, 1.75rem);
             line-height: 1.12;
             font-weight: 900;
             color: var(--dark);
@@ -1102,28 +1127,41 @@
         .rand-number-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            border-top: 1px solid var(--border);
-            border-left: 1px solid var(--border);
+            border-top: 1px solid #171204;
+            border-bottom: 1px solid #171204;
+            background: #fff;
         }
         .rand-number {
-            padding: 1.5rem;
-            border-right: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
+            position: relative;
+            min-height: 168px;
+            padding: 1.35rem 1.25rem 1.25rem;
+            border-right: 1px solid #c8cdd2;
             background: #fff;
+            display: grid;
+            align-content: space-between;
+        }
+        .rand-number:last-child { border-right: 0; }
+        .rand-number::before {
+            content: '';
+            width: 2.6rem;
+            height: 0.28rem;
+            background: var(--blue);
+            display: block;
         }
         .rand-number strong {
             display: block;
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(2.4rem, 4vw, 4rem);
-            line-height: 1;
-            color: var(--blue);
-            letter-spacing: -0.04em;
+            font-size: clamp(2.7rem, 4.5vw, 5.1rem);
+            line-height: 0.88;
+            color: #171204;
+            letter-spacing: 0;
         }
         .rand-number span {
             display: block;
-            margin-top: 0.75rem;
-            color: #4c5661;
-            font-size: 0.78rem;
+            margin-top: 1rem;
+            color: #2e3741;
+            font-family: "Courier New", "Noto Sans SC", monospace;
+            font-size: 0.8rem;
             font-weight: 800;
             letter-spacing: 0.08em;
             text-transform: uppercase;
@@ -1152,6 +1190,9 @@
             .rand-number-grid {
                 grid-template-columns: 1fr;
             }
+            .home-section-head-with-action {
+                grid-template-columns: 1fr;
+            }
             .rand-home-mission { min-height: auto; padding: 2.2rem 1.5rem; }
             .rand-home-mission::after { right: -18rem; top: 5rem; opacity: 0.28; }
             .rand-latest { border-left: none; padding-left: 0; }
@@ -1175,7 +1216,7 @@
         }
 
         #modal-body h3 {
-            font-family: 'Inter', sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -1214,7 +1255,7 @@
             box-shadow: 0 22px 50px rgba(9, 20, 31, 0.1);
         }
         .rand-search-title {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-weight: 800;
             letter-spacing: 0;
             color: var(--dark);
@@ -1224,7 +1265,7 @@
         .rand-search-kicker,
         .rand-search-kind,
         .rand-search-count {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.68rem;
             font-weight: 800;
             letter-spacing: 0.12em;
@@ -1276,7 +1317,7 @@
             border-top: 4px solid var(--blue);
             background: #f6f8fa;
             padding: 1rem;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
         }
         .rand-search-filter-title {
             font-size: 0.72rem;
@@ -1325,7 +1366,7 @@
             margin-bottom: 0.2rem;
         }
         .rand-search-panel-title h3 {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 1rem;
             font-weight: 800;
             color: var(--dark);
@@ -1351,7 +1392,7 @@
         }
         .rand-search-result h3,
         .rand-search-result-title {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 1.06rem;
             font-weight: 800;
             line-height: 1.24;
@@ -1361,7 +1402,7 @@
         }
         .rand-search-result p {
             margin-top: 0.5rem;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.86rem;
             line-height: 1.58;
             color: var(--text-muted);
@@ -1437,6 +1478,31 @@
             background: radial-gradient(circle, rgba(0, 85, 135, 0.04) 0%, transparent 70%);
             pointer-events: none;
         }
+        .page-header .section-label {
+            display: none !important;
+        }
+        .page-header h2,
+        #research-container h4,
+        #writing-container h4,
+        #field-container h4,
+        #blog-container h3,
+        #article-view-title,
+        .rand-article-body h2,
+        .rand-article-body h3,
+        .voice-item .voice-title {
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif !important;
+            font-weight: 900 !important;
+            letter-spacing: 0 !important;
+        }
+        .page-header h2 {
+            line-height: 0.98 !important;
+        }
+        #research-container > article > p:first-child,
+        #writing-container > article > p:first-child,
+        #field-container article p:first-child,
+        #blog-container article span:first-of-type {
+            display: none !important;
+        }
 
         .subscribe-input:focus { outline: none; box-shadow: 0 0 0 2px var(--blue); }
 
@@ -1504,7 +1570,7 @@
             border-left: 4px solid var(--blue);
             padding-left: 0.75rem;
             color: var(--blue);
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.72rem;
             font-weight: 800;
             letter-spacing: 0.12em;
@@ -1512,7 +1578,7 @@
         }
         .rand-article-title {
             margin-top: 1.1rem;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(2.4rem, 6vw, 5.3rem);
             line-height: 0.98;
             font-weight: 800;
@@ -1523,7 +1589,7 @@
         .rand-article-summary {
             margin-top: 1.35rem;
             max-width: 760px;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(1.05rem, 2vw, 1.32rem);
             line-height: 1.55;
             color: #4d5965;
@@ -1537,7 +1603,7 @@
             display: grid;
             gap: 1rem;
             color: #53606b;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.82rem;
             line-height: 1.45;
         }
@@ -1582,15 +1648,15 @@
             align-items: start;
         }
         .article-body {
-            font-family: 'Source Serif 4', 'Noto Serif SC', Georgia, serif;
+            font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
             font-size: 1.18rem;
             line-height: 1.82;
             color: #202933;
             text-align: left;
         }
         .article-body p { margin-bottom: 1.55rem; }
-        .article-body h2 { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 1.65rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: 0; line-height: 1.18; }
-        .article-body h3 { font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 1.25rem; font-weight: 800; margin: 2.25rem 0 0.75rem; line-height: 1.25; }
+        .article-body h2 { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 1.65rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: 0; line-height: 1.18; }
+        .article-body h3 { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 1.25rem; font-weight: 800; margin: 2.25rem 0 0.75rem; line-height: 1.25; }
         .article-body blockquote {
             border-left: 5px solid var(--blue);
             padding: 1.1rem 0 1.1rem 1.4rem;
@@ -1613,7 +1679,7 @@
             border-top: 4px solid var(--blue);
             background: #f6f8fa;
             padding: 1.25rem;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             min-width: 0;
             overflow: hidden;
         }
@@ -1649,7 +1715,7 @@
         .rand-related-card > div { min-width: 0; }
         .rand-related-card:hover { background: #f6f8fa; transform: translateY(-1px); }
         .rand-related-card h4 {
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: 0.98rem;
             font-weight: 800;
             line-height: 1.18;
@@ -1717,7 +1783,7 @@
             padding: 12px 16px;
             border-radius: 4px;
             font-size: 12px;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             line-height: 1.8;
         }
@@ -1729,7 +1795,7 @@
             border-radius: 4px;
             padding: 6px 12px;
             font-size: 13px;
-            font-family: 'Inter', 'Noto Sans SC', sans-serif;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
@@ -1758,7 +1824,7 @@
         #mobile-menu-panel.open { transform: translateX(0); }
         #mobile-menu-panel button {
             display: block; width: 100%; text-align: left; padding: 0.9rem 0;
-            font-size: 15px; font-weight: 600; font-family: 'Inter','Noto Sans SC',sans-serif;
+            font-size: 15px; font-weight: 600; font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted);
             background: none; border: none; border-bottom: 1px solid var(--border); cursor: pointer;
             transition: color 0.2s ease;
@@ -1799,7 +1865,7 @@
 
         .dl-card { background: #fff; border: 1px solid var(--border); border-radius: 3px; padding: 1.5rem; transition: all 0.25s ease; display: flex; gap: 1rem; align-items: flex-start; }
         .dl-card:hover { border-color: #b7c0c9; box-shadow: 0 4px 16px rgba(0,0,0,0.05); transform: translateY(-1px); }
-        .dl-icon { width: 44px; height: 44px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; color: #fff; font-weight: 700; font-family: "Inter", sans-serif; }
+        .dl-icon { width: 44px; height: 44px; border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; color: #fff; font-weight: 700; font-family: Arial, Helvetica, sans-serif; }
         .dl-pdf { background: #b8453a; } .dl-doc { background: #4c72b0; } .dl-zip { background: #6d9e93; } .dl-other { background: #6b6b6b; }
         .dl-cat { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-bottom: 6px; }
         .dl-cat-research { background: #f3f1ec; color: #003d5c; } .dl-cat-field { background: #f3f1ec; color: #8c5a3c; }
@@ -1958,9 +2024,8 @@
             <!-- KEY NUMBERS STRIP -->
             <div id="featured-section" class="border-b border-gray-200 bg-white py-16 md:py-24">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                    <div class="mb-10">
-                        <div class="rand-eyebrow mb-4" data-en="By the Numbers" data-zh="数据一览">By the Numbers</div>
-                        <h2 class="rand-section-title text-3xl md:text-4xl" data-en="A growing research record" data-zh="持续增长的研究记录">A growing research record</h2>
+                    <div class="rand-section-heading">
+                        <div class="rand-eyebrow" data-en="By the Numbers" data-zh="数据一览">By the Numbers</div>
                     </div>
                     <div class="rand-number-grid reveal">
                         <div class="rand-number">
@@ -1985,10 +2050,9 @@
 
             <section id="home-voices-section" class="home-voices-section py-16 md:py-24">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                    <div class="flex items-end justify-between gap-8 mb-10">
-                        <div>
-                            <div class="rand-eyebrow mb-4" data-en="Primary Material" data-zh="一手材料">Primary Material</div>
-                            <h2 class="rand-section-title text-3xl md:text-4xl" data-en="From the Voices Archive" data-zh="声音档案选录">From the Voices Archive</h2>
+                    <div class="home-section-head-with-action">
+                        <div class="rand-section-heading">
+                            <div class="rand-eyebrow" data-en="From the Voices Archive" data-zh="声音档案选录">From the Voices Archive</div>
                         </div>
                         <button onclick="navigateTo('view-voices')" class="hidden md:inline-flex rand-button secondary" data-en="Open Archive" data-zh="打开档案">Open Archive <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
                     </div>
@@ -1999,7 +2063,9 @@
             <!-- INTERACTIVE MAPS -->
             <div id="map-section" class="py-20 md:py-24">
                 <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                    <div class="section-label mb-3 reveal" data-en="Language & Ethnicity Map" data-zh="语言与民族地图">Language & Ethnicity Map</div>
+                    <div class="rand-section-heading reveal">
+                        <div class="rand-eyebrow" data-en="Language & Ethnicity Map" data-zh="语言与民族地图">Language & Ethnicity Map</div>
+                    </div>
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 reveal">
                         <div><div class="map-col-title" data-en="Dialect Regions" data-zh="方言区域">Dialect Regions</div><div style="position:relative;"><div id="map-dialect" class="map-box"></div><div id="legend-dialect" class="map-legend-row" style="position:absolute;bottom:8px;left:8px;margin-top:0;background:rgba(255,255,255,0.88);padding:6px 10px;border-radius:3px;z-index:5;"></div></div></div>
                         <div><div class="map-col-title" data-en="Ethnic Minorities" data-zh="少数民族">Ethnic Minorities</div><div style="position:relative;"><div id="map-ethnic" class="map-box"></div><div id="legend-ethnic" class="map-legend-row" style="position:absolute;bottom:8px;right:8px;margin-top:0;background:rgba(255,255,255,0.88);padding:6px 10px;border-radius:3px;z-index:5;"></div></div></div>
@@ -2009,9 +2075,11 @@
             </div>
 <!-- RECENT BLOG PREVIEW -->
             <div class="max-w-7xl mx-auto px-6 lg:px-12 py-20 md:py-24">
-                <div class="flex items-center justify-between mb-10 reveal">
-                    <div class="section-label" data-en="Latest from the Blog" data-zh="最新动态">Latest from the Blog</div>
-                    <button onclick="navigateTo('view-blog')" class="text-[12px] font-bold uppercase tracking-widest text-[#005587] hover:text-pew-dark transition-colors flex items-center gap-1.5" data-en="View All" data-zh="查看全部">View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
+                <div class="home-section-head-with-action reveal">
+                    <div class="rand-section-heading">
+                        <div class="rand-eyebrow" data-en="Latest from the Blog" data-zh="最新动态">Latest from the Blog</div>
+                    </div>
+                    <button onclick="navigateTo('view-blog')" class="rand-button secondary" data-en="View All" data-zh="查看全部">View All <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="home-blog-cards">
                     <!-- Dynamically filled from CMS -->
@@ -2024,7 +2092,6 @@
         <div id="view-research" class="page-view pb-24">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
                 <div class="max-w-5xl mx-auto">
-                    <div class="section-label mb-4" data-en="Academic Work" data-zh="学术工作">Academic Work</div>
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Research" data-zh="学术研究">Research</h2>
                 </div>
             </div>
@@ -2037,7 +2104,6 @@
         <div id="view-writing" class="page-view pb-24">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
                 <div class="max-w-5xl mx-auto">
-                    <div class="section-label mb-4" data-en="Opinion & Analysis" data-zh="观点与分析">Opinion & Analysis</div>
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Writing & Opinion" data-zh="观点与评论">Writing & Opinion</h2>
                 </div>
             </div>
@@ -2058,7 +2124,6 @@
         <div id="view-field" class="page-view pb-24">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
                 <div class="max-w-5xl mx-auto">
-                    <div class="section-label mb-4" data-en="Ethnographic Work" data-zh="民族志研究">Ethnographic Work</div>
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Field Notes" data-zh="田野笔记">Field Notes</h2>
                 </div>
             </div>
@@ -2071,7 +2136,6 @@
         <div id="view-data" class="page-view pb-24">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
                 <div class="max-w-5xl mx-auto">
-                    <div class="section-label mb-4" data-en="Quantitative Work" data-zh="量化研究">Quantitative Work</div>
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Data & Insight" data-zh="数据与洞察">Data & Insight</h2>
                 </div>
             </div>
@@ -2163,7 +2227,6 @@
         <div id="view-voices" class="page-view pb-24">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
                 <div class="max-w-5xl mx-auto">
-                    <div class="section-label mb-4" data-en="Primary Materials" data-zh="一手材料">Primary Materials</div>
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark mb-3" data-en="Voices Archive" data-zh="边缘声音档案库">Voices Archive</h2>
                     <p class="text-gray-500 font-sans text-base max-w-2xl leading-relaxed" data-en="Recorded speech materials, transcripts, and field notes from ongoing language research." data-zh="持续整理中的语音材料、转写文本与田野记录。">Recorded speech materials, transcripts, and field notes from ongoing language research.</p>
                 </div>
@@ -2196,7 +2259,6 @@
         <div id="view-blog" class="page-view pb-32">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
                 <div class="max-w-7xl mx-auto">
-                    <div class="section-label mb-4" data-en="Updates & Events" data-zh="动态与活动">Updates & Events</div>
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Blog" data-zh="Blog">Blog</h2>
                 </div>
             </div>
@@ -2240,7 +2302,6 @@
         <div id="view-about" class="page-view pb-24">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
                 <div class="max-w-5xl mx-auto">
-                    <div class="section-label mb-4" data-en="The Initiative" data-zh="关于平台">The Initiative</div>
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="About" data-zh="关于平台">About</h2>
                 </div>
             </div>
@@ -2303,7 +2364,7 @@
         <!-- ===== VIEW: DOWNLOADS ===== -->
         <div id="view-downloads" class="page-view pb-24">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
-                <div class="max-w-5xl mx-auto"><div class="section-label mb-4" data-en="Resources" data-zh="资源中心">Resources</div><h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Downloads" data-zh="下载中心">Downloads</h2></div>
+                <div class="max-w-5xl mx-auto"><h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Downloads" data-zh="下载中心">Downloads</h2></div>
             </div>
             <div class="max-w-5xl mx-auto px-6 lg:px-12">
                 <div id="downloads-container" class="grid grid-cols-1 md:grid-cols-2 gap-4"><div class="text-center py-12 text-gray-400 font-serif col-span-2">Loading...</div></div>
@@ -3162,6 +3223,31 @@
             }
         }
 
+        function getContentLabel(article) {
+            const cat = ((article && article.category) || '').toLowerCase();
+            const tag = (article && article.tag) || {};
+            const tagEn = (tag.en || tag['en-US'] || '').toLowerCase();
+            const tagZh = tag.zh || tag['zh-CN'] || '';
+            const haystack = [cat, tagEn, tagZh].join(' ').toLowerCase();
+            if (/conference|symposium|workshop|panel|talk|presentation|会议|论坛|研讨会|讲座/.test(haystack)) {
+                return currentLang === 'en' ? 'Conference' : '会议';
+            }
+            if (/publication|journal|paper|article|刊物|发表|论文/.test(haystack)) {
+                return currentLang === 'en' ? 'Publication' : '发表';
+            }
+            if (/field|ethnograph|fieldwork|田野|民族志/.test(haystack) || cat === 'field notes') {
+                return currentLang === 'en' ? 'Fieldwork' : '田野';
+            }
+            if (/voice|audio|recording|archive|声音|录音|档案/.test(haystack) || cat === 'voices') {
+                return currentLang === 'en' ? 'Voices' : '声音';
+            }
+            if (/team|update|news|团队|动态/.test(haystack) || cat === 'blog') {
+                return currentLang === 'en' ? 'Update' : '动态';
+            }
+            if (cat === 'writing' || cat === 'opinion') return currentLang === 'en' ? 'Commentary' : '评论';
+            return currentLang === 'en' ? 'Research' : '研究';
+        }
+
         // ====== AUTO-GENERATE HERO + CARDS ======
         function renderHeroSection() {
             const heroContainer = document.getElementById('hero-container');
@@ -3213,14 +3299,7 @@
                 .sort((a, b) => (b.publishDate?.en || '').localeCompare(a.publishDate?.en || ''));
             const feature = allEntries.find(a => a.category.toLowerCase() === 'research') || featuredResearch;
             const latest = allEntries.filter(a => a.slug !== feature.slug).slice(0, 4);
-            const labelFor = function(article) {
-                const cat = (article.category || '').toLowerCase();
-                if (cat === 'research') return currentLang === 'en' ? 'Research' : '研究';
-                if (cat === 'writing' || cat === 'opinion') return currentLang === 'en' ? 'Commentary' : '评论';
-                if (cat === 'field notes') return currentLang === 'en' ? 'Field Notes' : '田野笔记';
-                if (cat === 'voices') return currentLang === 'en' ? 'Voices' : '声音';
-                return currentLang === 'en' ? 'Research' : '研究';
-            };
+            const labelFor = getContentLabel;
             const featureTag = labelFor(feature);
             const featureDate = t(feature.publishDate) || '';
             const featureAction = feature.slug === '#' ? "navigateTo('view-research')" : "openArticle('" + feature.slug + "')";

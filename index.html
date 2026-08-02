@@ -444,6 +444,19 @@
             line-height: 1.7;
             color: #46515c;
         }
+        .voice-report-note p { margin: 0 0 1rem; }
+        .voice-report-note p:last-child { margin-bottom: 0; }
+        .voice-report-note ol {
+            margin: 1rem 0 1rem 1.25rem;
+            padding-left: 1rem;
+            list-style: decimal;
+        }
+        .voice-report-note li {
+            margin: 0 0 0.9rem;
+            padding-left: 0.35rem;
+        }
+        .voice-report-note li:last-child { margin-bottom: 0; }
+        .voice-report-note strong { color: var(--dark); font-weight: 800; }
         .voice-report-consent {
             margin-top: 1.5rem;
             padding-top: 1rem;
@@ -2865,6 +2878,7 @@
             matches.forEach(([id, article]) => {
                 const title = article.title[currentLang];
                 const highlightedTitle = highlightText(title, query);
+                const snippet = getBodySnippet(article.body[currentLang] || article.body.en, query) || (article.excerpt ? highlightText(article.excerpt[currentLang] || article.excerpt.en || '', query) : '');
                 const date = (article.publishDate && (article.publishDate[currentLang] || article.publishDate.en)) || '';
                 const action = isFullScreen
                     ? `openArticle('${id}'); toggleSearch(); return false;`
@@ -2872,6 +2886,7 @@
                 resultHTML += `<a href="#" onclick="${action}" class="rand-search-result">
                     <span class="rand-search-kind">${article.tag[currentLang]}${date ? ` / ${date}` : ''}</span>
                     <h3 class="rand-search-result-title">${highlightedTitle}</h3>
+                    ${snippet ? `<p>${snippet}</p>` : ''}
                 </a>`;
             });
 
@@ -3377,6 +3392,7 @@
                                     </div>
                                     <div>
                                         <h3 class="rand-latest-heading mb-4">${t(feature.title)}</h3>
+                                        <p class="text-base md:text-lg text-gray-600 leading-relaxed mb-5">${t(feature.excerpt)}</p>
                                         <span class="rand-date tight">${featureDate}</span>
                                     </div>
                                 </article>
@@ -3431,6 +3447,7 @@
                         <span class="rand-image-label">${labelFor(leadFeatured)}</span>
                     </div>
                     <h3>${t(leadFeatured.title)}</h3>
+                    <p>${t(leadFeatured.excerpt)}</p>
                     <span class="rand-date">${t(leadFeatured.publishDate) || ''}</span>
                 </article>`;
             }
@@ -3553,6 +3570,7 @@
             for (const [slug, data] of sortedEntries) {
                 const safeTag = data.tag ? data.tag[currentLang] : '';
                 const safeTitle = data.title ? data.title[currentLang] : '';
+                const safeExcerpt = data.excerpt ? data.excerpt[currentLang] : '';
                 const cat = data.category.toLowerCase();
                 const cover = data.coverUrl;
 
@@ -3561,6 +3579,7 @@
                         <article class="research-card cursor-pointer border-b border-gray-200 pb-10 mb-0 pt-8 pl-4 reveal visible" onclick="openArticle('${slug}')">
                             <p class="text-[11px] text-gray-400 mb-3 font-sans uppercase tracking-[0.15em] font-medium">${safeTag}</p>
                             <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
+                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
                             <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Abstract' : '阅读摘要'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                         </article>
                     `;
@@ -3570,6 +3589,7 @@
                         <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
                             <p class="text-[11px] text-gray-400 mb-3 font-sans uppercase tracking-[0.15em] font-medium">${safeTag}</p>
                             <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
+                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
                             <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Article' : '阅读文章'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                         </article>
                     `;
@@ -3584,6 +3604,7 @@
                                 <div class="md:col-span-3 flex flex-col justify-center">
                                     <p class="text-[11px] text-gray-400 mb-3 font-sans uppercase tracking-[0.15em] font-medium">${safeTag}</p>
                                     <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
+                                    <p class="text-[16px] text-gray-500 font-serif leading-relaxed mb-5 text-justify-force">${safeExcerpt}</p>
                                     <div class="flex items-center gap-4">
                                         <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2 group-hover:gap-3 transition-all">${currentLang === 'en' ? 'Read Ethnography' : '阅读田野志'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                                     </div>
@@ -3618,6 +3639,7 @@
                             <div class="flex flex-col justify-center">
                                 <span class="text-[11px] font-medium tracking-[0.15em] uppercase text-gray-400 mb-2.5 font-sans">${safeTag}</span>
                                 <h3 class="text-xl md:text-2xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-3 leading-snug">${safeTitle}</h3>
+                                <p class="text-gray-500 font-serif text-[15px] leading-relaxed text-justify-force">${safeExcerpt}</p>
                             </div>
                         </article>
                     `;
@@ -3787,7 +3809,6 @@
                             '<p><span>' + (currentLang === 'en' ? 'Genre' : '类型') + '</span>' + t(entry.speechGenre) + '</p>' +
                             '<p><span>' + (currentLang === 'en' ? 'Duration' : '时长') + '</span>' + (entry.duration || '') + '</p>' +
                         '</div>' +
-                        '<p class="home-voice-note font-sans text-[15px] text-gray-600 leading-relaxed">' + t(entry.ethnographicNote) + '</p>' +
                     '</div>' +
                 '</div>';
             if (typeof lucide !== 'undefined') lucide.createIcons();
@@ -3811,6 +3832,62 @@
             // Legacy — now handled by renderVoiceGallery() + renderVoiceDetail()
         }
 
+        function voiceNoteToPlainText(value) {
+            if (!value) return '';
+            if (typeof value === 'string') return value;
+            if (Array.isArray(value)) {
+                return value.map(voiceNoteToPlainText).filter(Boolean).join('\n');
+            }
+            if (typeof value === 'object') {
+                if (typeof value.value === 'string') return value.value;
+                if (Array.isArray(value.content)) {
+                    return value.content.map(function(child) {
+                        var text = voiceNoteToPlainText(child);
+                        return /paragraph|heading|list-item/.test(value.nodeType || '') ? text + '\n' : text;
+                    }).filter(Boolean).join('');
+                }
+            }
+            return String(value);
+        }
+
+        function escapeVoiceNoteHtml(text) {
+            return String(text || '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function formatVoiceNoteHtml(value) {
+            var raw = voiceNoteToPlainText(value)
+                .replace(/\r\n/g, '\n')
+                .replace(/[ \t]+\n/g, '\n')
+                .trim();
+            if (!raw) return '';
+
+            function formatBlock(block) {
+                var parts = block.split(/\s+(?=\d+\.\s)/g).map(function(part) { return part.trim(); }).filter(Boolean);
+                var intro = '';
+                if (parts.length > 1 && !/^\d+\.\s/.test(parts[0])) {
+                    intro = '<p>' + escapeVoiceNoteHtml(parts.shift()) + '</p>';
+                }
+                if (parts.length > 1 || (parts.length === 1 && /^\d+\.\s/.test(parts[0]))) {
+                    var items = parts.map(function(part) {
+                        return '<li>' + escapeVoiceNoteHtml(part.replace(/^\d+\.\s*/, '')) + '</li>';
+                    }).join('');
+                    return intro + '<ol>' + items + '</ol>';
+                }
+                return '<p>' + escapeVoiceNoteHtml(block) + '</p>';
+            }
+
+            return raw.split(/\n{2,}|\n(?=\d+\.\s)/g)
+                .map(function(block) { return block.trim(); })
+                .filter(Boolean)
+                .map(formatBlock)
+                .join('');
+        }
+
         function renderVoiceDetail(slug) {
             var container = document.getElementById('voice-detail-content');
             if (!container) return;
@@ -3819,6 +3896,7 @@
             var t = function(field) { return field ? (field[currentLang] || field.en || '') : ''; };
             var hasTranscript = (v.transcriptDialect || v.transcriptZh || v.transcriptEn);
             var noteText = t(v.ethnographicNote);
+            var noteHTML = formatVoiceNoteHtml(noteText);
             var videoSrc = v.videoUrl || '';
             var posterSrc = v.posterUrl || '';
 
@@ -3895,10 +3973,10 @@
                         '<div class="voice-section-title" data-en="Transcription" data-zh="转写">Transcription</div>' +
                         transHTML +
                     '</div>' : '') +
-                    (noteText ? '' +
+                    (noteHTML ? '' +
                     '<div class="voice-section">' +
                         '<div class="voice-section-title" data-en="Context Notes" data-zh="田野笔记">Context Notes</div>' +
-                        '<div class="voice-note">' + noteText + '</div>' +
+                        '<div class="voice-note">' + noteHTML + '</div>' +
                     '</div>' : '') +
                     '<div class="voice-consent">' +
                         (t(v.accessConditions) ? '<div>' + t(v.accessConditions) + '</div>' : '') +
@@ -3917,6 +3995,7 @@
             if (!v) return;
             var t = function(field) { return field ? (field[currentLang] || field.en || '') : ''; };
             var noteText = t(v.ethnographicNote);
+            var noteHTML = formatVoiceNoteHtml(noteText);
             var videoSrc = v.videoUrl || '';
             var posterSrc = v.posterUrl || '';
 
@@ -3960,7 +4039,7 @@
                 return '<div><dt>' + row[0] + '</dt><dd>' + row[1] + '</dd></div>';
             }).join('');
             var classParts = [t(v.speechGenre), t(v.interactionType), t(v.setting)].filter(function(x) { return x; });
-            var deck = noteText || [t(v.dialectName), t(v.speakerInfo), t(v.location)].filter(function(x) { return x; }).join('. ');
+            var deck = [t(v.dialectName), t(v.speakerInfo), t(v.location)].filter(function(x) { return x; }).join('. ');
 
             container.innerHTML =
                 '<div class="voice-report reveal visible">' +
@@ -3976,7 +4055,7 @@
                                 '<video src="' + videoSrc + '" poster="' + posterSrc + '" preload="metadata" controls playsinline></video>' +
                             '</div>' +
                             (hasTranscript ? '<section class="voice-report-transcript"><h2 class="voice-report-heading">Transcription</h2>' + transHTML + '</section>' : '') +
-                            (noteText ? '<section class="voice-report-card mt-8"><h2 class="voice-report-heading">Context Notes</h2><div class="voice-report-note">' + noteText + '</div></section>' : '') +
+                            (noteHTML ? '<section class="voice-report-card mt-8"><h2 class="voice-report-heading">Context Notes</h2><div class="voice-report-note">' + noteHTML + '</div></section>' : '') +
                         '</main>' +
                         '<aside class="voice-report-aside">' +
                             '<h2 class="voice-report-heading">Document Details</h2>' +
@@ -4119,7 +4198,7 @@
             document.getElementById('article-view-date').textContent = data.publishDate[currentLang] || data.publishDate.en || data.tag.en || '';
             const summaryEl = document.getElementById('article-view-summary');
             if (summaryEl) {
-                summaryEl.textContent = '';
+                summaryEl.textContent = data.excerpt ? (data.excerpt[currentLang] || data.excerpt.en || '') : '';
             }
 
             // Reading time estimate

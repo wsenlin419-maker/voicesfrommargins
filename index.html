@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Margins & Meaning | Language, Identity &amp; Inequality Research</title>
-    <meta name="description" content="Margins &amp; Meaning is an independent research initiative documenting endangered voices, field materials, and the social structures that shape language, identity, and inequality.">
+    <title>Margins & Meaning | Language, Identity, Inequality &amp; Policy Research</title>
+    <meta name="description" content="Margins &amp; Meaning is an independent research initiative documenting endangered voices and field materials, and studying the social structures that shape language, identity, inequality, and public policy.">
     <meta name="robots" content="index, follow, max-snippet:180">
     <link rel="canonical" href="https://marginsmeaning.org/">
 
@@ -13,7 +13,7 @@
 
     <!-- Open Graph (Google / social previews) -->
     <meta property="og:title" content="Margins &amp; Meaning">
-    <meta property="og:description" content="An independent research initiative documenting endangered voices, field materials, and the social structures that shape language, identity, and inequality.">
+    <meta property="og:description" content="An independent research initiative documenting endangered voices and field materials, and studying the social structures that shape language, identity, inequality, and public policy.">
     <meta property="og:url" content="https://marginsmeaning.org">
     <meta name="twitter:card" content="summary">
     <script type="application/ld+json">
@@ -23,7 +23,7 @@
         "name": "Margins & Meaning",
         "alternateName": "Voices from the Margins Project",
         "url": "https://marginsmeaning.org/",
-        "description": "Margins & Meaning is an independent research initiative documenting endangered voices, field materials, and the social structures that shape language, identity, and inequality."
+        "description": "Margins & Meaning is an independent research initiative documenting endangered voices and field materials, and studying the social structures that shape language, identity, inequality, and public policy."
     }
     </script>
 
@@ -619,9 +619,12 @@
         .site-brand-type {
             display: grid;
             gap: 0.3rem;
+            width: clamp(18.5rem, 26vw, 24rem);
             min-width: 0;
         }
         .site-brand-title {
+            display: block;
+            width: 100%;
             color: var(--dark);
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(1.45rem, 2vw, 1.9rem);
@@ -630,16 +633,18 @@
             letter-spacing: 0;
         }
         .site-brand-subtitle {
-            width: fit-content;
-            max-width: 100%;
+            display: block;
+            width: 100%;
             border-top: 1px solid #cbd4dc;
             padding-top: 0.38rem;
             color: #415261;
             font-family: "Courier New", "Noto Sans SC", monospace;
-            font-size: clamp(0.62rem, 0.78vw, 0.72rem);
+            font-size: clamp(0.58rem, 0.68vw, 0.68rem);
             font-weight: 800;
             line-height: 1;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.04em;
+            text-align: justify;
+            text-align-last: justify;
             text-transform: uppercase;
         }
         .site-header-actions a,
@@ -1013,7 +1018,7 @@
         }
         .rand-button.secondary { background: transparent; color: var(--blue); }
         .rand-button:hover { background: transparent; border-color: currentColor; color: #071d2d; }
-        .rand-latest { border-left: none; padding-left: 0; margin-top: clamp(2.5rem, 5vw, 4rem); }
+        .rand-latest { border-left: none; padding-left: 0; margin-top: 0; }
         .rand-latest-title,
         .rand-section-title {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
@@ -1360,6 +1365,15 @@
             .site-header {
                 padding-top: 1.35rem !important;
                 padding-bottom: 1.35rem !important;
+            }
+            .site-brand-type {
+                width: clamp(14.5rem, 58vw, 19rem);
+            }
+            .site-brand-title {
+                font-size: clamp(1.1rem, 5.1vw, 1.45rem);
+            }
+            .site-brand-subtitle {
+                font-size: clamp(0.48rem, 2.1vw, 0.58rem);
             }
         }
 
@@ -2457,11 +2471,11 @@
                 <div class="mb-24 reveal">
                     <div class="max-w-3xl mx-auto text-center">
                         <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-[#b8453a] mb-8 font-sans" data-en="Est. April 25, 2026" data-zh="创立于2026年4月25日">Est. April 25, 2026</p>
-                        <p class="text-[2.2rem] md:text-[3rem] font-serif text-pew-dark leading-[1.4] font-light max-w-2xl mx-auto" data-en="An independent research initiative documenting and revitalizing endangered languages." data-zh="一个致力于濒危语言记录与复兴的独立研究平台。">
-                            An independent research initiative documenting and revitalizing endangered languages.
+                        <p class="text-[2.2rem] md:text-[3rem] font-serif text-pew-dark leading-[1.4] font-light max-w-2xl mx-auto" data-en="An independent research initiative documenting endangered voices and field materials, and studying the social structures that shape language, identity, inequality, and public policy." data-zh="一个独立研究计划，记录濒危声音与田野材料，研究塑造语言、身份、不平等与公共政策的社会结构。">
+                            An independent research initiative documenting endangered voices and field materials, and studying the social structures that shape language, identity, inequality, and public policy.
                         </p>
-                        <p class="text-lg md:text-xl font-serif text-[#8c8580] leading-relaxed mt-8 max-w-xl mx-auto" data-en="Examining how language and narrative shape marginalized communities&mdash;and how these processes translate into structural inequality." data-zh="探讨语言与叙事如何塑造边缘群体，以及这些过程如何转化为结构性不平等。">
-                            Examining how language and narrative shape marginalized communities&mdash;and how these processes translate into structural inequality.
+                        <p class="text-lg md:text-xl font-serif text-[#8c8580] leading-relaxed mt-8 max-w-xl mx-auto" data-en="We connect field documentation, sociolinguistic analysis, and policy-facing research on marginalized communities." data-zh="我们连接田野记录、社会语言学分析与面向政策讨论的边缘群体研究。">
+                            We connect field documentation, sociolinguistic analysis, and policy-facing research on marginalized communities.
                         </p>
                         <div class="mt-14 mb-14 w-12 h-px bg-[#b8453a] mx-auto"></div>
                     </div>
@@ -2472,7 +2486,7 @@
                         </div>
                         <div class="text-center md:text-left">
                             <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#b8453a] mb-4 font-sans" data-en="Our Method" data-zh="研究方法">Our Method</p>
-                            <p class="font-serif text-[17px] text-gray-600 leading-relaxed" data-en="Interdisciplinary: combining sociolinguistic fieldwork, discourse analysis, and quantitative inquiry to connect the micro with the macro." data-zh="跨学科路径：结合社会语言学田野调查、话语分析与量化探究，联结微观经验与宏观结构。">Interdisciplinary: combining sociolinguistic fieldwork, discourse analysis, and quantitative inquiry to connect the micro with the macro.</p>
+                            <p class="font-serif text-[17px] text-gray-600 leading-relaxed" data-en="Interdisciplinary: combining sociolinguistic fieldwork, discourse analysis, quantitative inquiry, and policy research to connect the micro with the macro." data-zh="跨学科路径：结合社会语言学田野调查、话语分析、量化探究与政策研究，联结微观经验与宏观结构。">Interdisciplinary: combining sociolinguistic fieldwork, discourse analysis, quantitative inquiry, and policy research to connect the micro with the macro.</p>
                         </div>
                     </div>
                 </div>
@@ -2484,7 +2498,7 @@
                     <div class="about-opportunity">
                         <div>
                             <h3 data-en="Join our research circle." data-zh="加入我们的研究协作。">Join our research circle.</h3>
-                            <p data-en="Margins & Meaning is looking for student collaborators and early-career researchers interested in sociolinguistics, endangered languages, field documentation, data visualization, and public-facing research writing." data-zh="Margins & Meaning 正在寻找对社会语言学、濒危语言、田野记录、数据可视化与公共研究写作感兴趣的学生协作者和青年研究者。">Margins & Meaning is looking for student collaborators and early-career researchers interested in sociolinguistics, endangered languages, field documentation, data visualization, and public-facing research writing.</p>
+                            <p data-en="Margins & Meaning is looking for student collaborators and early-career researchers interested in sociolinguistics, endangered languages, field documentation, data visualization, policy research, and public-facing writing." data-zh="Margins & Meaning 正在寻找对社会语言学、濒危语言、田野记录、数据可视化、政策研究与公共写作感兴趣的学生协作者和青年研究者。">Margins & Meaning is looking for student collaborators and early-career researchers interested in sociolinguistics, endangered languages, field documentation, data visualization, policy research, and public-facing writing.</p>
                         </div>
                         <div>
                             <ul class="about-opportunity-list">
@@ -2501,21 +2515,26 @@
                     <div class="rand-section-heading">
                         <div class="rand-eyebrow" data-en="Areas of Focus" data-zh="研究领域">Areas of Focus</div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-gray-200">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-gray-200">
                         <div class="p-7 border-b md:border-b-0 md:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
                             <div class="w-8 h-0.5 bg-[#2d8a56] mb-5"></div>
                             <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Preservation & Revitalization" data-zh="语言保护与复兴">Preservation & Revitalization</h4>
                             <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="Documenting endangered dialects and oral traditions, and supporting community-based language revitalization." data-zh="记录濒危方言与口头传统，支持以社区为本的语言复兴实践。">Documenting endangered dialects and oral traditions, and supporting community-based language revitalization.</p>
                         </div>
-                        <div class="p-7 border-b md:border-b-0 md:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
+                        <div class="p-7 border-b md:border-b-0 lg:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
                             <div class="w-8 h-0.5 bg-[#005587] mb-5"></div>
                             <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Language & Identity" data-zh="语言与身份">Language & Identity</h4>
                             <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="Linguistic hybridity and identity formation in historically marginalized regions." data-zh="历史边缘地区的语言杂糅与身份认同建构。">Linguistic hybridity and identity formation in historically marginalized regions.</p>
                         </div>
-                        <div class="p-7 group hover:bg-[#f8f9fa] transition-colors">
+                        <div class="p-7 border-b md:border-b-0 md:border-r border-gray-200 group hover:bg-[#f8f9fa] transition-colors">
                             <div class="w-8 h-0.5 bg-gray-400 mb-5"></div>
                             <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Voice & Inequality" data-zh="声音与不平等">Voice & Inequality</h4>
                             <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="The relationship between language, voice, and structural economic inequality." data-zh="语言、声音与结构性经济不平等之间的关系。">The relationship between language, voice, and structural economic inequality.</p>
+                        </div>
+                        <div class="p-7 group hover:bg-[#f8f9fa] transition-colors">
+                            <div class="w-8 h-0.5 bg-[#a33a2b] mb-5"></div>
+                            <h4 class="font-sans font-bold text-[13px] uppercase tracking-wider text-pew-dark mb-3" data-en="Policy & Public Life" data-zh="政策与公共生活">Policy & Public Life</h4>
+                            <p class="font-serif text-[15px] text-gray-500 leading-relaxed" data-en="Translating language research into evidence for education, cultural preservation, and public policy debates." data-zh="将语言研究转化为教育、文化保护与公共政策讨论中的证据。">Translating language research into evidence for education, cultural preservation, and public policy debates.</p>
                         </div>
                     </div>
                 </div>
@@ -2695,8 +2714,8 @@
         <div class="max-w-7xl mx-auto px-6 lg:px-12 mt-10">
             <p class="text-[12px] text-white/25 leading-relaxed font-sans max-w-3xl">
                 <strong class="text-white/40 uppercase tracking-widest font-medium" data-en="ABOUT MARGINS & MEANING INITIATIVE" data-zh="关于 MARGINS & MEANING 智库">ABOUT MARGINS & MEANING INITIATIVE</strong>
-                <span class="block mt-1" data-en="An independent, nonpartisan research platform dedicated to language preservation, exploring the intersections of language, identity and inequality. We conduct multimodal content analysis, sociolinguistic research, and in-depth ethnographic interviews. We do not take policy positions, but rather provide data-driven insights." data-zh="「边缘之声」是一个独立、无党派倾向的青年研究平台，致力于语言保护，在语言、身份认同与不平等的深层交集处展开研究。我们不采取特定的政策立场，而是提供基于实证的客观数据洞察。">
-                An independent, nonpartisan research platform dedicated to language preservation, exploring the intersections of language, identity, and inequality.
+                <span class="block mt-1" data-en="Margins & Meaning is an independent, nonpartisan research initiative documenting endangered voices and field materials, and studying the social structures that shape language, identity, inequality, and public policy. We do not take institutional policy positions; we provide evidence for public debate." data-zh="Margins & Meaning 是一个独立、无党派研究计划，记录濒危声音与田野材料，研究塑造语言、身份、不平等与公共政策的社会结构。我们不采取机构性政策立场，而是为公共讨论提供证据。">
+                Margins & Meaning is an independent, nonpartisan research initiative documenting endangered voices and field materials, and studying the social structures that shape language, identity, inequality, and public policy.
                 </span>
             </p>
         </div>
@@ -2893,8 +2912,8 @@
             // ── Site ──
             siteUrl: 'https://marginsmeaning.org',
             tagline: {
-                en: 'Preserving endangered voices.',
-                zh: '守护濒危之声。'
+                en: 'Language, identity, inequality, and policy research.',
+                zh: '语言、身份、不平等与政策研究。'
             }
         };
 
@@ -3486,7 +3505,7 @@
             const featureAction = feature.slug === '#' ? "navigateTo('view-research')" : "openArticle('" + feature.slug + "')";
 
             heroContainer.innerHTML = `
-                <section class="rand-hero py-14 md:py-20">
+                <section class="rand-hero py-8 md:py-12">
                     <div class="max-w-7xl mx-auto px-6 lg:px-12">
                         <div class="rand-latest">
                             <div class="rand-latest-grid">
@@ -3528,8 +3547,8 @@
                             </div>
                         </div>
                         <section class="rand-home-mission">
-                            <h1>${currentLang === 'en' ? 'Research on language, identity, and inequality.' : '关于语言、身份与不平等的研究。'}</h1>
-                            <p>${currentLang === 'en' ? 'Margins & Meaning is an independent research initiative documenting endangered voices, field materials, and the social structures that shape language use.' : 'Margins & Meaning 是一个独立研究计划，记录濒危声音、田野材料，以及塑造语言使用的社会结构。'}</p>
+                            <h1>${currentLang === 'en' ? 'Research on language, identity, inequality, and policy.' : '关于语言、身份、不平等与政策的研究。'}</h1>
+                            <p>${currentLang === 'en' ? 'Margins & Meaning is an independent research initiative documenting endangered voices and field materials, and studying the social structures that shape language, identity, inequality, and public policy.' : 'Margins & Meaning 是一个独立研究计划，记录濒危声音与田野材料，研究塑造语言、身份、不平等与公共政策的社会结构。'}</p>
                             <div class="rand-actions">
                                 <button class="rand-button" onclick="navigateTo('view-research')">${currentLang === 'en' ? 'Explore Research' : '浏览研究'} <i data-lucide="arrow-right" class="w-4 h-4"></i></button>
                                 <button class="rand-button secondary" onclick="navigateTo('view-voices')">${currentLang === 'en' ? 'Voices Archive' : '声音档案'}</button>

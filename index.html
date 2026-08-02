@@ -991,6 +991,13 @@
             height: 1px;
             background: #171204;
         }
+        .rand-section-heading.no-rule {
+            grid-template-columns: auto;
+            margin-bottom: 1.35rem;
+        }
+        .rand-section-heading.no-rule::after {
+            content: none;
+        }
         .home-section-head-with-action {
             display: grid;
             grid-template-columns: minmax(0, 1fr) auto;
@@ -2517,7 +2524,7 @@
                 </div>
 
                 <section class="mb-20 reveal">
-                    <div class="rand-section-heading">
+                    <div class="rand-section-heading no-rule">
                         <div class="rand-eyebrow" data-en="Opportunities" data-zh="招募公告">Opportunities</div>
                     </div>
                     <div class="about-opportunity">
@@ -3700,7 +3707,7 @@
             container.innerHTML = members.map(function(m, i) {
                 var sep = i > 0 ? ' pt-14 border-t border-gray-200' : '';
                 var bio = formatTeamBio(m.bio[currentLang] || m.bio.en || '');
-                var photoPosition = normalizePhotoPosition(m.photoPosition);
+                var photoPosition = getTeamPhotoPosition(m);
                 return '<div class="flex flex-col md:flex-row items-center md:items-center gap-10 md:gap-16' + sep + '">'
                     + '<div class="flex-shrink-0 flex flex-col items-center">'
                     + '<div class="w-36 h-36 md:w-44 md:h-44 overflow-hidden rounded-full border-2 border-gray-100 shadow-md mb-4">'
@@ -3735,6 +3742,21 @@
         function normalizePhotoPosition(value) {
             var position = String(value || '50% 42%').trim();
             return /^(\d{1,3}%|left|center|right)\s+(\d{1,3}%|top|center|bottom)$/i.test(position) ? position : '50% 42%';
+        }
+
+        function getTeamPhotoPosition(member) {
+            var explicit = normalizePhotoPosition(member && member.photoPosition);
+            if (member && member.photoPosition) return explicit;
+            var key = ((member && member.name && (member.name.en || member.name.zh)) || '').toLowerCase();
+            var positions = {
+                'senlin wang': '50% 40%',
+                '王森林': '50% 40%',
+                'xingyu zhang': '50% 44%',
+                '张星宇': '50% 44%',
+                'zhiguo huang': '50% 36%',
+                '黄治国': '50% 36%'
+            };
+            return positions[key] || explicit;
         }
 
         function renderCards() {

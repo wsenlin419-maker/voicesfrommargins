@@ -425,6 +425,8 @@
             letter-spacing: 0.1em;
             color: var(--blue);
             margin-bottom: 0.5rem;
+            line-height: 1.45;
+            overflow-wrap: anywhere;
         }
         .voice-report-transcript .trans-lines {
             border-left: 4px solid var(--blue);
@@ -4003,6 +4005,13 @@
                 if (!text) return [];
                 return text.split('\n').filter(function(line) { return line.trim(); });
             }
+            function parseTranscriptLine(line) {
+                var match = (line || '').match(/^\[([^\]]+)\]\s*(.*)/);
+                return {
+                    speaker: match ? match[1] : '',
+                    text: match ? match[2] : (line || '')
+                };
+            }
 
             var dialectLines = parseTransLines(v.transcriptDialect);
             var zhLines = parseTransLines(v.transcriptZh);
@@ -4010,20 +4019,18 @@
             var hasTranscript = dialectLines.length || zhLines.length || enLines.length;
             var transHTML = '';
             for (var i = 0; i < Math.max(dialectLines.length, zhLines.length, enLines.length); i++) {
-                var dLine = dialectLines[i] || '';
-                var zLine = zhLines[i] || '';
-                var eLine = enLines[i] || '';
-                var speakerMatch = dLine.match(/^\[([^\]]+)\]\s*(.*)/);
-                var speaker = speakerMatch ? speakerMatch[1] : '';
-                var dText = speakerMatch ? speakerMatch[2] : dLine;
-                var zText = (zLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', zLine])[1];
-                var eText = (eLine.match(/^\[[^\]]+\]\s*(.*)/) || ['', eLine])[1];
+                var dParsed = parseTranscriptLine(dialectLines[i] || '');
+                var zParsed = parseTranscriptLine(zhLines[i] || '');
+                var eParsed = parseTranscriptLine(enLines[i] || '');
+                var zhSpeaker = dParsed.speaker || zParsed.speaker;
+                var enSpeaker = eParsed.speaker;
+                var speaker = zhSpeaker && enSpeaker ? zhSpeaker + ' / ' + enSpeaker : (zhSpeaker || enSpeaker);
                 transHTML += '<div class="trans-block">' +
                     (speaker ? '<div class="trans-speaker">' + speaker + '</div>' : '') +
                     '<div class="trans-lines">' +
-                        (dText ? '<div class="tl dialect">' + dText + '</div>' : '') +
-                        (zText ? '<div class="tl chinese">' + zText + '</div>' : '') +
-                        (eText ? '<div class="tl english">' + eText + '</div>' : '') +
+                        (dParsed.text ? '<div class="tl dialect">' + dParsed.text + '</div>' : '') +
+                        (zParsed.text ? '<div class="tl chinese">' + zParsed.text + '</div>' : '') +
+                        (eParsed.text ? '<div class="tl english">' + eParsed.text + '</div>' : '') +
                     '</div>' +
                 '</div>';
             }

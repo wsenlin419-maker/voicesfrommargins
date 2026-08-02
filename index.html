@@ -694,8 +694,7 @@
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
             gap: clamp(1.5rem, 4vw, 3.5rem);
-            border-top: 1px solid #171204;
-            padding: clamp(1.5rem, 3vw, 2.4rem) 0;
+            padding: 0 0 clamp(1.5rem, 3vw, 2.4rem);
             align-items: start;
         }
         .about-opportunity h3 {
@@ -990,13 +989,6 @@
             content: '';
             height: 1px;
             background: #171204;
-        }
-        .rand-section-heading.no-rule {
-            grid-template-columns: auto;
-            margin-bottom: 1.35rem;
-        }
-        .rand-section-heading.no-rule::after {
-            content: none;
         }
         .home-section-head-with-action {
             display: grid;
@@ -2524,7 +2516,7 @@
                 </div>
 
                 <section class="mb-20 reveal">
-                    <div class="rand-section-heading no-rule">
+                    <div class="rand-section-heading">
                         <div class="rand-eyebrow" data-en="Opportunities" data-zh="招募公告">Opportunities</div>
                     </div>
                     <div class="about-opportunity">

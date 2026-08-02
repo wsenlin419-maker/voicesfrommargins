@@ -159,9 +159,9 @@
         html.dark .site-status-bar button,
         html.dark .site-status-bar a { color: #f7f1e6 !important; }
         html.dark .site-brand-title { color: var(--text) !important; }
-        html.dark .site-brand-title { border-bottom-color: var(--border) !important; }
         html.dark .site-brand-subtitle {
             color: var(--text-muted) !important;
+            border-left-color: var(--blue) !important;
         }
         html.dark .site-header-actions .site-search-trigger,
         html.dark .site-header-actions .site-search-trigger:hover { color: var(--text) !important; }
@@ -610,39 +610,48 @@
             background: rgba(255,255,255,0.98) !important;
             border-bottom: 1px solid var(--border) !important;
         }
-        .site-logo-mark { color: var(--dark); }
+        .site-logo-mark {
+            color: var(--dark);
+            width: 2.45rem !important;
+            height: 2.45rem !important;
+            margin-right: 0.85rem !important;
+        }
         .site-brand {
             display: flex;
             align-items: center;
             min-width: 0;
         }
         .site-brand-type {
-            display: grid;
-            gap: 0.34rem;
-            width: clamp(18rem, 24vw, 21.5rem);
+            display: flex;
+            flex-direction: column;
+            gap: 0.28rem;
+            width: auto;
+            max-width: min(46vw, 25rem);
             min-width: 0;
         }
         .site-brand-title {
             display: block;
-            width: 100%;
-            border-bottom: 2px solid var(--dark);
-            padding-bottom: 0.34rem;
+            width: max-content;
+            max-width: 100%;
             color: var(--dark);
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(1.46rem, 1.92vw, 1.82rem);
+            font-size: clamp(1.6rem, 2.1vw, 2.05rem);
             font-weight: 900;
-            line-height: 0.95;
+            line-height: 0.98;
             letter-spacing: 0;
         }
         .site-brand-subtitle {
-            display: block;
-            width: 100%;
+            display: inline-flex;
+            width: max-content;
+            max-width: 100%;
+            border-left: 3px solid var(--blue);
+            padding-left: 0.52rem;
             color: #415261;
-            font-family: "Courier New", "Noto Sans SC", monospace;
-            font-size: clamp(0.82rem, 0.92vw, 0.92rem);
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: clamp(0.72rem, 0.88vw, 0.84rem);
             font-weight: 800;
-            line-height: 1.05;
-            letter-spacing: 0;
+            line-height: 1;
+            letter-spacing: 0.06em;
             text-align: left;
             text-transform: uppercase;
             white-space: nowrap;
@@ -1366,15 +1375,21 @@
                 padding-top: 1.35rem !important;
                 padding-bottom: 1.35rem !important;
             }
+            .site-logo-mark {
+                width: 2.15rem !important;
+                height: 2.15rem !important;
+                margin-right: 0.65rem !important;
+            }
             .site-brand-type {
-                width: clamp(14.25rem, 58vw, 18.25rem);
+                max-width: calc(100vw - 7.5rem);
             }
             .site-brand-title {
-                font-size: clamp(1.08rem, 4.9vw, 1.38rem);
-                padding-bottom: 0.3rem;
+                font-size: clamp(1.16rem, 5vw, 1.46rem);
             }
             .site-brand-subtitle {
-                font-size: clamp(0.62rem, 2.45vw, 0.74rem);
+                font-size: clamp(0.52rem, 2vw, 0.64rem);
+                letter-spacing: 0.04em;
+                padding-left: 0.4rem;
             }
         }
 

@@ -814,23 +814,38 @@
         }
 
         .home-photo-band {
-            position: relative;
-            width: 100%;
-            height: 72vh;
-            min-height: 420px;
-            max-height: 900px;
-            overflow: hidden;
-            background: #0d0d0d;
+            padding: 3rem 0 5rem;
             border-bottom: 1px solid var(--border);
         }
-        .home-photo-band img {
+        .home-photo-figure { margin: 0; }
+        .home-photo-media {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 2;
+            overflow: hidden;
+            background: #0d0d0d;
+        }
+        .home-photo-media img {
             display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .home-photo-band:hover img { transform: scale(1.02); }
+        .home-photo-media:hover img { transform: scale(1.02); }
+        .home-photo-caption {
+            position: absolute;
+            right: 1rem;
+            bottom: 1rem;
+            max-width: min(360px, 72%);
+            padding: 0.55rem 0.9rem;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+            font-size: 0.82rem;
+            line-height: 1.45;
+            text-align: left;
+        }
 
         .home-voices-section,
         .home-ecosystem-section {
@@ -916,9 +931,7 @@
         .home-voice-banner-inner {
             position: relative;
             width: 100%;
-            height: 78vh;
-            min-height: 460px;
-            max-height: 940px;
+            aspect-ratio: 16 / 9;
             overflow: hidden;
             background: #0d0d0d;
             cursor: pointer;
@@ -997,41 +1010,6 @@
             letter-spacing: 0.12em;
             text-transform: uppercase;
         }
-        .home-voice-thumbs {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            padding-top: 1.25rem;
-            scrollbar-width: none;
-        }
-        .home-voice-thumbs::-webkit-scrollbar { display: none; }
-        .home-voice-thumb {
-            flex: 0 0 auto;
-            width: 150px;
-            text-align: left;
-            background: none;
-            border: 0;
-            padding: 0;
-            cursor: pointer;
-        }
-        .home-voice-thumb img {
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 10;
-            object-fit: cover;
-            background: #0d0d0d;
-            border: 1px solid var(--border);
-        }
-        .home-voice-thumb span {
-            display: block;
-            margin-top: 0.5rem;
-            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: 0.8rem;
-            font-weight: 700;
-            line-height: 1.3;
-            color: var(--text);
-        }
-        .home-voice-thumb.is-active span { color: var(--blue); }
         .home-ecosystem-grid {
             display: grid;
             grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1448,7 +1426,6 @@
             .home-section-head-with-action {
                 grid-template-columns: 1fr;
             }
-            .home-voice-banner-inner { height: 62vh; min-height: 340px; }
             .home-voice-banner-open { display: none; }
             .rand-home-mission { min-height: auto; padding: 2.2rem 1.5rem; }
             .rand-home-mission::after { right: -18rem; top: 5rem; opacity: 0.28; }
@@ -2300,24 +2277,26 @@
             <div id="ecosystem-strip" class="home-ecosystem-section border-b border-gray-200 bg-white"></div>
 
             <!-- LARGE IMAGE BAND -->
-            <section class="home-photo-band" aria-label="Fieldwork group photo">
-                <img src="https://raw.githubusercontent.com/wsenlin419-maker/picture/main/aier.jpg" alt="Margins & Meaning team at the American Institute for Economic Research" loading="lazy">
+            <section class="home-photo-band">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                    <figure class="home-photo-figure">
+                        <div class="home-photo-media">
+                            <img src="https://raw.githubusercontent.com/wsenlin419-maker/picture/main/aier.jpg" alt="Margins & Meaning team at the American Institute for Economic Research" loading="lazy">
+                            <figcaption class="home-photo-caption" data-en="The team at the American Institute for Economic Research." data-zh="团队在美国经济研究所。">The team at the American Institute for Economic Research.</figcaption>
+                        </div>
+                    </figure>
+                </div>
             </section>
 
-            <section id="home-voices-section" class="home-voices-section">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 md:pt-24 pb-8 md:pb-12">
+            <section id="home-voices-section" class="home-voices-section py-16 md:py-24">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
                     <div class="home-section-head-with-action">
                         <div class="rand-section-heading">
                             <div class="rand-eyebrow" data-en="From the Voices Archive" data-zh="声音档案选录">From the Voices Archive</div>
                         </div>
                         <button onclick="navigateTo('view-voices')" class="hidden md:inline-flex rand-button secondary" data-en="Open Archive" data-zh="打开档案">Open Archive <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
                     </div>
-                </div>
-
-                <div id="home-voice-feature"></div>
-
-                <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                    <div id="home-voice-thumbs" class="home-voice-thumbs"></div>
+                    <div id="home-voice-feature"></div>
                 </div>
             </section>
 
@@ -4028,18 +4007,13 @@
             '</div>';
         }
 
-        var currentHomeVoiceSlug = null;
-        function renderHomeVoiceFeature(slug) {
+        function renderHomeVoiceFeature() {
             var banner = document.getElementById('home-voice-feature');
             if (!banner) return;
             var entries = getAllVoiceEntries();
             if (!entries.length) return;
-            if (slug !== undefined) currentHomeVoiceSlug = slug;
-            var entry = entries.find(function(e) { return e.slug === currentHomeVoiceSlug; })
-                        || entries.find(function(e) { return e.featured; })
-                        || entries[0];
+            var entry = entries.find(function(e) { return e.featured; }) || entries[0];
             if (!entry) return;
-            currentHomeVoiceSlug = entry.slug;
             var t = function(f) { return f ? (f[currentLang] || f.en || '') : ''; };
             var meta = [t(entry.location), t(entry.dialectName), entry.duration].filter(function(x) { return x; }).join('  ·  ');
 
@@ -4056,17 +4030,6 @@
                     '</div>' +
                     '<div class="home-voice-banner-open">' + (currentLang === 'en' ? 'View recording' : '查看录音') + '</div>' +
                 '</div>';
-
-            var thumbs = document.getElementById('home-voice-thumbs');
-            if (thumbs) {
-                var others = entries.filter(function(e) { return e.slug !== entry.slug; });
-                thumbs.innerHTML = others.map(function(e) {
-                    return '<button type="button" class="home-voice-thumb' + (e.slug === currentHomeVoiceSlug ? ' is-active' : '') + '" onclick="renderHomeVoiceFeature(\'' + e.slug + '\')">' +
-                        '<img src="' + (e.posterUrl || '') + '" alt="" loading="lazy">' +
-                        '<span>' + t(e.title) + '</span>' +
-                    '</button>';
-                }).join('');
-            }
 
             if (typeof lucide !== 'undefined') lucide.createIcons();
         }

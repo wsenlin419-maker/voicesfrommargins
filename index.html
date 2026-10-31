@@ -176,7 +176,6 @@
         html.dark .rand-section,
         html.dark .rand-latest,
         html.dark .rand-card,
-        html.dark .rand-number,
         html.dark .rand-search-panel,
         html.dark .rand-article-header,
         html.dark .rand-article-sidebar,
@@ -218,14 +217,10 @@
         html.dark .rand-section-heading .rand-eyebrow { color: var(--text) !important; }
         html.dark .rand-section-heading::after,
         html.dark .rand-featured-row,
-        html.dark .home-voice-feature,
-        html.dark .rand-number-grid,
-        html.dark .rand-number { border-color: var(--border) !important; }
+        html.dark .home-voice-feature { border-color: var(--border) !important; }
         html.dark .about-opportunity { border-color: var(--border) !important; }
         html.dark .about-opportunity p,
         html.dark .about-opportunity-list { color: var(--text-muted) !important; }
-        html.dark .rand-number strong { color: var(--text) !important; }
-        html.dark .rand-number span { color: var(--text-muted) !important; }
 
         html { scroll-behavior: smooth; overflow-x: hidden; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
         body { background-color: var(--bg); color: var(--text); overflow-x: hidden; font-kerning: normal; transition: background-color 0.35s ease, color 0.35s ease; }
@@ -818,6 +813,25 @@
             letter-spacing: 0.14em;
         }
 
+        .home-photo-band {
+            position: relative;
+            width: 100%;
+            height: 72vh;
+            min-height: 420px;
+            max-height: 900px;
+            overflow: hidden;
+            background: #0d0d0d;
+            border-bottom: 1px solid var(--border);
+        }
+        .home-photo-band img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .home-photo-band:hover img { transform: scale(1.02); }
+
         .home-voices-section,
         .home-ecosystem-section {
             background: var(--paper);
@@ -899,6 +913,125 @@
             -webkit-box-orient: vertical;
             overflow: hidden;
         }
+        .home-voice-banner-inner {
+            position: relative;
+            width: 100%;
+            height: 78vh;
+            min-height: 460px;
+            max-height: 940px;
+            overflow: hidden;
+            background: #0d0d0d;
+            cursor: pointer;
+        }
+        .home-voice-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .home-voice-scrim {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0) 42%, rgba(0,0,0,0.82) 100%);
+            pointer-events: none;
+        }
+        .home-voice-banner-content {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: clamp(1.5rem, 4vw, 3.5rem);
+            max-width: 900px;
+            color: #fff;
+        }
+        .home-voice-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.8rem;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.72);
+        }
+        .home-voice-eyebrow::before {
+            content: '';
+            width: 2.25rem;
+            height: 1px;
+            background: var(--archive-red);
+        }
+        .home-voice-banner-title {
+            font-family: Georgia, "Times New Roman", "Noto Serif SC", serif;
+            font-size: clamp(2rem, 5vw, 4.2rem);
+            line-height: 1.04;
+            font-weight: 600;
+            color: #fff;
+            letter-spacing: 0;
+            text-wrap: balance;
+        }
+        .home-voice-banner-meta {
+            margin-top: 1rem;
+            font-family: "Courier New", "Noto Sans SC", monospace;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.78);
+        }
+        .home-voice-banner-open {
+            position: absolute;
+            right: clamp(1.5rem, 4vw, 3.5rem);
+            bottom: clamp(1.5rem, 4vw, 3.5rem);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.72rem 1rem;
+            background: rgba(255,255,255,0.94);
+            color: #111;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .home-voice-thumbs {
+            display: flex;
+            gap: 1rem;
+            overflow-x: auto;
+            padding-top: 1.25rem;
+            scrollbar-width: none;
+        }
+        .home-voice-thumbs::-webkit-scrollbar { display: none; }
+        .home-voice-thumb {
+            flex: 0 0 auto;
+            width: 150px;
+            text-align: left;
+            background: none;
+            border: 0;
+            padding: 0;
+            cursor: pointer;
+        }
+        .home-voice-thumb img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            object-fit: cover;
+            background: #0d0d0d;
+            border: 1px solid var(--border);
+        }
+        .home-voice-thumb span {
+            display: block;
+            margin-top: 0.5rem;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+            color: var(--text);
+        }
+        .home-voice-thumb.is-active span { color: var(--blue); }
         .home-ecosystem-grid {
             display: grid;
             grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -1287,48 +1420,6 @@
         .rand-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08); }
         .rand-card h3 { font-size: 1.22rem; line-height: 1.2; margin-top: 0.85rem; }
         .rand-card p { color: #4c5661; font-size: 0.94rem; line-height: 1.55; margin-top: 1rem; }
-        .rand-number-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            border-top: 1px solid #171204;
-            border-bottom: 1px solid #171204;
-            background: #fff;
-        }
-        .rand-number {
-            position: relative;
-            min-height: 168px;
-            padding: 1.35rem 1.25rem 1.25rem;
-            border-right: 1px solid #c8cdd2;
-            background: #fff;
-            display: grid;
-            align-content: space-between;
-        }
-        .rand-number:last-child { border-right: 0; }
-        .rand-number::before {
-            content: '';
-            width: 2.6rem;
-            height: 0.28rem;
-            background: var(--blue);
-            display: block;
-        }
-        .rand-number strong {
-            display: block;
-            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(2.7rem, 4.5vw, 5.1rem);
-            line-height: 0.88;
-            color: #171204;
-            letter-spacing: 0;
-        }
-        .rand-number span {
-            display: block;
-            margin-top: 1rem;
-            color: #2e3741;
-            font-family: "Courier New", "Noto Sans SC", monospace;
-            font-size: 0.8rem;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-        }
 
         @media (max-width: 900px) {
             .home-hero {
@@ -1345,20 +1436,20 @@
                 font-size: clamp(2.25rem, 13vw, 3.85rem);
                 line-height: 1.02;
             }
-            .home-voice-feature,
             .home-ecosystem-grid,
             .rand-hero-grid,
             .rand-latest-grid,
             .rand-latest-feature,
             .rand-featured-editorial,
             .rand-featured-row,
-            .rand-card-grid,
-            .rand-number-grid {
+            .rand-card-grid {
                 grid-template-columns: 1fr;
             }
             .home-section-head-with-action {
                 grid-template-columns: 1fr;
             }
+            .home-voice-banner-inner { height: 62vh; min-height: 340px; }
+            .home-voice-banner-open { display: none; }
             .rand-home-mission { min-height: auto; padding: 2.2rem 1.5rem; }
             .rand-home-mission::after { right: -18rem; top: 5rem; opacity: 0.28; }
             .rand-latest { border-left: none; padding-left: 0; }
@@ -2208,42 +2299,25 @@
 
             <div id="ecosystem-strip" class="home-ecosystem-section border-b border-gray-200 bg-white"></div>
 
-            <!-- KEY NUMBERS STRIP -->
-            <div id="featured-section" class="border-b border-gray-200 bg-white py-16 md:py-24">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12">
-                    <div class="rand-section-heading">
-                        <div class="rand-eyebrow" data-en="By the Numbers" data-zh="数据一览">By the Numbers</div>
-                    </div>
-                    <div class="rand-number-grid reveal">
-                        <div class="rand-number">
-                            <strong class="counter" data-target="250">0</strong>
-                            <span data-en="Images Analyzed" data-zh="分析图像">Images Analyzed</span>
-                        </div>
-                        <div class="rand-number" id="counter-conferences">
-                            <strong class="counter" data-target="5">0</strong>
-                            <span data-en="Conferences Presented" data-zh="会议报告">Conferences Presented</span>
-                        </div>
-                        <div class="rand-number" id="counter-papers">
-                            <strong class="counter" data-target="3">0</strong>
-                            <span data-en="Research Papers" data-zh="学术论文">Research Papers</span>
-                        </div>
-                        <div class="rand-number">
-                            <strong class="counter" data-target="10">0</strong>
-                            <span data-en="Years of Data" data-zh="数据跨度">Years of Data</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- LARGE IMAGE BAND -->
+            <section class="home-photo-band" aria-label="Fieldwork group photo">
+                <img src="https://raw.githubusercontent.com/wsenlin419-maker/picture/main/aier.jpg" alt="Margins & Meaning team at the American Institute for Economic Research" loading="lazy">
+            </section>
 
-            <section id="home-voices-section" class="home-voices-section py-16 md:py-24">
-                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <section id="home-voices-section" class="home-voices-section">
+                <div class="max-w-7xl mx-auto px-6 lg:px-12 pt-16 md:pt-24 pb-8 md:pb-12">
                     <div class="home-section-head-with-action">
                         <div class="rand-section-heading">
                             <div class="rand-eyebrow" data-en="From the Voices Archive" data-zh="声音档案选录">From the Voices Archive</div>
                         </div>
                         <button onclick="navigateTo('view-voices')" class="hidden md:inline-flex rand-button secondary" data-en="Open Archive" data-zh="打开档案">Open Archive <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></button>
                     </div>
-                    <div id="home-voice-feature"></div>
+                </div>
+
+                <div id="home-voice-feature"></div>
+
+                <div class="max-w-7xl mx-auto px-6 lg:px-12">
+                    <div id="home-voice-thumbs" class="home-voice-thumbs"></div>
                 </div>
             </section>
 
@@ -3137,43 +3211,6 @@
             });
         }
 
-        // ─── COUNTER ANIMATION ───
-        function animateCounters() {
-            document.querySelectorAll('#view-home .counter').forEach(el => {
-                const target = parseInt(el.dataset.target);
-                // Reset to 0 first, so re-animation works correctly
-                el.textContent = '0';
-                let current = 0;
-                const step = Math.max(1, Math.ceil(target / 40));
-                const timer = setInterval(() => {
-                    current = Math.min(current + step, target);
-                    el.textContent = current;
-                    if (current >= target) clearInterval(timer);
-                }, 40);
-            });
-        }
-
-        // ─── DYNAMIC COUNTERS: auto-count from CMS data ───
-        function updateDynamicCounters() {
-            let researchCount = 0;
-            let blogCount = 0;
-
-            for (const data of Object.values(articlesDB)) {
-                const cat = (data.category || '').toLowerCase();
-                if (cat === 'research') researchCount++;
-                if (cat === 'blog') blogCount++;
-            }
-
-            // Update the conference counter (2nd stat item) and research papers counter (3rd)
-            const counters = document.querySelectorAll('#view-home .counter');
-            // counters[0] = Images Analyzed (static, leave alone)
-            if (blogCount > 0 && counters[1])     counters[1].dataset.target = blogCount;
-            if (researchCount > 0 && counters[2]) counters[2].dataset.target = researchCount;
-
-            // Re-run the counter animation with updated targets
-            animateCounters();
-        }
-
         // ─── BAR ANIMATION ───
         function animateBars() {
             document.querySelectorAll('.bar-fill').forEach(bar => {
@@ -3302,7 +3339,7 @@
         function scrollToFeatured() {
             navigateTo('view-home');
             setTimeout(() => {
-                document.getElementById('featured-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.getElementById('footer-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }, 200);
         }
 
@@ -3425,10 +3462,9 @@
                 }
                 renderTeam();
 
-                // Re-render all cards with real data + update counters with accurate counts
+                // Re-render all cards with real data
                 renderCards();
                 renderVoiceGallery();
-                updateDynamicCounters();
 
                 // Check if URL hash points to an article (shared link)
                 if (window.location.hash.startsWith('#article/')) {
@@ -3992,30 +4028,46 @@
             '</div>';
         }
 
-        function renderHomeVoiceFeature() {
-            var container = document.getElementById('home-voice-feature');
-            if (!container) return;
+        var currentHomeVoiceSlug = null;
+        function renderHomeVoiceFeature(slug) {
+            var banner = document.getElementById('home-voice-feature');
+            if (!banner) return;
             var entries = getAllVoiceEntries();
-            var entry = entries.find(function(e) { return e.featured; }) || entries[0];
+            if (!entries.length) return;
+            if (slug !== undefined) currentHomeVoiceSlug = slug;
+            var entry = entries.find(function(e) { return e.slug === currentHomeVoiceSlug; })
+                        || entries.find(function(e) { return e.featured; })
+                        || entries[0];
             if (!entry) return;
+            currentHomeVoiceSlug = entry.slug;
             var t = function(f) { return f ? (f[currentLang] || f.en || '') : ''; };
-            container.innerHTML =
-                '<div class="home-voice-feature cursor-pointer group" onclick="openVoiceItem(\'' + entry.slug + '\')">' +
-                    '<div class="home-voice-media">' +
-                        '<img src="' + (entry.posterUrl || '') + '" alt="" loading="lazy" onerror="this.style.display=\'none\'">' +
-                        '<div class="home-voice-play"><i data-lucide="play" class="w-3.5 h-3.5 fill-current"></i>' + (currentLang === 'en' ? 'Listen' : '聆听') + '</div>' +
+            var meta = [t(entry.location), t(entry.dialectName), entry.duration].filter(function(x) { return x; }).join('  ·  ');
+
+            banner.innerHTML =
+                '<div class="home-voice-banner-inner" onclick="openVoiceItem(\'' + entry.slug + '\')">' +
+                    (entry.videoUrl
+                        ? '<video class="home-voice-video" src="' + entry.videoUrl + '" poster="' + (entry.posterUrl || '') + '" autoplay muted loop playsinline></video>'
+                        : '<img class="home-voice-video" src="' + (entry.posterUrl || '') + '" alt="">') +
+                    '<div class="home-voice-scrim"></div>' +
+                    '<div class="home-voice-banner-content">' +
+                        '<p class="home-voice-eyebrow">' + (currentLang === 'en' ? 'Field recording' : '田野录音') + '</p>' +
+                        '<h3 class="home-voice-banner-title">' + t(entry.title) + '</h3>' +
+                        (meta ? '<div class="home-voice-banner-meta">' + meta + '</div>' : '') +
                     '</div>' +
-                    '<div>' +
-                        '<p class="home-ecosystem-type mb-5">' + (currentLang === 'en' ? 'Field recording' : '田野录音') + '</p>' +
-                        '<h3 class="home-voice-title font-serif mb-7">' + t(entry.title) + '</h3>' +
-                        '<div class="home-voice-meta font-serif text-base leading-relaxed mb-7">' +
-                            '<p><span>' + (currentLang === 'en' ? 'Place' : '地点') + '</span>' + t(entry.location) + '</p>' +
-                            '<p><span>' + (currentLang === 'en' ? 'Dialect' : '方言') + '</span>' + t(entry.dialectName) + '</p>' +
-                            '<p><span>' + (currentLang === 'en' ? 'Genre' : '类型') + '</span>' + t(entry.speechGenre) + '</p>' +
-                            '<p><span>' + (currentLang === 'en' ? 'Duration' : '时长') + '</span>' + (entry.duration || '') + '</p>' +
-                        '</div>' +
-                    '</div>' +
+                    '<div class="home-voice-banner-open">' + (currentLang === 'en' ? 'View recording' : '查看录音') + '</div>' +
                 '</div>';
+
+            var thumbs = document.getElementById('home-voice-thumbs');
+            if (thumbs) {
+                var others = entries.filter(function(e) { return e.slug !== entry.slug; });
+                thumbs.innerHTML = others.map(function(e) {
+                    return '<button type="button" class="home-voice-thumb' + (e.slug === currentHomeVoiceSlug ? ' is-active' : '') + '" onclick="renderHomeVoiceFeature(\'' + e.slug + '\')">' +
+                        '<img src="' + (e.posterUrl || '') + '" alt="" loading="lazy">' +
+                        '<span>' + t(e.title) + '</span>' +
+                    '</button>';
+                }).join('');
+            }
+
             if (typeof lucide !== 'undefined') lucide.createIcons();
         }
 
@@ -4308,7 +4360,6 @@
             const viewId = currentView ? currentView.id : 'view-home';
             if(typeof updateNavIndicator === 'function') updateNavIndicator(viewId);
             if(typeof checkReveal === 'function') setTimeout(checkReveal, 200);
-            if(typeof animateCounters === 'function') setTimeout(animateCounters, 600);
         }
 
         // ─── INTERACTIVE MAPS ───
@@ -4360,15 +4411,13 @@
             fetchVoiceEntries();
         });
 
-        // ─── IMMEDIATE INIT: show hero + counters before CMS data arrives ───
+        // ─── IMMEDIATE INIT: show hero before CMS data arrives ───
         window.addEventListener('load', () => {
             updateLanguage();
             updateNavIndicator('view-home');
             // Render hero with fallback content immediately — before CMS fetch completes
             renderHeroSection();
             renderVoiceGallery();
-            // Animate counters with default values; will be re-animated with real counts after fetch
-            setTimeout(animateCounters, 400);
             setTimeout(checkReveal, 200);
             // Initialize interactive maps
             setTimeout(initMap, 800);

@@ -49,18 +49,6 @@ favicon-48.png      # 48×48 icon
 README.md
 ```
 
-## Content Management
-
-Site content lives in **Contentful** (articles, team members, downloads, voice entries). Edit content in Contentful — no code changes needed. The site fetches the Contentful Delivery API at runtime.
-
-## Deployment
-
-This repository is served by **GitHub Pages**. To update the site:
-
-1. Edit `index.html` locally
-2. Push `index.html` + `china-geo.json` + `favicon*.png`
-3. GitHub Pages redeploys automatically to https://marginsmeaning.org
-
 ## Contributing
 
 We welcome student collaborators and early-career researchers. See the [Opportunities](https://marginsmeaning.org) section on the site, or contact us below.

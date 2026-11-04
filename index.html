@@ -536,10 +536,6 @@
             transition: color 0.25s ease, border-color 0.25s ease;
         }
         .logo-wall-item a:hover .logo-wall-text { color: var(--dark); border-color: var(--dark); }
-        .logo-wall-mono .logo-wall-img { filter: grayscale(1) opacity(0.85); }
-        .logo-wall-mono .logo-wall-item a:hover .logo-wall-img { filter: grayscale(0) opacity(1); }
-        .logo-wall-mono .logo-wall-text { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.18); }
-        .logo-wall-mono .logo-wall-item a:hover .logo-wall-text { color: #fff; border-color: rgba(255,255,255,0.5); }
 
         .nav-track { position: relative; }
         .nav-indicator {
@@ -2859,12 +2855,6 @@
                 <a href="mailto:marginsmeaning@163.com" class="hover:text-white transition-colors" data-en="Contact Us" data-zh="联系我们">Contact</a>
             </div>
         </div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="mt-5 pt-5 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span class="text-[10px] uppercase tracking-[0.2em] text-white/25 font-medium" data-en="Powered by" data-zh="技术支持">Powered by</span>
-                <div id="poweredby-logo-wall" class="logo-wall logo-wall-mono"></div>
-            </div>
-        </div>
     </footer>
 
     <!-- LEGAL MODAL -->
@@ -3836,7 +3826,7 @@
         async function fetchLogos() {
             try {
                 var res = await fetch('https://cdn.contentful.com/spaces/' + SPACE_ID + '/environments/master/entries?content_type=logo&access_token=' + ACCESS_TOKEN + '&locale=*');
-                var logos = { affiliation: [], poweredBy: [] };
+                var logos = [];
                 if (res.ok) {
                     var data = await res.json();
                     var assets = {};
@@ -3852,38 +3842,27 @@
                             var f = item.fields;
                             var logoLink = _logoVal(f, 'logo', 'en-US');
                             var logoId = (logoLink && logoLink.sys) ? logoLink.sys.id : null;
-                            var group = _logoVal(f, 'group', 'en-US') || 'affiliation';
-                            var entry = {
+                            logos.push({
                                 name: { en: _logoVal(f, 'name', 'en-US'), zh: _logoVal(f, 'name', 'zh-CN') },
                                 url: _logoVal(f, 'url', 'en-US'),
                                 logo: logoId ? (assets[logoId] || '') : '',
                                 order: parseInt(_logoVal(f, 'sortOrder', 'en-US') || '0', 10) || 0
-                            };
-                            if (group === 'poweredBy') logos.poweredBy.push(entry);
-                            else logos.affiliation.push(entry);
+                            });
                         });
                     }
                 }
-                logos.affiliation.sort(function(a, b) { return a.order - b.order; });
-                logos.poweredBy.sort(function(a, b) { return a.order - b.order; });
+                logos.sort(function(a, b) { return a.order - b.order; });
                 window._logos = logos;
             } catch (e) { window._logos = null; }
-            if (!window._logos || (window._logos.affiliation.length === 0 && window._logos.poweredBy.length === 0)) {
-                window._logos = {
-                    affiliation: [
-                        { name: { en: 'Qingdao University', zh: '青岛大学' }, url: 'https://www.qdu.edu.cn', logo: '' },
-                        { name: { en: 'Capital University of Economics and Business', zh: '首都经济贸易大学' }, url: 'https://www.cueb.edu.cn', logo: '' },
-                        { name: { en: 'UC Santa Cruz', zh: '加州大学圣克鲁兹分校' }, url: 'https://www.ucsc.edu', logo: '' },
-                        { name: { en: 'American Psychological Association', zh: '美国心理学会' }, url: 'https://www.apa.org', logo: '' }
-                    ],
-                    poweredBy: [
-                        { name: { en: 'Contentful', zh: 'Contentful' }, url: 'https://www.contentful.com', logo: '' },
-                        { name: { en: 'GitHub Pages', zh: 'GitHub Pages' }, url: 'https://pages.github.com', logo: '' }
-                    ]
-                };
+            if (!window._logos || window._logos.length === 0) {
+                window._logos = [
+                    { name: { en: 'Qingdao University', zh: '青岛大学' }, url: 'https://www.qdu.edu.cn', logo: '' },
+                    { name: { en: 'Capital University of Economics and Business', zh: '首都经济贸易大学' }, url: 'https://www.cueb.edu.cn', logo: '' },
+                    { name: { en: 'UC Santa Cruz', zh: '加州大学圣克鲁兹分校' }, url: 'https://www.ucsc.edu', logo: '' },
+                    { name: { en: 'American Psychological Association', zh: '美国心理学会' }, url: 'https://www.apa.org', logo: 'https://github.com/wsenlin419-maker/picture/blob/main/E-mail%2BSignature%2BAPA%2BCampus%2BAmbassador%2B-%2B2026.png?raw=true' }
+                ];
             }
             renderAffiliationLogos();
-            renderPoweredByLogos();
         }
 
         function _logoItemHtml(l) {
@@ -3900,13 +3879,7 @@
         function renderAffiliationLogos() {
             var container = document.getElementById('affiliation-logo-wall');
             if (!container || !window._logos) return;
-            container.innerHTML = (window._logos.affiliation || []).map(_logoItemHtml).join('');
-        }
-
-        function renderPoweredByLogos() {
-            var container = document.getElementById('poweredby-logo-wall');
-            if (!container || !window._logos) return;
-            container.innerHTML = (window._logos.poweredBy || []).map(_logoItemHtml).join('');
+            container.innerHTML = (window._logos || []).map(_logoItemHtml).join('');
         }
 
         function renderCards() {
@@ -4806,7 +4779,6 @@
                 renderVoiceGallery();
                 renderTeam();
                 renderAffiliationLogos();
-                renderPoweredByLogos();
             } else {
                 renderHeroSection();
                 renderVoiceGallery();

@@ -506,6 +506,41 @@
             .team-bio-side { transform: translateY(-2rem); }
         }
 
+        /* ─── Logo walls (Affiliations + Powered By) ─── */
+        .logo-wall {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1.75rem 2.5rem;
+        }
+        .logo-wall-item { display: inline-flex; }
+        .logo-wall-item a, .logo-wall-item > span { display: inline-flex; align-items: center; }
+        .logo-wall-img {
+            height: 2.5rem;
+            width: auto;
+            max-width: 10rem;
+            object-fit: contain;
+            filter: grayscale(1) opacity(0.75);
+            transition: filter 0.25s ease;
+        }
+        .logo-wall-item a:hover .logo-wall-img { filter: grayscale(0) opacity(1); }
+        .logo-wall-text {
+            font-family: "Spectral", "Noto Serif SC", serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.02em;
+            color: #5f6872;
+            border: 1px solid #e1e5e8;
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            white-space: nowrap;
+            transition: color 0.25s ease, border-color 0.25s ease;
+        }
+        .logo-wall-item a:hover .logo-wall-text { color: var(--dark); border-color: var(--dark); }
+        .logo-wall-mono .logo-wall-img { filter: grayscale(1) opacity(0.85); }
+        .logo-wall-mono .logo-wall-item a:hover .logo-wall-img { filter: grayscale(0) opacity(1); }
+        .logo-wall-mono .logo-wall-text { color: rgba(255,255,255,0.55); border-color: rgba(255,255,255,0.18); }
+        .logo-wall-mono .logo-wall-item a:hover .logo-wall-text { color: #fff; border-color: rgba(255,255,255,0.5); }
+
         .nav-track { position: relative; }
         .nav-indicator {
             position: absolute;
@@ -2630,6 +2665,15 @@
                         <div class="text-center py-8 text-gray-400 font-serif">Loading...</div>
                     </div>
                 </div>
+
+                <!-- Affiliations -->
+                <div class="reveal mt-20">
+                    <div class="rand-section-heading">
+                        <div class="rand-eyebrow" data-en="Our Scholars' Affiliations" data-zh="学者学术背景">Our Scholars' Affiliations</div>
+                    </div>
+                    <p class="font-serif text-[15px] text-gray-500 leading-relaxed max-w-2xl mb-8" data-en="Our collaborators are affiliated with universities and academic organizations across the globe." data-zh="我们的协作者来自全球各地的高校与学术组织。">Our collaborators are affiliated with universities and academic organizations across the globe.</p>
+                    <div id="affiliation-logo-wall" class="logo-wall"></div>
+                </div>
             </div>
         </div>
 
@@ -2813,6 +2857,12 @@
                 <button onclick="showLegal('Terms')" class="hover:text-white transition-colors" data-en="Terms & Conditions" data-zh="条款">Terms</button>
                 <button onclick="showLegal('Privacy')" class="hover:text-white transition-colors" data-en="Privacy Policy" data-zh="隐私">Privacy</button>
                 <a href="mailto:marginsmeaning@163.com" class="hover:text-white transition-colors" data-en="Contact Us" data-zh="联系我们">Contact</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-12">
+            <div class="mt-5 pt-5 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span class="text-[10px] uppercase tracking-[0.2em] text-white/25 font-medium" data-en="Powered by" data-zh="技术支持">Powered by</span>
+                <div id="poweredby-logo-wall" class="logo-wall logo-wall-mono"></div>
             </div>
         </div>
     </footer>
@@ -3443,6 +3493,7 @@
                     ];
                 }
                 renderTeam();
+                fetchLogos();
 
                 // Re-render all cards with real data
                 renderCards();
@@ -3769,6 +3820,93 @@
                 '黄治国': '50% 36%'
             };
             return positions[key] || explicit;
+        }
+
+        // ====== LOGO WALLS (Affiliations + Powered By) ======
+        function _logoVal(f, key, locale) {
+            var v = f && f[key];
+            if (v == null || v === '') return '';
+            if (typeof v === 'object') {
+                if (v.sys) return v;
+                return v[locale] || v['en-US'] || v['zh-CN'] || '';
+            }
+            return v;
+        }
+
+        async function fetchLogos() {
+            try {
+                var res = await fetch('https://cdn.contentful.com/spaces/' + SPACE_ID + '/environments/master/entries?content_type=logo&access_token=' + ACCESS_TOKEN + '&locale=*');
+                var logos = { affiliation: [], poweredBy: [] };
+                if (res.ok) {
+                    var data = await res.json();
+                    var assets = {};
+                    if (data.includes && data.includes.Asset) {
+                        data.includes.Asset.forEach(function(a) {
+                            var u = a.fields.file['en-US'] ? a.fields.file['en-US'].url : '';
+                            if (u.startsWith('//')) u = 'https:' + u;
+                            assets[a.sys.id] = u;
+                        });
+                    }
+                    if (data.items) {
+                        data.items.forEach(function(item) {
+                            var f = item.fields;
+                            var logoLink = _logoVal(f, 'logo', 'en-US');
+                            var logoId = (logoLink && logoLink.sys) ? logoLink.sys.id : null;
+                            var group = _logoVal(f, 'group', 'en-US') || 'affiliation';
+                            var entry = {
+                                name: { en: _logoVal(f, 'name', 'en-US'), zh: _logoVal(f, 'name', 'zh-CN') },
+                                url: _logoVal(f, 'url', 'en-US'),
+                                logo: logoId ? (assets[logoId] || '') : '',
+                                order: parseInt(_logoVal(f, 'sortOrder', 'en-US') || '0', 10) || 0
+                            };
+                            if (group === 'poweredBy') logos.poweredBy.push(entry);
+                            else logos.affiliation.push(entry);
+                        });
+                    }
+                }
+                logos.affiliation.sort(function(a, b) { return a.order - b.order; });
+                logos.poweredBy.sort(function(a, b) { return a.order - b.order; });
+                window._logos = logos;
+            } catch (e) { window._logos = null; }
+            if (!window._logos || (window._logos.affiliation.length === 0 && window._logos.poweredBy.length === 0)) {
+                window._logos = {
+                    affiliation: [
+                        { name: { en: 'Qingdao University', zh: '青岛大学' }, url: 'https://www.qdu.edu.cn', logo: '' },
+                        { name: { en: 'Capital University of Economics and Business', zh: '首都经济贸易大学' }, url: 'https://www.cueb.edu.cn', logo: '' },
+                        { name: { en: 'UC Santa Cruz', zh: '加州大学圣克鲁兹分校' }, url: 'https://www.ucsc.edu', logo: '' },
+                        { name: { en: 'American Psychological Association', zh: '美国心理学会' }, url: 'https://www.apa.org', logo: '' }
+                    ],
+                    poweredBy: [
+                        { name: { en: 'Contentful', zh: 'Contentful' }, url: 'https://www.contentful.com', logo: '' },
+                        { name: { en: 'GitHub Pages', zh: 'GitHub Pages' }, url: 'https://pages.github.com', logo: '' }
+                    ]
+                };
+            }
+            renderAffiliationLogos();
+            renderPoweredByLogos();
+        }
+
+        function _logoItemHtml(l) {
+            var name = l.name[currentLang] || l.name.en || '';
+            var inner = l.logo
+                ? '<img src="' + l.logo + '" alt="' + name + '" loading="lazy" class="logo-wall-img">'
+                : '<span class="logo-wall-text">' + name + '</span>';
+            var body = l.url
+                ? '<a href="' + l.url + '" target="_blank" rel="noopener" title="' + name + '">' + inner + '</a>'
+                : '<span title="' + name + '">' + inner + '</span>';
+            return '<div class="logo-wall-item">' + body + '</div>';
+        }
+
+        function renderAffiliationLogos() {
+            var container = document.getElementById('affiliation-logo-wall');
+            if (!container || !window._logos) return;
+            container.innerHTML = (window._logos.affiliation || []).map(_logoItemHtml).join('');
+        }
+
+        function renderPoweredByLogos() {
+            var container = document.getElementById('poweredby-logo-wall');
+            if (!container || !window._logos) return;
+            container.innerHTML = (window._logos.poweredBy || []).map(_logoItemHtml).join('');
         }
 
         function renderCards() {
@@ -4667,6 +4805,8 @@
                 renderCards();
                 renderVoiceGallery();
                 renderTeam();
+                renderAffiliationLogos();
+                renderPoweredByLogos();
             } else {
                 renderHeroSection();
                 renderVoiceGallery();

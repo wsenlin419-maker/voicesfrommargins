@@ -3483,15 +3483,18 @@
                                 var photoId = (f.photo && f.photo['en-US'] && f.photo['en-US'].sys) ? f.photo['en-US'].sys.id : null;
                                 var website = (f.website && f.website['en-US']) || (f.url && f.url['en-US']) || (f.homepage && f.homepage['en-US']) || (f.academicWebsite && f.academicWebsite['en-US']) || (f.personalUrl && f.personalUrl['en-US']) || (f.websiteUrl && f.websiteUrl['en-US']) || '';
                                 var photoPosition = (f.photoPosition && (f.photoPosition['en-US'] || f.photoPosition['zh-CN'])) || '';
+                                var so = f.sortOrder;
                                 window._teamMembers.push({
                                     name: { en: (f.name && f.name['en-US']) || '', zh: (f.name && f.name['zh-CN']) || '' },
                                     role: { en: (f.role && f.role['en-US']) || '', zh: (f.role && f.role['zh-CN']) || '' },
                                     bio: { en: (f.bio && f.bio['en-US']) || '', zh: (f.bio && f.bio['zh-CN']) || '' },
                                     photo: photoId ? (tmAssets[photoId] || '') : '',
                                     photoPosition: photoPosition,
-                                    website: website
+                                    website: website,
+                                    sortOrder: (typeof so === 'number' && isFinite(so)) ? so : 9999
                                 });
                             });
+                            window._teamMembers.sort(function(a, b) { return a.sortOrder - b.sortOrder; });
                         }
                     }
                 } catch(e) { window._teamMembers = null; }

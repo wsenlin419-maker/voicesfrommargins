@@ -507,6 +507,85 @@
             .team-bio-side { transform: translateY(-2rem); }
         }
 
+        /* ─── Team member profile page ─── */
+        #view-team-profile { background: #ffffff; min-height: 100vh; }
+        body.tp-open header.site-header,
+        body.tp-open footer { display: none; }
+        .tp-topstrip { height: 44px; background: #003d5c; }
+        .tp-container { max-width: 830px; margin: 0 auto; padding: 65px 24px 0; }
+        .tp-back {
+            display: inline-flex; align-items: center; gap: 7px;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+            color: #5f6872; text-decoration: none; cursor: pointer; margin-bottom: 40px;
+        }
+        .tp-back:hover { color: #b8453a; }
+        .tp-eyebrow {
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+            color: #b8453a; margin: 0;
+        }
+        .tp-title {
+            font-family: "Spectral", "Noto Serif SC", serif;
+            font-size: 34px; font-weight: 700; line-height: 1.2;
+            color: #003d5c; margin: 12px 0 0;
+        }
+        .tp-profile { display: flex; gap: 26px; margin-top: 48px; align-items: flex-start; }
+        .tp-portrait {
+            width: 272px; flex-shrink: 0; aspect-ratio: 0.72;
+            overflow: hidden; background: #eef1f3;
+        }
+        .tp-portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .tp-profile-info { flex: 1; min-width: 0; }
+        .tp-name {
+            font-family: "Spectral", "Noto Serif SC", serif;
+            font-size: 43px; font-weight: 700; line-height: 1.15;
+            color: #003d5c; text-transform: uppercase; margin: 0;
+        }
+        .tp-identity {
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: 16px; color: #b8453a; margin: 14px 0 0; line-height: 1.5;
+        }
+        .tp-intro {
+            font-family: "Spectral", "Noto Serif SC", serif;
+            font-size: 17px; line-height: 1.6; color: #263746; margin: 28px 0 0;
+        }
+        .tp-meta { margin: 24px 0 0; font-size: 14px; line-height: 1.6; color: #5e6b75; }
+        .tp-meta b { font-weight: 700; color: #263746; }
+        .tp-divider { height: 1px; background: #dce2e5; margin: 35px 0; }
+        .tp-h2 {
+            font-family: "Spectral", "Noto Serif SC", serif;
+            font-size: 24px; font-weight: 700; color: #003d5c; margin: 0 0 12px;
+        }
+        .tp-h2.sm { font-size: 23px; margin: 24px 0 12px; }
+        .tp-bio {
+            font-family: "Spectral", "Noto Serif SC", serif;
+            font-size: 17px; line-height: 1.6; color: #293945; margin: 0;
+        }
+        .tp-edu-table { width: 100%; border-collapse: collapse; background: #f6f8f9; }
+        .tp-edu-table td {
+            border: 1px solid #dce2e5; padding: 14px; text-align: left; vertical-align: top;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: 17px; line-height: 1.5; color: #293945;
+        }
+        .tp-edu-degree { width: 107px; font-weight: 700; color: #263746; }
+        .tp-edu-school { color: #5e6b75; font-size: 15px; margin-top: 3px; }
+        .tp-footer {
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
+            font-size: 12px; color: #687680;
+            max-width: 830px; margin: 0 auto; padding: 60px 24px 40px;
+            border-top: 1px solid #dce2e5;
+        }
+        .tp-footer-strip { height: 15px; background: #b8453a; }
+        @media (max-width: 768px) {
+            .tp-container { padding-left: 20px; padding-right: 20px; }
+            .tp-profile { flex-direction: column; gap: 28px; }
+            .tp-portrait { width: 100%; max-width: 320px; }
+            .tp-name { font-size: 30px; }
+            .tp-footer { padding-left: 20px; padding-right: 20px; flex-direction: column; align-items: flex-start; gap: 8px; }
+        }
+
         /* ─── Affiliation logo wall ─── */
         .logo-wall {
             display: grid;
@@ -2705,6 +2784,10 @@
 
         <!-- ===== VIEW: ARTICLE ===== -->
         <!-- ===== VIEW: ARTICLE ===== -->
+        <div id="view-team-profile" class="page-view">
+            <div id="team-profile-root"></div>
+        </div>
+
         <div id="view-article" class="page-view rand-article-shell pb-24">
             <!-- Sticky top bar -->
             <div class="article-sticky-bar px-6 lg:px-12 py-3">
@@ -3492,6 +3575,11 @@
                                     photo: photoId ? (tmAssets[photoId] || '') : '',
                                     photoPosition: photoPosition,
                                     website: website,
+                                    researchIdentity: (f.researchIdentity && f.researchIdentity['en-US']) || '',
+                                    location: (f.location && f.location['en-US']) || '',
+                                    researchFocus: (f.researchFocus && f.researchFocus['en-US']) || '',
+                                    biography: (f.biography && f.biography['en-US']) || '',
+                                    education: (f.education && f.education['en-US']) || '',
                                     sortOrder: (typeof so === 'number' && isFinite(so)) ? so : 9999
                                 });
                             });
@@ -3785,14 +3873,16 @@
                 var sep = i > 0 ? ' pt-14 border-t border-gray-200' : '';
                 var bio = formatTeamBio(m.bio[currentLang] || m.bio.en || '');
                 var photoPosition = getTeamPhotoPosition(m);
-                return '<div class="flex flex-col md:flex-row items-center md:items-center gap-10 md:gap-16' + sep + '">'
+                var slug = m.slug || slugify(m.name.en || m.name.zh);
+                return '<div class="flex flex-col md:flex-row items-center md:items-center gap-10 md:gap-16' + sep + ' cursor-pointer group" onclick="openTeamProfile(\'' + slug + '\')" role="button" tabindex="0">'
                     + '<div class="flex-shrink-0 flex flex-col items-center md:w-56">'
-                    + '<div class="w-36 h-36 md:w-44 md:h-44 overflow-hidden rounded-full border-2 border-gray-100 shadow-md mb-4">'
+                    + '<div class="w-36 h-36 md:w-44 md:h-44 overflow-hidden rounded-full border-2 border-gray-100 shadow-md mb-4 group-hover:border-[#b8453a] transition-colors">'
                     + '<img src="' + (m.photo || '') + '" class="profile-photo w-full h-full object-cover" style="--photo-position:' + photoPosition + '" alt="' + (m.name.en || '') + '"></div>'
-                    + '<h4 class="font-serif text-2xl font-bold text-pew-dark text-center w-full leading-tight">' + (m.name[currentLang] || m.name.en || '') + '</h4>'
+                    + '<h4 class="font-serif text-2xl font-bold text-pew-dark text-center w-full leading-tight group-hover:text-[#b8453a] transition-colors">' + (m.name[currentLang] || m.name.en || '') + '</h4>'
                     + '<p class="text-[11px] font-bold text-[#cc1414] uppercase tracking-widest text-center mt-1 w-full leading-relaxed">' + (m.role[currentLang] || m.role.en || '') + '</p></div>'
                     + '<div class="flex-1 team-bio-side"><p class="team-bio">' + bio + '</p>'
-                    + (m.website ? '<a href="' + m.website + '" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 mt-3 text-[13px] font-sans font-medium text-[#005587] hover:text-pew-dark transition-colors"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> ' + (currentLang === 'zh' ? '学术主页' : 'Academic Website') + '</a>' : '')
+                    + '<span class="inline-flex items-center gap-1.5 mt-3 text-[13px] font-sans font-semibold text-[#b8453a]">View full profile &rarr;</span>'
+                    + (m.website ? '<a href="' + m.website + '" target="_blank" rel="noopener" onclick="event.stopPropagation()" class="inline-flex items-center gap-1.5 mt-3 ml-4 text-[13px] font-sans font-medium text-[#005587] hover:text-pew-dark transition-colors"><i data-lucide="external-link" class="w-3.5 h-3.5"></i> ' + (currentLang === 'zh' ? '学术主页' : 'Academic Website') + '</a>' : '')
                     + '</div></div>';
             }).join('');
         }
@@ -4728,6 +4818,121 @@
             setTimeout(() => { currentArticleId = null; }, 300);
         };
 
+        // ─── TEAM MEMBER PROFILE ───
+        var currentTeamSlug = null;
+        function slugify(s) {
+            return String(s || '').toLowerCase().trim()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/^-+|-+$/g, '');
+        }
+        function tpText(value) {
+            var raw = String(value == null ? '' : value);
+            var ta = document.createElement('textarea');
+            ta.innerHTML = raw;
+            var decoded = ta.value;
+            return decoded
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+        function getTeamMemberBySlug(slug) {
+            if (!window._teamMembers) return null;
+            for (var i = 0; i < window._teamMembers.length; i++) {
+                var m = window._teamMembers[i];
+                var s = m.slug || slugify(m.name.en || m.name.zh);
+                if (s === slug) return m;
+            }
+            return null;
+        }
+        function renderTeamProfile(member) {
+            var root = document.getElementById('team-profile-root');
+            if (!root || !member) return;
+            var name = member.name.en || member.name.zh || '';
+            var identity = member.researchIdentity || member.role.en || member.role.zh || '';
+            var intro = member.bio.en || member.bio.zh || '';
+            var biography = member.biography || intro || '';
+            var location = member.location || '';
+            var researchFocus = member.researchFocus || '';
+            var photo = member.photo || '';
+            var photoPosition = getTeamPhotoPosition(member);
+
+            var eduRows = '';
+            var edu = member.education;
+            if (edu) {
+                var list = edu;
+                if (typeof edu === 'string') {
+                    try { list = JSON.parse(edu); } catch (e) { list = null; }
+                }
+                if (Array.isArray(list) && list.length) {
+                    eduRows = list.map(function (r) {
+                        var degree = (r && (r.degree || r.abbr || r.abbreviation)) || '';
+                        var title = (r && (r.title || r.name)) || '';
+                        var school = (r && (r.school || r.university || r.institution)) || '';
+                        return '<tr>'
+                            + '<td class="tp-edu-degree">' + tpText(degree) + '</td>'
+                            + '<td>' + tpText(title)
+                            + (school ? '<div class="tp-edu-school">' + tpText(school) + '</div>' : '')
+                            + '</td></tr>';
+                    }).join('');
+                }
+            }
+
+            var meta = '';
+            if (location) meta += '<div class="tp-meta"><b>Based academically in:</b> ' + tpText(location) + '</div>';
+            if (researchFocus) meta += '<div class="tp-meta"><b>Research focus:</b> ' + tpText(researchFocus) + '</div>';
+
+            var eduSection = '';
+            if (eduRows) {
+                eduSection = '<h2 class="tp-h2 sm">Academic background</h2>'
+                    + '<table class="tp-edu-table"><tbody>' + eduRows + '</tbody></table>';
+            }
+
+            root.innerHTML =
+                '<div class="tp-topstrip"></div>'
+                + '<div class="tp-container">'
+                + '<a class="tp-back" onclick="closeTeamProfile()"><span>&larr;</span> Back to team</a>'
+                + '<p class="tp-eyebrow">About Us</p>'
+                + '<h1 class="tp-title">' + tpText(name) + '</h1>'
+                + '<div class="tp-profile">'
+                + '<div class="tp-portrait"><img src="' + photo + '" style="object-position:' + photoPosition + '" alt="' + tpText(name) + '"></div>'
+                + '<div class="tp-profile-info">'
+                + '<div class="tp-name">' + tpText(name) + '</div>'
+                + (identity ? '<div class="tp-identity">' + tpText(identity) + '</div>' : '')
+                + (intro ? '<div class="tp-intro">' + tpText(intro) + '</div>' : '')
+                + meta
+                + '</div></div>'
+                + '<div class="tp-divider"></div>'
+                + '<h2 class="tp-h2">Biography</h2>'
+                + '<p class="tp-bio">' + tpText(biography) + '</p>'
+                + eduSection
+                + '</div>'
+                + '<div class="tp-footer"><span>Margins &amp; Meaning</span><span>&copy; 2026</span></div>'
+                + '<div class="tp-footer-strip"></div>';
+        }
+        window.openTeamProfile = function (slug, silent) {
+            var member = getTeamMemberBySlug(slug);
+            if (!member) return;
+            previousView = document.querySelector('.page-view.active')?.id || 'view-about';
+            currentTeamSlug = slug;
+            renderTeamProfile(member);
+            document.body.classList.add('tp-open');
+            navigateTo('view-team-profile');
+            if (!silent && window.location.hash !== '#team/' + slug) {
+                history.pushState(null, '', '#team/' + slug);
+            }
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        };
+        window.closeTeamProfile = function () {
+            if (window.location.hash.startsWith('#team/')) {
+                history.pushState(null, '', window.location.pathname);
+            }
+            document.body.classList.remove('tp-open');
+            navigateTo(previousView);
+            setTimeout(function () { currentTeamSlug = null; }, 300);
+        };
+
         // ─── HASH ROUTING ───
         function handleHashChange() {
             const hash = window.location.hash;
@@ -4739,12 +4944,21 @@
             } else if (hash.startsWith('#voice/')) {
                 const vSlug = hash.replace('#voice/', '');
                 openVoiceItem(vSlug);
+            } else if (hash.startsWith('#team/')) {
+                const tSlug = hash.replace('#team/', '');
+                if (getTeamMemberBySlug(tSlug)) {
+                    openTeamProfile(tSlug, true);
+                }
             } else if (!hash) {
                 if (currentArticleId) {
                     navigateTo(previousView);
                     currentArticleId = null;
                 } else if (document.getElementById('view-voice-detail')?.classList.contains('active')) {
                     navigateTo('view-voices');
+                } else if (currentTeamSlug) {
+                    document.body.classList.remove('tp-open');
+                    navigateTo(previousView);
+                    currentTeamSlug = null;
                 }
             }
         }

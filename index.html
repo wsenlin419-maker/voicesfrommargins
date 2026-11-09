@@ -511,8 +511,7 @@
         #view-team-profile { background: #ffffff; min-height: 100vh; }
         body.tp-open header.site-header,
         body.tp-open footer { display: none; }
-        .tp-topstrip { height: 44px; background: #003d5c; }
-        .tp-container { max-width: 830px; margin: 0 auto; padding: 65px 24px 0; }
+        .tp-container { max-width: 830px; margin: 0 auto; padding: 40px 24px 0; }
         .tp-back {
             display: inline-flex; align-items: center; gap: 7px;
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
@@ -520,19 +519,9 @@
             color: #5f6872; text-decoration: none; cursor: pointer; margin-bottom: 40px;
         }
         .tp-back:hover { color: #b8453a; }
-        .tp-eyebrow {
-            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-            color: #b8453a; margin: 0;
-        }
-        .tp-title {
-            font-family: "Spectral", "Noto Serif SC", serif;
-            font-size: 34px; font-weight: 700; line-height: 1.2;
-            color: #003d5c; margin: 12px 0 0;
-        }
-        .tp-profile { display: flex; gap: 26px; margin-top: 48px; align-items: flex-start; }
+        .tp-profile { display: flex; gap: 26px; margin-top: 48px; align-items: stretch; }
         .tp-portrait {
-            width: 272px; flex-shrink: 0; aspect-ratio: 0.72;
+            width: 272px; flex-shrink: 0; min-height: 360px;
             overflow: hidden; background: #eef1f3;
         }
         .tp-portrait img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -549,7 +538,9 @@
         .tp-intro {
             font-family: "Spectral", "Noto Serif SC", serif;
             font-size: 17px; line-height: 1.6; color: #263746; margin: 28px 0 0;
+            text-align: justify; text-justify: inter-word;
         }
+        .tp-intro p { margin: 0; }
         .tp-meta { margin: 24px 0 0; font-size: 14px; line-height: 1.6; color: #5e6b75; }
         .tp-meta b { font-weight: 700; color: #263746; }
         .tp-divider { height: 1px; background: #dce2e5; margin: 35px 0; }
@@ -561,7 +552,10 @@
         .tp-bio {
             font-family: "Spectral", "Noto Serif SC", serif;
             font-size: 17px; line-height: 1.6; color: #293945; margin: 0;
+            text-align: justify; text-justify: inter-word;
         }
+        .tp-bio p { margin: 0 0 1.2em; }
+        .tp-bio p:last-child { margin-bottom: 0; }
         .tp-edu-table { width: 100%; border-collapse: collapse; background: #f6f8f9; }
         .tp-edu-table td {
             border: 1px solid #dce2e5; padding: 14px; text-align: left; vertical-align: top;
@@ -570,20 +564,11 @@
         }
         .tp-edu-degree { width: 107px; font-weight: 700; color: #263746; }
         .tp-edu-school { color: #5e6b75; font-size: 15px; margin-top: 3px; }
-        .tp-footer {
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: 12px; color: #687680;
-            max-width: 830px; margin: 0 auto; padding: 60px 24px 40px;
-            border-top: 1px solid #dce2e5;
-        }
-        .tp-footer-strip { height: 15px; background: #b8453a; }
         @media (max-width: 768px) {
             .tp-container { padding-left: 20px; padding-right: 20px; }
             .tp-profile { flex-direction: column; gap: 28px; }
-            .tp-portrait { width: 100%; max-width: 320px; }
+            .tp-portrait { width: 100%; max-width: 320px; aspect-ratio: 0.72; min-height: 0; }
             .tp-name { font-size: 30px; }
-            .tp-footer { padding-left: 20px; padding-right: 20px; flex-direction: column; align-items: flex-start; gap: 8px; }
         }
 
         /* ─── Affiliation logo wall ─── */
@@ -3572,6 +3557,7 @@
                                     name: { en: (f.name && f.name['en-US']) || '', zh: (f.name && f.name['zh-CN']) || '' },
                                     role: { en: (f.role && f.role['en-US']) || '', zh: (f.role && f.role['zh-CN']) || '' },
                                     bio: { en: (f.bio && f.bio['en-US']) || '', zh: (f.bio && f.bio['zh-CN']) || '' },
+                                    shortIntro: (f.shortIntro && f.shortIntro['en-US']) || '',
                                     photo: photoId ? (tmAssets[photoId] || '') : '',
                                     photoPosition: photoPosition,
                                     website: website,
@@ -3918,10 +3904,13 @@
             var positions = {
                 'senlin wang': '50% 40%',
                 '王森林': '50% 40%',
-                'xingyu zhang': '50% 44%',
-                '张星宇': '50% 44%',
+                'xingyu zhang': '70% 70%',
+                '张星宇': '70% 70%',
                 'zhiguo huang': '50% 36%',
-                '黄治国': '50% 36%'
+                '黄治国': '50% 36%',
+                'xiaoyan bao': '72% 75%',
+                'dagmawi getahun shenkute': '50% 30%',
+                'priya jangra': '50% 30%'
             };
             return positions[key] || explicit;
         }
@@ -4837,6 +4826,13 @@
                 .replace(/"/g, '&quot;')
                 .replace(/'/g, '&#39;');
         }
+        function tpMarkdown(value) {
+            var text = String(value == null ? '' : value);
+            if (typeof marked !== 'undefined' && marked.parse) {
+                return marked.parse(text);
+            }
+            return '<p>' + tpText(text) + '</p>';
+        }
         function getTeamMemberBySlug(slug) {
             if (!window._teamMembers) return null;
             for (var i = 0; i < window._teamMembers.length; i++) {
@@ -4851,7 +4847,7 @@
             if (!root || !member) return;
             var name = member.name.en || member.name.zh || '';
             var identity = member.researchIdentity || member.role.en || member.role.zh || '';
-            var intro = member.bio.en || member.bio.zh || '';
+            var intro = member.shortIntro || '';
             var biography = member.biography || intro || '';
             var location = member.location || '';
             var researchFocus = member.researchFocus || '';
@@ -4890,26 +4886,21 @@
             }
 
             root.innerHTML =
-                '<div class="tp-topstrip"></div>'
-                + '<div class="tp-container">'
+                '<div class="tp-container">'
                 + '<a class="tp-back" onclick="closeTeamProfile()"><span>&larr;</span> Back to team</a>'
-                + '<p class="tp-eyebrow">About Us</p>'
-                + '<h1 class="tp-title">' + tpText(name) + '</h1>'
                 + '<div class="tp-profile">'
                 + '<div class="tp-portrait"><img src="' + photo + '" style="object-position:' + photoPosition + '" alt="' + tpText(name) + '"></div>'
                 + '<div class="tp-profile-info">'
                 + '<div class="tp-name">' + tpText(name) + '</div>'
                 + (identity ? '<div class="tp-identity">' + tpText(identity) + '</div>' : '')
-                + (intro ? '<div class="tp-intro">' + tpText(intro) + '</div>' : '')
+                + (intro ? '<div class="tp-intro">' + tpMarkdown(intro) + '</div>' : '')
                 + meta
                 + '</div></div>'
                 + '<div class="tp-divider"></div>'
                 + '<h2 class="tp-h2">Biography</h2>'
-                + '<p class="tp-bio">' + tpText(biography) + '</p>'
+                + '<div class="tp-bio">' + tpMarkdown(biography) + '</div>'
                 + eduSection
-                + '</div>'
-                + '<div class="tp-footer"><span>Margins &amp; Meaning</span><span>&copy; 2026</span></div>'
-                + '<div class="tp-footer-strip"></div>';
+                + '</div>';
         }
         window.openTeamProfile = function (slug, silent) {
             var member = getTeamMemberBySlug(slug);

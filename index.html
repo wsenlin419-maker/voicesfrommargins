@@ -1276,8 +1276,9 @@
         .rand-latest-feature {
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: auto auto;
+            grid-template-rows: minmax(0, 1fr) auto;
             gap: 0.85rem;
+            height: var(--latest-stack-height);
             padding: 0 0 1rem;
             border-bottom: 1px solid var(--border);
             cursor: pointer;
@@ -1302,7 +1303,7 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-        .rand-latest-feature .rand-media-wrap { aspect-ratio: 16 / 9; }
+        .rand-latest-feature .rand-media-wrap { height: 100%; aspect-ratio: auto; }
         .rand-latest-side-card .rand-media-wrap { aspect-ratio: 16 / 9; }
         .rand-tag {
             display: inline-flex;
@@ -1345,28 +1346,30 @@
         .rand-card:hover h3,
         .rand-latest-feature:hover .rand-latest-heading { color: var(--blue); }
         .rand-latest-grid {
+            --latest-stack-height: clamp(540px, 48vw, 660px);
             display: grid;
             grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.65fr) minmax(0, 0.9fr);
             gap: clamp(1.5rem, 3.2vw, 2.8rem);
-            align-items: start;
+            align-items: stretch;
             padding-top: 0;
         }
         .rand-latest-col {
             display: grid;
-            grid-template-rows: auto auto;
+            grid-template-rows: repeat(2, minmax(0, 1fr));
             gap: 1.2rem;
+            height: var(--latest-stack-height);
             min-height: 0;
         }
         .rand-latest-side-card {
             display: grid;
-            grid-template-rows: auto auto auto;
+            grid-template-rows: minmax(0, 1fr) auto auto;
             gap: 0.65rem;
             cursor: pointer;
             border-bottom: 1px solid var(--border);
             padding-bottom: 0.95rem;
             min-height: 0;
         }
-        .rand-latest-side-card .rand-media-wrap { min-height: 0; aspect-ratio: 16 / 9; }
+        .rand-latest-side-card .rand-media-wrap { height: 100%; min-height: 0; aspect-ratio: auto; }
         .rand-latest-side-card h4 {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(1.14rem, 1.55vw, 1.62rem);
@@ -1383,8 +1386,8 @@
         .rand-home-mission {
             margin-top: clamp(2.5rem, 5vw, 4rem);
             background: #eef4f8;
-            min-height: 220px;
-            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem);
+            min-height: 280px;
+            padding: clamp(2.5rem, 5vw, 4rem) clamp(2rem, 6vw, 5rem);
             position: relative;
             overflow: hidden;
         }
@@ -1404,7 +1407,7 @@
         .rand-home-mission h1 {
             max-width: 760px;
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(2rem, 3.8vw, 3.6rem);
+            font-size: clamp(2.4rem, 4.4vw, 4.4rem);
             line-height: 1.05;
             font-weight: 900;
             color: #171204;
@@ -1414,9 +1417,9 @@
         }
         .rand-home-mission p {
             max-width: 680px;
-            margin-top: 1.25rem;
+            margin-top: 1.5rem;
             font-family: "Spectral", "Noto Serif SC", serif;
-            font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+            font-size: clamp(1.2rem, 1.9vw, 1.6rem);
             line-height: 1.4;
             color: #211b0f;
             position: relative;
@@ -1425,7 +1428,7 @@
         .rand-home-mission .rand-actions {
             position: relative;
             z-index: 1;
-            margin-top: 1.5rem;
+            margin-top: 2rem;
         }
         .rand-section { background: #f6f7f8; border-bottom: 1px solid var(--border); }
         .rand-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
@@ -3789,25 +3792,6 @@
 
             ecoHTML += `</div></div></div></section>`;
             if (ecoStrip) ecoStrip.innerHTML = ecoHTML;
-            adaptHeroImages();
-        }
-
-        // ─── ADAPTIVE COVER IMAGES (magazine masonry) ───
-        function adaptHeroImages() {
-            document.querySelectorAll('.rand-latest .rand-media-wrap').forEach(function(wrap) {
-                var img = wrap.querySelector('img');
-                if (!img) return;
-                var apply = function() {
-                    var w = img.naturalWidth, h = img.naturalHeight;
-                    if (!w || !h) return;
-                    var r = w / h;
-                    if (r < 0.7) r = 0.7;
-                    else if (r > 1.7) r = 1.7;
-                    wrap.style.aspectRatio = r.toFixed(3);
-                };
-                if (img.complete && img.naturalWidth) apply();
-                else img.addEventListener('load', apply, { once: true });
-            });
         }
 
         // ─── HOME BLOG CARDS (dynamic from CMS) ───

@@ -1276,9 +1276,8 @@
         .rand-latest-feature {
             display: grid;
             grid-template-columns: 1fr;
-            grid-template-rows: minmax(0, 1fr) auto;
+            grid-template-rows: auto auto;
             gap: 0.85rem;
-            height: var(--latest-stack-height);
             padding: 0 0 1rem;
             border-bottom: 1px solid var(--border);
             cursor: pointer;
@@ -1303,7 +1302,7 @@
             letter-spacing: 0.05em;
             text-transform: uppercase;
         }
-        .rand-latest-feature .rand-media-wrap { height: 100%; aspect-ratio: auto; }
+        .rand-latest-feature .rand-media-wrap { aspect-ratio: 16 / 9; }
         .rand-latest-side-card .rand-media-wrap { aspect-ratio: 16 / 9; }
         .rand-tag {
             display: inline-flex;
@@ -1346,30 +1345,28 @@
         .rand-card:hover h3,
         .rand-latest-feature:hover .rand-latest-heading { color: var(--blue); }
         .rand-latest-grid {
-            --latest-stack-height: clamp(540px, 48vw, 660px);
             display: grid;
             grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.65fr) minmax(0, 0.9fr);
             gap: clamp(1.5rem, 3.2vw, 2.8rem);
-            align-items: stretch;
+            align-items: start;
             padding-top: 0;
         }
         .rand-latest-col {
             display: grid;
-            grid-template-rows: repeat(2, minmax(0, 1fr));
+            grid-template-rows: auto auto;
             gap: 1.2rem;
-            height: var(--latest-stack-height);
             min-height: 0;
         }
         .rand-latest-side-card {
             display: grid;
-            grid-template-rows: minmax(0, 1fr) auto auto;
+            grid-template-rows: auto auto auto;
             gap: 0.65rem;
             cursor: pointer;
             border-bottom: 1px solid var(--border);
             padding-bottom: 0.95rem;
             min-height: 0;
         }
-        .rand-latest-side-card .rand-media-wrap { height: 100%; min-height: 0; aspect-ratio: auto; }
+        .rand-latest-side-card .rand-media-wrap { min-height: 0; aspect-ratio: 16 / 9; }
         .rand-latest-side-card h4 {
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
             font-size: clamp(1.14rem, 1.55vw, 1.62rem);
@@ -1384,10 +1381,10 @@
         }
         .rand-latest-feature .rand-date { margin-top: 0.5rem; }
         .rand-home-mission {
-            margin-top: clamp(3rem, 6vw, 5.5rem);
+            margin-top: clamp(2.5rem, 5vw, 4rem);
             background: #eef4f8;
-            min-height: 340px;
-            padding: clamp(3rem, 7vw, 5rem) clamp(2rem, 8vw, 7rem);
+            min-height: 220px;
+            padding: clamp(2rem, 4vw, 3rem) clamp(1.5rem, 5vw, 4rem);
             position: relative;
             overflow: hidden;
         }
@@ -1407,8 +1404,8 @@
         .rand-home-mission h1 {
             max-width: 760px;
             font-family: Arial, Helvetica, "Noto Sans SC", sans-serif;
-            font-size: clamp(2.6rem, 5.2vw, 5.4rem);
-            line-height: 1.03;
+            font-size: clamp(2rem, 3.8vw, 3.6rem);
+            line-height: 1.05;
             font-weight: 900;
             color: #171204;
             letter-spacing: 0;
@@ -1417,10 +1414,10 @@
         }
         .rand-home-mission p {
             max-width: 680px;
-            margin-top: 2.25rem;
+            margin-top: 1.25rem;
             font-family: "Spectral", "Noto Serif SC", serif;
-            font-size: clamp(1.35rem, 2.2vw, 2rem);
-            line-height: 1.35;
+            font-size: clamp(1.05rem, 1.7vw, 1.4rem);
+            line-height: 1.4;
             color: #211b0f;
             position: relative;
             z-index: 1;
@@ -1428,7 +1425,7 @@
         .rand-home-mission .rand-actions {
             position: relative;
             z-index: 1;
-            margin-top: 2.75rem;
+            margin-top: 1.5rem;
         }
         .rand-section { background: #f6f7f8; border-bottom: 1px solid var(--border); }
         .rand-card-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
@@ -1976,6 +1973,8 @@
             font-size: clamp(1.05rem, 2vw, 1.32rem);
             line-height: 1.55;
             color: #4d5965;
+            text-align: justify;
+            text-justify: inter-word;
         }
         .rand-article-summary:empty { display: none; }
         .rand-article-sidebar {
@@ -2036,7 +2035,8 @@
             font-size: 1.18rem;
             line-height: 1.82;
             color: #202933;
-            text-align: left;
+            text-align: justify;
+            text-justify: inter-word;
         }
         .article-body p { margin-bottom: 1.55rem; }
         .article-body h2 { font-family: Arial, Helvetica, "Noto Sans SC", sans-serif; font-size: 1.65rem; font-weight: 800; margin: 3rem 0 1rem; letter-spacing: 0; line-height: 1.18; }
@@ -2616,7 +2616,7 @@
         <!-- ===== VIEW: BLOG ===== -->
         <div id="view-blog" class="page-view pb-32">
             <div class="page-header py-28 px-6 lg:px-12 mb-20">
-                <div class="max-w-7xl mx-auto">
+                <div class="max-w-5xl mx-auto">
                     <h2 class="font-serif text-5xl md:text-7xl font-light text-pew-dark" data-en="Blog" data-zh="Blog">Blog</h2>
                 </div>
             </div>
@@ -3789,6 +3789,25 @@
 
             ecoHTML += `</div></div></div></section>`;
             if (ecoStrip) ecoStrip.innerHTML = ecoHTML;
+            adaptHeroImages();
+        }
+
+        // ─── ADAPTIVE COVER IMAGES (magazine masonry) ───
+        function adaptHeroImages() {
+            document.querySelectorAll('.rand-latest .rand-media-wrap').forEach(function(wrap) {
+                var img = wrap.querySelector('img');
+                if (!img) return;
+                var apply = function() {
+                    var w = img.naturalWidth, h = img.naturalHeight;
+                    if (!w || !h) return;
+                    var r = w / h;
+                    if (r < 0.7) r = 0.7;
+                    else if (r > 1.7) r = 1.7;
+                    wrap.style.aspectRatio = r.toFixed(3);
+                };
+                if (img.complete && img.naturalWidth) apply();
+                else img.addEventListener('load', apply, { once: true });
+            });
         }
 
         // ─── HOME BLOG CARDS (dynamic from CMS) ───
@@ -3822,9 +3841,11 @@
                 const slug = card.getAttribute('onclick')?.match(/openArticle\('(.+?)'\)/)?.[1];
                 if (!slug || !articlesDB[slug]) { card.style.display = ''; return; }
                 const dataCat = articlesDB[slug].category.toLowerCase();
-                const show = (cat === 'conference' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('conference'))
-                    || (cat === 'fieldwork' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('field'))
-                    || (cat === 'publication' && dataCat === 'blog' && (articlesDB[slug].tag.en || '').toLowerCase().includes('publication'))
+                const tagLower = (articlesDB[slug].tag.en || '').toLowerCase();
+                const show = (cat === 'conference' && dataCat === 'blog' && tagLower.includes('conference'))
+                    || (cat === 'fieldwork' && dataCat === 'blog' && tagLower.includes('field'))
+                    || (cat === 'publication' && dataCat === 'blog' && tagLower.includes('publication'))
+                    || (cat === 'team' && dataCat === 'blog' && (tagLower.includes('team') || tagLower.includes('member')))
                     || (cat === 'fieldwork' && dataCat === 'field notes')
                     || (cat === 'publication' && (dataCat === 'research' || dataCat === 'writing'));
                 card.style.display = show ? '' : 'none';
@@ -3842,7 +3863,7 @@
                     if (cat === 'blog' && tag.includes('field')) counts.fieldwork++;
                     if (cat === 'field notes') counts.fieldwork++;
                     if (cat === 'research' || cat === 'writing' || (cat === 'blog' && tag.includes('publication'))) counts.publication++;
-                    if (cat === 'blog' && tag.includes('team')) counts.team++;
+                    if (cat === 'blog' && (tag.includes('team') || tag.includes('member'))) counts.team++;
                 }
             }
             for (const [key, count] of Object.entries(counts)) {
@@ -4016,7 +4037,7 @@
                         <article class="research-card cursor-pointer border-b border-gray-200 pb-10 mb-0 pt-8 pl-4 reveal visible" onclick="openArticle('${slug}')">
                             <p class="text-[11px] text-gray-400 mb-3 font-sans uppercase tracking-[0.15em] font-medium">${safeTag}</p>
                             <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
-                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
+                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5 text-justify-force">${safeExcerpt}</p>
                             <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Abstract' : '阅读摘要'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                         </article>
                     `;
@@ -4026,7 +4047,7 @@
                         <article class="group cursor-pointer border-b border-gray-200 pb-10 mb-10 reveal visible" onclick="openArticle('${slug}')">
                             <p class="text-[11px] text-gray-400 mb-3 font-sans uppercase tracking-[0.15em] font-medium">${safeTag}</p>
                             <h4 class="text-3xl md:text-4xl font-serif font-bold text-pew-dark group-hover:text-[#005587] transition-colors mb-5 leading-tight">${safeTitle}</h4>
-                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5">${safeExcerpt}</p>
+                            <p class="text-[18px] text-gray-500 font-serif leading-relaxed mb-5 text-justify-force">${safeExcerpt}</p>
                             <span class="text-[12px] font-bold text-[#005587] uppercase tracking-wider flex items-center gap-2">${currentLang === 'en' ? 'Read Article' : '阅读文章'} <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i></span>
                         </article>
                     `;

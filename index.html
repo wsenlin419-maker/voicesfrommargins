@@ -3110,10 +3110,11 @@
         const SITE_CONFIG = {
             // ── Contact ──
             email: 'marginsmeaning@163.com',
-            // ── Newsletter (Formspree) ──
-            // 1. Sign up at https://formspree.io
-            // 2. Create a new form, copy its ID (e.g. 'xabc123y')
-            // 3. Paste it below, replacing CHANGE_ME
+            // ── Newsletter (Mailchimp) ──
+            mailchimpUrl: 'https://marginsmeaning.us16.list-manage.com/subscribe/post-json',
+            mailchimpU: '4740a37d8fb33036e000c2f97',
+            mailchimpId: '18fb70d125',
+            // ── Contact form (Formspree) ──
             formspreeId: 'xdavopge',
             // ── Comments (Giscus) ──
             githubRepo: 'wsenlin419-maker/voicesfrommargins',
@@ -3370,6 +3371,34 @@
             document.body.style.overflow = 'auto';
         }
 
+        function mailchimpSubscribe(email, done) {
+            var cbName = 'mmcb_' + Date.now();
+            var u = SITE_CONFIG.mailchimpU, id = SITE_CONFIG.mailchimpId;
+            var url = SITE_CONFIG.mailchimpUrl
+                + '?u=' + encodeURIComponent(u)
+                + '&id=' + encodeURIComponent(id)
+                + '&EMAIL=' + encodeURIComponent(email)
+                + '&b_' + u + '_' + id + '='
+                + '&c=' + cbName;
+            var finished = false;
+            var finish = function(ok, already) {
+                if (finished) return;
+                finished = true;
+                try { delete window[cbName]; } catch (e) {}
+                done(ok, already);
+            };
+            window[cbName] = function(data) {
+                var ok = data && data.result === 'success';
+                var already = data && data.msg && /already subscribed/i.test(data.msg);
+                finish(ok, already);
+            };
+            var s = document.createElement('script');
+            s.src = url;
+            s.onerror = function() { finish(false, false); };
+            document.body.appendChild(s);
+            setTimeout(function() { finish(false, false); }, 15000);
+        }
+
         function handleSubscribe(e, btnId) {
             e.preventDefault();
             const btn = document.getElementById(btnId);
@@ -3377,32 +3406,23 @@
             const email = e.target.querySelector('input[type=email]').value;
             btn.innerHTML = '...';
             btn.disabled = true;
-            fetch('https://formspree.io/f/' + SITE_CONFIG.formspreeId, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email, source: 'newsletter' })
-            }).then(r => {
-                if (r.ok) {
+            mailchimpSubscribe(email, function(ok, already) {
+                if (ok || already) {
                     btn.innerHTML = currentLang === 'zh' ? '已订阅 ✓' : 'Subscribed ✓';
                     btn.style.background = '#16a34a';
                     btn.style.color = '#fff';
                     e.target.reset();
-                    // Show value-prop toast
                     const toast = document.getElementById('copied-toast');
                     toast.textContent = currentLang === 'zh'
-                        ? '感谢订阅！有新研究会通过邮箱通知你。'
-                        : 'Thanks! You will be notified of new research by email.';
+                        ? (already ? '该邮箱已经订阅过啦！' : '感谢订阅！请到邮箱点击确认链接完成订阅。')
+                        : (already ? 'You are already subscribed!' : 'Thanks! Check your email to confirm your subscription.');
                     toast.classList.add('show');
-                    setTimeout(() => toast.classList.remove('show'), 4000);
+                    setTimeout(() => toast.classList.remove('show'), 5000);
                 } else {
                     btn.innerHTML = '!';
                     btn.style.background = '#cc1414';
                 }
                 setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; btn.disabled = false; }, 4000);
-            }).catch(() => {
-                btn.innerHTML = '!';
-                btn.style.background = '#cc1414';
-                setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.disabled = false; }, 3000);
             });
         }
 

@@ -84,7 +84,7 @@ items.sort(key=lambda x: x[0], reverse=True)
 def esc(s):
     return html.escape(s or '', quote=True)
 
-out = ['<?xml version="1.0" encoding="UTF-8"?>', '<rss version="2.0"><channel>']
+out = ['<?xml version="1.0" encoding="UTF-8"?>', '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"><channel>']
 out.append(f'<title>{esc("Margins & Meaning")}</title>')
 out.append(f'<link>{SITE}</link>')
 out.append(f'<description>{esc("Language, identity, inequality, and policy research.")}</description>')
@@ -99,7 +99,9 @@ for pub, title, slug, excerpt, pubdate, img, mime in items:
         out.append(f'<pubDate>{pubdate}</pubDate>')
     out.append(f'<description><![CDATA[{excerpt}]]></description>')
     if img:
-        out.append(f'<enclosure url="{esc(img)}" length="0" type="{mime}" />')
+        out.append(f'<media:content url="{esc(img)}" medium="image" type="{mime}" />')
+        out.append(f'<media:thumbnail url="{esc(img)}" />')
+        out.append(f'<enclosure url="{esc(img)}" type="{mime}" />')
     out.append('</item>')
 out.append('</channel></rss>')
 

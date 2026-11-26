@@ -10,14 +10,6 @@ An interdisciplinary research platform that brings together young students and s
 
 Margins & Meaning ("Voices from the Margins Project") is an independent, nonpartisan research platform. We connect young researchers across linguistics, psychology, sociology, discourse analysis, and quantitative & qualitative methods, documenting voices and discourses that are underrepresented in public life.
 
-## Preview
-
-<!-- TODO: 把下面的 screenshot.png 换成真实截图。
-     方式一：把截图存成 screenshot.png 放进本仓库；
-     方式二：用 picture 仓库的直链，例如
-     https://raw.githubusercontent.com/wsenlin419-maker/picture/main/xxx.png -->
-![Margins & Meaning — site preview](screenshot.png)
-
 ## Features
 
 - 🌐 Bilingual (English / 中文) with one-click switching
